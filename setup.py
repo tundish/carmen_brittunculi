@@ -44,9 +44,20 @@ setup(
         ]
     },
     install_requires=[
-        "turberfield-dialogue[audio]>=0.15.0",
+        "bottle>=0.12.13",
+        "turberfield-dialogue>=0.15.0",
         "turberfield-utils>=0.33.0",
     ],
+    extras_require={
+        "dev": [
+            "flake8>=3.5.0",
+            "wheel>=0.30.0",
+        ],
+    },
+    entry_points={
+        "console_scripts": [
+            "carmen-web = carmen.main:run",
+        ],
+    },
     zip_safe=True,
-    entry_points={}
 )
