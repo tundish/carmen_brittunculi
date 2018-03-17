@@ -54,12 +54,21 @@ def call(phrase):
 def move(location):
     return "Hello World!"
 
+def serve_css(filepath):
+    log = logging.getLogger("carmen.main.serve_css")
+    log.debug(filepath)
+    locn = pkg_resources.resource_filename(
+        "carmen", "static/css"
+    )
+    return bottle.static_file(filepath, root=locn)
+
 def build_app():
     rv = bottle.Bottle()
     rv.router.add_filter("object", World.object_filter)
     rv.route("/", callback=here)
     rv.route("/call/<phrase:object>", callback=call)
     rv.route("/move/<location:object>", callback=move)
+    rv.route("/css/<filepath:path>", callback=serve_css)
 
     return rv
 

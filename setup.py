@@ -41,6 +41,8 @@ setup(
     packages=["carmen", "carmen.test"],
     package_data={
         "carmen": [
+            "static/css/*.css",
+            "templates/*.tpl",
         ]
     },
     install_requires=[
