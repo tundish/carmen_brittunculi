@@ -14,11 +14,11 @@ https://github.com/anthony-tuininga/cx_Freeze
 """
 
 try:
-    from bluemonday_78 import __version__ as version
+    from carmen import __version__ as version
 except ImportError:
     version = str(ast.literal_eval(
         open(os.path.join(os.path.dirname(__file__),
-        "bluemonday78", "__init__.py"),
+        "carmen", "__init__.py"),
         'r').read().split("=")[-1].strip()
     ))
 
@@ -29,7 +29,7 @@ buildOptions = {
         "pkg_resources._vendor.six", "pkg_resources._vendor.appdirs",
         "pkg_resources._vendor.packaging", "pkg_resources._vendor.pyparsing",
         "blessings", "tkinter", "turberfield.dialogue",
-        "bluemonday78",
+        "carmen",
     ],
     "namespace_packages": ["turberfield"],
     "includes": [],
@@ -67,14 +67,14 @@ if sys.version_info.minor >= 6:
 
 executables = [
     Executable(
-        "bluemonday78/main.py",
-        targetName="bluemonday.exe" if sys.platform == "win32" else "bluemonday",
+        "carmen/main.py",
+        targetName="carmen.exe" if sys.platform == "win32" else "carmen",
         base=base
     )
 ]
 
 setup(
-    name="bluemonday78",
+    name="carmen",
     version=version,
     description="A dramatic screenplay",
     options={
