@@ -22,6 +22,7 @@ import re
 import sys
 
 import bottle
+import pkg_resources
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
@@ -46,13 +47,15 @@ class World:
         return World.regexp, World.get_object, World.object_id
 
 def here():
-    return "Hello World!"
+    return bottle.template(
+        pkg_resources.resource_string("carmen", "templates/forest.tpl").decode("utf8")
+    )
 
 def call(phrase):
-    return "Hello World!"
+    return {}
 
 def move(location):
-    return "Hello World!"
+    return {}
 
 def serve_css(filepath):
     log = logging.getLogger("carmen.main.serve_css")
@@ -74,9 +77,14 @@ def build_app():
 
 def main(args):
     log = logging.getLogger(log_setup(args, "carmen"))
-    log.info("Starting server.")
+
+    bottle.debug(True)
+    bottle.TEMPLATES.clear()
+    log.debug(bottle.TEMPLATE_PATH)
 
     app = build_app()
+
+    log.info("Starting server...")
     bottle.run(app, host="localhost", port=8080, debug=True)
 
 def parser(description=__doc__):
