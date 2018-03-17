@@ -18,6 +18,7 @@
 
 import argparse
 import logging
+import re
 import sys
 
 import bottle
@@ -28,21 +29,37 @@ from carmen import __version__
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
 
-@bottle.route("/")
+class World:
+
+    contents = None
+
+    regexp = re.compile("[0-9a-f]{32}")
+
+    def get_object(id):
+        return World.contents.get(id)
+
+    def object_id(obj):
+        return getattr(obj, "id")
+
+    def object_filter(config):
+        print("Object filter with {0}".format(config))
+        return World.regexp, World.get_object, World.object_id
+
 def here():
     return "Hello World!"
 
-@bottle.route("/call/<phrase:object>")
 def call(phrase):
     return "Hello World!"
 
-@bottle.route("/move/<location:object>")
 def move(location):
     return "Hello World!"
 
 def build_app():
-    rv = Bottle()
-    #app.router.add_filter("object", object_store)
+    rv = bottle.Bottle()
+    rv.router.add_filter("object", World.object_filter)
+    rv.route("/", callback=here)
+    rv.route("/call/<phrase:object>", callback=call)
+    rv.route("/move/<location:object>", callback=move)
 
     return rv
 
