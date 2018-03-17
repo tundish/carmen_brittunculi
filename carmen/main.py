@@ -28,15 +28,30 @@ from carmen import __version__
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
 
-@bottle.route('/hello')
-def hello():
+@bottle.route("/")
+def here():
     return "Hello World!"
 
+@bottle.route("/call/<phrase:object>")
+def call(phrase):
+    return "Hello World!"
+
+@bottle.route("/move/<location:object>")
+def move(location):
+    return "Hello World!"
+
+def build_app():
+    rv = Bottle()
+    #app.router.add_filter("object", object_store)
+
+    return rv
 
 def main(args):
     log = logging.getLogger(log_setup(args, "carmen"))
     log.info("Starting server.")
-    bottle.run(host='localhost', port=8080, debug=True)
+
+    app = build_app()
+    bottle.run(app, host="localhost", port=8080, debug=True)
 
 def parser(description=__doc__):
     rv = argparse.ArgumentParser(
