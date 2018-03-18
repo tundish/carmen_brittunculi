@@ -19,6 +19,7 @@
 import argparse
 from collections import namedtuple
 import logging
+import random
 import re
 import sys
 
@@ -40,11 +41,12 @@ class World:
     regexp = re.compile("[0-9a-f]{32}")
 
     @staticmethod
-    def forest():
+    def forest(pitch=16):
+        randint = random.randint
         return [
-            World.Leaf("svg-leaf", x, y)
-            for x in range(0, 480, 32)
-            for y in range(0, 480, 32)
+            World.Leaf("svg-leaf", x + randint(0, pitch), y + randint(0, pitch))
+            for x in range(0, 480, pitch)
+            for y in range(0, 480, pitch)
         ]
 
     def get_object(id):
