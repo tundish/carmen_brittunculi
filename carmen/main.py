@@ -41,7 +41,11 @@ class World:
 
     @staticmethod
     def forest():
-        return [World.Leaf("svg-leaf", 30, 30)]
+        return [
+            World.Leaf("svg-leaf", x, y)
+            for x in range(0, 480, 32)
+            for y in range(0, 480, 32)
+        ]
 
     def get_object(id):
         return World.contents.get(id)
