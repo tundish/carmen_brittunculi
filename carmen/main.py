@@ -17,6 +17,7 @@
 # along with Addison Arches.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
+from collections import namedtuple
 import logging
 import re
 import sys
@@ -32,9 +33,15 @@ DEFAULT_DWELL = 0.3
 
 class World:
 
+    Leaf = namedtuple("Leaf", ["ref", "x", "y"])
+
     contents = None
 
     regexp = re.compile("[0-9a-f]{32}")
+
+    @staticmethod
+    def forest():
+        return [World.Leaf("svg-leaf", 30, 30)]
 
     def get_object(id):
         return World.contents.get(id)
@@ -48,7 +55,8 @@ class World:
 
 def here():
     return bottle.template(
-        pkg_resources.resource_string("carmen", "templates/forest.tpl").decode("utf8")
+        pkg_resources.resource_string("carmen", "templates/forest.tpl").decode("utf8"),
+        leaves=World.forest()
     )
 
 def call(phrase):
