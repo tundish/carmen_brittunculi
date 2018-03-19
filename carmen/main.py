@@ -41,12 +41,14 @@ class World:
     regexp = re.compile("[0-9a-f]{32}")
 
     @staticmethod
-    def forest(pitch=16):
+    def forest(width, height, population=["svg-leaf-00", "svg-leaf-01"], pitch=(12, 9)):
+        choice = random.choice
         randint = random.randint
+        pitch_x, pitch_y = pitch
         return [
-            World.Leaf("svg-leaf", x + randint(0, pitch), y + randint(0, pitch))
-            for x in range(0, 480, pitch)
-            for y in range(0, 480, pitch)
+            World.Leaf(choice(population), x + randint(0, pitch_x), y + randint(0, pitch_y))
+            for x in range(0, width, pitch_x)
+            for y in range(0, height, pitch_y)
         ]
 
     def get_object(id):
@@ -60,9 +62,13 @@ class World:
         return World.regexp, World.get_object, World.object_id
 
 def here():
+    width, height = 560, 480
+    pitch = (12, 9)
+    cell = (32, 32)
     return bottle.template(
         pkg_resources.resource_string("carmen", "templates/forest.tpl").decode("utf8"),
-        leaves=World.forest()
+        extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
+        leaves=World.forest(width, height, pitch=pitch)
     )
 
 def call(phrase):

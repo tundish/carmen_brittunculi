@@ -26,6 +26,7 @@ Notes
 * `Turberfield Dialogue`_ library.
 * `Post-Roman scenario`_ from an abandoned project.
 * `Mammy apple`_ tree.
+* `SVG coordinates`_ within HTML.
 
 .. _Roman Mytholojam 2018: https://itch.io/jam/roman-mytholojam
 .. _GNU Affero General Public License: http://www.gnu.org/licenses/agpl.html
@@ -35,3 +36,4 @@ Notes
 .. _Turberfield Dialogue: http://pythonhosted.org/turberfield-dialogue/
 .. _Post-Roman scenario: http://pythonhosted.org/turberfield-eargain/guide.html
 .. _Mammy apple: https://en.wikipedia.org/wiki/Mammea_americana
+.. _SVG coordinates: https://www.sarasoueidan.com/blog/svg-coordinate-systems/
