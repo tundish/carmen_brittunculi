@@ -85,6 +85,14 @@ def serve_css(filepath):
     )
     return bottle.static_file(filepath, root=locn)
 
+def serve_svg(filepath):
+    log = logging.getLogger("carmen.main.serve_svg")
+    log.debug(filepath)
+    locn = pkg_resources.resource_filename(
+        "carmen", "static/svg"
+    )
+    return bottle.static_file(filepath, root=locn)
+
 def build_app():
     rv = bottle.Bottle()
     rv.router.add_filter("object", World.object_filter)
@@ -92,6 +100,7 @@ def build_app():
     rv.route("/call/<phrase:object>", callback=call)
     rv.route("/move/<location:object>", callback=move)
     rv.route("/css/<filepath:path>", callback=serve_css)
+    rv.route("/svg/<filepath:path>", callback=serve_svg)
 
     return rv
 

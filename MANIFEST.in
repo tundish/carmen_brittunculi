@@ -1,4 +1,7 @@
 recursive-include . *.cfg
 recursive-include . *.cli
+recursive-include . *.css
 recursive-include . *.rst
+recursive-include . *.svg
+recursive-include . *.tpl
 recursive-include . *.wav

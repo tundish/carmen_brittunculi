@@ -42,6 +42,7 @@ setup(
     package_data={
         "carmen": [
             "static/css/*.css",
+            "static/svg/*.svg",
             "templates/*.tpl",
         ]
     },
