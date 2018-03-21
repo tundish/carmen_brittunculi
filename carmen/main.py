@@ -28,6 +28,8 @@ import pkg_resources
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
+from carmen.types import Coin
+from carmen.types import Marker
 
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
@@ -65,11 +67,17 @@ def here():
     width, height = 560, 480
     pitch = (12, 9)
     cell = (32, 32)
+    # TODO: Do select. Use values.
+    cast = {}
+    coin = next((i for i in cast.values() if isinstance(i, Coin)), None)
+    marker = next((i for i in cast.values() if isinstance(i, Marker)), None)
     return bottle.template(
         pkg_resources.resource_string("carmen", "templates/forest.tpl").decode("utf8"),
         extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
-        #leaves=World.forest(width, height, pitch=pitch)
-        leaves=[]
+        # leaves=World.forest(width, height, pitch=pitch)
+        leaves=[],
+        coin=coin,
+        marker=marker
     )
 
 def call(phrase):
