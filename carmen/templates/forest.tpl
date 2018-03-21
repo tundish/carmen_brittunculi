@@ -30,15 +30,16 @@ preserveAspectRatio="none"
 />
 </symbol>
 
-<svg>
-
+<svg width="100" height="100" x="200" y="200">
 <image
 xmlns:xlink="http://www.w3.org/1999/xlink"
 xlink:href="/svg/milliarium.svg"
-x="0" y="0" width="100%" height="100%">
+x="0" y="0"
+width="100%" height="100%">
 </image>
 
-<text x=173" y="50">THIS IS A ROCK</text>
+<!-- x, y half of width of parent -->
+<text x="50" y="50" font-size="10" text-anchor="middle">THIS IS A COIN</text>
 </svg>
 
 % for leaf in leaves:

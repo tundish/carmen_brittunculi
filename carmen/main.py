@@ -68,7 +68,8 @@ def here():
     return bottle.template(
         pkg_resources.resource_string("carmen", "templates/forest.tpl").decode("utf8"),
         extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
-        leaves=World.forest(width, height, pitch=pitch)
+        #leaves=World.forest(width, height, pitch=pitch)
+        leaves=[]
     )
 
 def call(phrase):
