@@ -31,7 +31,8 @@ display: none;
 }
 
 svg|use.leaf {
-color: rgba(255, 89, 255, 0.8);
+color: #587040;
+color: var(--houseplant-green);
 }
 
 svg|use.leaf:hover {
