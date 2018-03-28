@@ -34,6 +34,10 @@ from carmen.types import Marker
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
 
+bottle.TEMPLATE_PATH.append(
+    pkg_resources.resource_filename("carmen", "templates")
+)
+
 class World:
 
     Leaf = namedtuple("Leaf", ["ref", "x", "y"])
@@ -72,7 +76,7 @@ def here():
     coin = next((i for i in cast.values() if isinstance(i, Coin)), None)
     marker = next((i for i in cast.values() if isinstance(i, Marker)), None)
     return bottle.template(
-        pkg_resources.resource_string("carmen", "templates/forest.tpl").decode("utf8"),
+        pkg_resources.resource_string("carmen", "templates/top.tpl").decode("utf8"),
         extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
         leaves=World.forest(width, height, pitch=pitch),
         #leaves=[],
