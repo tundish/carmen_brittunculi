@@ -1,0 +1,12 @@
+/* See https://medium.com/flexbox-and-grids/how-to-efficiently-master-the-css-grid-in-a-jiffy-585d0c213577 */
+/* https://www.smashingmagazine.com/2017/10/naming-things-css-grid-layout/ */
+/* https://rachelandrew.co.uk/archives/2017/06/01/breaking-out-with-css-grid-explained/ */
+
+grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr 2fr) ;
+  grid-template-areas:
+".... head head head head head"
+"side side main main main main"
+"foot foot foot foot foot foot";
+}
