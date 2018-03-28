@@ -79,7 +79,7 @@ def here():
         pkg_resources.resource_string("carmen", "templates/top.tpl").decode("utf8"),
         extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
         leaves=World.forest(width, height, pitch=pitch),
-        #leaves=[],
+        # leaves=[],
         coin=coin,
         marker=marker
     )

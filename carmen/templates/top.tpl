@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="/css/grid.css" />
 </head>
 <body>
+<nav>
 %include("forest.tpl", extent=extent, leaves=leaves, coin=coin, marker=marker)
+</nav>
 </body>
 </html>
