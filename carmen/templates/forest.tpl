@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="/css/base.css" />
-</head>
-<body>
 <svg xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink"
 width="{{extent[0]}}" height="{{extent[1]}}"
@@ -49,5 +40,3 @@ width="100%" height="100%">
 <use class="leaf" x="{{leaf.x}}" y="{{leaf.y}}" xlink:href="#{{leaf.ref}}" />
 % end
 </svg>
-</body>
-</html>
