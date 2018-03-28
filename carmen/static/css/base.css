@@ -38,3 +38,12 @@ color: var(--houseplant-green);
 svg|use.leaf:hover {
 color: transparent;
 }
+
+grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr 2fr) ;
+  grid-template-areas:
+"head head head head head head"
+"side side main main main main"
+"foot foot foot foot foot foot";
+}
