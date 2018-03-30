@@ -35,8 +35,9 @@ display: none;
 svg|use.leaf {
 color: #587040;
 color: var(--houseplant-green);
+opacity: 1.0;
 }
 
 svg|use.leaf:hover {
-color: transparent;
+opacity: 0;
 }

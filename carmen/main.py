@@ -68,7 +68,7 @@ class World:
         return World.regexp, World.get_object, World.object_id
 
 def here():
-    width, height = 560, 480
+    width, height = 560, 400
     pitch = (12, 9)
     cell = (32, 32)
     # TODO: Do select. Use values.
