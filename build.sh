@@ -3,7 +3,7 @@
 PROJ=carmen
 
 echo "Starting temporary registry"
-REG=`sudo systemd-run --slice=machine rkt run --insecure-options=image docker://registry 2>&1`
+docker run -d -p 5000:5000 registry
 
 mkdir -p dist
 
@@ -11,8 +11,9 @@ docker rmi ${PROJ}_app
 docker build -t ${PROJ}_app:latest .
 
 echo "Docker image: " `docker images -q ${PROJ}_app`
+docker push localhost:5000/${PROJ}_app:latest
 
 rkt fetch --insecure-options=image docker://localhost:5000/${PROJ}_app:latest
 
 echo "Stopping registry"
-echo ${REG} | cut -d: -f2 | xargs sudo systemctl stop
+docker stop `docker ps | grep registry | cut -d' ' -f1`
