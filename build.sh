@@ -9,4 +9,4 @@ docker build -t ${PROJ}_app:latest .
 
 echo "Docker image: " `docker images -q ${PROJ}_app`
 
-rkt fetch docker://localhost:5000/${PROJ}_app:latest
+rkt fetch --insecure-options=image docker://localhost:5000/${PROJ}_app:latest
