@@ -1,4 +1,4 @@
-FROM alpine:3.6.2
+FROM alpine:3.6
 
 ARG user=service
 ARG envname=py3
