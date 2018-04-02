@@ -3,7 +3,7 @@
 PROJ=carmen
 
 echo "Starting temporary registry"
-REG=`sudo systemd-run --slice=machine rkt run --insecure-options=image docker://registry`
+REG=`sudo systemd-run --slice=machine rkt run --insecure-options=image docker://registry 2>&1`
 
 mkdir -p dist
 
