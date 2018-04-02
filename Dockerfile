@@ -1,3 +1,4 @@
+# NOTE: Track bug resolution
 FROM jacobsvante/python:3.7.0a3-alpine3.6-with-bpo-31940-lchown-fix
 
 ARG user=service
