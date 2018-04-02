@@ -8,7 +8,7 @@ docker run -d -p 5000:5000 registry
 mkdir -p dist
 
 docker rmi ${PROJ}_app
-docker build -t ${PROJ}_app:latest .
+docker build -t localhost:5000/${PROJ}_app:latest .
 
 echo "Docker image: " `docker images -q ${PROJ}_app`
 docker push localhost:5000/${PROJ}_app:latest
