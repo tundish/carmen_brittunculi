@@ -3,7 +3,7 @@
 PROJ=carmen
 
 echo "Starting temporary registry"
-docker run -d -p 5000:5000 registry
+docker run -d -p 5000:5000 registry:2
 
 mkdir -p dist
 
