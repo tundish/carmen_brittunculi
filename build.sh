@@ -3,5 +3,5 @@
 PROJ=carmen
 
 mkdir -p dist
-docker rmi $PROJ_app
-docker build -t $PROJ_app:latest
+docker rmi ${PROJ}_app
+docker build -t ${PROJ}_app:latest
