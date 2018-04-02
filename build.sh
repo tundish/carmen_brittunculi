@@ -3,6 +3,7 @@
 PROJ=carmen
 
 mkdir -p dist
+#sudo rkt run --insecure-options=image docker://registry
 
 docker rmi ${PROJ}_app
 docker build -t ${PROJ}_app:latest .
