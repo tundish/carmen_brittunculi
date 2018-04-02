@@ -22,4 +22,4 @@ RUN /home/$user/$envname/bin/pip install .
 
 EXPOSE 8080
 
-ENTRYPOINT ["/home/service/py3/bin/cp-portal"]
+ENTRYPOINT ["/home/service/py3/bin/carmen-web"]
