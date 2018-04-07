@@ -17,7 +17,6 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 from decimal import Decimal
-import pickle
 import unittest
 
 from carmen.types import Compass

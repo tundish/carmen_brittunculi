@@ -29,6 +29,7 @@ import pkg_resources
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
+from carmen.logic import associations
 from carmen.types import Coin
 from carmen.types import Marker
 
@@ -42,7 +43,7 @@ bottle.TEMPLATE_PATH.append(
 class World:
 
     Leaf = namedtuple("Leaf", ["ref", "x", "y"])
-
+    quests = {}
     regexp = re.compile("[0-9a-f]{32}")
 
     @staticmethod

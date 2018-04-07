@@ -35,7 +35,7 @@ class Visibility(EnumFactory, enum.Enum):
 
 class Compass:
 
-    rose =  OrderedDict([
+    rose = OrderedDict([
         (0, "North"),
         (45, "NorthEast"),
         (90, "East"),
