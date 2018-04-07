@@ -22,6 +22,7 @@ import logging
 import random
 import re
 import sys
+import uuid
 
 import bottle
 import pkg_resources
@@ -41,8 +42,6 @@ bottle.TEMPLATE_PATH.append(
 class World:
 
     Leaf = namedtuple("Leaf", ["ref", "x", "y"])
-
-    contents = None
 
     regexp = re.compile("[0-9a-f]{32}")
 
@@ -67,7 +66,22 @@ class World:
         print("Object filter with {0}".format(config))
         return World.regexp, World.get_object, World.object_id
 
-def here():
+    @classmethod
+    def quest(cls, name):
+        uid = uuid.uuid4()
+        cls.quests[uid] = associations()
+        return uid
+
+def get_start():
+    return {}
+
+def post_start():
+    return {}
+
+def here(quest):
+    log = logging.getLogger("carmen.main.here")
+    uid = uuid.UUID(hex=quest)
+    log.info(uid)
     width, height = 560, 400
     pitch = (12, 9)
     cell = (32, 32)
@@ -108,12 +122,16 @@ def serve_svg(filepath):
 
 def build_app():
     rv = bottle.Bottle()
-    rv.router.add_filter("object", World.object_filter)
-    rv.route("/", callback=here)
-    rv.route("/call/<phrase:object>", callback=call)
-    rv.route("/move/<location:object>", callback=move)
+    # rv.router.add_filter("object", World.object_filter)
+    rv.route("/", callback=get_start, method="GET")
+    rv.route("/", callback=post_start, method="POST")
+    rv.route("/<quest:re:{0}>".format(World.regexp.pattern), callback=here)
+    # Add quest
+    #rv.route("/call/<phrase:object>", callback=call)
+    #rv.route("/move/<location:object>", callback=move)
     rv.route("/css/<filepath:path>", callback=serve_css)
     rv.route("/svg/<filepath:path>", callback=serve_svg)
+    rv.world = World()
 
     return rv
 
