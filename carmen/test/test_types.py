@@ -18,8 +18,23 @@
 
 import unittest
 
+from carmen.types import Compass
+from carmen.types import Spot
 from carmen.types import Phrase
 from turberfield.dialogue.types import Stateful
+
+class CompassTests(unittest.TestCase):
+
+    def test_bearing_form_degrees(self):
+        self.assertEqual(Compass.North, Compass.bearing(0))
+
+    def test_bearing_form_complex(self):
+        self.assertEqual(Compass.North, Compass.bearing(complex(0, 1)))
+
+class SpotTests(unittest.TestCase):
+
+    def test_pickle_spot(self):
+        self.fail()
 
 class PhraseTests(unittest.TestCase):
 

@@ -29,6 +29,22 @@ class Visibility(EnumFactory, enum.Enum):
     hidden = 0
     visible = 1
 
+class Compass(EnumFactory, enum.Enum):
+
+    North = 0
+    NorthEast = 45
+    East = 90
+    SouthEast = 135
+    South = 180
+    SouthWest = 225
+    West = 270
+    NorthWest = 315
+
+    @classmethod
+    def bearing(cls, val):
+        if isinstance(val, complex):
+            return True
+
 class Speech(EnumFactory, enum.Enum):
     overheard = "overheard"
     studied = "studied"
@@ -36,6 +52,24 @@ class Speech(EnumFactory, enum.Enum):
     spoken = "spoken"
     ignored = "ignored"
     repeated = "repeated"
+
+Spot = enum.Enum(
+    "Spot", [
+        ("{0:02}_{1:02}".format(*point), complex(*point))
+        for point in (
+            (2, 3), (9, 3), (11, 2), (16, 3), (20, 3),
+            (5, 5), (7, 6), (11, 6), (16, 5), (20, 5),
+            (5, 7), (18, 7),
+            (8, 8), (11, 9), (15, 8),
+            (6, 10), (16, 10), (20, 10),
+            (2, 11), (9, 11), (11, 11), (14, 11),
+            (2, 14), (7, 14), (11, 13), (11, 15), (16, 14), (21, 14),
+            (3, 18), (7, 18), (10, 17), (14, 17), (17, 17), (21, 17)
+        )
+    ],
+    module=__name__,
+    type=EnumFactory
+)
 
 class Travel(EnumFactory, enum.Enum):
     refusal = "refusal"
