@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+from decimal import Decimal
 import unittest
 
 from carmen.types import Compass
@@ -26,12 +27,30 @@ from turberfield.dialogue.types import Stateful
 class CompassTests(unittest.TestCase):
 
     def test_bearing_form_degrees(self):
-        self.assertEqual(Compass.North, Compass.bearing(0))
+        self.assertEqual("North", Compass.legend(0))
+        self.assertEqual("South", Compass.legend(180))
+        self.assertEqual("East", Compass.legend(90))
+        self.assertEqual("West", Compass.legend(270))
+        self.assertEqual("NorthWest", Compass.legend(Decimal("292.6")))
+        self.assertEqual("NorthWest", Compass.legend(315))
+        self.assertEqual("NorthWest", Compass.legend(Decimal("337.5")))
+        self.assertEqual("North", Compass.legend(Decimal("337.6")))
+        self.assertEqual("North", Compass.legend(360))
 
     def test_bearing_form_complex(self):
-        self.assertEqual(Compass.North, Compass.bearing(complex(0, 1)))
+        self.assertEqual("North", Compass.legend(complex(0, 1)))
+        self.assertEqual("NorthEast", Compass.legend(complex(1, 1)))
+        self.assertEqual("East", Compass.legend(complex(1, 0)))
+        self.assertEqual("SouthEast", Compass.legend(complex(1, -1)))
+        self.assertEqual("South", Compass.legend(complex(0, -1)))
+        self.assertEqual("SouthWest", Compass.legend(complex(-1, -1)))
+        self.assertEqual("West", Compass.legend(complex(-1, 0)))
+        self.assertEqual("NorthWest", Compass.legend(complex(-1, 1)))
 
 class SpotTests(unittest.TestCase):
+
+    def test_assemble_spot(self):
+        self.fail()
 
     def test_pickle_spot(self):
         self.fail()

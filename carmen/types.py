@@ -16,6 +16,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import bisect
+import cmath
+from collections import OrderedDict
+from decimal import Decimal
 import enum
 import string
 
@@ -29,21 +33,39 @@ class Visibility(EnumFactory, enum.Enum):
     hidden = 0
     visible = 1
 
-class Compass(EnumFactory, enum.Enum):
+class Compass:
 
-    North = 0
-    NorthEast = 45
-    East = 90
-    SouthEast = 135
-    South = 180
-    SouthWest = 225
-    West = 270
-    NorthWest = 315
+    rose =  OrderedDict([
+        (0, "North"),
+        (45, "NorthEast"),
+        (90, "East"),
+        (135, "SouthEast"),
+        (180, "South"),
+        (225, "SouthWest"),
+        (270, "West"),
+        (315, "NorthWest"),
+        (360, "North")
+    ])
 
     @classmethod
-    def bearing(cls, val):
+    def legend(cls, val):
+        keys, values = zip(*cls.rose.items())
+        offset = Decimal(180) / (len(cls.rose) - 1)
         if isinstance(val, complex):
-            return True
+            phase = 180 * Decimal(cmath.phase(val)) / Decimal(cmath.pi)
+            if phase <= 90:
+                val = 90 - phase - offset
+            elif phase <= 180:
+                val = 270 + (180 - phase) - offset
+            elif phase <= 270:
+                val = 180 + (270 - phase) - offset
+            else:
+                val = 90 + 360 - phase - offset
+        else:
+            val -= offset
+
+        pos = bisect.bisect_left(keys, val)
+        return values[pos]
 
 class Speech(EnumFactory, enum.Enum):
     overheard = "overheard"
