@@ -28,6 +28,7 @@ from turberfield.dialogue.types import EnumFactory
 from turberfield.dialogue.types import Persona
 from turberfield.dialogue.types import Stateful
 
+import carmen
 
 class Visibility(EnumFactory, enum.Enum):
     hidden = 0
@@ -77,7 +78,7 @@ class Speech(EnumFactory, enum.Enum):
 
 Spot = enum.Enum(
     "Spot", [
-        ("{0:02}_{1:02}".format(*point), complex(*point))
+        ("grid_{0:02}{1:02}".format(*point), complex(*point))
         for point in (
             (2, 3), (9, 3), (11, 2), (16, 3), (20, 3),
             (5, 5), (7, 6), (11, 6), (16, 5), (20, 5),

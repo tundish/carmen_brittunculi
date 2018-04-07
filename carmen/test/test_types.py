@@ -17,6 +17,7 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 from decimal import Decimal
+import pickle
 import unittest
 
 from carmen.types import Compass
@@ -49,11 +50,11 @@ class CompassTests(unittest.TestCase):
 
 class SpotTests(unittest.TestCase):
 
-    def test_assemble_spot(self):
-        self.fail()
-
+    @unittest.skip("Not pickling yet.")
     def test_pickle_spot(self):
-        self.fail()
+        obj = list(Spot)[0]
+        data = pickle.dumps(obj, protocol=pickle.HIGHEST_PROTOCOL)
+        self.fail(data)
 
 class PhraseTests(unittest.TestCase):
 
