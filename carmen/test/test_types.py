@@ -24,6 +24,7 @@ from carmen.types import Compass
 from carmen.types import Spot
 from carmen.types import Phrase
 from turberfield.dialogue.types import Stateful
+from turberfield.utils.assembly import Assembly
 
 class CompassTests(unittest.TestCase):
 
@@ -50,11 +51,13 @@ class CompassTests(unittest.TestCase):
 
 class SpotTests(unittest.TestCase):
 
-    @unittest.skip("Not pickling yet.")
-    def test_pickle_spot(self):
+    def test_assemble_spot(self):
         obj = list(Spot)[0]
-        data = pickle.dumps(obj, protocol=pickle.HIGHEST_PROTOCOL)
-        self.fail(data)
+        data = Assembly.dumps(obj)
+        self.assertTrue(data)
+        rv = Assembly.loads(data)
+        self.assertIsInstance(rv, Spot)
+        self.assertEqual(obj.value, rv.value)
 
 class PhraseTests(unittest.TestCase):
 

@@ -49,7 +49,7 @@ setup(
     install_requires=[
         "bottle>=0.12.13",
         "turberfield-dialogue>=0.15.0",
-        "turberfield-utils>=0.33.0",
+        "turberfield-utils>=0.34.0",
     ],
     extras_require={
         "dev": [
