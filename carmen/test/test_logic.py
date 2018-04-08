@@ -33,13 +33,11 @@ class TestNavigation(unittest.TestCase):
         self.fail(World.quests[uid])
 
     def test_associations(self):
-        rv = next(iter(self.a.search(label="Grove of Hades")))
-        self.fail(self.a.match(rv, forward=[Via.bidir, Via.forwd], reverse=[Via.bidir, Via.bckwd]))
-        fwds = self.a.lookup[rv][Via.bidir] | self.a.lookup[rv][Via.forwd]
-        back = {
-            locn
-            for locn in self.a.lookup
-            for rel in (Via.bidir, Via.bckwd)
-            if isinstance(locn, Location) and rv in self.a.lookup[locn][rel]
-        }
-        self.fail(fwds | back)
+        locn = next(iter(self.a.search(label="Grove of Hades")))
+        neighbours = self.a.match(
+            locn,
+            forward=[Via.bidir, Via.forwd],
+            reverse=[Via.bidir, Via.bckwd],
+            predicate=lambda x: isinstance(x, Location)
+        )
+        self.assertEqual(4, len(neighbours))

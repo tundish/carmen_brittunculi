@@ -52,13 +52,22 @@ class Associations:
             if getattr(i, k, None) == v
         )
 
-    def match(self, obj, forward=[], reverse=[]):
+    def match(self, obj, forward=[], reverse=[], predicate=lambda x: True):
         """
             Return objects related to `obj` by at least one of the supplied
             relationships.
 
             :param forward: A sequence of forward relationships
             :param reverse: A sequence of reverse relationships
+            :param predicate: A function with a single argument to filter matches
 
         """
-        return {match for rel in forward for match in self.lookup[obj][rel]}
+        return {
+            match for rel in forward for match in self.lookup[obj][rel]
+            if predicate(match)
+        } | {
+            match
+            for match in self.lookup
+            for rel in reverse
+            if predicate(match) and obj in self.lookup[match][rel]
+        }
