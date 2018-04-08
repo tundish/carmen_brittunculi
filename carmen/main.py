@@ -32,6 +32,8 @@ from carmen import __version__
 from carmen.logic import associations
 from carmen.types import Coin
 from carmen.types import Marker
+from carmen.types import Player
+from carmen.types import Spot
 
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
@@ -44,7 +46,17 @@ class World:
 
     Leaf = namedtuple("Leaf", ["ref", "x", "y"])
     quests = {}
-    quest_re = re.compile("[0-9a-f]{32}")
+
+    validation = {
+        "email": re.compile(
+            "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]"
+            "+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9]"
+            "(?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+"
+            # http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
+        ),
+        "name": re.compile("[A-Z a-z]{2,32}"),
+        "quest": re.compile("[0-9a-f]{32}"),
+    }
 
     @staticmethod
     def forest(width, height, population=["svg-leaf-00", "svg-leaf-01"], pitch=(12, 9)):
@@ -70,19 +82,30 @@ class World:
     @classmethod
     def quest(cls, name):
         uid = uuid.uuid4()
-        cls.quests[uid] = associations()
+        game = associations()
+        start = next(iter(game.search(label="Green lane")))
+        game.register(None, Player(name=name).set_state(start.get_state(Spot)))
+        cls.quests[uid] = game
         return uid
 
 def get_start():
     return bottle.template(
         pkg_resources.resource_string("carmen", "templates/quest.tpl").decode("utf8"),
+        validation=World.validation
     )
 
 def post_start():
     log = logging.getLogger("carmen.main.start")
     name = bottle.request.forms.get("playername")
     email = bottle.request.forms.get("email")
-    #TODO: Validate name
+    if not World.validation["name"].match(name):
+        bottle.abort(401, "User input invalid name.")
+
+    if not World.validation["email"].match(email):
+        log.warning("User input invalid email.")
+    else:
+        log.info("Email offered: {0}".format(email))
+
     uid = World.quest(name)
     log.info("Player {0} created quest {1!s}".format(name, uid))
     bottle.redirect("/{0.hex}".format(uid))
@@ -134,7 +157,7 @@ def build_app():
     # rv.router.add_filter("object", World.object_filter)
     rv.route("/", callback=get_start, method="GET")
     rv.route("/", callback=post_start, method="POST")
-    rv.route("/<quest:re:{0}>".format(World.quest_re.pattern), callback=here)
+    rv.route("/<quest:re:{0}>".format(World.validation["quest"].pattern), callback=here)
     # Add quest
     #rv.route("/call/<phrase:object>", callback=call)
     #rv.route("/move/<location:object>", callback=move)

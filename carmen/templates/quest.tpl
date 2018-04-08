@@ -10,8 +10,9 @@
     required="required"
     aria-describedby="player-name-tip"
     placeholder="?"
+    pattern="{{ validation["name"].pattern }}"
     >
-    <small id="player-name-tip">Choose a short name for your character.</small>
+    <small id="player-name-tip">Choose your player name (2 - 32 characters).</small>
     </fieldset>
     <fieldset>
     <label for="email">Email</label>
@@ -19,6 +20,7 @@
     name="email"
     id="email"
     aria-describedby="email-tip"
+    pattern="{{ validation["email"].pattern }}"
     >
     <small id="email-tip">Leave an email address if you'd like to stay in touch.</small>
     </fieldset>
