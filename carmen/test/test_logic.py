@@ -27,10 +27,14 @@ class TestNavigation(unittest.TestCase):
 
     def setUp(self):
         self.a = associations()
+        import pprint
+        pprint.pprint(self.a.lookup)
 
     def test_new_world(self):
         uid = World.quest("Stig")
-        self.fail(World.quests[uid])
+        assoc = World.quests[uid]
+        rv = assoc.search(label="North gate")
+        self.assertEqual(1, len(rv))
 
     def test_associations(self):
         locn = next(iter(self.a.search(label="Grove of Hades")))
