@@ -44,7 +44,7 @@ class World:
 
     Leaf = namedtuple("Leaf", ["ref", "x", "y"])
     quests = {}
-    regexp = re.compile("[0-9a-f]{32}")
+    quest_re = re.compile("[0-9a-f]{32}")
 
     @staticmethod
     def forest(width, height, population=["svg-leaf-00", "svg-leaf-01"], pitch=(12, 9)):
@@ -79,7 +79,13 @@ def get_start():
     )
 
 def post_start():
-    return {}
+    log = logging.getLogger("carmen.main.start")
+    name = bottle.request.forms.get("playername")
+    email = bottle.request.forms.get("email")
+    #TODO: Validate name
+    uid = World.quest(name)
+    log.info("Player {0} created quest {1!s}".format(name, uid))
+    bottle.redirect("/{0.hex}".format(uid))
 
 def here(quest):
     log = logging.getLogger("carmen.main.here")
@@ -128,7 +134,7 @@ def build_app():
     # rv.router.add_filter("object", World.object_filter)
     rv.route("/", callback=get_start, method="GET")
     rv.route("/", callback=post_start, method="POST")
-    rv.route("/<quest:re:{0}>".format(World.regexp.pattern), callback=here)
+    rv.route("/<quest:re:{0}>".format(World.quest_re.pattern), callback=here)
     # Add quest
     #rv.route("/call/<phrase:object>", callback=call)
     #rv.route("/move/<location:object>", callback=move)
