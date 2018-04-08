@@ -129,6 +129,41 @@ def associations():
         next(iter(rv.search(label="Glade"))),
         next(iter(rv.search(label="Copse"))),
     )
+    rv.register(
+        Via.forwd,
+        next(iter(rv.search(label="Brambly dell"))),
+        Location(label="Woody tangle").set_state(Spot.grid_0706),
+    )
+    rv.register(
+        Via.forwd,
+        next(iter(rv.search(label="Woody tangle"))),
+        next(iter(rv.search(label="Common house"))),
+    )
+    rv.register(
+        Via.forwd,
+        next(iter(rv.search(label="Woody tangle"))),
+        Location(label="Prickly thicket").set_state(Spot.grid_0703),
+    )
+    rv.register(
+        Via.forwd,
+        next(iter(rv.search(label="Prickly thicket"))),
+        Location(label="Oak shrine").set_state(Spot.grid_0203),
+    )
+    rv.register(
+        Via.forwd,
+        next(iter(rv.search(label="Oak shrine"))),
+        Location(label="Rookery").set_state(Spot.grid_0203),
+    )
+    rv.register(
+        Via.bidir,
+        next(iter(rv.search(label="Brambly dell"))),
+        next(iter(rv.search(label="Rookery"))),
+    )
+    rv.register(
+        Via.forwd,
+        Location(label="Green lane").set_state(Spot.grid_1102),
+        next(iter(rv.search(label="Common house"))),
+    )
     return rv
 
 references = list(associations().ensemble()) + [Spot, Via]
