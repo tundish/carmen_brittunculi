@@ -31,9 +31,11 @@ from turberfield.utils.misc import log_setup
 from carmen import __version__
 from carmen.logic import associations
 from carmen.types import Coin
+from carmen.types import Location
 from carmen.types import Marker
 from carmen.types import Player
 from carmen.types import Spot
+from carmen.types import Via
 
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
@@ -114,6 +116,26 @@ def here(quest):
     log = logging.getLogger("carmen.main.here")
     uid = uuid.UUID(hex=quest)
     log.info(uid)
+
+    try:
+        game = World.quests[uid]
+    except KeyError:
+        bottle.abort(401, "Quest {0!s} not found.".format(uid))
+
+    player = next(i for i in game.lookup if isinstance(i, Player))
+    log.debug(player)
+    spot = player.get_state(Spot)
+    log.debug(spot)
+
+    locn = next(i for i in game.lookup if isinstance(i, Location) and i.get_state(Spot))
+    neighbours = game.match(
+        locn,
+        forward=[Via.bidir, Via.forwd],
+        reverse=[Via.bidir, Via.bckwd],
+        predicate=lambda x: isinstance(x, Location)
+    )
+    log.info(neighbours)
+
     width, height = 560, 400
     pitch = (12, 9)
     cell = (32, 32)
