@@ -42,8 +42,23 @@ class Associations:
         return self
 
     def search(self, **kwargs):
+        """
+            Return objects matching all of the supplied parameter criteria.
+
+        """
         return set(
             i for i in self.lookup.keys()
             for k, v in kwargs.items()
             if getattr(i, k, None) == v
         )
+
+    def match(self, obj, forward=[], reverse=[]):
+        """
+            Return objects related to `obj` by at least one of the supplied
+            relationships.
+
+            :param forward: A sequence of forward relationships
+            :param reverse: A sequence of reverse relationships
+
+        """
+        return {match for rel in forward for match in self.lookup[obj][rel]}

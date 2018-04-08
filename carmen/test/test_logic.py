@@ -20,6 +20,8 @@ import unittest
 
 from carmen.logic import associations
 from carmen.main import World
+from carmen.types import Location
+from carmen.types import Via
 
 class TestNavigation(unittest.TestCase):
 
@@ -31,5 +33,13 @@ class TestNavigation(unittest.TestCase):
         self.fail(World.quests[uid])
 
     def test_associations(self):
-        rv = self.a.search(label="Grove of Hades")
-        self.fail(rv)
+        rv = next(iter(self.a.search(label="Grove of Hades")))
+        self.fail(self.a.match(rv, forward=[Via.bidir, Via.forwd], reverse=[Via.bidir, Via.bckwd]))
+        fwds = self.a.lookup[rv][Via.bidir] | self.a.lookup[rv][Via.forwd]
+        back = {
+            locn
+            for locn in self.a.lookup
+            for rel in (Via.bidir, Via.bckwd)
+            if isinstance(locn, Location) and rv in self.a.lookup[locn][rel]
+        }
+        self.fail(fwds | back)
