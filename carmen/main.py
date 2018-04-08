@@ -31,6 +31,7 @@ from turberfield.utils.misc import log_setup
 from carmen import __version__
 from carmen.logic import associations
 from carmen.types import Coin
+from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Marker
 from carmen.types import Player
@@ -115,7 +116,7 @@ def post_start():
 def here(quest):
     log = logging.getLogger("carmen.main.here")
     uid = uuid.UUID(hex=quest)
-    log.info(uid)
+    log.debug(uid)
 
     try:
         game = World.quests[uid]
@@ -127,14 +128,19 @@ def here(quest):
     spot = player.get_state(Spot)
     log.debug(spot)
 
-    locn = next(i for i in game.lookup if isinstance(i, Location) and i.get_state(Spot))
+    locn = next(i for i in game.lookup if isinstance(i, Location) and i.get_state(Spot) == spot)
+    log.debug(locn)
     neighbours = game.match(
         locn,
         forward=[Via.bidir, Via.forwd],
         reverse=[Via.bidir, Via.bckwd],
         predicate=lambda x: isinstance(x, Location)
     )
-    log.info(neighbours)
+    moves = [
+        (Compass.legend(i.get_state(Spot).value - spot.value), i)
+        for i in neighbours
+    ]
+    log.debug(moves)
 
     width, height = 560, 400
     pitch = (12, 9)
@@ -148,6 +154,8 @@ def here(quest):
         extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
         leaves=World.forest(width, height, pitch=pitch),
         # leaves=[],
+        here=locn,
+        moves=moves,
         coin=coin,
         marker=marker
     )
