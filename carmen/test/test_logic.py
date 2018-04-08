@@ -33,8 +33,7 @@ class TestNavigation(unittest.TestCase):
     def test_new_world(self):
         uid = World.quest("Stig")
         assoc = World.quests[uid]
-        rv = assoc.search(label="North gate")
-        self.assertEqual(1, len(rv))
+        self.assertEqual(34, len([i for i in assoc.lookup if isinstance(i, Location)]))
 
     def test_associations(self):
         locn = next(iter(self.a.search(label="Grove of Hades")))
