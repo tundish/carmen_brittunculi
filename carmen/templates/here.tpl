@@ -11,7 +11,7 @@
 <ul>
   % for legend, locn in moves:
     <li>
-        <form role="form" action="/move/{{ locn.id.hex }}" method="post" name="move-{{ legend }}" >
+        <form role="form" action="/{{ quest.hex }}/move/{{ locn.id.hex }}" method="post" name="move-{{ legend }}" >
         <button type="submit">Go {{ legend }}</button>
         </form>
     </li>

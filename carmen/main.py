@@ -57,6 +57,7 @@ class World:
             "(?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+"
             # http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
         ),
+        "location": re.compile("[0-9a-f]{32}"),
         "name": re.compile("[A-Z a-z]{2,32}"),
         "quest": re.compile("[0-9a-f]{32}"),
     }
@@ -82,13 +83,36 @@ class World:
         print("Object filter with {0}".format(config))
         return World.regexp, World.get_object, World.object_id
 
-    @classmethod
-    def quest(cls, name):
+    @staticmethod
+    def moves(quest_uid):
+        try:
+            game = World.quests[quest_uid]
+        except KeyError:
+            bottle.abort(401, "Quest {0!s} not found.".format(quest_uid))
+
+        player = next(i for i in game.lookup if isinstance(i, Player))
+        spot = player.get_state(Spot)
+
+        locn = next(i for i in game.lookup if isinstance(i, Location) and i.get_state(Spot) == spot)
+        neighbours = game.match(
+            locn,
+            forward=[Via.bidir, Via.forwd],
+            reverse=[Via.bidir, Via.bckwd],
+            predicate=lambda x: isinstance(x, Location)
+        )
+        moves = [
+            (Compass.legend(i.get_state(Spot).value - spot.value), i)
+            for i in neighbours
+        ]
+        return locn, moves
+
+    @staticmethod
+    def quest(name):
         uid = uuid.uuid4()
         game = associations()
         start = next(iter(game.search(label="Green lane")))
         game.register(None, Player(name=name).set_state(start.get_state(Spot)))
-        cls.quests[uid] = game
+        World.quests[uid] = game
         return uid
 
 def get_start():
@@ -118,29 +142,7 @@ def here(quest):
     uid = uuid.UUID(hex=quest)
     log.debug(uid)
 
-    try:
-        game = World.quests[uid]
-    except KeyError:
-        bottle.abort(401, "Quest {0!s} not found.".format(uid))
-
-    player = next(i for i in game.lookup if isinstance(i, Player))
-    log.debug(player)
-    spot = player.get_state(Spot)
-    log.debug(spot)
-
-    locn = next(i for i in game.lookup if isinstance(i, Location) and i.get_state(Spot) == spot)
-    log.debug(locn)
-    neighbours = game.match(
-        locn,
-        forward=[Via.bidir, Via.forwd],
-        reverse=[Via.bidir, Via.bckwd],
-        predicate=lambda x: isinstance(x, Location)
-    )
-    moves = [
-        (Compass.legend(i.get_state(Spot).value - spot.value), i)
-        for i in neighbours
-    ]
-    log.debug(moves)
+    locn, moves = World.moves(uid)
 
     width, height = 560, 400
     pitch = (12, 9)
@@ -156,6 +158,7 @@ def here(quest):
         # leaves=[],
         here=locn,
         moves=moves,
+        quest=uid,
         coin=coin,
         marker=marker
     )
@@ -163,8 +166,25 @@ def here(quest):
 def call(phrase):
     return {}
 
-def move(location):
-    return {}
+def move(quest, destination):
+    log = logging.getLogger("carmen.main.move")
+    quest_uid = uuid.UUID(hex=quest)
+    log.debug(quest_uid)
+
+    locn, moves = World.moves(quest_uid)
+
+    dest_uid = uuid.UUID(hex=destination)
+    log.debug(dest_uid)
+
+    try:
+        locn = next(i for i in dict(moves).values() if i.id == dest_uid)
+        player = next(i for i in World.quests[quest_uid].lookup if isinstance(i, Player))
+        player.set_state(locn.get_state(Spot))
+        log.info("Player {0} moved to {1}".format(player, locn))
+    except Exception as e:
+        log.exception(e)
+    finally:
+        bottle.redirect("/{0.hex}".format(quest_uid))
 
 def serve_css(filepath):
     log = logging.getLogger("carmen.main.serve_css")
@@ -184,13 +204,14 @@ def serve_svg(filepath):
 
 def build_app():
     rv = bottle.Bottle()
-    # rv.router.add_filter("object", World.object_filter)
     rv.route("/", callback=get_start, method="GET")
     rv.route("/", callback=post_start, method="POST")
     rv.route("/<quest:re:{0}>".format(World.validation["quest"].pattern), callback=here)
     # Add quest
     #rv.route("/call/<phrase:object>", callback=call)
-    #rv.route("/move/<location:object>", callback=move)
+    rv.route("/<quest:re:{0}>/move/<destination:re:{1}>".format(
+        World.validation["quest"].pattern, World.validation["location"].pattern
+    ), callback=move, method="POST")
     rv.route("/css/<filepath:path>", callback=serve_css)
     rv.route("/svg/<filepath:path>", callback=serve_svg)
     rv.world = World()
