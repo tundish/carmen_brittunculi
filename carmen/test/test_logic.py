@@ -27,8 +27,6 @@ class TestNavigation(unittest.TestCase):
 
     def setUp(self):
         self.a = associations()
-        import pprint
-        pprint.pprint(self.a.lookup)
 
     def test_new_world(self):
         uid = World.quest("Stig")

@@ -190,5 +190,3 @@ def associations():
         next(iter(rv.search(label="Common house"))),
     )
     return rv
-
-references = list(associations().ensemble()) + [Spot, Via]

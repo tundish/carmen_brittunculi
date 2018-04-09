@@ -207,8 +207,6 @@ def build_app():
     rv.route("/", callback=get_start, method="GET")
     rv.route("/", callback=post_start, method="POST")
     rv.route("/<quest:re:{0}>".format(World.validation["quest"].pattern), callback=here)
-    # Add quest
-    #rv.route("/call/<phrase:object>", callback=call)
     rv.route("/<quest:re:{0}>/move/<destination:re:{1}>".format(
         World.validation["quest"].pattern, World.validation["location"].pattern
     ), callback=move, method="POST")

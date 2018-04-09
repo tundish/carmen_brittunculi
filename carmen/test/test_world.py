@@ -23,4 +23,5 @@ from carmen.main import World
 class WorldTests(unittest.TestCase):
 
     def test_forest(self):
-        self.fail(World.forest())
+        leaves = World.forest(24, 24)
+        self.assertTrue(4 <= len(leaves) <= 6)
