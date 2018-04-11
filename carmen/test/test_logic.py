@@ -28,7 +28,7 @@ from carmen.types import Via
 class TestDialogue(unittest.TestCase):
 
     def test_folder(self):
-        self.assertEqual(1, len(game.paths))
+        self.assertEqual(34, len(game.paths))
 
     def test_cast(self):
         asscns = associations()
