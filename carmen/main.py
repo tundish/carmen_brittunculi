@@ -26,10 +26,11 @@ import uuid
 
 import bottle
 import pkg_resources
+from turberfield.dialogue.performer import Performer
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
-from carmen.logic import associations
+import carmen.logic
 from carmen.types import Coin
 from carmen.types import Compass
 from carmen.types import Location
@@ -86,15 +87,15 @@ class World:
     @staticmethod
     def moves(quest_uid):
         try:
-            game = World.quests[quest_uid]
+            asscns = World.quests[quest_uid]
         except KeyError:
             bottle.abort(401, "Quest {0!s} not found.".format(quest_uid))
 
-        player = next(i for i in game.lookup if isinstance(i, Player))
+        player = next(i for i in asscns.lookup if isinstance(i, Player))
         spot = player.get_state(Spot)
 
-        locn = next(i for i in game.lookup if isinstance(i, Location) and i.get_state(Spot) == spot)
-        neighbours = game.match(
+        locn = next(i for i in asscns.lookup if isinstance(i, Location) and i.get_state(Spot) == spot)
+        neighbours = asscns.match(
             locn,
             forward=[Via.bidir, Via.forwd],
             reverse=[Via.bidir, Via.bckwd],
@@ -109,10 +110,10 @@ class World:
     @staticmethod
     def quest(name):
         uid = uuid.uuid4()
-        game = associations()
-        start = next(iter(game.search(label="Green lane")))
-        game.register(None, Player(name=name).set_state(start.get_state(Spot)))
-        World.quests[uid] = game
+        asscns = carmen.logic.associations()
+        start = next(iter(asscns.search(label="Green lane")))
+        asscns.register(None, Player(name=name).set_state(start.get_state(Spot)))
+        World.quests[uid] = asscns
         return uid
 
 def get_start():
@@ -143,6 +144,13 @@ def here(quest):
     log.debug(uid)
 
     locn, moves = World.moves(uid)
+    asscns = World.quests[uid]
+    performer = Performer([carmen.logic.game], asscns.ensemble())
+    if performer.stopped:
+        log.warning("Game Over.")
+
+    scene = performer.run(react=True)
+    log.info(list(scene))
 
     width, height = 560, 400
     pitch = (12, 9)

@@ -29,6 +29,7 @@ from turberfield.dialogue.types import Player
 from carmen import __version__ as version # noqa
 from carmen.associations import Associations
 from carmen.types import Location
+from carmen.types import Narrator
 from carmen.types import Spot
 from carmen.types import Via
 
@@ -192,14 +193,24 @@ def associations():
         Location(label="Green lane").set_state(Spot.grid_1102),
         next(iter(rv.search(label="Common house"))),
     )
+
+    rv.register(
+        None,
+        Narrator()
+    )
     return rv
 
 game = SceneScript.Folder(
     pkg="carmen",
     description="Dialogue for a Game Jam.",
     metadata={},
-    paths=list(pathlib.Path(
-        pkg_resources.resource_filename("carmen", "dialogue")
-    ).glob("*.rst")),
+    paths=[
+        str(i.relative_to(
+            pkg_resources.resource_filename("carmen", "")
+        ))
+        for i in pathlib.Path(
+            pkg_resources.resource_filename("carmen", "dialogue")
+        ).glob("*.rst")
+    ],
     interludes=itertools.repeat(None)
 )

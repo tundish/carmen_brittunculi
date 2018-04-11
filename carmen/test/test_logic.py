@@ -22,12 +22,17 @@ from carmen.logic import associations
 from carmen.logic import game
 from carmen.main import World
 from carmen.types import Location
+from carmen.types import Narrator
 from carmen.types import Via
 
 class TestDialogue(unittest.TestCase):
 
     def test_folder(self):
-        self.fail(game)
+        self.assertEqual(1, len(game.paths))
+
+    def test_cast(self):
+        asscns = associations()
+        self.assertTrue(len([i for i in asscns.ensemble() if isinstance(i, Narrator)]))
 
 class TestNavigation(unittest.TestCase):
 
@@ -36,8 +41,8 @@ class TestNavigation(unittest.TestCase):
 
     def test_new_world(self):
         uid = World.quest("Stig")
-        assoc = World.quests[uid]
-        self.assertEqual(34, len([i for i in assoc.lookup if isinstance(i, Location)]))
+        asscns = World.quests[uid]
+        self.assertEqual(34, len([i for i in asscns.lookup if isinstance(i, Location)]))
 
     def test_associations(self):
         locn = next(iter(self.a.search(label="Grove of Hades")))
