@@ -16,11 +16,55 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import textwrap
+import pathlib
 import unittest
 
+import carmen.logic
 from carmen.main import World
+from carmen.types import Location
 
 class WorldTests(unittest.TestCase):
+
+    tmplt = textwrap.dedent(
+        """
+        ..  This is a Turberfield dialogue file (reStructuredText).
+            Scene ~~
+            Shot --
+
+        .. |VERSION| property:: carmen.logic.version
+
+        :author: D Haynes
+        :date: 2018-04-11
+        :project: carmen
+        :version: |VERSION|
+
+        .. entity:: NARRATOR
+           :types: carmen.types.Narrator
+
+        {label}
+        {title}
+
+        Looking around
+        --------------
+
+        [NARRATOR]_
+
+            It's Green.
+        """
+    )
+
+    @unittest.skip("utility function")
+    def test_gen_dialogue_script_files(self):
+        asscns = carmen.logic.associations()
+        locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
+
+        for locn in locns:
+            name = locn.label.lower().replace(" ", "_")
+            with open(name + ".rst", "w") as out:
+                out.write(WorldTests.tmplt.format(
+                    label=locn.label, title="~" * len(locn.label)
+                ))
 
     def test_forest(self):
         leaves = World.forest(24, 24)
