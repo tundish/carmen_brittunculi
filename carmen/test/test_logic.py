@@ -19,9 +19,15 @@
 import unittest
 
 from carmen.logic import associations
+from carmen.logic import game
 from carmen.main import World
 from carmen.types import Location
 from carmen.types import Via
+
+class TestDialogue(unittest.TestCase):
+
+    def test_folder(self):
+        self.fail(game)
 
 class TestNavigation(unittest.TestCase):
 

@@ -19,6 +19,9 @@
 import collections
 import datetime
 import itertools
+import pathlib
+
+import pkg_resources
 
 from turberfield.dialogue.model import SceneScript
 from turberfield.dialogue.types import Player
@@ -190,3 +193,13 @@ def associations():
         next(iter(rv.search(label="Common house"))),
     )
     return rv
+
+game = SceneScript.Folder(
+    pkg="carmen",
+    description="Dialogue for a Game Jam.",
+    metadata={},
+    paths=list(pathlib.Path(
+        pkg_resources.resource_filename("carmen", "dialogue")
+    ).glob("*.rst")),
+    interludes=itertools.repeat(None)
+)
