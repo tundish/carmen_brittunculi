@@ -23,6 +23,7 @@ import unittest
 import carmen.logic
 from carmen.main import World
 from carmen.types import Location
+from carmen.types import Spot
 
 class WorldTests(unittest.TestCase):
 
@@ -39,8 +40,13 @@ class WorldTests(unittest.TestCase):
         :project: carmen
         :version: |VERSION|
 
-        .. entity:: NARRATOR
-           :types: carmen.types.Narrator
+        .. entity:: LOCATION
+           :types: carmen.logic.Location
+           :states: carmen.logic.Spot.{spot}
+
+        .. entity:: PLAYER
+           :types: carmen.logic.Player
+           :states: carmen.logic.Spot.{spot}
 
         {label}
         {title}
@@ -48,7 +54,7 @@ class WorldTests(unittest.TestCase):
         Looking around
         --------------
 
-        [NARRATOR]_
+        [LOCATION]_
 
             It's Green.
         """
@@ -63,7 +69,8 @@ class WorldTests(unittest.TestCase):
             name = locn.label.lower().replace(" ", "_")
             with open(name + ".rst", "w") as out:
                 out.write(WorldTests.tmplt.format(
-                    label=locn.label, title="~" * len(locn.label)
+                    label=locn.label, title="~" * len(locn.label),
+                    spot=locn.get_state(Spot).name
                 ))
 
     def test_forest(self):

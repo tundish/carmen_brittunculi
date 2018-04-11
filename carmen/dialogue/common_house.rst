@@ -12,14 +12,14 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1102
+   :states: carmen.logic.Spot.grid_1106
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1102
+   :states: carmen.logic.Spot.grid_1106
 
-Green lane
-~~~~~~~~~~
+Common house
+~~~~~~~~~~~~
 
 Looking around
 --------------

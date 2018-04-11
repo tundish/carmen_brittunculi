@@ -12,14 +12,14 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1102
+   :states: carmen.logic.Spot.grid_2005
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1102
+   :states: carmen.logic.Spot.grid_2005
 
-Green lane
-~~~~~~~~~~
+Armoury
+~~~~~~~
 
 Looking around
 --------------
