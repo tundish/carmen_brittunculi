@@ -39,6 +39,7 @@ from carmen.types import Player
 from carmen.types import Spot
 from carmen.types import Via
 
+DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
 
@@ -234,7 +235,7 @@ def main(args):
     app = build_app()
 
     log.info("Starting server...")
-    bottle.run(app, host="localhost", port=8080, debug=True)
+    bottle.run(app, host="localhost", port=args.port, debug=True)
 
 def parser(description=__doc__):
     rv = argparse.ArgumentParser(
@@ -243,15 +244,21 @@ def parser(description=__doc__):
     )
     rv.add_argument(
         "--version", action="store_true", default=False,
-        help="Print the current version number")
+        help="Print the current version number.")
     rv.add_argument(
         "-v", "--verbose", required=False,
         action="store_const", dest="log_level",
         const=logging.DEBUG, default=logging.INFO,
-        help="Increase the verbosity of output")
+        help="Increase the verbosity of output.")
     rv.add_argument(
         "--log", default=None, dest="log_path",
-        help="Set a file path for log output")
+        help="Set a file path for log output.")
+    rv.add_argument(
+        "--port", type=int, default=DEFAULT_PORT,
+        help="Specify the port number [{}].".format(
+            DEFAULT_PORT
+        )
+    )
     rv.add_argument(
         "--pause", type=float, default=DEFAULT_PAUSE,
         help="Time in seconds [{0:0.3}] to pause after a line.".format(DEFAULT_PAUSE)
