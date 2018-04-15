@@ -7,8 +7,24 @@
   --wild-magenta: rgba(180, 80, 144, 1);    /* #b45090 */
   --sturdy-brown: rgba(82, 48, 0, 1);       /* #523000 */
   --porcini: rgba(134, 122, 110, 1);        /* #867a6e */
+  --shadow: rgba(34, 28, 46, 1);        /* #221c2e */
+  --walnut: rgba(83, 55, 62, 1);        /* #53373e */
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
+
+body {
+background-color: #867a6e;
+color: #221c2e;
+background-color: var(--porcini);
+color: var(--shadow);
+font-family: var(--font-family-sans-serif);
+}
+
+a {
+color: #53373e;
+font-style: bold;
+color: var(--walnut);
+}

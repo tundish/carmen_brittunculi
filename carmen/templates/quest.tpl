@@ -12,17 +12,18 @@
     placeholder="?"
     pattern="{{ validation["name"].pattern }}"
     >
-    <small id="player-name-tip">Choose your player name (2 - 32 characters).</small>
+    <small id="player-name-tip">Player name has between 2 and 32 letters.</small>
     </fieldset>
     <fieldset>
     <label for="email">Email</label>
     <input
     name="email"
     id="email"
+    placeholder="@"
     aria-describedby="email-tip"
     pattern="{{ validation["email"].pattern }}"
     >
-    <small id="email-tip">Leave an email address if you'd like to stay in touch.</small>
+    <small id="email-tip">Email address is optional.</small>
     </fieldset>
   <button type="submit">Enter</button>
 </form>
