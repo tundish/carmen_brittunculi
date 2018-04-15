@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The trees here are younger than elsewhere. They are trimmed and
+    pollarded. Someone is harvesting them for their wood.

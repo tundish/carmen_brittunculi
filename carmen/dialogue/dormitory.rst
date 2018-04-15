@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    Several low benches are lined up in rows. There are rush mats
+    too, each with a sheepskin folded neatly at one end.

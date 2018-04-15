@@ -26,4 +26,9 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    A huge vaulted ceiling gives this place a deep reverberation.
+
+[LOCATION]_
+
+    Scaffolding hangs at various places from the walls, but there
+    seems no easy way up.    
