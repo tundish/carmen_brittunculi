@@ -2,11 +2,40 @@
 /* https://www.smashingmagazine.com/2017/10/naming-things-css-grid-layout/ */
 /* https://rachelandrew.co.uk/archives/2017/06/01/breaking-out-with-css-grid-explained/ */
 
-grid {
+body {
+display: grid;
+grid-template-areas:
+"air"
+"floor"
+"inventory"
+"nav";
+}
+
+main.air {
+grid-area: air;
+}
+
+aside.floor {
+grid-area: floor;
+}
+
+aside.inventory {
+grid-area: inventory;
+}
+
+nav {
+grid-area: nav;
+}
+
+@media (min-width: 500px) {
+
+body {
   display: grid;
-  grid-template-columns: repeat(3, 1fr 2fr) ;
+  grid-template-columns: 3fr 1fr;
   grid-template-areas:
-".... head head head head head"
-"side side main main main main"
-"foot foot foot foot foot foot";
+"air   inventory"
+"floor inventory"
+"floor nav      ";
+}
+
 }

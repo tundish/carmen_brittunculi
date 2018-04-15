@@ -1,11 +1,12 @@
 %rebase("top.tpl")
-<main>
+<main class="air">
 <h1>{{ here.label }}</h1>
 </main>
-<aside>
+<aside class="floor">
 %include("forest.tpl", extent=extent, leaves=leaves, coin=coin, marker=marker)
 </aside>
-<aside>
+<aside class="inventory">
+<p>You carry:</p>
 </aside>
 <nav>
 <ul>
