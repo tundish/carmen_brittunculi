@@ -28,3 +28,31 @@ color: #53373e;
 font-style: bold;
 color: var(--walnut);
 }
+
+aside.inventory{
+border-radius: 1em;
+border: 4px solid var(--sturdy-brown);
+margin: 0.5em;
+padding: 0.5em;
+}
+
+nav ul li{
+list-style-type: none;
+}
+
+nav button {
+border: 2px solid transparent;
+color: white;
+font-size: 1em;
+font-weight: bold;
+margin-top: 0.5em;
+padding: 0.6em;
+text-align: center;
+width: 12em;
+background-color: var(--houseplant-green);
+}
+
+nav button:hover {
+border: 2px solid white;
+}
+

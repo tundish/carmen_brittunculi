@@ -65,7 +65,20 @@ class World:
     }
 
     @staticmethod
-    def forest(width, height, population=["svg-leaf-00", "svg-leaf-01"], pitch=(12, 9)):
+    def forest(
+        width, height,
+        population=[
+            "svg-leaf-00",
+            "svg-leaf-01",
+            "svg-leaf-01",
+            "svg-leaf-01",
+            "svg-leaf-01",
+            "svg-leaf-01",
+            "svg-leaf-01",
+            "svg-leaf-02"
+        ],
+        pitch=(24, 24)
+    ):
         choice = random.choice
         randint = random.randint
         pitch_x, pitch_y = pitch
@@ -154,7 +167,7 @@ def here(quest):
     log.info(list(scene))
 
     width, height = 560, 400
-    pitch = (12, 9)
+    pitch = (16, 16)
     cell = (32, 32)
     # TODO: Do select. Use values.
     cast = {}

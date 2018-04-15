@@ -6,7 +6,7 @@
 %include("forest.tpl", extent=extent, leaves=leaves, coin=coin, marker=marker)
 </aside>
 <aside class="inventory">
-<p>You carry:</p>
+<h1>Pouch</h1>
 </aside>
 <nav>
 <ul>
