@@ -26,4 +26,13 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The path widens. Directly before you is a tall, neat pile
+    of stones.
+
+[LOCATION]_
+
+    The structure is compact and stable. The rocks have been
+    carefully placed to fit closely together.
+
+    Here and there are strands of coloured rags. The Cairn receives
+    regular attention.
