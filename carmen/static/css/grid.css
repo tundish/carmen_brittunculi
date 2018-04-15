@@ -27,15 +27,15 @@ nav {
 grid-area: nav;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 800px) {
 
 body {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 3fr 1fr 2fr;
   grid-template-areas:
-"air   inventory"
-"floor inventory"
-"floor nav      ";
+". air   inventory ."
+". floor inventory ."
+". floor nav       .";
 }
 
 }
