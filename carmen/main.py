@@ -164,7 +164,6 @@ def here(quest):
         log.warning("Game Over.")
 
     scene = performer.run(react=True)
-    log.info(list(scene))
 
     width, height = 560, 400
     pitch = (16, 16)
@@ -179,6 +178,7 @@ def here(quest):
         leaves=World.forest(width, height, pitch=pitch),
         # leaves=[],
         here=locn,
+        lines=list(scene),
         moves=moves,
         quest=uid,
         coin=coin,

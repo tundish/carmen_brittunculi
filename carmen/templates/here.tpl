@@ -1,6 +1,16 @@
 %rebase("top.tpl")
 <main class="air">
-<h1>{{ here.label }}</h1>
+% if lines:
+<h1>{{ lines[0] }}</h1>
+% end
+
+% for line in lines:
+<blockquote class="line">
+<header class="persona"></header>
+<p class="speech"></p>
+</blockquote>
+% end
+
 </main>
 <aside class="floor">
 %include("forest.tpl", extent=extent, leaves=leaves, coin=coin, marker=marker)
