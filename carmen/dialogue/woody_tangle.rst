@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    Brambles and fallen trees block your way, but there are
+    well-trodden paths through the gaps.

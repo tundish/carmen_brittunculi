@@ -26,4 +26,9 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    A heavy velvet curtain splits the room in two.
+    It has beem drawn aside.
+
+[LOCATION]_
+
+    Behind it stands a single oaken chest, bound heavily in iron.

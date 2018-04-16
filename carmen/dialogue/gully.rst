@@ -26,4 +26,9 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The scree slope funnels into a narrow gully formed by fast
+    rainwater.
+
+[LOCATION]_
+
+    It is slippery underfoot.    

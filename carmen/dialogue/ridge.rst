@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The top of the hill is narrow and exposed.
+    The path runs along along its crest.

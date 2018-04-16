@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The path ends in a rocky ledge. From here you can see many miles
+    to the West.

@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    You stand on the flat top of a rocky buttress. With only a
+    clamber, you could get over the lip of the Quarry.

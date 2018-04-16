@@ -26,4 +26,9 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    A well-equipped kitchen. An iron brazier stands in the middle
+    of the room.
+
+[LOCATION]_
+
+    Many utensils and containers are arranged close by.

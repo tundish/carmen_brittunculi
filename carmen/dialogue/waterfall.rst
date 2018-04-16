@@ -26,4 +26,9 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    A green stain on the rock guides a steady trickle of water down
+    to an iron grating.
+
+[LOCATION]_
+
+    Here is a statue of Fortuna.

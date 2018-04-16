@@ -26,4 +26,9 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The rocky outcrop ahead has a low opening.
+
+[LOCATION]_
+
+    The entrance has been embellished with two carved pillars
+    on either side.

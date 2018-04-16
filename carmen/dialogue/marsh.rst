@@ -26,4 +26,4 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The track runs out here into a large expanse of Marsh.

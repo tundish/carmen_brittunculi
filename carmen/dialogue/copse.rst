@@ -26,5 +26,6 @@ Looking around
 
 [LOCATION]_
 
-    The trees here are younger than elsewhere. They are trimmed and
-    pollarded. Someone is harvesting them for their wood.
+    The trees on this slope are younger than elsewhere.
+    They are trimmed and pollarded. Someone is harvesting them
+    for their wood.

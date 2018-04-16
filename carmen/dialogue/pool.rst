@@ -26,4 +26,4 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    Deep, dark and still is the water in this rocky pool.

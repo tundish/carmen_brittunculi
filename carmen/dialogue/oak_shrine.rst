@@ -26,4 +26,8 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The air here hangs heavy with verdant moss and ancient oak.
+
+[LOCATION]_
+
+    This is a hidden shrine to Nodens, the hunter god.

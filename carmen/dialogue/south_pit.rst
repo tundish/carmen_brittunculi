@@ -26,4 +26,8 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    This room is smaller than the last, bit more busy.
+
+[LOCATION]_
+
+    There are tools here, and lamps.
