@@ -248,7 +248,7 @@ def main(args):
     app = build_app()
 
     log.info("Starting server...")
-    bottle.run(app, host="localhost", port=args.port, debug=True)
+    bottle.run(app, host="0.0.0.0", port=args.port, debug=True)
 
 def parser(description=__doc__):
     rv = argparse.ArgumentParser(

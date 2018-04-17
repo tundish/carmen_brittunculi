@@ -1,14 +1,18 @@
 %rebase("top.tpl")
 <main class="air">
 % if lines:
-<h1>{{ lines[0] }}</h1>
+<h1>{{ lines[0].scene.capitalize() }}</h1>
 % end
 
 % for line in lines:
+% if hasattr(line, "persona"):
 <blockquote class="line">
-<header class="persona"></header>
-<p class="speech"></p>
+% if hasattr(line.persona, "name"):
+<header class="persona">{{ line.persona.name.fullname }}</header>
+% end
+<p class="speech">{{ line.text }}</p>
 </blockquote>
+% end
 % end
 
 </main>
