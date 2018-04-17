@@ -27,4 +27,4 @@ Looking around
 [LOCATION]_
 
     The top of the hill is narrow and exposed.
-    The path runs along along its crest.
+    The path runs along its crest.
