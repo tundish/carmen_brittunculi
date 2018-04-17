@@ -27,6 +27,7 @@ import uuid
 import bottle
 import pkg_resources
 from turberfield.dialogue.performer import Performer
+from turberfield.dialogue.types import Player
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
@@ -35,7 +36,6 @@ from carmen.types import Coin
 from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Marker
-from carmen.types import Player
 from carmen.types import Spot
 from carmen.types import Via
 
@@ -108,7 +108,10 @@ class World:
         player = next(i for i in asscns.lookup if isinstance(i, Player))
         spot = player.get_state(Spot)
 
-        locn = next(i for i in asscns.lookup if isinstance(i, Location) and i.get_state(Spot) == spot)
+        locn = next(
+            i for i in asscns.lookup
+            if isinstance(i, Location) and i.get_state(Spot) == spot
+        )
         neighbours = asscns.match(
             locn,
             forward=[Via.bidir, Via.forwd],

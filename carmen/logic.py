@@ -16,7 +16,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
-import collections
 import datetime
 import itertools
 import pathlib
@@ -24,7 +23,6 @@ import pathlib
 import pkg_resources
 
 from turberfield.dialogue.model import SceneScript
-from turberfield.dialogue.types import Player
 
 from carmen import __version__ as version # noqa
 from carmen.associations import Associations
@@ -199,6 +197,7 @@ def associations():
         Narrator()
     )
     return rv
+
 
 game = SceneScript.Folder(
     pkg="carmen",

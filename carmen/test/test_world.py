@@ -17,7 +17,6 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 import textwrap
-import pathlib
 import unittest
 
 import carmen.logic
