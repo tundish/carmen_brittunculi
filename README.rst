@@ -36,6 +36,10 @@ This is an installable Python package.
 
     ~/py3/bin/pip install .
 
+#. Launch the game server::
+
+    ~/py3/bin/carmen-web
+
 #. Play the game in your browser::
 
     firefox localhost:8080
