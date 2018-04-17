@@ -27,7 +27,6 @@ import uuid
 import bottle
 import pkg_resources
 from turberfield.dialogue.performer import Performer
-from turberfield.dialogue.types import Player
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
@@ -35,6 +34,7 @@ import carmen.logic
 from carmen.types import Coin
 from carmen.types import Compass
 from carmen.types import Location
+from carmen.types import Player
 from carmen.types import Marker
 from carmen.types import Spot
 from carmen.types import Via

@@ -28,6 +28,7 @@ from carmen import __version__ as version # noqa
 from carmen.associations import Associations
 from carmen.types import Location
 from carmen.types import Narrator
+from carmen.types import Player # noqa
 from carmen.types import Spot
 from carmen.types import Via
 
