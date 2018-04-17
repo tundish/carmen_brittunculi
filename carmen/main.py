@@ -179,7 +179,7 @@ def here(quest):
         # leaves=[],
         here=locn,
         lines=list(scene),
-        moves=moves,
+        moves=sorted(moves),
         quest=uid,
         coin=coin,
         marker=marker
