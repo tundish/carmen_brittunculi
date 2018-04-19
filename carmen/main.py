@@ -65,6 +65,16 @@ class World:
 
     @staticmethod
     def forest(width, height, population=["svg-leaf-00", "svg-leaf-01"], pitch=(12, 9)):
+        """
+            TODO: Switch to better techniques, eg:
+
+            http://devmag.org.za/2009/05/03/poisson-disk-sampling/
+            https://codepen.io/alvov/pen/vgLevP (SVG lighting shader).
+            https://css-tricks.com/look-svg-light-source-filters/
+
+            Generate scenes in offline batches and select by eye.
+
+        """
         choice = random.choice
         randint = random.randint
         pitch_x, pitch_y = pitch
