@@ -26,4 +26,8 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    At this point the path picks its way North across a wide scree.
+
+[LOCATION]_
+
+    It is too steep to climb up to the West.

@@ -26,4 +26,8 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    Here on the well-used path is a shrine to the god Hades.
+
+[LOCATION]_
+
+    The remains of offerings are scattered around.

@@ -26,4 +26,4 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    It is cool here, but not damp. Tapestry lines the walls.

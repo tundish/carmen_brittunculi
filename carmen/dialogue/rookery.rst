@@ -26,4 +26,8 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    Dark are the eyes and many, who watch from lofty perch.
+
+[LOCATION]_
+
+    They are calling to each other.

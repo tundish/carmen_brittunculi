@@ -26,4 +26,10 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The trees are sparse here. All across the ground grow
+    thick Bramble bushes. 
+
+[LOCATION]_
+
+    It's difficult to get further without snagging your
+    garments.

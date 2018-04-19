@@ -26,4 +26,4 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The bramble thicket forms a narrow tunnel. No way out, only further in.

@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The track runs out from mud on to rock. This is the
+    start of the road North.

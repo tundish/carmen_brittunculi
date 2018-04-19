@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The ground here is boggy. No trees grow, only clumps of
+    coarse grass.

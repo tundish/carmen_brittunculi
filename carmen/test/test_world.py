@@ -17,7 +17,6 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 import textwrap
-import pathlib
 import unittest
 
 import carmen.logic
@@ -74,5 +73,5 @@ class WorldTests(unittest.TestCase):
                 ))
 
     def test_forest(self):
-        leaves = World.forest(24, 24)
-        self.assertTrue(4 <= len(leaves) <= 6)
+        leaves = World.forest(64, 64)
+        self.assertTrue(5 <= len(leaves) <= 12, leaves)

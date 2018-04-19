@@ -26,4 +26,4 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The path continues up the slope as a thin dark line against the sky.

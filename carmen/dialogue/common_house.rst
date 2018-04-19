@@ -26,4 +26,11 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    You stand before a large circular structure. It is built of
+    wood and thatch. This is a common house for shelter and storage.
+
+[LOCATION]_
+
+    The ground about is deeply rutted. Straw binds the pathway past
+    the Common House.
+

@@ -26,4 +26,11 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    High up on the walls are fixed several shields. They are
+    a mixed collection from various Roman regiments. Some are
+    damaged; others look almost new.
+
+[LOCATION]_
+
+    The only weapon within reach is what might be a Gladius.
+    It hangs in its scabbard from an iron ring near the door.

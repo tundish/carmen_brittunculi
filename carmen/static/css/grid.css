@@ -2,11 +2,109 @@
 /* https://www.smashingmagazine.com/2017/10/naming-things-css-grid-layout/ */
 /* https://rachelandrew.co.uk/archives/2017/06/01/breaking-out-with-css-grid-explained/ */
 
-grid {
+body {
+display: grid;
+grid-template-areas:
+"air"
+"floor"
+"inventory"
+"nav";
+}
+
+main.air, form.titles {
+grid-area: air;
+}
+
+aside.floor {
+border-radius: 1em;
+font-family: var(--font-family-monospace);
+grid-area: floor;
+margin: 1em;
+padding: 1.3em;
+background-color: var(--picnic-green);
+}
+
+aside.floor dl{
+font-weight: lighter;
+content: ":";
+}
+
+aside.floor dt:after{
+content: ":";
+}
+
+aside.floor dd{
+font-weight: bold;
+margin: 1em;
+}
+
+aside.inventory {
+grid-area: inventory;
+}
+
+nav {
+grid-area: nav;
+}
+
+form.titles input {
+background-color: #99c383;
+border: 2px solid transparent;
+color: #221c2e;
+background-color: var(--picnic-green);
+font-size: 1.1em;
+font-weight: bold;
+margin: 0.2em 1em 0.2em 1em;
+padding: 0.2em 0.2em 0.2em 1em;
+color: var(--shadow);
+}
+
+form.titles legend {
+color: #99c383;
+font-size: 3em;
+font-weight: normal;
+margin: 1em;
+color: var(--picnic-green);
+}
+
+form.titles label {
+color: lightgrey;
+font-weight: bold;
+}
+
+form.titles fieldset {
+border-radius: 1.3em;
+color: lightgrey;
+margin: 0.8em;
+font-size: 1em;
+padding: 1.2em;
+border: 2px solid var(--walnut);
+}
+
+form.titles button {
+border: 2px solid transparent;
+color: white;
+font-size: 1em;
+font-weight: bold;
+margin: 2em auto 2em 32em;
+padding: 0.6em;
+text-align: center;
+width: 6em;
+background-color: var(--houseplant-green);
+}
+
+form.titles button:hover {
+border: 2px solid white;
+}
+
+@media (min-width: 800px) {
+
+body {
   display: grid;
-  grid-template-columns: repeat(3, 1fr 2fr) ;
+  grid-template-columns: 2fr 3fr 1fr 2fr;
   grid-template-areas:
-".... head head head head head"
-"side side main main main main"
-"foot foot foot foot foot foot";
+". air   inventory ."
+". floor inventory ."
+". floor nav       .";
+}
+
 }

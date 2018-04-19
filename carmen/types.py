@@ -26,7 +26,7 @@ import string
 from turberfield.dialogue.types import DataObject
 from turberfield.dialogue.types import EnumFactory
 from turberfield.dialogue.types import Persona
-from turberfield.dialogue.types import Player
+from turberfield.dialogue.types import Player # noqa
 from turberfield.dialogue.types import Stateful
 from turberfield.utils.assembly import Assembly
 
@@ -75,6 +75,7 @@ class Speech(EnumFactory, enum.Enum):
     spoken = "spoken"
     ignored = "ignored"
     repeated = "repeated"
+
 
 Spot = enum.Enum(
     "Spot", [
@@ -141,5 +142,6 @@ class Character(Stateful, Persona): pass
 class Coin(Stateful, DataObject): pass
 class Location(Stateful, DataObject): pass
 class Marker(Stateful, DataObject): pass
+
 
 Assembly.register(Spot)

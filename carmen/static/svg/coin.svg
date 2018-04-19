@@ -6,7 +6,7 @@ preserveAspectRatio="none"
 >
 <circle cx="128" cy="128" r="128"
 stroke="gray" stroke-width="4"
-fill="white"
+fill="dimgrey"
 />
 </svg>
 

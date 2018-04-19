@@ -26,4 +26,4 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The track is wide here, and well-paved in stone.

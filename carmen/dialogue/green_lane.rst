@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The long journey is over. The banks of the lane go from earth
+    to rock. The trees thin out.

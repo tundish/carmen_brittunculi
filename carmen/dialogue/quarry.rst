@@ -26,4 +26,5 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    You stand in a wide, rocky pit. This has been a quarry for many
+    years.

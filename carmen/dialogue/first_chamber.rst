@@ -26,4 +26,6 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    The opening leads into a stone corridor. The floor is worn
+    smooth. There are no traces of mud or grit. It has recently
+    been swept.

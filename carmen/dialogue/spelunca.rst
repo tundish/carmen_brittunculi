@@ -26,4 +26,8 @@ Looking around
 
 [LOCATION]_
 
-    It's Green.
+    This is a square space with marble tiling on every side.
+
+[LOCATION]_
+
+    Statues stare out from their alcoves.

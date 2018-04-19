@@ -6,11 +6,6 @@ Carmen Brittunculi
 
 This is a piece of work for the `Roman Mytholojam 2018`_ Game Jam.
 
-Downloads
-:::::::::
-
-Standalone installable binaries can be downloaded from the `Itch.io project page`_.
-
 Source Code
 :::::::::::
 
@@ -19,14 +14,52 @@ Dialogue scripts are copyright the author.
 
 You can get the source by cloning the `Github repository`_.
 
+Installation
+============
+
+This is an installable Python package.
+
+#. Install `python3` using your OS package manager.
+#. Create a new Python virtual environment::
+
+    python3 -m venv ~/py3
+
+#. Download the code::
+
+    git clone git@github.com:tundish/carmen_brittunculi.git
+
+#. Change directory::
+
+    cd carmen_brittunculi
+
+#. Install the game package::
+
+    ~/py3/bin/pip install .
+
+#. Launch the game server::
+
+    ~/py3/bin/carmen-web
+
+#. Play the game in your browser::
+
+    firefox localhost:8080
+
+Downloads
+:::::::::
+
+Standalone installable binaries may be available at the `Itch.io project page`_.
+
 Notes
 :::::
 
-* Lisa Brown's `Nuance of Juice`_.
+The game is not yet finished. Here are some references and technologies
+which have inspired it so far:
+
 * `Turberfield Dialogue`_ library.
+* Lisa Brown's `Nuance of Juice`_.
+* `SVG coordinates`_ within HTML.
 * `Post-Roman scenario`_ from an abandoned project.
 * `Mammy apple`_ tree.
-* `SVG coordinates`_ within HTML.
 
 .. _Roman Mytholojam 2018: https://itch.io/jam/roman-mytholojam
 .. _GNU Affero General Public License: http://www.gnu.org/licenses/agpl.html
