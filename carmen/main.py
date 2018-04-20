@@ -17,9 +17,7 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
-from collections import namedtuple
 import logging
-import random
 import re
 import sys
 import uuid
@@ -38,6 +36,7 @@ from carmen.types import Player
 from carmen.types import Marker
 from carmen.types import Spot
 from carmen.types import Via
+from carmen.utils import Scenery
 
 DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
@@ -49,7 +48,6 @@ bottle.TEMPLATE_PATH.append(
 
 class World:
 
-    Leaf = namedtuple("Leaf", ["ref", "x", "y"])
     quests = {}
 
     validation = {
@@ -63,40 +61,6 @@ class World:
         "name": re.compile("[A-Z a-z]{2,32}"),
         "quest": re.compile("[0-9a-f]{32}"),
     }
-
-    @staticmethod
-    def forest(
-        """
-            TODO: Switch to better techniques, eg:
-
-            http://devmag.org.za/2009/05/03/poisson-disk-sampling/
-            https://codepen.io/alvov/pen/vgLevP (SVG lighting shader).
-            https://css-tricks.com/look-svg-light-source-filters/
-
-            Generate scenes in offline batches and select by eye.
-
-        """
-        width, height,
-        population=[
-            "svg-leaf-00",
-            "svg-leaf-01",
-            "svg-leaf-01",
-            "svg-leaf-01",
-            "svg-leaf-01",
-            "svg-leaf-01",
-            "svg-leaf-01",
-            "svg-leaf-02"
-        ],
-        pitch=(24, 24)
-    ):
-        choice = random.choice
-        randint = random.randint
-        pitch_x, pitch_y = pitch
-        return [
-            World.Leaf(choice(population), x + randint(0, pitch_x), y + randint(0, pitch_y))
-            for x in range(0, width, pitch_x)
-            for y in range(0, height, pitch_y)
-        ]
 
     def get_object(id):
         return World.contents.get(id)
@@ -188,7 +152,7 @@ def here(quest):
     return bottle.template(
         pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
         extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
-        leaves=World.forest(width, height, pitch=pitch),
+        leaves=Scenery.forest(width, height, pitch=pitch),
         # leaves=[],
         here=locn,
         lines=list(scene),

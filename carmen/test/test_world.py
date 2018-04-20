@@ -23,6 +23,7 @@ import carmen.logic
 from carmen.main import World
 from carmen.types import Location
 from carmen.types import Spot
+from carmen.utils import Scenery
 
 class WorldTests(unittest.TestCase):
 
@@ -73,5 +74,5 @@ class WorldTests(unittest.TestCase):
                 ))
 
     def test_forest(self):
-        leaves = World.forest(64, 64)
+        leaves = Scenery.forest(64, 64)
         self.assertTrue(5 <= len(leaves) <= 12, leaves)
