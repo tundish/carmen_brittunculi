@@ -51,13 +51,13 @@ def sow(seed, min_dist, max_dist):
     return seed + cmath.rect(r, phi)
 
 def poisson_disk(
-    n_points, gaps,
+    n_points, gaps, seeds,
     n_gen=12, min_dist=16, max_dist=42,
     origin=complex(0, 0), top=complex(WIDTH, HEIGHT)
 ):
-    centre = complex(WIDTH / 2, HEIGHT / 2)
-    q = deque([centre])
-    pop = set([centre])
+    seed = random.choice(seeds)
+    q = deque([seed])
+    pop = set([seed])
     while len(pop) < n_points:
         s = q.popleft()
         gap = random.choice(gaps)
@@ -79,7 +79,7 @@ def paint(points, width=WIDTH, height=HEIGHT):
 if __name__ == "__main__":
 
     scene = []
-    for point, gap in poisson_disk(600, [5]):
+    for point, gap in poisson_disk(600, [5], [complex(WIDTH / 2, HEIGHT / 2)]):
         scene.append(point)
         print(point, file=sys.stderr)
 
