@@ -32,13 +32,6 @@ preserveAspectRatio="none"
 </svg>
 """
 
-spot = """
-<circle cx="{0.real:.0f}" cy="{0.imag:.0f}" r="2"
-stroke="red" stroke-width="1"
-fill="dimgrey"
-/>
-"""
-
 use = """
 <use class="{klass}"
 x="{point.real:.0f}" y="{point.imag:.0f}"
@@ -56,8 +49,8 @@ cx="3" cy="3" r="2"
                 """),
     ],
 }
-WIDTH = 600
-HEIGHT = 400
+WIDTH = 800
+HEIGHT = 360
 
 def overlaps(this, that, span):
     return cmath.isclose(this, that, abs_tol=span)
@@ -76,13 +69,17 @@ def poisson_disk(
     q = deque([seed])
     pop = set([seed])
     while len(pop) < n_points:
-        s = q.popleft()
+        try:
+            s = q.popleft()
+        except IndexError:
+            return
+
         gap = random.choice(gaps)
         for p in (sow(s, min_dist, max_dist) for i in range(n_gen)):
             if (
                 not any(overlaps(i, p, gap) for i in pop) and
-                origin.real <= p.real <= top.real and
-                origin.imag <= p.imag <= top.imag
+                origin.real <= p.real < top.real - gap and
+                origin.imag <= p.imag < top.imag - gap
             ):
                 q.append(p)
                 pop.add(p)
@@ -100,9 +97,12 @@ def paint(points, width=WIDTH, height=HEIGHT):
 if __name__ == "__main__":
 
     scene = []
-    for point, gap in poisson_disk(600, [5], [complex(WIDTH / 2, HEIGHT / 2)]):
+    for n, (point, gap) in enumerate(
+        poisson_disk(6000, [5], [complex(WIDTH / 2, HEIGHT / 2)])
+    ):
         name, symbol = random.choice(symbols[gap])
         scene.append((name, point))
         print(point, file=sys.stderr)
 
+    print("{0} items".format(n), file=sys.stderr)
     print(paint(scene), file=sys.stdout)
