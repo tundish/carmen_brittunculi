@@ -17,6 +17,7 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 import cmath
+from collections import deque
 import random
 import sys
 
@@ -46,15 +47,25 @@ def sow(seed, min_dist, max_dist):
     phi = random.uniform(0, 2 * cmath.pi)
     return seed + cmath.rect(r, phi)
 
+def poisson_disk(n_points):
+    origin, centre, top = (
+        complex(0, 0), complex(WIDTH/2, HEIGHT/2), complex(WIDTH, HEIGHT)
+    )
+    q = deque([centre])
+    n = 0
+    while n < n_points:
+        s = q.popleft()
+        for p in (sow(s, 16, 42) for i in range(12)):
+            q.append(p)
+            n += 1
+            yield p
+
 def paint(points, width=WIDTH, height=HEIGHT):
     content = "\n".join(spot.format(point) for point in points)
     return svg.format(content, width=WIDTH, height=HEIGHT)
 
 if __name__ == "__main__":
-    origin, centre, top = (
-        complex(0, 0), complex(WIDTH/2, HEIGHT/2), complex(WIDTH, HEIGHT)
-    )
 
-    scene = set(sow(centre, 5, 35) for i in range(60))
+    scene = list(poisson_disk(600))
     print(*scene, sep="\n", file=sys.stderr)
     print(paint(scene), file=sys.stdout)
