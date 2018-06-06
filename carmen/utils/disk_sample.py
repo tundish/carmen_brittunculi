@@ -31,7 +31,7 @@ preserveAspectRatio="none"
 
 spot = """
 <circle cx="{0.real:.0}" cy="{0.imag:.0}" r="2"
-stroke="gray" stroke-width="4"
+stroke="red" stroke-width="1"
 fill="dimgrey"
 />
 """
