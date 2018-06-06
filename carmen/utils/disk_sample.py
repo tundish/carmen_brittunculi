@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import cmath
+import random
 import sys
 
 svg = """
@@ -30,7 +32,7 @@ preserveAspectRatio="none"
 """
 
 spot = """
-<circle cx="{0.real:.0}" cy="{0.imag:.0}" r="2"
+<circle cx="{0.real:.0f}" cy="{0.imag:.0f}" r="2"
 stroke="red" stroke-width="1"
 fill="dimgrey"
 />
@@ -39,11 +41,20 @@ fill="dimgrey"
 WIDTH = 600
 HEIGHT = 400
 
-points = [complex(0, 0), complex(WIDTH, HEIGHT)]
+def sow(seed, min_dist, max_dist):
+    r = random.uniform(min_dist, max_dist)
+    phi = random.uniform(0, 2 * cmath.pi)
+    return seed + cmath.rect(r, phi)
 
 def paint(points, width=WIDTH, height=HEIGHT):
     content = "\n".join(spot.format(point) for point in points)
     return svg.format(content, width=WIDTH, height=HEIGHT)
 
 if __name__ == "__main__":
-    sys.stdout.write(paint(points))
+    origin, centre, top = (
+        complex(0, 0), complex(WIDTH/2, HEIGHT/2), complex(WIDTH, HEIGHT)
+    )
+
+    scene = set(sow(centre, 5, 35) for i in range(60))
+    print(*scene, sep="\n", file=sys.stderr)
+    print(paint(scene), file=sys.stdout)
