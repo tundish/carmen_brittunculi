@@ -42,23 +42,27 @@ fill="dimgrey"
 WIDTH = 600
 HEIGHT = 400
 
+def overlaps(this, that, span):
+    return cmath.isclose(this, that, abs_tol=span)
+
 def sow(seed, min_dist, max_dist):
     r = random.uniform(min_dist, max_dist)
     phi = random.uniform(0, 2 * cmath.pi)
     return seed + cmath.rect(r, phi)
 
-def poisson_disk(n_points):
+def poisson_disk(n_points, n_gen=12, min_dist=16, max_dist=42):
     origin, centre, top = (
         complex(0, 0), complex(WIDTH/2, HEIGHT/2), complex(WIDTH, HEIGHT)
     )
     q = deque([centre])
-    n = 0
-    while n < n_points:
+    pop = set([centre])
+    while len(pop) < n_points:
         s = q.popleft()
-        for p in (sow(s, 16, 42) for i in range(12)):
-            q.append(p)
-            n += 1
-            yield p
+        for p in (sow(s, min_dist, max_dist) for i in range(n_gen)):
+            if not any(overlaps(i, p, 8) for i in pop):
+                q.append(p)
+                pop.add(p)
+                yield p
 
 def paint(points, width=WIDTH, height=HEIGHT):
     content = "\n".join(spot.format(point) for point in points)
@@ -66,6 +70,9 @@ def paint(points, width=WIDTH, height=HEIGHT):
 
 if __name__ == "__main__":
 
-    scene = list(poisson_disk(600))
-    print(*scene, sep="\n", file=sys.stderr)
+    scene = []
+    for point in poisson_disk(600):
+        scene.append(point)
+        print(point, file=sys.stderr)
+
     print(paint(scene), file=sys.stdout)
