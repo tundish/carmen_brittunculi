@@ -38,7 +38,7 @@ setup(
         "License :: OSI Approved :: GNU Affero General Public License v3"
         " or later (AGPLv3+)"
     ],
-    packages=["carmen", "carmen.test"],
+    packages=["carmen", "carmen.test", "carmen.utils"],
     package_data={
         "carmen": [
             "dialogue/*.rst",
