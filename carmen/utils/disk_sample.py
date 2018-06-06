@@ -39,6 +39,23 @@ fill="dimgrey"
 />
 """
 
+use = """
+<use class="{klass}"
+x="{point.real:.0f}" y="{point.imag:.0f}"
+xlink:href="#{name}" />
+"""
+
+symbols = {
+    5: [
+        ("spot", """
+<symbol id="spot">
+<circle stroke="red" fill="dimgrey" stroke-width="1"
+cx="3" cy="3" r="2"
+/>
+</symbol>
+                """),
+    ],
+}
 WIDTH = 600
 HEIGHT = 400
 
@@ -72,15 +89,20 @@ def poisson_disk(
                 yield p, gap
 
 def paint(points, width=WIDTH, height=HEIGHT):
-    content = "\n".join(spot.format(point) for point in points)
-    return svg.format(content, width=WIDTH, height=HEIGHT)
+    content = [symbol for i in symbols.values() for name, symbol in i]
+    content.extend([
+        use.format(klass=name, name=name, point=point)
+        for name, point in points
+    ])
+    return svg.format("\n".join(content), width=WIDTH, height=HEIGHT)
 
 
 if __name__ == "__main__":
 
     scene = []
     for point, gap in poisson_disk(600, [5], [complex(WIDTH / 2, HEIGHT / 2)]):
-        scene.append(point)
+        name, symbol = random.choice(symbols[gap])
+        scene.append((name, point))
         print(point, file=sys.stderr)
 
     print(paint(scene), file=sys.stdout)
