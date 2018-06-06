@@ -51,19 +51,22 @@ def sow(seed, min_dist, max_dist):
     return seed + cmath.rect(r, phi)
 
 def poisson_disk(
-        n_points, gaps,
-        n_gen=12, min_dist=16, max_dist=42
-    ):
-    origin, centre, top = (
-        complex(0, 0), complex(WIDTH/2, HEIGHT/2), complex(WIDTH, HEIGHT)
-    )
+    n_points, gaps,
+    n_gen=12, min_dist=16, max_dist=42,
+    origin=complex(0, 0), top=complex(WIDTH, HEIGHT)
+):
+    centre = complex(WIDTH / 2, HEIGHT / 2)
     q = deque([centre])
     pop = set([centre])
     while len(pop) < n_points:
         s = q.popleft()
         gap = random.choice(gaps)
         for p in (sow(s, min_dist, max_dist) for i in range(n_gen)):
-            if not any(overlaps(i, p, gap) for i in pop):
+            if (
+                not any(overlaps(i, p, gap) for i in pop) and
+                origin.real <= p.real <= top.real and
+                origin.imag <= p.imag <= top.imag
+            ):
                 q.append(p)
                 pop.add(p)
                 yield p, gap
@@ -71,6 +74,7 @@ def poisson_disk(
 def paint(points, width=WIDTH, height=HEIGHT):
     content = "\n".join(spot.format(point) for point in points)
     return svg.format(content, width=WIDTH, height=HEIGHT)
+
 
 if __name__ == "__main__":
 
