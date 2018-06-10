@@ -26,16 +26,9 @@ from carmen.types import Spot
 from carmen.types import Via
 
 def path(locn, dest):
-    bearing = Compass.bearing(dest - locn)
-    return bearing
-
-asscns = carmen.logic.associations()
-locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
-for locn, dest in itertools.permutations(locns, r=2):
-    rv = []
     bearing = Compass.bearing(dest.get_state(Spot).value - locn.get_state(Spot).value)
     pos = locn
-    while pos != dest and len(rv) < len(locns):
+    while pos != dest:
         spot = pos.get_state(Spot)
         neighbours = asscns.match(
             pos,
@@ -48,6 +41,11 @@ for locn, dest in itertools.permutations(locns, r=2):
             for i in neighbours
         }
         hop = errors[min(errors)]
-        rv.append(hop)
-    else:
-        print(rv)
+        pos = hop
+        yield hop
+
+asscns = carmen.logic.associations()
+locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
+for locn, dest in itertools.permutations(locns, r=2):
+    route = itertools.islice(path(locn, dest), len(locns))
+    print(*route, sep="\n")
