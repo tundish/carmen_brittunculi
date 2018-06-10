@@ -23,13 +23,31 @@ import carmen.logic
 from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Spot
+from carmen.types import Via
 
 def path(locn, dest):
     bearing = Compass.bearing(dest - locn)
-    return [bearing]
+    return bearing
 
 asscns = carmen.logic.associations()
 locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
 for locn, dest in itertools.permutations(locns, r=2):
-    rv = path(locn.get_state(Spot).value, dest.get_state(Spot).value)
-    print(rv)
+    rv = []
+    bearing = Compass.bearing(dest.get_state(Spot).value - locn.get_state(Spot).value)
+    pos = locn
+    while pos != dest and len(rv) < len(locns):
+        spot = pos.get_state(Spot)
+        neighbours = asscns.match(
+            pos,
+            forward=[Via.bidir, Via.forwd],
+            reverse=[Via.bidir, Via.bckwd],
+            predicate=lambda x: isinstance(x, Location)
+        )
+        errors = {
+            abs(Compass.bearing(i.get_state(Spot).value - spot.value) - bearing): i
+            for i in neighbours
+        }
+        hop = errors[min(errors)]
+        rv.append(hop)
+    else:
+        print(rv)
