@@ -17,7 +17,19 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 from enum import Enum
+import itertools
+
+import carmen.logic
+from carmen.types import Compass
+from carmen.types import Location
+from carmen.types import Spot
 
 def path(locn, dest):
-    bearing = dest - locn
-    return []
+    bearing = Compass.bearing(dest - locn)
+    return [bearing]
+
+asscns = carmen.logic.associations()
+locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
+for locn, dest in itertools.permutations(locns, r=2):
+    rv = path(locn.get_state(Spot).value, dest.get_state(Spot).value)
+    print(rv)
