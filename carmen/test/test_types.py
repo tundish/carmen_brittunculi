@@ -27,7 +27,28 @@ from turberfield.utils.assembly import Assembly
 
 class CompassTests(unittest.TestCase):
 
-    def test_bearing_form_degrees(self):
+    def test_bearing_from_degrees(self):
+        self.assertEqual("North", Compass.bearing(0))
+        self.assertEqual("South", Compass.bearing(180))
+        self.assertEqual("East", Compass.bearing(90))
+        self.assertEqual("West", Compass.bearing(270))
+        self.assertEqual("NorthWest", Compass.bearing(Decimal("292.6")))
+        self.assertEqual("NorthWest", Compass.bearing(315))
+        self.assertEqual("NorthWest", Compass.bearing(Decimal("337.5")))
+        self.assertEqual("North", Compass.bearing(Decimal("337.6")))
+        self.assertEqual("North", Compass.bearing(360))
+
+    def test_bearing_from_complex(self):
+        self.assertEqual("North", Compass.bearing(complex(0, 1)))
+        self.assertEqual("NorthEast", Compass.bearing(complex(1, 1)))
+        self.assertEqual("East", Compass.bearing(complex(1, 0)))
+        self.assertEqual("SouthEast", Compass.bearing(complex(1, -1)))
+        self.assertEqual("South", Compass.bearing(complex(0, -1)))
+        self.assertEqual("SouthWest", Compass.bearing(complex(-1, -1)))
+        self.assertEqual("West", Compass.bearing(complex(-1, 0)))
+        self.assertEqual("NorthWest", Compass.bearing(complex(-1, 1)))
+
+    def test_legend_from_degrees(self):
         self.assertEqual("North", Compass.legend(0))
         self.assertEqual("South", Compass.legend(180))
         self.assertEqual("East", Compass.legend(90))
@@ -38,7 +59,7 @@ class CompassTests(unittest.TestCase):
         self.assertEqual("North", Compass.legend(Decimal("337.6")))
         self.assertEqual("North", Compass.legend(360))
 
-    def test_bearing_form_complex(self):
+    def test_legend_from_complex(self):
         self.assertEqual("North", Compass.legend(complex(0, 1)))
         self.assertEqual("NorthEast", Compass.legend(complex(1, 1)))
         self.assertEqual("East", Compass.legend(complex(1, 0)))

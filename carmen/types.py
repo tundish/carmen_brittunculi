@@ -49,22 +49,26 @@ class Compass:
     ])
 
     @classmethod
-    def legend(cls, val):
+    def bearing(cls, val, offset=0):
         keys, values = zip(*cls.rose.items())
-        offset = Decimal(180) / (len(cls.rose) - 1)
         if isinstance(val, complex):
             phase = 180 * Decimal(cmath.phase(val)) / Decimal(cmath.pi)
             if phase <= 90:
-                val = 90 - phase - offset
+                return 90 - phase - offset
             elif phase <= 180:
-                val = 270 + (180 - phase) - offset
+                return 270 + (180 - phase) - offset
             elif phase <= 270:
-                val = 180 + (270 - phase) - offset
+                return 180 + (270 - phase) - offset
             else:
-                val = 90 + 360 - phase - offset
+                return 90 + 360 - phase - offset
         else:
-            val -= offset
+            return val - offset
 
+    @classmethod
+    def legend(cls, val):
+        offset = Decimal(180) / (len(cls.rose) - 1)
+        val = cls.bearing(val, offset)
+        keys, values = zip(*cls.rose.items())
         pos = bisect.bisect_left(keys, val)
         return values[pos]
 

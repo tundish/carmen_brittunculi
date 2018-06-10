@@ -16,4 +16,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+from enum import Enum
 
+def path(locn, dest):
+    bearing = dest - locn
+    return []
