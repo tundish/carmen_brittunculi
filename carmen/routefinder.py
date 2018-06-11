@@ -32,6 +32,23 @@ class Routefinder(Associations):
         super().__init__()
         self._cache = {}
 
+    def moves(self, locn):
+        """
+        Refactor for reuse
+        """
+        spot = locn.get_state(Spot)
+        neighbours = self.match(
+            locn,
+            forward=[Via.bidir, Via.forwd],
+            reverse=[Via.bidir, Via.bckwd],
+            predicate=lambda x: isinstance(x, Location)
+        )
+        moves = [
+            (Compass.legend(i.get_state(Spot).value - spot.value), i)
+            for i in neighbours
+        ]
+        return locn, moves
+
     def route(self, locn, dest, maxlen, visited=None):
         if (locn, dest) in self._cache:
             return self._cache[(locn, dest)]
@@ -73,8 +90,8 @@ class Routefinder(Associations):
                 self._cache[(locn, dest)] = tuple(rv)
                 return rv
 
-            #if len(rv) == maxlen:
-            #    return None
+            if len(rv) == maxlen:
+                return None
         else:
             return None
 
