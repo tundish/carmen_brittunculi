@@ -20,6 +20,7 @@ from collections import deque
 from enum import Enum
 import functools
 import itertools
+import operator
 
 import carmen.logic
 from carmen.types import Compass
@@ -27,9 +28,10 @@ from carmen.types import Location
 from carmen.types import Spot
 from carmen.types import Via
 
-@functools.lru_cache(maxsize=None)
-def path(locn, dest, maxlen):
-    print("Called: ", locn, dest, sep="\n")
+#@functools.lru_cache(maxsize=None)
+def path(locn, dest, maxlen, visited=None):
+    print("Called: with {0} options".format(len(locns)), locn, dest, sep="\n")
+    visited = set([]) if visited is None else set(visited)
     if locn == dest:
         return deque([], maxlen=maxlen)
 
@@ -42,13 +44,16 @@ def path(locn, dest, maxlen):
         reverse=[Via.bidir, Via.bckwd],
         predicate=lambda x: isinstance(x, Location)
     )
-    options = {
-        abs(Compass.bearing(i.get_state(Spot).value - spot.value) - bearing): i
-        for i in neighbours
-    }
-    for option in sorted(options.keys()):
-        hop = options[option]
-        rv = path(hop, dest, maxlen)
+    options = sorted(
+        ((abs(Compass.bearing(i.get_state(Spot).value - spot.value) - bearing), i)
+         for i in neighbours
+         if i not in visited),
+        key=operator.itemgetter(0)
+    )
+    while options:
+        veer, hop = options.pop(0)
+        visited.add(hop)
+        rv = path(hop, dest, maxlen, frozenset(visited))
         print("Returned: ", rv)
         if rv is None or hop in rv:
             continue
@@ -60,9 +65,12 @@ def path(locn, dest, maxlen):
 
         if len(rv) == maxlen:
             return None
+    else:
+        return None
 
 asscns = carmen.logic.associations()
 locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
+y, n = 0, 0
 for locn, dest in itertools.permutations(locns, r=2):
     print(
         "From {0.label} {1} to {2.label} {3}".format(
@@ -70,5 +78,11 @@ for locn, dest in itertools.permutations(locns, r=2):
         )
     )
     route = path(locn, dest, len(locns))
-    print(*route, sep="\n")
+    if route is None:
+        print("Can't find route for {0} to {1}".format(locn, dest))
+        n += 1
+    else:
+        print(*route, sep="\n")
+        y += 1
     #input("Press return.")
+print(y, n)
