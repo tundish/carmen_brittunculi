@@ -50,15 +50,16 @@ def path(locn, dest, maxlen):
         hop = options[option]
         rv = path(hop, dest, maxlen)
         print("Returned: ", rv)
-        if rv is None:
+        if rv is None or hop in rv:
             continue
 
         rv.appendleft(hop)
+
         if rv[-1] == dest:
             return rv
 
         if len(rv) == maxlen:
-            return None 
+            return None
 
 asscns = carmen.logic.associations()
 locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
@@ -70,4 +71,4 @@ for locn, dest in itertools.permutations(locns, r=2):
     )
     route = path(locn, dest, len(locns))
     print(*route, sep="\n")
-    input("Press return.")
+    #input("Press return.")
