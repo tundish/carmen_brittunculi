@@ -32,10 +32,7 @@ class Routefinder(Associations):
         super().__init__()
         self._cache = {}
 
-    def moves(self, locn):
-        """
-        Refactor for reuse
-        """
+    def navigate(self, locn):
         spot = locn.get_state(Spot)
         neighbours = self.match(
             locn,
@@ -43,10 +40,11 @@ class Routefinder(Associations):
             reverse=[Via.bidir, Via.bckwd],
             predicate=lambda x: isinstance(x, Location)
         )
-        moves = [
-            (Compass.legend(i.get_state(Spot).value - spot.value), i)
-            for i in neighbours
-        ]
+        moves = [(
+            Compass.legend(i.get_state(Spot).value - spot.value),
+            Compass.bearing(i.get_state(Spot).value - spot.value),
+            i
+        ) for i in neighbours]
         return locn, moves
 
     def route(self, locn, dest, maxlen, visited=None):
@@ -58,20 +56,12 @@ class Routefinder(Associations):
             return deque([], maxlen=maxlen)
 
         bearing = Compass.bearing(dest.get_state(Spot).value - locn.get_state(Spot).value)
-
-        spot = locn.get_state(Spot)
-        neighbours = self.match(
-            locn,
-            forward=[Via.bidir, Via.forwd],
-            reverse=[Via.bidir, Via.bckwd],
-            predicate=lambda x: isinstance(x, Location)
-        )
+        locn, moves = self.navigate(locn)
         options = sorted(
-            ((abs(Compass.bearing(i.get_state(Spot).value - spot.value) - bearing), i)
-             for i in neighbours
-             if i not in visited),
+            ((abs(b - bearing), l) for n, b, l in moves if l not in visited),
             key=operator.itemgetter(0)
         )
+
         while options:
             deviation, hop = options.pop(0)
             visited.add(hop)
@@ -91,5 +81,3 @@ class Routefinder(Associations):
             return rv
         else:
             return None
-
-
