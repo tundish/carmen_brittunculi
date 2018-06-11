@@ -77,21 +77,19 @@ class Routefinder(Associations):
             visited.add(hop)
             try:
                 rv = deque(self.route(hop, dest, maxlen, frozenset(visited)))
+                if hop in rv:
+                    continue
+                else:
+                    rv.appendleft(hop)
             except TypeError:
-                # rv is None
                 continue
-
-            if hop in rv:
-                continue
-
-            rv.appendleft(hop)
-
-            if rv[-1] == dest:
-                self._cache[(locn, dest)] = tuple(rv)
-                return rv
 
             if len(rv) == maxlen:
                 return None
+
+            #if rv[-1] == dest:
+            #    self._cache[(locn, dest)] = tuple(rv)
+            return rv
         else:
             return None
 
