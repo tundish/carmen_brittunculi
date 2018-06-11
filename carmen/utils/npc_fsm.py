@@ -16,7 +16,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+from collections import deque
 from enum import Enum
+import functools
 import itertools
 
 import carmen.logic
@@ -25,27 +27,47 @@ from carmen.types import Location
 from carmen.types import Spot
 from carmen.types import Via
 
-def path(locn, dest):
+@functools.lru_cache(maxsize=None)
+def path(locn, dest, maxlen):
+    print("Called: ", locn, dest, sep="\n")
+    if locn == dest:
+        return deque([], maxlen=maxlen)
+
     bearing = Compass.bearing(dest.get_state(Spot).value - locn.get_state(Spot).value)
-    pos = locn
-    while pos != dest:
-        spot = pos.get_state(Spot)
-        neighbours = asscns.match(
-            pos,
-            forward=[Via.bidir, Via.forwd],
-            reverse=[Via.bidir, Via.bckwd],
-            predicate=lambda x: isinstance(x, Location)
-        )
-        errors = {
-            abs(Compass.bearing(i.get_state(Spot).value - spot.value) - bearing): i
-            for i in neighbours
-        }
-        hop = errors[min(errors)]
-        pos = hop
-        yield hop
+
+    spot = locn.get_state(Spot)
+    neighbours = asscns.match(
+        locn,
+        forward=[Via.bidir, Via.forwd],
+        reverse=[Via.bidir, Via.bckwd],
+        predicate=lambda x: isinstance(x, Location)
+    )
+    options = {
+        abs(Compass.bearing(i.get_state(Spot).value - spot.value) - bearing): i
+        for i in neighbours
+    }
+    for option in sorted(options.keys()):
+        hop = options[option]
+        rv = path(hop, dest, maxlen)
+        print("Returned: ", rv)
+        if rv is None:
+            continue
+
+        rv.appendleft(hop)
+        if rv[-1] == dest:
+            return rv
+
+        if len(rv) == maxlen:
+            return None 
 
 asscns = carmen.logic.associations()
 locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
 for locn, dest in itertools.permutations(locns, r=2):
-    route = itertools.islice(path(locn, dest), len(locns))
+    print(
+        "From {0.label} {1} to {2.label} {3}".format(
+            locn, locn.get_state(Spot).value, dest, dest.get_state(Spot).value
+        )
+    )
+    route = path(locn, dest, len(locns))
     print(*route, sep="\n")
+    input("Press return.")
