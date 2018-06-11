@@ -80,6 +80,7 @@ class Routefinder(Associations):
                 if hop in rv:
                     continue
                 else:
+                    self._cache[(hop, dest)] = tuple(rv)
                     rv.appendleft(hop)
             except TypeError:
                 continue
@@ -87,8 +88,6 @@ class Routefinder(Associations):
             if len(rv) == maxlen:
                 return None
 
-            #if rv[-1] == dest:
-            #    self._cache[(locn, dest)] = tuple(rv)
             return rv
         else:
             return None
