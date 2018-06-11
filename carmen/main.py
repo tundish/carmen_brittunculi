@@ -86,15 +86,9 @@ class World:
             i for i in asscns.lookup
             if isinstance(i, Location) and i.get_state(Spot) == spot
         )
-        neighbours = asscns.match(
-            locn,
-            forward=[Via.bidir, Via.forwd],
-            reverse=[Via.bidir, Via.bckwd],
-            predicate=lambda x: isinstance(x, Location)
-        )
         moves = [
-            (Compass.legend(i.get_state(Spot).value - spot.value), i)
-            for i in neighbours
+            (Compass.legend(k), v)
+            for k, v in asscns.navigate(locn).items()
         ]
         return locn, moves
 
