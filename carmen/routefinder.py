@@ -18,6 +18,7 @@
 
 
 from collections import deque
+from collections import OrderedDict
 import operator
 
 from carmen.associations import Associations
@@ -40,12 +41,10 @@ class Routefinder(Associations):
             reverse=[Via.bidir, Via.bckwd],
             predicate=lambda x: isinstance(x, Location)
         )
-        moves = [(
-            Compass.legend(i.get_state(Spot).value - spot.value),
+        return OrderedDict([(
             Compass.bearing(i.get_state(Spot).value - spot.value),
             i
-        ) for i in neighbours]
-        return locn, moves
+        ) for i in neighbours])
 
     def route(self, locn, dest, maxlen, visited=None):
         if (locn, dest) in self._cache:
@@ -56,9 +55,9 @@ class Routefinder(Associations):
             return deque([], maxlen=maxlen)
 
         bearing = Compass.bearing(dest.get_state(Spot).value - locn.get_state(Spot).value)
-        locn, moves = self.navigate(locn)
+        moves = self.navigate(locn)
         options = sorted(
-            ((abs(b - bearing), l) for n, b, l in moves if l not in visited),
+            ((abs(k - bearing), v) for k, v in moves.items() if v not in visited),
             key=operator.itemgetter(0)
         )
 

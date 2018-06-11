@@ -27,17 +27,6 @@ from turberfield.utils.assembly import Assembly
 
 class CompassTests(unittest.TestCase):
 
-    def test_bearing_from_degrees(self):
-        self.assertEqual(Decimal(0), Compass.bearing(0))
-        self.assertEqual(Decimal(180), Compass.bearing(180))
-        self.assertEqual(Decimal(90), Compass.bearing(90))
-        self.assertEqual(Decimal(270), Compass.bearing(270))
-        self.assertAlmostEqual(Decimal(292.6), Compass.bearing(Decimal("292.6")))
-        self.assertEqual(Decimal(315), Compass.bearing(315))
-        self.assertEqual(Decimal(337.5), Compass.bearing(Decimal("337.5")))
-        self.assertAlmostEqual(Decimal(337.6), Compass.bearing(Decimal("337.6")))
-        self.assertEqual(Decimal(360), Compass.bearing(360))
-
     def test_bearing_from_complex(self):
         self.assertEqual(Decimal(360), Compass.bearing(complex(0, 1)))
         self.assertEqual(Decimal(45), Compass.bearing(complex(1, 1)))
