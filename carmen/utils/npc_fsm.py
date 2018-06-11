@@ -27,48 +27,9 @@ from carmen.types import Location
 from carmen.types import Spot
 from carmen.types import Via
 
-def path(locn, dest, maxlen, visited=None):
-    print("Called: with {0} options".format(len(locns)), locn, dest, sep="\n")
-    visited = set([]) if visited is None else set(visited)
-    if locn == dest:
-        return deque([], maxlen=maxlen)
-
-    bearing = Compass.bearing(dest.get_state(Spot).value - locn.get_state(Spot).value)
-
-    spot = locn.get_state(Spot)
-    neighbours = asscns.match(
-        locn,
-        forward=[Via.bidir, Via.forwd],
-        reverse=[Via.bidir, Via.bckwd],
-        predicate=lambda x: isinstance(x, Location)
-    )
-    options = sorted(
-        ((abs(Compass.bearing(i.get_state(Spot).value - spot.value) - bearing), i)
-         for i in neighbours
-         if i not in visited),
-        key=operator.itemgetter(0)
-    )
-    while options:
-        veer, hop = options.pop(0)
-        visited.add(hop)
-        rv = path(hop, dest, maxlen, frozenset(visited))
-        print("Returned: ", rv)
-        if rv is None or hop in rv:
-            continue
-
-        rv.appendleft(hop)
-
-        if rv[-1] == dest:
-            return rv
-
-        if len(rv) == maxlen:
-            return None
-    else:
-        return None
-
 asscns = carmen.logic.associations()
 locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
-y, n = 0, 0
+longest = (None, None, [])
 for locn, dest in itertools.permutations(locns, r=2):
     print(
         "From {0.label} {1} to {2.label} {3}".format(
@@ -78,9 +39,9 @@ for locn, dest in itertools.permutations(locns, r=2):
     route = asscns.route(locn, dest, len(locns))
     if route is None:
         print("Can't find route for {0} to {1}".format(locn, dest))
-        n += 1
     else:
         print(*route, sep="\n")
-        y += 1
-    #input("Press return.")
-print(y, n)
+        if len(route) > len(longest[2]):
+            longest = (locn, dest, route)
+print("{0.label} -> {1.label}".format(*longest))
+print(*longest[2], sep="\n")
