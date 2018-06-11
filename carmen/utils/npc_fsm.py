@@ -18,7 +18,6 @@
 
 from collections import deque
 from enum import Enum
-import functools
 import itertools
 import operator
 
@@ -28,7 +27,6 @@ from carmen.types import Location
 from carmen.types import Spot
 from carmen.types import Via
 
-#@functools.lru_cache(maxsize=None)
 def path(locn, dest, maxlen, visited=None):
     print("Called: with {0} options".format(len(locns)), locn, dest, sep="\n")
     visited = set([]) if visited is None else set(visited)
@@ -77,7 +75,7 @@ for locn, dest in itertools.permutations(locns, r=2):
             locn, locn.get_state(Spot).value, dest, dest.get_state(Spot).value
         )
     )
-    route = path(locn, dest, len(locns))
+    route = asscns.route(locn, dest, len(locns))
     if route is None:
         print("Can't find route for {0} to {1}".format(locn, dest))
         n += 1

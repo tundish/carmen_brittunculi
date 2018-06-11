@@ -25,7 +25,7 @@ import pkg_resources
 from turberfield.dialogue.model import SceneScript
 
 from carmen import __version__ as version # noqa
-from carmen.associations import Associations
+from carmen.routefinder import Routefinder
 from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Player # noqa
@@ -35,7 +35,7 @@ from carmen.types import Via
 ides_of_march = datetime.date(396, 3, 1)
 
 def associations():
-    rv = Associations()
+    rv = Routefinder()
     rv.register(
         Via.bidir,
         Location(label="Grove of Hades").set_state(Spot.grid_0808),
