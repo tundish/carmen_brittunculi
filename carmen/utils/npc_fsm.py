@@ -26,7 +26,10 @@ import sys
 import carmen.logic
 from carmen.types import Compass
 from carmen.types import Location
+from carmen.types import Persona
 from carmen.types import Spot
+from carmen.types import Stateful
+from carmen.types import Travel
 from carmen.types import Via
 
 class Volume(Enum):
@@ -56,24 +59,16 @@ class Material(Enum):
 Commodity = namedtuple("Commodity", ["label", "description", "volume", "material"])
 SilverCoin = namedtuple("SilverCoin", Commodity._fields)
 
-print(Material.silver.value)
+class NPC(Stateful, Persona): pass
 
-sys.exit(0)
-asscns = carmen.logic.associations()
-locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
-longest = (None, None, [])
-for locn, dest in itertools.permutations(locns, r=2):
-    print(
-        "From {0.label} {1} to {2.label} {3}".format(
-            locn, locn.get_state(Spot).value, dest, dest.get_state(Spot).value
-        )
-    )
-    route = asscns.route(locn, dest, len(locns))
-    if route is None:
-        print("Can't find route for {0} to {1}".format(locn, dest))
-    else:
-        print(*route, sep="\n")
-        if len(route) > len(longest[2]):
-            longest = (locn, dest, route)
-print("{0.label} -> {1.label}".format(*longest))
-print(*longest[2], sep="\n")
+rf = carmen.logic.associations()
+
+rf.register(
+    Travel.intention,
+    NPC(name="Civis Anatol Ant Bospor").set_state(
+        next(iter(rf.search(label="Quarry"))).get_state(Spot)
+    ),
+    next(iter(rf.search(label="Quarry")))
+)
+
+print(*rf.ensemble(), sep="\n")
