@@ -21,6 +21,7 @@ from collections import deque
 from collections import namedtuple
 from enum import Enum
 import itertools
+import logging
 import operator
 import sys
 
@@ -78,7 +79,7 @@ rf.register(
     NPC(name="Civis Anatol Ant Bospor").set_state(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
     ),
-    next(iter(rf.search(label="Quarry")))
+    next(iter(rf.search(label="Marsh")))
 )
 
 rf.register(
@@ -112,8 +113,19 @@ rf.register(
 
 print(*rf.ensemble(), sep="\n")
 
-traveller = rf.match(
-    next(iter(rf.search(label="Marsh")))
-    forward=[Travel.intention]
-)
-print(traveller)
+logging.basicConfig(level=logging.INFO)
+
+for label in ("Marsh",):
+    destination = next(iter(rf.search(label=label)))
+    for traveller in rf.match(
+        destination,
+        reverse=[Travel.intention]
+    ):
+        spot = traveller.get_state(Spot)
+        print(spot)
+        location = next(i for i in rf.ensemble() if isinstance(i, Location) and i.get_state(Spot) == spot)
+        route = rf.route(location, destination, maxlen=20)
+        for hop in route:
+            traveller.set_state(hop.get_state(Spot))
+            logging.info("{0.name.firstname} {0.name.surname} arrived at {1.label}".format(traveller, hop))
+
