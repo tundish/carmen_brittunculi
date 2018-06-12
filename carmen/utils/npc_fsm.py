@@ -82,7 +82,7 @@ rf.register(
 )
 
 rf.register(
-    Travel.intention,
+    Travel.refusal,
     NPC(name="Maer Catrine Cadi Ingenbrettar").set_state(
         next(iter(rf.search(label="Common house"))).get_state(Spot)
     ),
@@ -111,3 +111,9 @@ rf.register(
 )
 
 print(*rf.ensemble(), sep="\n")
+
+traveller = rf.match(
+    next(iter(rf.search(label="Marsh")))
+    forward=[Travel.intention]
+)
+print(traveller)
