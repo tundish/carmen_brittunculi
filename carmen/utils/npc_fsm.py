@@ -17,9 +17,11 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 from collections import deque
+from collections import namedtuple
 from enum import Enum
 import itertools
 import operator
+import sys
 
 import carmen.logic
 from carmen.types import Compass
@@ -27,6 +29,36 @@ from carmen.types import Location
 from carmen.types import Spot
 from carmen.types import Via
 
+class Volume(Enum):
+
+    load = 2
+    heap = 1
+    cubic_metre = 1
+    pile = 25e-2
+    box = 128e-3
+    barrel = 128e-3
+    keg = 64e-3
+    sack = 32e-3
+    slab = 24e-3
+    case = 16e-3
+    bundle = 8e-3
+    bottle = 1e-3
+    litre = 1e-3
+    pack = 5e-4
+    zero = 0
+
+class Material(Enum):
+    # Kg / m ^ 3
+    limestone = 1800
+    potato = 1060
+    silver = 10490
+
+Commodity = namedtuple("Commodity", ["label", "description", "volume", "material"])
+SilverCoin = namedtuple("SilverCoin", Commodity._fields)
+
+print(Material.silver.value)
+
+sys.exit(0)
 asscns = carmen.logic.associations()
 locns = [i for i in asscns.ensemble() if isinstance(i, Location)]
 longest = (None, None, [])
