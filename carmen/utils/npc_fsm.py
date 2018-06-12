@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+from collections import Counter
 from collections import deque
 from collections import namedtuple
 from enum import Enum
@@ -25,6 +26,7 @@ import sys
 
 import carmen.logic
 from carmen.types import Compass
+from carmen.types import DataObject
 from carmen.types import Location
 from carmen.types import Persona
 from carmen.types import Spot
@@ -34,6 +36,7 @@ from carmen.types import Via
 
 class Volume(Enum):
 
+    infinity = float("inf")
     load = 2
     heap = 1
     cubic_metre = 1
@@ -61,6 +64,13 @@ SilverCoin = namedtuple("SilverCoin", Commodity._fields)
 
 class NPC(Stateful, Persona): pass
 
+class Inventory(Stateful, DataObject):
+
+    def __init__(self, capacity, **kwargs):
+        self.capacity = capacity
+        self.contents = Counter()
+        super().__init__(**kwargs)
+
 rf = carmen.logic.associations()
 
 rf.register(
@@ -69,6 +79,35 @@ rf.register(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
     ),
     next(iter(rf.search(label="Quarry")))
+)
+
+rf.register(
+    Travel.intention,
+    NPC(name="Maer Catrine Cadi Ingenbrettar").set_state(
+        next(iter(rf.search(label="Common house"))).get_state(Spot)
+    ),
+    next(iter(rf.search(label="Quarry")))
+)
+
+rf.register(
+    None,
+    Inventory(label="Stone", capacity=Volume.infinity).set_state(
+        next(iter(rf.search(label="Quarry"))).get_state(Spot)
+    ),
+)
+
+rf.register(
+    None,
+    Inventory(label="Cart", capacity=Volume.load).set_state(
+        next(iter(rf.search(label="Quarry"))).get_state(Spot)
+    ),
+)
+
+rf.register(
+    None,
+    Inventory(label="Market", capacity=Volume.infinity).set_state(
+        next(iter(rf.search(label="Marsh"))).get_state(Spot)
+    ),
 )
 
 print(*rf.ensemble(), sep="\n")
