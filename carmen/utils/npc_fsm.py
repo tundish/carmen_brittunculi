@@ -63,6 +63,7 @@ class Material(Enum):
     silver = 10490
 
 Commodity = namedtuple("Commodity", ["label", "description", "material"])
+Potato = namedtuple("Potato", Commodity._fields)
 SilverCoin = namedtuple("SilverCoin", Commodity._fields)
 Stone = namedtuple("Stone", Commodity._fields)
 
@@ -206,7 +207,14 @@ rf.register(
 
 rf.register(
     None,
-    Inventory(label="Market", mobility=0, capacity=Volume.infinity).set_state(
+    Inventory(
+        label="Market",
+        mobility=0,
+        capacity=Volume.infinity,
+        contents=Counter({
+            Potato("Potato", "Potatoes from market", Material.potato): Volume.plenty.value
+        })
+    ).set_state(
         next(iter(rf.search(label="Marsh"))).get_state(Spot)
     ),
 )
