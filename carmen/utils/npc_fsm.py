@@ -80,7 +80,7 @@ class Business:
         self.locations = locations or []
         self.log = logging.getLogger("business")
 
-    def __call__(self, finder, loop=None):
+    async def __call__(self, finder, loop=None):
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
 
@@ -159,7 +159,7 @@ loop = asyncio.SelectorEventLoop()
 asyncio.set_event_loop(None)
 
 for business in businesses:
-    business(rf, loop)
+    loop.create_task(business(rf, loop))
 
 loop.run_forever()
 loop.close()
