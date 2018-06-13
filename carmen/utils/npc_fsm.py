@@ -72,12 +72,18 @@ class Inventory(Stateful, DataObject):
         self.contents = Counter()
         super().__init__(**kwargs)
 
+class Business:
+
+    def __init__(self, actor, locations=None):
+        self.actor = actor
+        self.locations = locations or []
+
 rf = carmen.logic.associations()
 
 rf.register(
     Travel.intention,
     NPC(name="Civis Anatol Ant Bospor").set_state(
-        next(iter(rf.search(label="Quarry"))).get_state(Spot)
+        next(iter(rf.search(label="Common house"))).get_state(Spot)
     ),
     next(iter(rf.search(label="Marsh")))
 )
@@ -111,21 +117,31 @@ rf.register(
     ),
 )
 
+# Businesses claim actors and lock them while they are in use
+businesses = [
+    Business(
+        next(iter(rf.search(_name="Civis Anatol Ant Bospor"))),
+        locations=deque([
+            next(iter(rf.search(label="Quarry"))),
+            next(iter(rf.search(label="Marsh")))
+        ])
+    )
+]
+
 print(*rf.ensemble(), sep="\n")
 
 logging.basicConfig(level=logging.INFO)
 
-for label in ("Marsh",):
-    destination = next(iter(rf.search(label=label)))
-    for traveller in rf.match(
-        destination,
-        reverse=[Travel.intention]
-    ):
-        spot = traveller.get_state(Spot)
-        print(spot)
-        location = next(i for i in rf.ensemble() if isinstance(i, Location) and i.get_state(Spot) == spot)
-        route = rf.route(location, destination, maxlen=20)
-        for hop in route:
-            traveller.set_state(hop.get_state(Spot))
-            logging.info("{0.name.firstname} {0.name.surname} arrived at {1.label}".format(traveller, hop))
+for business in businesses:
+    destination = business.locations[0]
+    here = business.actor.get_state(Spot)
+    location = next(i for i in rf.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
+    route = rf.route(location, destination, maxlen=20)
+    for hop in route:
+        spot = hop.get_state(Spot)
+        business.actor.set_state(spot)
+        logging.info("{0.actor.name.firstname} {0.actor.name.surname} goes {1} to {2.label}".format(
+            business, Compass.legend(spot.value - here.value), hop
+        ))
+        here = spot
 
