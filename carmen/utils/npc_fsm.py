@@ -68,8 +68,9 @@ class NPC(Stateful, Persona): pass
 
 class Inventory(Stateful, DataObject):
 
-    def __init__(self, capacity, **kwargs):
+    def __init__(self, capacity, mobility=1, **kwargs):
         self.capacity = capacity
+        self.mobility = mobility
         self.contents = Counter()
         super().__init__(**kwargs)
 
@@ -85,9 +86,12 @@ class Business:
             self.actor._lock = asyncio.Lock(loop=loop)
 
         while True:
-            destination = self.locations[0]
             # Fill inventory from source
+            here = self.actor.get_state(Spot)
+            location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
+            carts = [i for i in self.resources(finder, [location]) if i.mobility]
 
+            destination = self.locations[0]
             for entity, vector, hop in self.transport(finder, destination):
                 entity.set_state(hop.get_state(Spot))
                 self.log.info("{0} goes {1} to {2.label}".format(
@@ -101,6 +105,16 @@ class Business:
             # Unload inventory to sink
 
             self.locations.rotate(-1)
+
+    def resources(self, finder, locations, types=[Inventory]):
+        claims = set(self.locations).intersection(set(locations))
+        return [
+            i
+            for locn in claims
+            for i in finder.ensemble()
+            if isinstance(i, tuple(types))
+            and i.get_state(Spot) == locn.get_state(Spot)
+        ]
 
     def transport(self, finder, destination=None):
         here = self.actor.get_state(Spot)
@@ -134,7 +148,7 @@ rf.register(
 
 rf.register(
     None,
-    Inventory(label="Stone", capacity=Volume.infinity).set_state(
+    Inventory(label="Stone", mobility=0, capacity=Volume.infinity).set_state(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
     ),
 )
@@ -148,7 +162,7 @@ rf.register(
 
 rf.register(
     None,
-    Inventory(label="Market", capacity=Volume.infinity).set_state(
+    Inventory(label="Market", mobility=0, capacity=Volume.infinity).set_state(
         next(iter(rf.search(label="Marsh"))).get_state(Spot)
     ),
 )
