@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import asyncio
 from collections import Counter
 from collections import deque
 from collections import namedtuple
@@ -77,6 +78,28 @@ class Business:
     def __init__(self, actor, locations=None):
         self.actor = actor
         self.locations = locations or []
+        self.log = logging.getLogger("business")
+
+    def __call__(self, finder, loop=None):
+        if not hasattr(self.actor, "_lock"):
+            self.actor._lock = asyncio.Lock(loop=loop)
+
+        while True:
+            destination = self.locations[0]
+            self.travel(finder, destination)
+            self.locations.rotate(-1)
+
+    def travel(self, finder, destination=None):
+        here = self.actor.get_state(Spot)
+        location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
+        route = finder.route(location, destination, maxlen=20)
+        for hop in route:
+            spot = hop.get_state(Spot)
+            self.actor.set_state(spot)
+            self.log.info("{0.actor.name.firstname} {0.actor.name.surname} goes {1} to {2.label}".format(
+                self, Compass.legend(spot.value - here.value), hop
+            ))
+            here = spot
 
 rf = carmen.logic.associations()
 
@@ -131,17 +154,11 @@ businesses = [
 print(*rf.ensemble(), sep="\n")
 
 logging.basicConfig(level=logging.INFO)
+loop = asyncio.SelectorEventLoop()
+asyncio.set_event_loop(None)
 
 for business in businesses:
-    destination = business.locations[0]
-    here = business.actor.get_state(Spot)
-    location = next(i for i in rf.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
-    route = rf.route(location, destination, maxlen=20)
-    for hop in route:
-        spot = hop.get_state(Spot)
-        business.actor.set_state(spot)
-        logging.info("{0.actor.name.firstname} {0.actor.name.surname} goes {1} to {2.label}".format(
-            business, Compass.legend(spot.value - here.value), hop
-        ))
-        here = spot
+    business(rf, loop)
 
+loop.run_forever()
+loop.close()
