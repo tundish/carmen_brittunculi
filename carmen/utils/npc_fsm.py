@@ -86,7 +86,8 @@ class Business:
 
         while True:
             destination = self.locations[0]
-            self.travel(finder, destination)
+            for spot in self.travel(finder, destination):
+                self.actor.set_state(spot)
             self.locations.rotate(-1)
 
     def travel(self, finder, destination=None):
@@ -95,7 +96,7 @@ class Business:
         route = finder.route(location, destination, maxlen=20)
         for hop in route:
             spot = hop.get_state(Spot)
-            self.actor.set_state(spot)
+            yield spot
             self.log.info("{0.actor.name.firstname} {0.actor.name.surname} goes {1} to {2.label}".format(
                 self, Compass.legend(spot.value - here.value), hop
             ))
