@@ -61,17 +61,18 @@ class Material(Enum):
     potato = 1060
     silver = 10490
 
-Commodity = namedtuple("Commodity", ["label", "description", "volume", "material"])
+Commodity = namedtuple("Commodity", ["label", "description", "material"])
 SilverCoin = namedtuple("SilverCoin", Commodity._fields)
+Stone = namedtuple("Stone", Commodity._fields)
 
 class NPC(Stateful, Persona): pass
 
 class Inventory(Stateful, DataObject):
 
-    def __init__(self, capacity, mobility=1, **kwargs):
-        self.capacity = capacity
+    def __init__(self, capacity, mobility=1, contents: Counter=None, **kwargs):
+        self.capacity = getattr(capacity, "value", capacity)
         self.mobility = mobility
-        self.contents = Counter()
+        self.contents = contents or Counter()
         super().__init__(**kwargs)
 
 class Business:
@@ -89,8 +90,18 @@ class Business:
             # Fill inventory from source
             here = self.actor.get_state(Spot)
             location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
-            carts = [i for i in self.resources(finder, [location]) if i.mobility]
+            resources = self.resources(finder, [location])
+            sources = [i for i in resources if not i.mobility]
+            carts = [i for i in resources if i.mobility]
 
+            for src, commodity, quantity, dstn in self.transfer(sources, carts):
+                src.contents[commodity] -= quantity
+                dstn.contents[commodity] += quantity
+                self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
+                    dstn, commodity.material.value * quantity, commodity
+                ))
+
+            # Travel to destination
             destination = self.locations[0]
             for entity, vector, hop in self.transport(finder, destination):
                 entity.set_state(hop.get_state(Spot))
@@ -103,6 +114,17 @@ class Business:
                 ))
 
             # Unload inventory to sink
+            resources = self.resources(finder, [destination])
+            warehouses = [i for i in resources if not i.mobility]
+            carts = [i for i in resources if i.mobility]
+
+            for src, commodity, quantity, dstn in self.transfer(carts, warehouses):
+                src.contents[commodity] -= quantity
+                dstn.contents[commodity] += quantity
+                self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
+                    dstn, commodity.material.value * quantity, commodity
+                ))
+
 
             self.locations.rotate(-1)
 
@@ -115,6 +137,19 @@ class Business:
             if isinstance(i, tuple(types))
             and i.get_state(Spot) == locn.get_state(Spot)
         ]
+
+    @staticmethod
+    def transfer(sources, destinations):
+        for dstn in destinations:
+            space = dstn.capacity - sum(dstn.contents.values())
+            for src in sources:
+                while space > 0:
+                    for material, quantity in src.contents.items():
+                        load = min(space, quantity)
+                        yield src, material, load, dstn
+                        space -= load
+                    else:
+                        break
 
     def transport(self, finder, destination=None):
         here = self.actor.get_state(Spot)
@@ -148,7 +183,14 @@ rf.register(
 
 rf.register(
     None,
-    Inventory(label="Stone", mobility=0, capacity=Volume.infinity).set_state(
+    Inventory(
+        label="Stone",
+        mobility=0,
+        capacity=Volume.infinity,
+        contents=Counter({
+            Stone("Limestone", "Freshly quarried limestone", Material.limestone): Volume.infinity.value
+        })
+    ).set_state(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
     ),
 )
@@ -185,6 +227,10 @@ loop = asyncio.SelectorEventLoop()
 asyncio.set_event_loop(None)
 
 for business in businesses:
+    #print(list(business.transfer(
+    #    rf.search(label="Stone"),
+    #    rf.search(label="Cart")
+    #)))
     loop.create_task(business(rf, loop))
 
 loop.run_forever()
