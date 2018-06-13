@@ -86,20 +86,32 @@ class Business:
 
         while True:
             destination = self.locations[0]
-            for spot in self.travel(finder, destination):
-                self.actor.set_state(spot)
+            # Fill inventory from source
+
+            for entity, vector, hop in self.transport(finder, destination):
+                entity.set_state(hop.get_state(Spot))
+                self.log.info("{0} goes {1} to {2.label}".format(
+                    "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                    if entity is self.actor
+                    else entity.label,
+                    Compass.legend(vector),
+                    hop
+                ))
+
+            # Unload inventory to sink
+
             self.locations.rotate(-1)
 
-    def travel(self, finder, destination=None):
+    def transport(self, finder, destination=None):
         here = self.actor.get_state(Spot)
         location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
+        entities = [i for i in finder.search(label="Cart") if i.get_state(Spot) == here]
         route = finder.route(location, destination, maxlen=20)
         for hop in route:
             spot = hop.get_state(Spot)
-            yield spot
-            self.log.info("{0.actor.name.firstname} {0.actor.name.surname} goes {1} to {2.label}".format(
-                self, Compass.legend(spot.value - here.value), hop
-            ))
+            vector = spot.value - here.value
+            yield self.actor, vector, hop
+            yield from ((i, vector, hop) for i in entities)
             here = spot
 
 rf = carmen.logic.associations()
