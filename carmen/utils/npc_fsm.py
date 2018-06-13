@@ -39,6 +39,7 @@ from carmen.types import Via
 class Volume(Enum):
 
     infinity = float("inf")
+    plenty = sys.maxsize
     load = 2
     heap = 1
     cubic_metre = 1
@@ -112,6 +113,7 @@ class Business:
                     Compass.legend(vector),
                     hop
                 ))
+                await asyncio.sleep(1, loop=loop)
 
             # Unload inventory to sink
             resources = self.resources(finder, [destination])
@@ -188,7 +190,7 @@ rf.register(
         mobility=0,
         capacity=Volume.infinity,
         contents=Counter({
-            Stone("Limestone", "Freshly quarried limestone", Material.limestone): Volume.infinity.value
+            Stone("Limestone", "Freshly quarried limestone", Material.limestone): Volume.plenty.value
         })
     ).set_state(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
@@ -227,10 +229,6 @@ loop = asyncio.SelectorEventLoop()
 asyncio.set_event_loop(None)
 
 for business in businesses:
-    #print(list(business.transfer(
-    #    rf.search(label="Stone"),
-    #    rf.search(label="Cart")
-    #)))
     loop.create_task(business(rf, loop))
 
 loop.run_forever()
