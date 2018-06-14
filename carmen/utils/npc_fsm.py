@@ -63,9 +63,16 @@ class Material(Enum):
     silver = 10490
 
 Commodity = namedtuple("Commodity", ["label", "description", "material"])
+
 Potato = namedtuple("Potato", Commodity._fields)
 SilverCoin = namedtuple("SilverCoin", Commodity._fields)
 Stone = namedtuple("Stone", Commodity._fields)
+
+Drama = namedtuple("Drama", ["objects", "locations", "memory"])
+Buying = namedtuple("Buying", Drama._fields)
+Selling = namedtuple("Selling", Drama._fields)
+Collecting = namedtuple("Collecting", Drama._fields)
+Delivering = namedtuple("Delivering", Drama._fields)
 
 class NPC(Stateful, Persona): pass
 
@@ -79,9 +86,10 @@ class Inventory(Stateful, DataObject):
 
 class Business:
 
-    def __init__(self, actor, locations=None):
+    def __init__(self, actor, locations=None, operations=None):
         self.actor = actor
         self.locations = locations or []
+        self.operations = operations or []
         self.log = logging.getLogger("business")
 
     async def __call__(self, finder, loop=None):
@@ -89,6 +97,18 @@ class Business:
             self.actor._lock = asyncio.Lock(loop=loop)
 
         while True:
+            # Travel to location
+            destination = self.locations[0]
+            for entity, vector, hop in self.transport(finder, destination):
+                entity.set_state(hop.get_state(Spot))
+                self.log.info("{0} goes {1} to {2.label}".format(
+                    "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                    if entity is self.actor
+                    else entity.label,
+                    Compass.legend(vector),
+                    hop
+                ))
+
             # Fill inventory from source
             here = self.actor.get_state(Spot)
             location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
@@ -96,7 +116,7 @@ class Business:
             sources = [i for i in resources if not i.mobility]
             carts = [i for i in resources if i.mobility]
 
-            for src, commodity, quantity, dstn in self.transfer(sources, carts):
+            for src, commodity, quantity, dstn in self.transfer(sources, carts, self.operations[0].objects):
                 src.contents[commodity] -= quantity
                 dstn.contents[commodity] += quantity
                 self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
@@ -121,7 +141,7 @@ class Business:
             warehouses = [i for i in resources if not i.mobility]
             carts = [i for i in resources if i.mobility]
 
-            for src, commodity, quantity, dstn in self.transfer(carts, warehouses):
+            for src, commodity, quantity, dstn in self.transfer(carts, warehouses, self.operations[0].objects):
                 src.contents[commodity] -= quantity
                 dstn.contents[commodity] += quantity
                 self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
@@ -130,6 +150,7 @@ class Business:
 
 
             self.locations.rotate(-1)
+            self.operations.rotate(-1)
 
     def resources(self, finder, locations, types=[Inventory]):
         claims = set(self.locations).intersection(set(locations))
@@ -142,7 +163,7 @@ class Business:
         ]
 
     @staticmethod
-    def transfer(sources, destinations):
+    def transfer(sources, destinations, materials):
         for dstn in destinations:
             space = dstn.capacity - sum(dstn.contents.values())
             for src in sources:
@@ -226,6 +247,10 @@ businesses = [
         locations=deque([
             next(iter(rf.search(label="Quarry"))),
             next(iter(rf.search(label="Marsh")))
+        ]),
+        operations=deque([
+            Delivering((Stone,), rf.search(label="Marsh"), deque([])),
+            Delivering((Potato,), rf.search(label="Common house"), deque([])),
         ])
     )
 ]
