@@ -24,6 +24,7 @@ from enum import Enum
 import itertools
 import logging
 import operator
+import random
 import sys
 
 import carmen.logic
@@ -104,25 +105,32 @@ class Business:
         while True:
 
             if isinstance(op, Delivering):
-                for step in self.deliver(finder, op):
-                    self.log.info(step)
-                    await asyncio.sleep(1, loop=loop)
+                actions = self.deliver(finder, op)
+
+            for act in actions:
+                if isinstance(act, Move):
+                    act.entity.set_state(act.hop.get_state(Spot))
+                    self.log.info("{0} goes {1} to {2.label}".format(
+                        "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                        if act.entity is self.actor
+                        else act.entity.label,
+                        Compass.legend(act.vector),
+                        act.hop
+                    ))
+                elif isinstance(act, Transfer):
+                    act.source.contents[act.commodity] -= act.quantity
+                    act.destination.contents[act.commodity] += act.quantity
+                    self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
+                        act.destination, act.commodity.material.value * act.quantity, act.commodity
+                    ))
+                await asyncio.sleep(1, loop=loop)
 
         self.operations.rotate(-1)
 
     def deliver(self, finder, op):
         # Travel to location
         destination = self.locations[0]
-        for move in self.transport(finder, destination):
-            move.entity.set_state(move.hop.get_state(Spot))
-            self.log.info("{0} goes {1} to {2.label}".format(
-                "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                if move.entity is self.actor
-                else move.entity.label,
-                Compass.legend(move.vector),
-                move.hop
-            ))
-            yield move
+        yield from self.transport(finder, destination)
 
         # Fill inventory from source
         here = self.actor.get_state(Spot)
@@ -131,40 +139,18 @@ class Business:
         sources = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
 
-        for load in self.transfer(sources, carts, self.operations[0].objects):
-            load.source.contents[load.commodity] -= load.quantity
-            load.destination.contents[load.commodity] += load.quantity
-            self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                load.destination, load.commodity.material.value * load.quantity, load.commodity
-            ))
-            yield load
+        yield from self.transfer(sources, carts, self.operations[0].objects)
 
         # Travel to destination
-        destination = self.locations[0]
-        for entity, vector, hop in self.transport(finder, destination):
-            entity.set_state(hop.get_state(Spot))
-            self.log.info("{0} goes {1} to {2.label}".format(
-                "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                if entity is self.actor
-                else entity.label,
-                Compass.legend(vector),
-                hop
-            ))
-            yield entity, vector, hop
+        destination = next(iter((op.locations)))
+        yield from self.transport(finder, destination)
 
         # Unload inventory to sink
         resources = self.resources(finder, [destination])
         warehouses = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
 
-        for src, commodity, quantity, dstn in self.transfer(carts, warehouses, self.operations[0].objects):
-            src.contents[commodity] -= quantity
-            dstn.contents[commodity] += quantity
-            self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                dstn, commodity.material.value * quantity, commodity
-            ))
-            yield src, commodity, quantity, dstn
-
+        yield from self.transfer(carts, warehouses, self.operations[0].objects)
 
     def resources(self, finder, locations, types=[Inventory]):
         claims = set(self.locations).intersection(set(locations))
