@@ -92,17 +92,18 @@ class Business:
 
     def __init__(self, actor, locations=None, operations=None):
         self.actor = actor
-        self.locations = locations or []
-        self.operations = operations or []
+        self.locations = deque(locations or [])
+        self.operations = deque(operations or [])
         self.log = logging.getLogger("business")
 
     async def __call__(self, finder, loop=None):
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
 
-        op = self.operations[0]
 
         while True:
+
+            op = self.operations[0]
 
             if isinstance(op, Delivering):
                 actions = self.deliver(finder, op)
@@ -125,24 +126,24 @@ class Business:
                     ))
                 await asyncio.sleep(1, loop=loop)
 
-        self.operations.rotate(-1)
+            self.operations.rotate(-1)
 
     def deliver(self, finder, op):
-        # Travel to location
-        destination = self.locations[0]
-        yield from self.transport(finder, destination)
+        # Travel to nearest business location
+        here = self.actor.get_state(Spot)
+        options = {abs(i.get_state(Spot).value - here.value): i for i in self.locations}
+        location = options[min(options)]
+        yield from self.transport(finder, location)
 
         # Fill inventory from source
-        here = self.actor.get_state(Spot)
-        location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
         resources = self.resources(finder, [location])
         sources = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
 
-        yield from self.transfer(sources, carts, self.operations[0].objects)
+        yield from self.transfer(sources, carts, op.objects)
 
         # Travel to destination
-        destination = next(iter((op.locations)))
+        destination = next(iter(op.locations))
         yield from self.transport(finder, destination)
 
         # Unload inventory to sink
@@ -150,13 +151,12 @@ class Business:
         warehouses = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
 
-        yield from self.transfer(carts, warehouses, self.operations[0].objects)
+        yield from self.transfer(carts, warehouses, op.objects)
 
     def resources(self, finder, locations, types=[Inventory]):
-        claims = set(self.locations).intersection(set(locations))
         return [
             i
-            for locn in claims
+            for locn in locations
             for i in finder.ensemble()
             if isinstance(i, tuple(types))
             and i.get_state(Spot) == locn.get_state(Spot)
@@ -237,6 +237,20 @@ rf.register(
         })
     ).set_state(
         next(iter(rf.search(label="Marsh"))).get_state(Spot)
+    ),
+)
+
+rf.register(
+    None,
+    Inventory(
+        label="Cauldron",
+        mobility=0,
+        capacity=Volume.infinity,
+        contents=Counter({
+            Potato("Potato", "Potatoes from market", Material.potato): Volume.sack.value
+        })
+    ).set_state(
+        next(iter(rf.search(label="Common house"))).get_state(Spot)
     ),
 )
 
