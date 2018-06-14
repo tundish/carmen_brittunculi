@@ -74,6 +74,9 @@ Selling = namedtuple("Selling", Drama._fields)
 Collecting = namedtuple("Collecting", Drama._fields)
 Delivering = namedtuple("Delivering", Drama._fields)
 
+Move = namedtuple("Move", ["entity", "vector", "hop"])
+Transfer = namedtuple("Transfer", ["source", "commodity", "quantity", "destination"])
+
 class NPC(Stateful, Persona): pass
 
 class Inventory(Stateful, DataObject):
@@ -96,61 +99,72 @@ class Business:
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
 
+        op = self.operations[0]
+
         while True:
-            # Travel to location
-            destination = self.locations[0]
-            for entity, vector, hop in self.transport(finder, destination):
-                entity.set_state(hop.get_state(Spot))
-                self.log.info("{0} goes {1} to {2.label}".format(
-                    "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                    if entity is self.actor
-                    else entity.label,
-                    Compass.legend(vector),
-                    hop
-                ))
 
-            # Fill inventory from source
-            here = self.actor.get_state(Spot)
-            location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
-            resources = self.resources(finder, [location])
-            sources = [i for i in resources if not i.mobility]
-            carts = [i for i in resources if i.mobility]
+            if isinstance(op, Delivering):
+                for step in self.deliver(finder, op):
+                    self.log.info(step)
+                    await asyncio.sleep(1, loop=loop)
 
-            for src, commodity, quantity, dstn in self.transfer(sources, carts, self.operations[0].objects):
-                src.contents[commodity] -= quantity
-                dstn.contents[commodity] += quantity
-                self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                    dstn, commodity.material.value * quantity, commodity
-                ))
+        self.operations.rotate(-1)
 
-            # Travel to destination
-            destination = self.locations[0]
-            for entity, vector, hop in self.transport(finder, destination):
-                entity.set_state(hop.get_state(Spot))
-                self.log.info("{0} goes {1} to {2.label}".format(
-                    "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                    if entity is self.actor
-                    else entity.label,
-                    Compass.legend(vector),
-                    hop
-                ))
-                await asyncio.sleep(1, loop=loop)
+    def deliver(self, finder, op):
+        # Travel to location
+        destination = self.locations[0]
+        for entity, vector, hop in self.transport(finder, destination):
+            entity.set_state(hop.get_state(Spot))
+            self.log.info("{0} goes {1} to {2.label}".format(
+                "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                if entity is self.actor
+                else entity.label,
+                Compass.legend(vector),
+                hop
+            ))
+            yield entity, vector, hop
 
-            # Unload inventory to sink
-            resources = self.resources(finder, [destination])
-            warehouses = [i for i in resources if not i.mobility]
-            carts = [i for i in resources if i.mobility]
+        # Fill inventory from source
+        here = self.actor.get_state(Spot)
+        location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
+        resources = self.resources(finder, [location])
+        sources = [i for i in resources if not i.mobility]
+        carts = [i for i in resources if i.mobility]
 
-            for src, commodity, quantity, dstn in self.transfer(carts, warehouses, self.operations[0].objects):
-                src.contents[commodity] -= quantity
-                dstn.contents[commodity] += quantity
-                self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                    dstn, commodity.material.value * quantity, commodity
-                ))
+        for src, commodity, quantity, dstn in self.transfer(sources, carts, self.operations[0].objects):
+            src.contents[commodity] -= quantity
+            dstn.contents[commodity] += quantity
+            self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
+                dstn, commodity.material.value * quantity, commodity
+            ))
+            yield src, commodity, quantity, dstn
 
+        # Travel to destination
+        destination = self.locations[0]
+        for entity, vector, hop in self.transport(finder, destination):
+            entity.set_state(hop.get_state(Spot))
+            self.log.info("{0} goes {1} to {2.label}".format(
+                "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                if entity is self.actor
+                else entity.label,
+                Compass.legend(vector),
+                hop
+            ))
+            yield entity, vector, hop
 
-            self.locations.rotate(-1)
-            self.operations.rotate(-1)
+        # Unload inventory to sink
+        resources = self.resources(finder, [destination])
+        warehouses = [i for i in resources if not i.mobility]
+        carts = [i for i in resources if i.mobility]
+
+        for src, commodity, quantity, dstn in self.transfer(carts, warehouses, self.operations[0].objects):
+            src.contents[commodity] -= quantity
+            dstn.contents[commodity] += quantity
+            self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
+                dstn, commodity.material.value * quantity, commodity
+            ))
+            yield src, commodity, quantity, dstn
+
 
     def resources(self, finder, locations, types=[Inventory]):
         claims = set(self.locations).intersection(set(locations))
@@ -170,7 +184,7 @@ class Business:
                 while space > 0:
                     for material, quantity in src.contents.items():
                         load = min(space, quantity)
-                        yield src, material, load, dstn
+                        yield Transfer(src, material, load, dstn)
                         space -= load
                     else:
                         break
@@ -183,8 +197,8 @@ class Business:
         for hop in route:
             spot = hop.get_state(Spot)
             vector = spot.value - here.value
-            yield self.actor, vector, hop
-            yield from ((i, vector, hop) for i in entities)
+            yield Move(self.actor, vector, hop)
+            yield from (Move(i, vector, hop) for i in entities)
             here = spot
 
 rf = carmen.logic.associations()
