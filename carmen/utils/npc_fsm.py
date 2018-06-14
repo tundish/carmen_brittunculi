@@ -113,16 +113,16 @@ class Business:
     def deliver(self, finder, op):
         # Travel to location
         destination = self.locations[0]
-        for entity, vector, hop in self.transport(finder, destination):
-            entity.set_state(hop.get_state(Spot))
+        for move in self.transport(finder, destination):
+            move.entity.set_state(move.hop.get_state(Spot))
             self.log.info("{0} goes {1} to {2.label}".format(
                 "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                if entity is self.actor
-                else entity.label,
-                Compass.legend(vector),
-                hop
+                if move.entity is self.actor
+                else move.entity.label,
+                Compass.legend(move.vector),
+                move.hop
             ))
-            yield entity, vector, hop
+            yield move
 
         # Fill inventory from source
         here = self.actor.get_state(Spot)
@@ -131,13 +131,13 @@ class Business:
         sources = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
 
-        for src, commodity, quantity, dstn in self.transfer(sources, carts, self.operations[0].objects):
-            src.contents[commodity] -= quantity
-            dstn.contents[commodity] += quantity
+        for load in self.transfer(sources, carts, self.operations[0].objects):
+            load.source.contents[load.commodity] -= load.quantity
+            load.destination.contents[load.commodity] += load.quantity
             self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                dstn, commodity.material.value * quantity, commodity
+                load.destination, load.commodity.material.value * load.quantity, load.commodity
             ))
-            yield src, commodity, quantity, dstn
+            yield load
 
         # Travel to destination
         destination = self.locations[0]
