@@ -186,13 +186,15 @@ class Business:
         ]
 
     @staticmethod
-    def transfer(sources, destinations, materials):
+    def transfer(sources, destinations, materials=[object]):
         for dstn in destinations:
             space = dstn.capacity - sum(dstn.contents.values())
             for src in sources:
                 while space > 0:
                     cargo = src.contents.copy()
                     for material, quantity in cargo.items():
+                        if not isinstance(material, materials):
+                            continue
                         load = min(space, quantity)
                         yield Transfer(src, material, load, dstn)
                         space -= load
