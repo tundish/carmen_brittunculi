@@ -65,6 +65,10 @@ class Material(Enum):
 
 Commodity = namedtuple("Commodity", ["label", "description", "material"])
 
+Cabbage = namedtuple("Cabbage", Commodity._fields)
+Lentils = namedtuple("Lentils", Commodity._fields)
+Parsnip = namedtuple("Parsnip", Commodity._fields)
+Peas = namedtuple("Peas", Commodity._fields)
 Potato = namedtuple("Potato", Commodity._fields)
 SilverCoin = namedtuple("SilverCoin", Commodity._fields)
 Stone = namedtuple("Stone", Commodity._fields)
@@ -124,7 +128,7 @@ class Business:
                     self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
                         act.destination, act.commodity.material.value * act.quantity, act.commodity
                     ))
-                await asyncio.sleep(1, loop=loop)
+                await asyncio.sleep(0.1, loop=loop)
 
             self.operations.rotate(-1)
 
@@ -178,41 +182,60 @@ class Business:
     def transport(self, finder, destination=None):
         here = self.actor.get_state(Spot)
         location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
-        entities = [i for i in finder.search(label="Cart") if i.get_state(Spot) == here]
+        containers = [i for i in self.resources(finder, [location]) if i.mobility]
         route = finder.route(location, destination, maxlen=20)
         for hop in route:
             spot = hop.get_state(Spot)
             vector = spot.value - here.value
             yield Move(self.actor, vector, hop)
-            yield from (Move(i, vector, hop) for i in entities)
+            yield from (Move(i, vector, hop) for i in containers)
             here = spot
 
 rf = carmen.logic.associations()
 
 rf.register(
-    Travel.intention,
+    None,
     NPC(name="Civis Anatol Ant Bospor").set_state(
         next(iter(rf.search(label="Common house"))).get_state(Spot)
     ),
-    next(iter(rf.search(label="Marsh")))
 )
 
 rf.register(
-    Travel.refusal,
+    None,
     NPC(name="Maer Catrine Cadi Ingenbrettar").set_state(
         next(iter(rf.search(label="Common house"))).get_state(Spot)
     ),
-    next(iter(rf.search(label="Quarry")))
+)
+
+rf.register(
+    None,
+    NPC(name="Workforce").set_state(
+        next(iter(rf.search(label="South pit"))).get_state(Spot)
+    ),
 )
 
 rf.register(
     None,
     Inventory(
-        label="Stone",
+        label="Seam",
         mobility=0,
         capacity=Volume.infinity,
         contents=Counter({
-            Stone("Limestone", "Freshly quarried limestone", Material.limestone): Volume.plenty.value
+            Stone("Limestone", "A rich deposit of limestone", Material.limestone): Volume.plenty.value
+        })
+    ).set_state(
+        next(iter(rf.search(label="South pit"))).get_state(Spot)
+    ),
+)
+
+rf.register(
+    None,
+    Inventory(
+        label="Stone pile",
+        mobility=0,
+        capacity=Volume.plenty,
+        contents=Counter({
+            Stone("Limestone", "Freshly quarried limestone", Material.limestone): 8 * Volume.load.value
         })
     ).set_state(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
@@ -225,6 +248,15 @@ rf.register(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
     ),
 )
+
+for i in range(8):
+    rf.register(
+        None,
+        Inventory(label="Hod", capacity=Volume.slab).set_state(
+            next(iter(rf.search(label="South pit"))).get_state(Spot)
+        ),
+    )
+
 
 rf.register(
     None,
@@ -256,6 +288,15 @@ rf.register(
 
 # Businesses claim actors and lock them while they are in use
 businesses = [
+    Business(
+        next(iter(rf.search(_name="Workforce"))),
+        locations=deque([
+            next(iter(rf.search(label="South pit"))),
+        ]),
+        operations=deque([
+            Delivering((Stone,), rf.search(label="Quarry"), deque([])),
+        ])
+    ),
     Business(
         next(iter(rf.search(_name="Civis Anatol Ant Bospor"))),
         locations=deque([
