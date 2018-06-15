@@ -80,3 +80,13 @@ class Routefinder(Associations):
             return rv
         else:
             return None
+
+    def gather(self, locations, types=[object], **kwargs):
+        return [
+            i
+            for locn in locations
+            for i in self.search(**kwargs)
+            if isinstance(i, tuple(types))
+            and i.get_state(Spot) == locn.get_state(Spot)
+        ]
+

@@ -101,10 +101,18 @@ class Business:
         self.operations = deque(operations or [])
         self.log = logging.getLogger("business")
 
-    async def __call__(self, finder, loop=None):
+    def claim_resources(self, finder):
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
 
+        for i in finder.gather(self.locations, types=[Inventory]):
+            i._business = self
+            yield i
+
+    async def __call__(self, finder, loop=None):
+
+        for i in self.claim_resources(finder):
+            self.log.info("{0} claimed by {1._name}".format(i, self.actor))
 
         while True:
 
@@ -141,7 +149,7 @@ class Business:
         yield from self.transport(finder, location)
 
         # Fill inventory from source
-        resources = self.resources(finder, [location])
+        resources = finder.gather([location], types=[Inventory], _business=self)
         sources = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
 
@@ -152,17 +160,17 @@ class Business:
         yield from self.transport(finder, destination)
 
         # Unload inventory to sink
-        resources = self.resources(finder, [destination])
+        resources = finder.gather([destination], types=[Inventory])
         warehouses = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
 
         yield from self.transfer(carts, warehouses, op.objects)
 
-    def resources(self, finder, locations, types=[Inventory]):
+    def resources(self, finder, locations, types=[Inventory], **kwargs):
         return [
             i
             for locn in locations
-            for i in finder.ensemble()
+            for i in finder.search(**kwargs)
             if isinstance(i, tuple(types))
             and i.get_state(Spot) == locn.get_state(Spot)
         ]
@@ -173,7 +181,8 @@ class Business:
             space = dstn.capacity - sum(dstn.contents.values())
             for src in sources:
                 while space > 0:
-                    for material, quantity in src.contents.items():
+                    cargo = src.contents.copy()
+                    for material, quantity in cargo.items():
                         load = min(space, quantity)
                         yield Transfer(src, material, load, dstn)
                         space -= load
@@ -183,7 +192,8 @@ class Business:
     def transport(self, finder, destination=None):
         here = self.actor.get_state(Spot)
         location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
-        containers = [i for i in self.resources(finder, [location]) if i.mobility]
+        #containers = [i for i in self.resources(finder, [location]) if i.mobility]
+        containers = finder.gather([location], mobility=1, _business=self)
         route = finder.route(location, destination, maxlen=20)
         for hop in route:
             spot = hop.get_state(Spot)

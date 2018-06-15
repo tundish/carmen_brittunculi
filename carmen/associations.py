@@ -48,8 +48,7 @@ class Associations:
         """
         return set(
             i for i in self.lookup.keys()
-            for k, v in kwargs.items()
-            if getattr(i, k, None) == v
+            if all(getattr(i, k, None) == v for k, v in kwargs.items())
         )
 
     def match(self, obj, forward=[], reverse=[], predicate=lambda x: True):
