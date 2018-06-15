@@ -116,28 +116,33 @@ class Business:
 
         while True:
 
-            op = self.operations[0]
+            try:
+                await self.actor._lock.acquire()
 
-            if isinstance(op, Delivering):
-                actions = self.deliver(finder, op)
+                op = self.operations[0]
 
-            for act in actions:
-                if isinstance(act, Move):
-                    act.entity.set_state(act.hop.get_state(Spot))
-                    self.log.info("{0} goes {1} to {2.label}".format(
-                        "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                        if act.entity is self.actor
-                        else act.entity.label,
-                        Compass.legend(act.vector),
-                        act.hop
-                    ))
-                elif isinstance(act, Transfer):
-                    act.source.contents[act.commodity] -= act.quantity
-                    act.destination.contents[act.commodity] += act.quantity
-                    self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                        act.destination, act.commodity.material.value * act.quantity, act.commodity
-                    ))
-                await asyncio.sleep(0.1, loop=loop)
+                if isinstance(op, Delivering):
+                    actions = self.deliver(finder, op)
+
+                for act in actions:
+                    if isinstance(act, Move):
+                        act.entity.set_state(act.hop.get_state(Spot))
+                        self.log.info("{0} goes {1} to {2.label}".format(
+                            "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                            if act.entity is self.actor
+                            else act.entity.label,
+                            Compass.legend(act.vector),
+                            act.hop
+                        ))
+                    elif isinstance(act, Transfer):
+                        act.source.contents[act.commodity] -= act.quantity
+                        act.destination.contents[act.commodity] += act.quantity
+                        self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
+                            act.destination, act.commodity.material.value * act.quantity, act.commodity
+                        ))
+                    await asyncio.sleep(0.1, loop=loop)
+            finally:
+                self.actor._lock.release()
 
             self.operations.rotate(-1)
 
@@ -305,6 +310,18 @@ rf.register(
     ),
 )
 
+rf.register(
+    None,
+    Inventory(
+        label="Dunny",
+        mobility=0,
+        capacity=Volume.infinity,
+        contents=Counter({})
+    ).set_state(
+        next(iter(rf.search(label="Rookery"))).get_state(Spot)
+    ),
+)
+
 # Businesses claim actors and lock them while they are in use
 businesses = [
     Business(
@@ -314,6 +331,14 @@ businesses = [
         ]),
         operations=deque([
             Delivering((Stone,), rf.search(label="Quarry"), deque([])),
+        ])
+    ),
+    Business(
+        next(iter(rf.search(_name="Workforce"))),
+        locations=deque([
+            next(iter(rf.search(label="Common house"))),
+        ]),
+        operations=deque([
             Delivering((Potato,), rf.search(label="Rookery"), deque([])),
         ])
     ),
@@ -329,8 +354,6 @@ businesses = [
         ])
     )
 ]
-
-print(*rf.ensemble(), sep="\n")
 
 logging.basicConfig(level=logging.INFO)
 loop = asyncio.SelectorEventLoop()
