@@ -21,6 +21,7 @@ from collections import Counter
 from collections import deque
 from collections import namedtuple
 from enum import Enum
+import functools
 import itertools
 import logging
 import operator
@@ -170,6 +171,9 @@ class Business:
         carts = [i for i in resources if i.mobility]
 
         yield from self.transfer(carts, warehouses, op.objects)
+        self.operations[0].memory.append(
+            functools.reduce(lambda x, y: x+y, (i.contents for i in warehouses))
+        )
 
     def resources(self, finder, locations, types=[Inventory], **kwargs):
         return [
@@ -362,5 +366,14 @@ asyncio.set_event_loop(None)
 for business in businesses:
     loop.create_task(business(rf, loop))
 
-loop.run_forever()
+try:
+    loop.run_forever()
+except KeyboardInterrupt:
+    mem = businesses[2].operations[1].memory
+    print(
+        *["{0}\t{1}".format(
+            n, i[Potato("Potato", "Potatoes from market", Material.potato)]
+        ) for n, i in enumerate(mem)],
+        sep="\n"
+    )
 loop.close()

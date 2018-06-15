@@ -55,6 +55,7 @@ setup(
     extras_require={
         "dev": [
             "flake8>=3.5.0",
+            "pygal>=2.4.0",
             "wheel>=0.30.0",
         ],
     },
