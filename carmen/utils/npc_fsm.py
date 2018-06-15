@@ -136,11 +136,12 @@ class Business:
                             act.hop
                         ))
                     elif isinstance(act, Transfer):
-                        act.source.contents[act.commodity] -= act.quantity
-                        act.destination.contents[act.commodity] += act.quantity
-                        self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                            act.destination, act.commodity.material.value * act.quantity, act.commodity
-                        ))
+                        if act.quantity:
+                            act.source.contents[act.commodity] -= act.quantity
+                            act.destination.contents[act.commodity] += act.quantity
+                            self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
+                                act.destination, act.commodity.material.value * act.quantity, act.commodity
+                            ))
                     await asyncio.sleep(0.1, loop=loop)
             finally:
                 self.actor._lock.release()
@@ -201,7 +202,6 @@ class Business:
     def transport(self, finder, destination=None):
         here = self.actor.get_state(Spot)
         location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
-        #containers = [i for i in self.resources(finder, [location]) if i.mobility]
         containers = finder.gather([location], mobility=1, _business=self)
         route = finder.route(location, destination, maxlen=20)
         for hop in route:
