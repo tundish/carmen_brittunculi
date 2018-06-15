@@ -55,6 +55,7 @@ class Volume(Enum):
     bottle = 1e-3
     litre = 1e-3
     pack = 5e-4
+    bowl = 5e-4
     zero = 0
 
 class Material(Enum):
@@ -252,6 +253,14 @@ rf.register(
 for i in range(8):
     rf.register(
         None,
+        Inventory(label="Bowl", capacity=Volume.bowl).set_state(
+            next(iter(rf.search(label="Common house"))).get_state(Spot)
+        ),
+    )
+
+for i in range(8):
+    rf.register(
+        None,
         Inventory(label="Hod", capacity=Volume.slab).set_state(
             next(iter(rf.search(label="South pit"))).get_state(Spot)
         ),
@@ -295,6 +304,7 @@ businesses = [
         ]),
         operations=deque([
             Delivering((Stone,), rf.search(label="Quarry"), deque([])),
+            Delivering((Potato,), rf.search(label="Rookery"), deque([])),
         ])
     ),
     Business(
