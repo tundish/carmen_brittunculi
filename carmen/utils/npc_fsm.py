@@ -176,6 +176,12 @@ class Business:
             functools.reduce(lambda x, y: x+y, (i.contents for i in warehouses))
         )
 
+        # Travel back to nearest business location
+        here = self.actor.get_state(Spot)
+        options = {abs(i.get_state(Spot).value - here.value): i for i in self.locations}
+        location = options[min(options)]
+        yield from self.transport(finder, location)
+
     def resources(self, finder, locations, types=[Inventory], **kwargs):
         return [
             i
