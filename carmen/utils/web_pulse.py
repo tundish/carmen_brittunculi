@@ -18,6 +18,14 @@
 
 import aiohttp.web
 
+# Text reveal with CSS3:
+# https://www.youtube.com/watch?v=3YKpKpC1O5s
+
+# Animations
+# https://www.creativebloq.com/inspiration/css-animation-examples
+
+BPM = 90
+
 async def handle(request):
     name = request.match_info.get('name', "Anonymous")
     text = "Hello, " + name
@@ -31,5 +39,10 @@ def configure_app():
     ])
     return app
 
+print("Beats per minute: {0}".format(BPM))
+print("Rate: {0} crotchets per sec".format(BPM / 60))
+print("Seconds per measure: {0:0.3}".format(4 / BPM * 60))
+print("Seconds per frame: {0:0.3}".format(8 * 4 / BPM * 60))
+print("Frames per game: {0:0.2f}".format(4 * 60 * 60 / 8 / 4 * BPM / 60))
 app = configure_app()
-aiohttp.web.run_app(app)
+#aiohttp.web.run_app(app)
