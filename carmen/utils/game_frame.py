@@ -19,10 +19,35 @@
 import textwrap
 import unittest
 
+from turberfield.dialogue.model import Model
 from turberfield.dialogue.model import SceneScript
 from turberfield.dialogue.types import Player
 
+class Frame:
+
+    @staticmethod
+    def items(seq):
+        """
+        A new Frame on each Shot, and every FX item.
+
+        """
+        frame = []
+        for item in seq:
+            if frame and isinstance(item, (Model.Shot, Model.Audio)):
+                yield frame
+                frame = []
+            frame.append(item)
+        else:
+            yield frame
+
 class FrameTests(unittest.TestCase):
+
+    @staticmethod
+    def dialogue(model):
+        """ Fakes Turberfield dialogue performer."""
+        for shot, item in model:
+            yield shot
+            yield item
 
     def setUp(self):
         self.ensemble = [
@@ -47,8 +72,8 @@ class FrameTests(unittest.TestCase):
             """.format("Hello"))
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
-        model = script.run()
-        self.fail(model)
+        rv = Frame.items(FrameTests.dialogue(script.run()))
+        self.fail(list(rv))
 
 if __name__ == "__main__":
     unittest.main()
