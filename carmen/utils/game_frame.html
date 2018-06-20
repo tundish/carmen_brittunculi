@@ -1,16 +1,71 @@
 <html>
 <head>
 <style>
+
+body {
+display: grid;
+grid-template-areas:
+"top"
+"centre"
+"right"
+"left"
+"bottom";
+}
+
+
+@media (min-width: 800px) {
+
+body {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 2fr;
+  grid-template-areas:
+".      top     ."
+"left   centre  right"
+"bottom bottom  bottom";
+}
+}
+
 section {
     background-color: lightgray;
+    color: white;
+    font-family: sans-serif;
+    padding: 2em;
 }
+
+section.top{
+grid-area: top;
+}
+
+section.left{
+grid-area: left;
+}
+
+section.right{
+grid-area: right;
+}
+
+section.bottom{
+grid-area: bottom;
+}
+
+main.centre, section.centra {
+grid-area: centre;
+}
+
 </style>
 </head>
 <body>
-<section>Top</section>
-<section>Centre</section>
-<section>Right</section>
-<section>Bottom</section>
-<section>Left</section>
+<section class="top">Top</section>
+<main class="centre">
+<ul>
+<li><p>One</p></li>
+<li><p>Two</p></li>
+<li><p>Three</p></li>
+<li><p>Four</p></li>
+</ul>
+</main>
+<section class="right">Right</section>
+<section class="left">Left</section>
+<section class="bottom">Bottom</section>
 </body>
 </html>
