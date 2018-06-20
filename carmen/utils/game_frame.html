@@ -53,11 +53,7 @@ grid-area: centre;
 min-height: 8em;
 }
 
-li.dialogue {
-position: absolute;
-}
-
-li.dialogue {
+ul.turberfield-dialogue-frame li {
 animation-name: fadeinout;
 animation-fill-mode: both;
 }
@@ -97,11 +93,11 @@ animation-fill-mode: both;
 <body>
 <section class="top">Top</section>
 <main class="centre">
-<ul>
-<li class="dialogue" style="z-index: 0; animation-duration: 4s; animation-delay: 0s"><p>One</p></li>
-<li class="dialogue" style="z-index: -1; animation-duration: 4s; animation-delay: 4s"><p>Two</p></li>
-<li class="dialogue" style="z-index: -2; animation-duration: 4s; animation-delay: 8s"><p>Three</p></li>
-<li class="dialogue" style="z-index: -3; animation-duration: 4s; animation-delay: 12s;"><p>Four</p></li>
+<ul class="turberfield-dialogue-frame">
+<li style="animation-duration: 4s; animation-delay: 0s"><p>One</p></li>
+<li style="animation-duration: 4s; animation-delay: 4s"><p>Two</p></li>
+<li style="animation-duration: 4s; animation-delay: 8s"><p>Three</p></li>
+<li style="animation-duration: 4s; animation-delay: 12s;"><p>Four</p></li>
 </ul>
 </main>
 <section class="right">Right</section>
