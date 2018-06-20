@@ -58,14 +58,15 @@ animation-name: fadeinout;
 animation-fill-mode: both;
 }
 
+ul.turberfield-dialogue-frame li:last-of-type {
+animation-name: fadein;
+}
+
 @keyframes fadein {
     0% {
         color: transparent;
     }
     12% {
-        color: black;
-    }
-    82% {
         color: black;
     }
     100% {
@@ -84,7 +85,7 @@ animation-fill-mode: both;
         color: black;
     }
     100% {
-        color: transparent;
+        color: lightgray;
     }
 }
 
