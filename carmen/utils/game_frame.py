@@ -26,17 +26,25 @@ from turberfield.dialogue.types import Player
 class Frame:
 
     @staticmethod
-    def items(seq):
+    def items(seq, dwell, pause):
         """
         A new Frame on each Shot, and every FX item.
 
         """
+        shot = None
         frame = []
+        offset = 0
         for item in seq:
-            if frame and isinstance(item, (Model.Shot, Model.Audio)):
-                yield frame
-                frame = []
-            frame.append(item)
+            if isinstance(item, Model.Shot):
+                if shot and shot != item:
+                    yield frame
+                    shot = item
+                    frame = []
+                    offset = 0
+            elif isinstance(item, Model.Line):
+                durn = pause + dwell * item.text.count(" ")
+                frame.append((durn, offset, item))
+                offset += durn
         else:
             yield frame
 
@@ -72,7 +80,7 @@ class FrameTests(unittest.TestCase):
             """.format("Hello"))
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
-        rv = Frame.items(FrameTests.dialogue(script.run()))
+        rv = Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1)
         self.fail(list(rv))
 
 if __name__ == "__main__":
