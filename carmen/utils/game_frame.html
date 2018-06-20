@@ -52,16 +52,22 @@ main.centre, section.centra {
 grid-area: centre;
 }
 
+li.dialogue {
+background-color: white;
+position: absolute;
+
+}
+
 </style>
 </head>
 <body>
 <section class="top">Top</section>
 <main class="centre">
 <ul>
-<li><p>One</p></li>
-<li><p>Two</p></li>
-<li><p>Three</p></li>
-<li><p>Four</p></li>
+<li class="dialogue" style="z-index: 0"><p>One</p></li>
+<li class="dialogue" style="z-index: -1"><p>Two</p></li>
+<li class="dialogue" style="z-index: -2"><p>Three</p></li>
+<li class="dialogue" style="z-index: -3"><p>Four</p></li>
 </ul>
 </main>
 <section class="right">Right</section>
