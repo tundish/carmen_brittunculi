@@ -24,6 +24,9 @@ import aiohttp.web
 # Animations
 # https://www.creativebloq.com/inspiration/css-animation-examples
 
+# Z-index slideshow:
+# https://www.youtube.com/watch?v=z74ExMz-cWU
+
 BPM = 90
 
 async def handle(request):

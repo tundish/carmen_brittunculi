@@ -142,6 +142,7 @@ class Business:
                             self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
                                 act.destination, act.commodity.material.value * act.quantity, act.commodity
                             ))
+                            op.memory.append(act.destination.contents.copy())
                     await asyncio.sleep(0.1, loop=loop)
             finally:
                 self.actor._lock.release()
@@ -170,11 +171,7 @@ class Business:
         resources = finder.gather([destination], types=[Inventory])
         warehouses = [i for i in resources if not i.mobility]
         carts = [i for i in resources if i.mobility]
-
         yield from self.transfer(carts, warehouses, op.objects)
-        self.operations[0].memory.append(
-            functools.reduce(lambda x, y: x+y, (i.contents for i in warehouses))
-        )
 
         # Travel back to nearest business location
         here = self.actor.get_state(Spot)
@@ -378,10 +375,11 @@ try:
     loop.run_forever()
 except KeyboardInterrupt:
     mem = businesses[2].operations[1].memory
-    print(
-        *["{0}\t{1}".format(
-            n, i[Potato("Potato", "Potatoes from market", Material.potato)]
-        ) for n, i in enumerate(mem)],
-        sep="\n"
-    )
+    #print(
+    #    *["{0}\t{1}".format(
+    #        n, i[Potato("Potato", "Potatoes from market", Material.potato)]
+    #    ) for n, i in enumerate(mem)],
+    #    sep="\n"
+    #)
+    print(*mem, sep="\n")
 loop.close()
