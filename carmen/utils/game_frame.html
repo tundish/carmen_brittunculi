@@ -54,9 +54,42 @@ min-height: 8em;
 }
 
 li.dialogue {
-background-color: white;
 position: absolute;
+}
 
+li.dialogue {
+animation-name: fadeinout;
+animation-fill-mode: both;
+}
+
+@keyframes fadein {
+    0% {
+        color: transparent;
+    }
+    12% {
+        color: black;
+    }
+    82% {
+        color: black;
+    }
+    100% {
+        color: black;
+    }
+}
+
+@keyframes fadeinout {
+    0% {
+        color: transparent;
+    }
+    12% {
+        color: black;
+    }
+    82% {
+        color: black;
+    }
+    100% {
+        color: transparent;
+    }
 }
 
 </style>
@@ -65,10 +98,10 @@ position: absolute;
 <section class="top">Top</section>
 <main class="centre">
 <ul>
-<li class="dialogue" style="z-index: 0"><p>One</p></li>
-<li class="dialogue" style="z-index: -1"><p>Two</p></li>
-<li class="dialogue" style="z-index: -2"><p>Three</p></li>
-<li class="dialogue" style="z-index: -3"><p>Four</p></li>
+<li class="dialogue" style="z-index: 0; animation-duration: 4s; animation-delay: 0s"><p>One</p></li>
+<li class="dialogue" style="z-index: -1; animation-duration: 4s; animation-delay: 4s"><p>Two</p></li>
+<li class="dialogue" style="z-index: -2; animation-duration: 4s; animation-delay: 8s"><p>Three</p></li>
+<li class="dialogue" style="z-index: -3; animation-duration: 4s; animation-delay: 12s;"><p>Four</p></li>
 </ul>
 </main>
 <section class="right">Right</section>
