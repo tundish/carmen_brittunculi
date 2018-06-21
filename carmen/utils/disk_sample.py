@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import argparse
 import cmath
 from collections import deque
 import random
@@ -49,8 +50,10 @@ cx="3" cy="3" r="2"
                 """),
     ],
 }
-WIDTH = 800
-HEIGHT = 360
+
+DEFAULT_WIDTH = 360
+DEFAULT_HEIGHT = 600
+DEFAULT_POINTS = 600
 
 def overlaps(this, that, span):
     return cmath.isclose(this, that, abs_tol=span)
@@ -93,9 +96,26 @@ def paint(points, width=WIDTH, height=HEIGHT):
     ])
     return svg.format("\n".join(content), width=WIDTH, height=HEIGHT)
 
+def parser(description=__doc__):
+    rv = argparse.ArgumentParser(
+        description,
+        fromfile_prefix_chars="@"
+    )
+    rv.add_argument(
+        "--points", type=int, default=DEFAULT_POINTS,
+        help="The number of generated points [{0}].".format(DEFAULT_POINTS)
+    )
+    rv.add_argument(
+        "--width", type=int, default=DEFAULT_WIDTH,
+        help="The width in pixels [{0}].".format(DEFAULT_WIDTH)
+    )
+    rv.add_argument(
+        "--height", type=int, default=DEFAULT_HEIGHT,
+        help="The height in pixels[{0}].".format(DEFAULT_HEIGHT)
+    )
+    return rv
 
-if __name__ == "__main__":
-
+def main(args):
     scene = []
     for n, (point, gap) in enumerate(
         poisson_disk(6000, [5], [complex(WIDTH / 2, HEIGHT / 2)])
@@ -106,3 +126,11 @@ if __name__ == "__main__":
 
     print("{0} items".format(n), file=sys.stderr)
     print(paint(scene), file=sys.stdout)
+    return 0
+
+def run():
+    p = parser()
+    args = p.parse_args()
+
+if __name__ == "__main__":
+    run()
