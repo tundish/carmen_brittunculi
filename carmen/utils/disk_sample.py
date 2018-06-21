@@ -49,6 +49,19 @@ cx="3" cy="3" r="2"
 </symbol>
                 """),
     ],
+    24: [
+         ("svg-leaf-00", """
+<symbol id="svg-leaf-00">
+<path
+    d="M 12 11 C 21,2 17,22 23,27 C 8,25 3,11 12,11 z M 18,16 C 16,14 17,22 20,24 z"
+    stroke-width="0.2"
+    stroke="yellow"
+    fill="currentColor"
+    fill-rule="evenodd"
+/>
+</symbol>
+                """),
+    ],
 }
 
 DEFAULT_WIDTH = 360
@@ -102,6 +115,10 @@ def parser(description=__doc__):
         fromfile_prefix_chars="@"
     )
     rv.add_argument(
+        "--spacing", action="append", type=float,
+        help="Give a sequence of pixel sizes for spacing."
+    )
+    rv.add_argument(
         "--debug", action="store_true", default=False,
         help="Print extra info (slow)."
     )
@@ -121,10 +138,11 @@ def parser(description=__doc__):
 
 def main(args):
     scene = []
+    spacing = args.spacing or [5]
     for n, (point, gap) in enumerate(
         poisson_disk(
             args.points,
-            [5],
+            spacing,
             seeds=[complex(args.width / 2, args.height / 2)],
             top=complex(args.width, args.height)
         )
