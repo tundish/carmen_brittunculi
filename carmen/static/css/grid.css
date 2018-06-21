@@ -5,41 +5,36 @@
 body {
 display: grid;
 grid-template-areas:
-"air"
-"floor"
-"inventory"
+"events"
+"diorama"
 "nav";
 }
 
-main.air, form.titles {
-grid-area: air;
+main.events, form.titles {
+grid-area: events;
 }
 
-aside.floor {
+aside.diorama {
 border-radius: 1em;
 font-family: var(--font-family-monospace);
-grid-area: floor;
+grid-area: diorama;
 margin: 1em;
 padding: 1.3em;
 background-color: var(--picnic-green);
 }
 
-aside.floor dl{
+aside.diorama dl{
 font-weight: lighter;
 content: ":";
 }
 
-aside.floor dt:after{
+aside.diorama dt:after{
 content: ":";
 }
 
-aside.floor dd{
+aside.diorama dd{
 font-weight: bold;
 margin: 1em;
-}
-
-aside.inventory {
-grid-area: inventory;
 }
 
 nav {
@@ -102,9 +97,9 @@ body {
   display: grid;
   grid-template-columns: 2fr 3fr 1fr 2fr;
   grid-template-areas:
-". air   inventory ."
-". floor inventory ."
-". floor nav       .";
+".  events  diorama    ."
+".  events  diorama    ."
+".  events  nav        .";
 }
 
 }

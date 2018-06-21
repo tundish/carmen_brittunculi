@@ -1,5 +1,5 @@
 %rebase("top.tpl")
-<main class="air">
+<main class="events">
 % if lines:
 <h1>{{ lines[0].scene.capitalize() }}</h1>
 % end
@@ -16,11 +16,8 @@
 % end
 
 </main>
-<aside class="floor">
+<aside class="diorama">
 %include("forest.tpl", extent=extent, leaves=leaves, coin=coin, marker=marker)
-</aside>
-<aside class="inventory">
-<h1>Pouch</h1>
 </aside>
 <nav>
 <ul>

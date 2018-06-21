@@ -222,7 +222,7 @@ def main(args):
 
     # TODO: Migrate to aiohttp v3 and use
     # https://docs.aiohttp.org/en/stable/web_advanced.html#background-tasks
-    loop = asyncio.SelectorEventLoop()
+    loop = asyncio.get_event_loop()
     asyncio.set_event_loop(loop)
 
     handler = app.make_handler()
