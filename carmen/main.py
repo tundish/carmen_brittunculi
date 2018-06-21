@@ -102,10 +102,13 @@ class World:
         World.quests[uid] = asscns
         return uid
 
-def get_start():
-    return bottle.template(
-        pkg_resources.resource_string("carmen", "templates/quest.tpl").decode("utf8"),
-        validation=World.validation
+async def get_start(request):
+    return web.Response(
+        text=bottle.template(
+            pkg_resources.resource_string("carmen", "templates/quest.tpl").decode("utf8"),
+            validation=World.validation,
+        ),
+        content_type="text/html"
     )
 
 def post_start():
