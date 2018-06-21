@@ -111,12 +111,13 @@ async def get_start(request):
         content_type="text/html"
     )
 
-def post_start():
+async def post_start(request):
     log = logging.getLogger("carmen.main.start")
-    name = bottle.request.forms.get("playername")
-    email = bottle.request.forms.get("email")
+    data = await request.post()
+    name = data["playername"]
+    email = data["email"]
     if not World.validation["name"].match(name):
-        bottle.abort(401, "User input invalid name.")
+        raise web.HTTPUnauthorized(reason="User input invalid name.")
 
     if not World.validation["email"].match(email):
         log.warning("User input invalid email.")
@@ -125,11 +126,11 @@ def post_start():
 
     uid = World.quest(name)
     log.info("Player {0} created quest {1!s}".format(name, uid))
-    bottle.redirect("/{0.hex}".format(uid))
+    raise web.HTTPFound("/{0.hex}".format(uid))
 
-def here(quest):
+async def here(request):
     log = logging.getLogger("carmen.main.here")
-    uid = uuid.UUID(hex=quest)
+    uid = uuid.UUID(hex=request.match_info["quest"])
     log.debug(uid)
 
     locn, moves = World.moves(uid)
@@ -147,17 +148,20 @@ def here(quest):
     cast = {}
     coin = next((i for i in cast.values() if isinstance(i, Coin)), None)
     marker = next((i for i in cast.values() if isinstance(i, Marker)), None)
-    return bottle.template(
-        pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
-        extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
-        leaves=Scenery.forest(width, height, pitch=pitch),
-        # leaves=[],
-        here=locn,
-        lines=list(scene),
-        moves=sorted(moves),
-        quest=uid,
-        coin=coin,
-        marker=marker
+    return web.Response(
+        text=bottle.template(
+            pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
+            extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
+            leaves=Scenery.forest(width, height, pitch=pitch),
+            # leaves=[],
+            here=locn,
+            lines=list(scene),
+            moves=sorted(moves),
+            quest=uid,
+            coin=coin,
+            marker=marker
+        ),
+        content_type="text/html"
     )
 
 def call(phrase):
@@ -182,22 +186,6 @@ def move(quest, destination):
         log.exception(e)
     finally:
         bottle.redirect("/{0.hex}".format(quest_uid))
-
-def serve_css(filepath):
-    log = logging.getLogger("carmen.main.serve_css")
-    log.debug(filepath)
-    locn = pkg_resources.resource_filename(
-        "carmen", "static/css"
-    )
-    return bottle.static_file(filepath, root=locn)
-
-def serve_svg(filepath):
-    log = logging.getLogger("carmen.main.serve_svg")
-    log.debug(filepath)
-    locn = pkg_resources.resource_filename(
-        "carmen", "static/svg"
-    )
-    return bottle.static_file(filepath, root=locn)
 
 def build_app(args):
     app = web.Application()
@@ -231,7 +219,7 @@ def build_app(args):
     return app
 
 def main(args):
-    log = logging.getLogger(log_setup(args, "carmen"))
+    log = logging.getLogger(log_setup(args, ""))
 
     app = build_app(args)
 
