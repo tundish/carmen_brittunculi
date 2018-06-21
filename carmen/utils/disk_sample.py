@@ -66,7 +66,7 @@ def sow(seed, min_dist, max_dist):
 def poisson_disk(
     n_points, gaps, seeds,
     n_gen=12, min_dist=16, max_dist=42,
-    origin=complex(0, 0), top=complex(WIDTH, HEIGHT)
+    origin=complex(0, 0), top=complex(DEFAULT_WIDTH, DEFAULT_HEIGHT)
 ):
     seed = random.choice(seeds)
     q = deque([seed])
@@ -88,18 +88,22 @@ def poisson_disk(
                 pop.add(p)
                 yield p, gap
 
-def paint(points, width=WIDTH, height=HEIGHT):
+def paint(points, width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT):
     content = [symbol for i in symbols.values() for name, symbol in i]
     content.extend([
         use.format(klass=name, name=name, point=point)
         for name, point in points
     ])
-    return svg.format("\n".join(content), width=WIDTH, height=HEIGHT)
+    return svg.format("\n".join(content), width=width, height=height)
 
 def parser(description=__doc__):
     rv = argparse.ArgumentParser(
         description,
         fromfile_prefix_chars="@"
+    )
+    rv.add_argument(
+        "--debug", action="store_true", default=False,
+        help="Print extra info (slow)."
     )
     rv.add_argument(
         "--points", type=int, default=DEFAULT_POINTS,
@@ -118,19 +122,27 @@ def parser(description=__doc__):
 def main(args):
     scene = []
     for n, (point, gap) in enumerate(
-        poisson_disk(6000, [5], [complex(WIDTH / 2, HEIGHT / 2)])
+        poisson_disk(
+            args.points,
+            [5],
+            seeds=[complex(args.width / 2, args.height / 2)],
+            top=complex(args.width, args.height)
+        )
     ):
         name, symbol = random.choice(symbols[gap])
         scene.append((name, point))
-        print(point, file=sys.stderr)
+        if args.debug:
+            print(point, file=sys.stderr)
 
     print("{0} items".format(n), file=sys.stderr)
-    print(paint(scene), file=sys.stdout)
+    print(paint(scene, args.width, args.height), file=sys.stdout)
     return 0
 
 def run():
     p = parser()
     args = p.parse_args()
+    rv = main(args)
+    sys.exit(rv)
 
 if __name__ == "__main__":
     run()
