@@ -20,7 +20,6 @@ import textwrap
 import unittest
 
 import carmen.logic
-from carmen.main import World
 from carmen.types import Location
 from carmen.types import Spot
 from carmen.utils import Scenery

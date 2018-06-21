@@ -21,11 +21,7 @@ from collections import Counter
 from collections import deque
 from collections import namedtuple
 from enum import Enum
-import functools
-import itertools
 import logging
-import operator
-import random
 import sys
 
 import carmen.logic
@@ -35,8 +31,6 @@ from carmen.types import Location
 from carmen.types import Persona
 from carmen.types import Spot
 from carmen.types import Stateful
-from carmen.types import Travel
-from carmen.types import Via
 
 class Volume(Enum):
 
@@ -64,6 +58,7 @@ class Material(Enum):
     limestone = 1800
     potato = 1060
     silver = 10490
+
 
 Commodity = namedtuple("Commodity", ["label", "description", "material"])
 
@@ -140,7 +135,9 @@ class Business:
                             act.source.contents[act.commodity] -= act.quantity
                             act.destination.contents[act.commodity] += act.quantity
                             self.log.info("{0.label} takes {1:0.3f} Kg {2.label}".format(
-                                act.destination, act.commodity.material.value * act.quantity, act.commodity
+                                act.destination,
+                                act.commodity.material.value * act.quantity,
+                                act.commodity
                             ))
                             op.memory.append(act.destination.contents.copy())
                     await asyncio.sleep(0.1, loop=loop)
@@ -184,8 +181,7 @@ class Business:
             i
             for locn in locations
             for i in finder.search(**kwargs)
-            if isinstance(i, tuple(types))
-            and i.get_state(Spot) == locn.get_state(Spot)
+            if isinstance(i, tuple(types)) and i.get_state(Spot) == locn.get_state(Spot)
         ]
 
     @staticmethod
@@ -206,7 +202,10 @@ class Business:
 
     def transport(self, finder, destination=None):
         here = self.actor.get_state(Spot)
-        location = next(i for i in finder.ensemble() if isinstance(i, Location) and i.get_state(Spot) == here)
+        location = next(
+            i for i in finder.ensemble()
+            if isinstance(i, Location) and i.get_state(Spot) == here
+        )
         containers = finder.gather([location], mobility=1, _business=self)
         route = finder.route(location, destination, maxlen=20)
         for hop in route:
@@ -215,6 +214,7 @@ class Business:
             yield Move(self.actor, vector, hop)
             yield from (Move(i, vector, hop) for i in containers)
             here = spot
+
 
 rf = carmen.logic.associations()
 
@@ -246,7 +246,11 @@ rf.register(
         mobility=0,
         capacity=Volume.infinity,
         contents=Counter({
-            Stone("Limestone", "A rich deposit of limestone", Material.limestone): Volume.plenty.value
+            Stone(
+                "Limestone",
+                "A rich deposit of limestone",
+                Material.limestone
+            ): Volume.plenty.value
         })
     ).set_state(
         next(iter(rf.search(label="South pit"))).get_state(Spot)
@@ -260,7 +264,11 @@ rf.register(
         mobility=0,
         capacity=Volume.plenty,
         contents=Counter({
-            Stone("Limestone", "Freshly quarried limestone", Material.limestone): 8 * Volume.load.value
+            Stone(
+                "Limestone",
+                "Freshly quarried limestone",
+                Material.limestone
+            ): 8 * Volume.load.value
         })
     ).set_state(
         next(iter(rf.search(label="Quarry"))).get_state(Spot)
@@ -375,11 +383,5 @@ try:
     loop.run_forever()
 except KeyboardInterrupt:
     mem = businesses[2].operations[1].memory
-    #print(
-    #    *["{0}\t{1}".format(
-    #        n, i[Potato("Potato", "Potatoes from market", Material.potato)]
-    #    ) for n, i in enumerate(mem)],
-    #    sep="\n"
-    #)
     print(*mem, sep="\n")
 loop.close()

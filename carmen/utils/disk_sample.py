@@ -19,7 +19,7 @@
 __doc__ = """
 Example:
 
-python3 carmen/utils/disk_sample.py --spacing 24 --spacing 24 --spacing 32 > carmen/static/svg/poisson.svg
+python3 disk_sample.py --spacing 24 --spacing 24 --spacing 32 > carmen/static/svg/poisson.svg
 
 """
 import argparse
@@ -181,6 +181,7 @@ def run():
     args = p.parse_args()
     rv = main(args)
     sys.exit(rv)
+
 
 if __name__ == "__main__":
     run()

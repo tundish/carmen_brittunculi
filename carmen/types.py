@@ -49,7 +49,7 @@ class Compass:
     ])
 
     @classmethod
-    def bearing(cls, val:complex):
+    def bearing(cls, val: complex):
         phase = 180 * Decimal(cmath.phase(val)) / Decimal(cmath.pi)
         if phase <= 90:
             return 90 - phase

@@ -21,7 +21,6 @@ import unittest
 
 import carmen.logic
 from carmen.types import Location
-from carmen.types import Via
 
 class RoutefinderTests(unittest.TestCase):
 

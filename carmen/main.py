@@ -37,7 +37,6 @@ from carmen.types import Location
 from carmen.types import Player
 from carmen.types import Marker
 from carmen.types import Spot
-from carmen.utils import Scenery
 
 DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
@@ -148,8 +147,7 @@ async def here(request):
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
             extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
-            leaves=Scenery.forest(width, height, pitch=pitch),
-            # leaves=[],
+            leaves=[],
             here=locn,
             lines=list(scene),
             moves=sorted(moves),

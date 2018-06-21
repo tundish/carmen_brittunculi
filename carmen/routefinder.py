@@ -86,7 +86,5 @@ class Routefinder(Associations):
             i
             for locn in locations
             for i in self.search(**kwargs)
-            if isinstance(i, tuple(types))
-            and i.get_state(Spot) == locn.get_state(Spot)
+            if isinstance(i, tuple(types)) and i.get_state(Spot) == locn.get_state(Spot)
         ]
-

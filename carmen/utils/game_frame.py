@@ -83,5 +83,6 @@ class FrameTests(unittest.TestCase):
         rv = Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1)
         self.fail(list(rv))
 
+
 if __name__ == "__main__":
     unittest.main()

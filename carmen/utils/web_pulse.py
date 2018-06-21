@@ -42,10 +42,11 @@ def configure_app():
     ])
     return app
 
+
 print("Beats per minute: {0}".format(BPM))
 print("Rate: {0} crotchets per sec".format(BPM / 60))
 print("Seconds per measure: {0:0.3}".format(4 / BPM * 60))
 print("Seconds per frame: {0:0.3}".format(8 * 4 / BPM * 60))
 print("Frames per game: {0:0.2f}".format(4 * 60 * 60 / 8 / 4 * BPM / 60))
 app = configure_app()
-#aiohttp.web.run_app(app)
+aiohttp.web.run_app(app)
