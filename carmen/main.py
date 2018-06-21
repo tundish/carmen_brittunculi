@@ -36,16 +36,11 @@ from carmen.types import Location
 from carmen.types import Player
 from carmen.types import Marker
 from carmen.types import Spot
-from carmen.types import Via
 from carmen.utils import Scenery
 
 DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
-
-bottle.TEMPLATE_PATH.append(
-    pkg_resources.resource_filename("carmen", "templates")
-)
 
 class World:
 
@@ -164,17 +159,14 @@ async def here(request):
         content_type="text/html"
     )
 
-def call(phrase):
-    return {}
-
-def move(quest, destination):
+async def move(request):
     log = logging.getLogger("carmen.main.move")
-    quest_uid = uuid.UUID(hex=quest)
+    quest_uid = uuid.UUID(hex=request.match_info["quest"])
     log.debug(quest_uid)
 
     locn, moves = World.moves(quest_uid)
 
-    dest_uid = uuid.UUID(hex=destination)
+    dest_uid = uuid.UUID(hex=request.match_info["destination"])
     log.debug(dest_uid)
 
     try:
@@ -185,7 +177,7 @@ def move(quest, destination):
     except Exception as e:
         log.exception(e)
     finally:
-        bottle.redirect("/{0.hex}".format(quest_uid))
+        raise web.HTTPFound("/{0.hex}".format(quest_uid))
 
 def build_app(args):
     app = web.Application()
@@ -193,7 +185,7 @@ def build_app(args):
         add_routes = app.add_routes
         add_static = app.add_static
     except AttributeError:
-        # Asiohttp v2
+        # Aiohttp v2
         add_routes = app.router.add_routes
         add_static = app.router.add_static
 
@@ -215,6 +207,10 @@ def build_app(args):
         pkg_resources.resource_filename("carmen", "static/svg")
     )
     app.world = World()
+
+    bottle.TEMPLATE_PATH.append(
+        pkg_resources.resource_filename("carmen", "templates")
+    )
 
     return app
 
