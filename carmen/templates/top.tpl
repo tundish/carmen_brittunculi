@@ -6,6 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="/css/base.css" />
 <link rel="stylesheet" href="/css/grid.css" />
+<link rel="stylesheet" href="/css/anim.css" />
 <link rel="stylesheet" href="/css/svg.css" />
 </head>
 <body>

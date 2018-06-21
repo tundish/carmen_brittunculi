@@ -4,16 +4,20 @@
 <h1>{{ lines[0].scene.capitalize() }}</h1>
 % end
 
+<ul class="turberfield-dialogue-frame">
 % for line in lines:
 % if hasattr(line, "persona"):
+<li style="animation-duration: 4s; animation-delay: 0s">
 <blockquote class="line">
 % if hasattr(line.persona, "name"):
 <header class="persona">{{ line.persona.name.fullname }}</header>
 % end
 <p class="speech">{{ line.text }}</p>
 </blockquote>
+</li>
 % end
 % end
+</ul>
 
 </main>
 <aside class="diorama">
