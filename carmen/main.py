@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import asyncio
 import argparse
 import logging
 import re
@@ -219,8 +220,26 @@ def main(args):
 
     app = build_app(args)
 
-    log.info("Starting server...")
-    web.run_app(app, host="0.0.0.0", port=args.port)
+    # TODO: Migrate to aiohttp v3 and use
+    # https://docs.aiohttp.org/en/stable/web_advanced.html#background-tasks
+    loop = asyncio.SelectorEventLoop()
+    asyncio.set_event_loop(loop)
+
+    handler = app.make_handler()
+    f = loop.create_server(handler, "0.0.0.0", args.port)
+    srv = loop.run_until_complete(f)
+
+    log.info("Serving on {0[0]}:{0[1]}".format(srv.sockets[0].getsockname()))
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        loop.run_until_complete(handler.finish_connections(1.0))
+        srv.close()
+        loop.run_until_complete(srv.wait_closed())
+        loop.run_until_complete(app.finish())
+    loop.close()
 
 def parser(description=__doc__):
     rv = argparse.ArgumentParser(
