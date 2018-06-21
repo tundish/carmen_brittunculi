@@ -61,6 +61,9 @@ which have inspired it so far:
 * `Post-Roman scenario`_ from an abandoned project.
 * `Mammy apple`_ tree.
 
+The web framework is `aiohttp`.
+Development uses Aiohttp version 2, but avoiding `impediments to using version 3`_.
+
 .. _Roman Mytholojam 2018: https://itch.io/jam/roman-mytholojam
 .. _GNU Affero General Public License: http://www.gnu.org/licenses/agpl.html
 .. _Itch.io project page: https://tundish.itch.io/carmen-brittunculi
@@ -70,3 +73,4 @@ which have inspired it so far:
 .. _Post-Roman scenario: http://pythonhosted.org/turberfield-eargain/guide.html
 .. _Mammy apple: https://en.wikipedia.org/wiki/Mammea_americana
 .. _SVG coordinates: https://www.sarasoueidan.com/blog/svg-coordinate-systems/
+.. _impediments to using version 3: https://docs.aiohttp.org/en/stable/changes.html#id147
