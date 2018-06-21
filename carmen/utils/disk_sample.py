@@ -16,6 +16,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+__doc__ = """
+Example:
+
+python3 carmen/utils/disk_sample.py --spacing 24 --spacing 24 --spacing 32 > carmen/static/svg/poisson.svg
+
+"""
 import argparse
 import cmath
 from collections import deque
@@ -50,7 +56,7 @@ cx="3" cy="3" r="2"
                 """),
     ],
     24: [
-         ("svg-leaf-00", """
+        ("svg-leaf-00", """
 <symbol id="svg-leaf-00">
 <path
     d="M 12 11 C 21,2 17,22 23,27 C 8,25 3,11 12,11 z M 18,16 C 16,14 17,22 20,24 z"
@@ -58,6 +64,20 @@ cx="3" cy="3" r="2"
     stroke="yellow"
     fill="currentColor"
     fill-rule="evenodd"
+/>
+</symbol>
+                """),
+    ],
+    32: [
+        ("svg-leaf-01", """
+<symbol id="svg-leaf-01">
+<path
+    d="M 12 11 C 21,2 17,22 23,27 C 8,25 3,11 12,11 z M 18,16 C 16,14 17,22 20,24 z"
+    stroke-width="0.2"
+    stroke="yellow"
+    fill="currentColor"
+    fill-rule="evenodd"
+    transform="scale(1.4) rotate(45 16 16)"
 />
 </symbol>
                 """),
@@ -132,7 +152,7 @@ def parser(description=__doc__):
     )
     rv.add_argument(
         "--height", type=int, default=DEFAULT_HEIGHT,
-        help="The height in pixels[{0}].".format(DEFAULT_HEIGHT)
+        help="The height in pixels [{0}].".format(DEFAULT_HEIGHT)
     )
     return rv
 
