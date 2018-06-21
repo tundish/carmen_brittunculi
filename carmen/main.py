@@ -22,6 +22,7 @@ import re
 import sys
 import uuid
 
+from aiohttp import web
 import bottle
 import pkg_resources
 from turberfield.dialogue.performer import Performer
@@ -195,31 +196,44 @@ def serve_svg(filepath):
     )
     return bottle.static_file(filepath, root=locn)
 
-def build_app():
-    rv = bottle.Bottle()
-    rv.route("/", callback=get_start, method="GET")
-    rv.route("/", callback=post_start, method="POST")
-    rv.route("/<quest:re:{0}>".format(World.validation["quest"].pattern), callback=here)
-    rv.route("/<quest:re:{0}>/move/<destination:re:{1}>".format(
-        World.validation["quest"].pattern, World.validation["location"].pattern
-    ), callback=move, method="POST")
-    rv.route("/css/<filepath:path>", callback=serve_css)
-    rv.route("/svg/<filepath:path>", callback=serve_svg)
-    rv.world = World()
+def build_app(args):
+    app = web.Application()
+    try:
+        add_routes = app.add_routes
+        add_static = app.add_static
+    except AttributeError:
+        # Asiohttp v2
+        add_routes = app.router.add_routes
+        add_static = app.router.add_static
 
-    return rv
+    add_routes([
+        web.get("/", get_start),
+        web.post("/", post_start),
+        web.get("/{{quest:{0}}}".format(World.validation["quest"].pattern), here),
+        web.post("/{{quest:{0}}}/move/{{destination:{1}}}".format(
+            World.validation["quest"].pattern, World.validation["location"].pattern
+        ), move),
+    ])
+
+    add_static(
+        "/css/",
+        pkg_resources.resource_filename("carmen", "static/css")
+    )
+    add_static(
+        "/svg/",
+        pkg_resources.resource_filename("carmen", "static/svg")
+    )
+    app.world = World()
+
+    return app
 
 def main(args):
     log = logging.getLogger(log_setup(args, "carmen"))
 
-    bottle.debug(True)
-    bottle.TEMPLATES.clear()
-    log.debug(bottle.TEMPLATE_PATH)
-
-    app = build_app()
+    app = build_app(args)
 
     log.info("Starting server...")
-    bottle.run(app, host="0.0.0.0", port=args.port, debug=True)
+    web.run_app(app, host="0.0.0.0", port=args.port)
 
 def parser(description=__doc__):
     rv = argparse.ArgumentParser(
