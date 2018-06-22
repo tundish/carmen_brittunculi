@@ -19,6 +19,7 @@
 import textwrap
 import unittest
 
+from turberfield.dialogue.model import Model
 from turberfield.dialogue.model import SceneScript
 from turberfield.dialogue.types import Player
 
@@ -59,7 +60,7 @@ class FrameTests(unittest.TestCase):
         rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
         self.assertEqual(1, len(rv))
 
-    def test_single_fx_in_frame(self):
+    def test_single_fx_splits_frame(self):
         content = textwrap.dedent("""
             .. entity:: P
 
@@ -87,7 +88,9 @@ class FrameTests(unittest.TestCase):
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
         rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
-        self.assertEqual(1, len(rv))
+        self.assertEqual(2, len(rv))
+        self.assertTrue(all(i for i in rv))
+        self.assertIsInstance(rv[1][0][2], Model.Audio)
 
     def test_second_shot_splits_frame(self):
         content = textwrap.dedent("""
@@ -124,7 +127,9 @@ class FrameTests(unittest.TestCase):
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
         rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
-        self.assertEqual(2, len(rv))
+        self.assertEqual(3, len(rv))
+        self.assertTrue(all(i for i in rv))
+        self.assertIsInstance(rv[1][0][2], Model.Audio)
 
     def test_second_fx_splits_frame(self):
         content = textwrap.dedent("""
@@ -163,4 +168,7 @@ class FrameTests(unittest.TestCase):
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
         rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
-        self.assertEqual(2, len(rv))
+        self.assertEqual(3, len(rv), rv)
+        self.assertTrue(all(i for i in rv))
+        self.assertIsInstance(rv[1][0][2], Model.Audio)
+        self.assertIsInstance(rv[2][0][2], Model.Audio)

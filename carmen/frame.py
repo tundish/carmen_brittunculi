@@ -31,12 +31,17 @@ class Frame:
         frame = []
         offset = 0
         for item in seq:
-            if isinstance(item, Model.Shot):
-                if shot and shot != item:
+            if isinstance(item, (Model.Audio, Model.Shot)):
+                if frame and shot and shot != item:
                     yield frame
-                    shot = item
                     frame = []
                     offset = 0
+
+                if isinstance(item, Model.Shot):
+                    shot = item
+                else:
+                    frame.append((item.duration, item.offset, item))
+
             elif isinstance(item, Model.Line):
                 durn = pause + dwell * item.text.count(" ")
                 frame.append((durn, offset, item))
