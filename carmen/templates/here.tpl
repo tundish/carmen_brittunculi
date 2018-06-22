@@ -22,7 +22,7 @@
 </main>
 <aside class="diorama">
 <img src="/svg/poisson.svg"/>
-<!-- %include("forest.tpl", extent=extent, leaves=leaves, coin=coin, marker=marker) -->
+<!-- %include("forest.tpl", leaves=leaves) -->
 </aside>
 <nav>
 <ul>

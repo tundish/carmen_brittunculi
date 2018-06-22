@@ -18,6 +18,7 @@
 
 import asyncio
 import argparse
+from collections import deque
 import logging
 import re
 import sys
@@ -58,16 +59,6 @@ class World:
         "quest": re.compile("[0-9a-f]{32}"),
     }
 
-    def get_object(id):
-        return World.contents.get(id)
-
-    def object_id(obj):
-        return getattr(obj, "id")
-
-    def object_filter(config):
-        print("Object filter with {0}".format(config))
-        return World.regexp, World.get_object, World.object_id
-
     @staticmethod
     def moves(quest_uid):
         try:
@@ -92,6 +83,7 @@ class World:
     def quest(name):
         uid = uuid.uuid4()
         asscns = carmen.logic.associations()
+        asscns.frame = deque([])
         start = next(iter(asscns.search(label="Green lane")))
         asscns.register(None, Player(name=name).set_state(start.get_state(Spot)))
         World.quests[uid] = asscns
@@ -136,9 +128,6 @@ async def here(request):
 
     scene = performer.run(react=True)
 
-    width, height = 560, 400
-    pitch = (16, 16)
-    cell = (32, 32)
     # TODO: cast only entities at this location
     # TODO: fall back to generic location scene
     cast = {}
@@ -147,14 +136,11 @@ async def here(request):
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
-            extent=(width + cell[0] - pitch[0], height + cell[1] - pitch[1]),
             leaves=[],
             here=locn,
             lines=list(scene),
             moves=sorted(moves),
             quest=uid,
-            coin=coin,
-            marker=marker
         ),
         content_type="text/html"
     )
