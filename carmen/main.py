@@ -139,7 +139,8 @@ async def here(request):
     width, height = 560, 400
     pitch = (16, 16)
     cell = (32, 32)
-    # TODO: Do select. Use values.
+    # TODO: cast only entities at this location
+    # TODO: fall back to generic location scene
     cast = {}
     coin = next((i for i in cast.values() if isinstance(i, Coin)), None)
     marker = next((i for i in cast.values() if isinstance(i, Marker)), None)
