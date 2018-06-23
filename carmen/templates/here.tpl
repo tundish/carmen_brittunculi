@@ -1,8 +1,6 @@
 %rebase("top.tpl")
 <main class="events">
-% if lines:
 <h1>{{ here.label.capitalize() }}</h1>
-% end
 
 <ul class="turberfield-dialogue-frame">
 % for durn, offset, line in frame:

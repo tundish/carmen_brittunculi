@@ -122,6 +122,7 @@ async def here(request):
     log.debug(uid)
 
     locn, moves = World.moves(uid)
+    log.debug(locn)
     asscns = World.quests[uid]
     performer = Performer([carmen.logic.game], asscns.ensemble())
     if performer.stopped:
@@ -136,15 +137,12 @@ async def here(request):
 
     # TODO: cast only entities at this location
     # TODO: fall back to generic location scene
-    cast = {}
-    coin = next((i for i in cast.values() if isinstance(i, Coin)), None)
-    marker = next((i for i in cast.values() if isinstance(i, Marker)), None)
+    # TODO: add media refresh if more frames exist
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
             leaves=[],
             here=locn,
-            lines=list(scene),
             frame=frame,
             moves=sorted(moves),
             quest=uid,
