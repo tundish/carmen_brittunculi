@@ -31,6 +31,7 @@ from turberfield.dialogue.performer import Performer
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
+from carmen.frame import Frame
 import carmen.logic
 from carmen.types import Coin
 from carmen.types import Compass
@@ -83,7 +84,7 @@ class World:
     def quest(name):
         uid = uuid.uuid4()
         asscns = carmen.logic.associations()
-        asscns.frame = deque([])
+        asscns.frames = deque([])
         start = next(iter(asscns.search(label="Green lane")))
         asscns.register(None, Player(name=name).set_state(start.get_state(Spot)))
         World.quests[uid] = asscns
@@ -126,7 +127,12 @@ async def here(request):
     if performer.stopped:
         log.warning("Game Over.")
 
-    scene = performer.run(react=True)
+    if not asscns.frames:
+        scene = performer.run(react=False)
+        asscns.frames.extend(Frame.items(scene, dwell=0.3, pause=1))
+
+    frame = asscns.frames.popleft()
+
 
     # TODO: cast only entities at this location
     # TODO: fall back to generic location scene
@@ -139,6 +145,7 @@ async def here(request):
             leaves=[],
             here=locn,
             lines=list(scene),
+            frame=frame,
             moves=sorted(moves),
             quest=uid,
         ),

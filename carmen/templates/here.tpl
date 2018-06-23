@@ -1,13 +1,13 @@
 %rebase("top.tpl")
 <main class="events">
 % if lines:
-<h1>{{ lines[0].scene.capitalize() }}</h1>
+<h1>{{ here.label.capitalize() }}</h1>
 % end
 
 <ul class="turberfield-dialogue-frame">
-% for line in lines:
+% for durn, offset, line in frame:
 % if hasattr(line, "persona"):
-<li style="animation-duration: 4s; animation-delay: 0s">
+<li style="animation-duration: {{ durn }}s; animation-delay: {{ offset }}s">
 <blockquote class="line">
 % if hasattr(line.persona, "name"):
 <header class="persona">{{ line.persona.name.fullname }}</header>
