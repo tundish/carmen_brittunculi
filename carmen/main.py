@@ -133,6 +133,7 @@ async def here(request):
         asscns.frames.extend(Frame.items(scene, dwell=0.3, pause=1))
 
     frame = asscns.frames.popleft()
+    #TODO: Send frames to handler for reaction (async?)
 
 
     # TODO: cast only entities at this location
