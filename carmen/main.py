@@ -40,6 +40,7 @@ from carmen.types import Player
 from carmen.types import Marker
 from carmen.types import Spot
 
+MAX_FRAME_S = 21.3 # 8 bars at 90 BPM
 DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
@@ -95,6 +96,7 @@ async def get_start(request):
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/quest.tpl").decode("utf8"),
             validation=World.validation,
+            refresh=None
         ),
         content_type="text/html"
     )
@@ -147,6 +149,7 @@ async def here(request):
             frame=frame,
             moves=sorted(moves),
             quest=uid,
+            refresh=MAX_FRAME_S
         ),
         content_type="text/html"
     )
