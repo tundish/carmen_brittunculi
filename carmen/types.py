@@ -111,6 +111,12 @@ class Via(EnumFactory, enum.Enum):
 
 class Phrase:
 
+    """
+    Allows on-the-fly creation of singleton classes to represent spoken phrases.
+    The instance object is stateful, so can be an entity in a dialogue file.
+
+    """
+
     _table = {
         ord(c): val
         for seq, val in ((string.punctuation, None), (string.whitespace, " "))

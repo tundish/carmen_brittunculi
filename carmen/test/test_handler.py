@@ -23,9 +23,9 @@ from turberfield.dialogue.model import Model
 from turberfield.dialogue.model import SceneScript
 from turberfield.dialogue.types import Player
 
-from carmen.frame import Frame
+from carmen.handler import Handler
 
-class FrameTests(unittest.TestCase):
+class HandlerTests(unittest.TestCase):
 
     @staticmethod
     def dialogue(model):
@@ -57,7 +57,7 @@ class FrameTests(unittest.TestCase):
             """.format("Hello"))
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
-        rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
+        rv = list(Handler.frames(HandlerTests.dialogue(script.run()), dwell=0.3, pause=1))
         self.assertEqual(1, len(rv))
 
     def test_single_fx_splits_frame(self):
@@ -87,10 +87,10 @@ class FrameTests(unittest.TestCase):
             """.format("Hello"))
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
-        rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
+        rv = list(Handler.frames(HandlerTests.dialogue(script.run()), dwell=0.3, pause=1))
         self.assertEqual(2, len(rv))
         self.assertTrue(all(i for i in rv))
-        self.assertIsInstance(rv[1][0][2], Model.Audio)
+        self.assertIsInstance(rv[1][0].dialogue, Model.Audio)
 
     def test_second_shot_splits_frame(self):
         content = textwrap.dedent("""
@@ -126,10 +126,10 @@ class FrameTests(unittest.TestCase):
             """.format("Hello"))
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
-        rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
+        rv = list(Handler.frames(HandlerTests.dialogue(script.run()), dwell=0.3, pause=1))
         self.assertEqual(3, len(rv))
         self.assertTrue(all(i for i in rv))
-        self.assertIsInstance(rv[1][0][2], Model.Audio)
+        self.assertIsInstance(rv[1][0].dialogue, Model.Audio)
 
     def test_second_fx_splits_frame(self):
         content = textwrap.dedent("""
@@ -167,8 +167,8 @@ class FrameTests(unittest.TestCase):
             """.format("Hello"))
         script = SceneScript("inline", doc=SceneScript.read(content))
         script.cast(script.select(self.ensemble))
-        rv = list(Frame.items(FrameTests.dialogue(script.run()), dwell=0.3, pause=1))
+        rv = list(Handler.frames(HandlerTests.dialogue(script.run()), dwell=0.3, pause=1))
         self.assertEqual(3, len(rv), rv)
         self.assertTrue(all(i for i in rv))
-        self.assertIsInstance(rv[1][0][2], Model.Audio)
-        self.assertIsInstance(rv[2][0][2], Model.Audio)
+        self.assertIsInstance(rv[1][0].dialogue, Model.Audio)
+        self.assertIsInstance(rv[2][0].dialogue, Model.Audio)

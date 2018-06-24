@@ -16,13 +16,29 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+from collections import namedtuple
+import re
 
 from turberfield.dialogue.model import Model
 
-class Frame:
+class Handler:
+
+    validation = {
+        "email": re.compile(
+            "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]"
+            "+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9]"
+            "(?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+"
+            # http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
+        ),
+        "location": re.compile("[0-9a-f]{32}"),
+        "name": re.compile("[A-Z a-z]{2,32}"),
+        "quest": re.compile("[0-9a-f]{32}"),
+    }
+
+    Element = namedtuple("Element", ["dialogue", "offset", "duration"])
 
     @staticmethod
-    def items(seq, dwell, pause):
+    def frames(seq, dwell, pause):
         """
         A new Frame on each Shot, and every FX item.
 
@@ -40,11 +56,11 @@ class Frame:
                 if isinstance(item, Model.Shot):
                     shot = item
                 else:
-                    frame.append((item.duration, item.offset, item))
+                    frame.append(Handler.Element(item, item.offset, item.duration))
 
             elif isinstance(item, Model.Line):
                 durn = pause + dwell * item.text.count(" ")
-                frame.append((durn, offset, item))
+                frame.append(Handler.Element(item, offset, durn))
                 offset += durn
         else:
             yield frame
