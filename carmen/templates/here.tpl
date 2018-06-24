@@ -3,14 +3,14 @@
 <h1>{{ here.label.capitalize() }}</h1>
 
 <ul class="turberfield-dialogue-frame">
-% for durn, offset, line in frame:
-% if hasattr(line, "persona"):
-<li style="animation-duration: {{ durn }}s; animation-delay: {{ offset }}s">
+% for element in frame:
+% if hasattr(element.dialogue, "persona"):
+<li style="animation-duration: {{ element.duration }}s; animation-delay: {{ element.offset }}s">
 <blockquote class="line">
-% if hasattr(line.persona, "name"):
-<header class="persona">{{ line.persona.name.fullname }}</header>
+% if hasattr(element.dialogue.persona, "name"):
+<header class="persona">{{ element.dialogue.persona.name.fullname }}</header>
 % end
-<p class="speech">{{ line.text }}</p>
+<p class="speech">{{ element.dialogue.text }}</p>
 </blockquote>
 </li>
 % end

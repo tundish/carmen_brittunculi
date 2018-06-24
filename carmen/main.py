@@ -31,7 +31,7 @@ from turberfield.dialogue.performer import Performer
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
-from carmen.frame import Frame
+from carmen.handler import Handler
 import carmen.logic
 from carmen.types import Coin
 from carmen.types import Compass
@@ -48,18 +48,6 @@ DEFAULT_DWELL = 0.3
 class World:
 
     quests = {}
-
-    validation = {
-        "email": re.compile(
-            "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]"
-            "+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9]"
-            "(?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+"
-            # http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
-        ),
-        "location": re.compile("[0-9a-f]{32}"),
-        "name": re.compile("[A-Z a-z]{2,32}"),
-        "quest": re.compile("[0-9a-f]{32}"),
-    }
 
     @staticmethod
     def moves(quest_uid):
@@ -95,7 +83,7 @@ async def get_start(request):
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/quest.tpl").decode("utf8"),
-            validation=World.validation,
+            validation=Handler.validation,
             refresh=None
         ),
         content_type="text/html"
@@ -106,10 +94,10 @@ async def post_start(request):
     data = await request.post()
     name = data["playername"]
     email = data["email"]
-    if not World.validation["name"].match(name):
+    if not Handler.validation["name"].match(name):
         raise web.HTTPUnauthorized(reason="User input invalid name.")
 
-    if not World.validation["email"].match(email):
+    if not Handler.validation["email"].match(email):
         log.warning("User input invalid email.")
     else:
         log.info("Email offered: {0}".format(email))
@@ -131,7 +119,7 @@ async def here(request):
 
     if not asscns.frames:
         scene = performer.run(react=False)
-        asscns.frames.extend(Frame.items(scene, dwell=0.3, pause=1))
+        asscns.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
 
     frame = asscns.frames.popleft()
     refresh = sum(asscns.frames[-1][0:2]) if asscns.frames else MAX_FRAME_S
@@ -186,9 +174,9 @@ def build_app(args):
     add_routes([
         web.get("/", get_start),
         web.post("/", post_start),
-        web.get("/{{quest:{0}}}".format(World.validation["quest"].pattern), here),
+        web.get("/{{quest:{0}}}".format(Handler.validation["quest"].pattern), here),
         web.post("/{{quest:{0}}}/move/{{destination:{1}}}".format(
-            World.validation["quest"].pattern, World.validation["location"].pattern
+            Handler.validation["quest"].pattern, Handler.validation["location"].pattern
         ), move),
     ])
 
