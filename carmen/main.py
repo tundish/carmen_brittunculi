@@ -53,22 +53,16 @@ class World:
     Quest = namedtuple("Quest", ["uid", "player", "frames", "finder", "workers"])
 
     @staticmethod
-    def moves(quest_uid):
-        try:
-            asscns = World.quests[quest_uid]
-        except KeyError:
-            bottle.abort(401, "Quest {0!s} not found.".format(quest_uid))
-
-        player = next(i for i in asscns.lookup if isinstance(i, Player))
-        spot = player.get_state(Spot)
+    def moves(quest):
+        spot = quest.player.get_state(Spot)
 
         locn = next(
-            i for i in asscns.lookup
+            i for i in quest.finder.lookup
             if isinstance(i, Location) and i.get_state(Spot) == spot
         )
         moves = [
             (Compass.legend(k), v)
-            for k, v in asscns.navigate(locn).items()
+            for k, v in quest.finder.navigate(locn).items()
         ]
         return locn, moves
 
@@ -106,27 +100,26 @@ async def post_start(request):
     else:
         log.info("Email offered: {0}".format(email))
 
-    uid = World.quest(name)
-    log.info("Player {0} created quest {1!s}".format(name, uid))
-    raise web.HTTPFound("/{0.hex}".format(uid))
+    quest = World.quest(name)
+    log.info("Player {0} created quest {1.uid!s}".format(name, quest))
+    raise web.HTTPFound("/{0.uid.hex}".format(quest))
 
 async def here(request):
     log = logging.getLogger("carmen.main.here")
     uid = uuid.UUID(hex=request.match_info["quest"])
-    log.debug(uid)
 
-    locn, moves = World.moves(uid)
-    asscns = World.quests[uid]
-    performer = Performer([carmen.logic.game], asscns.ensemble())
+    quest = World.quests[uid]
+    locn, moves = World.moves(quest)
+    performer = Performer([carmen.logic.game], quest.finder.ensemble())
     if performer.stopped:
         log.warning("Game Over.")
 
-    if not asscns.frames:
+    if not quest.frames:
         scene = performer.run(react=False)
-        asscns.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
+        quest.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
 
-    frame = asscns.frames.popleft()
-    refresh = sum(asscns.frames[-1][0:2]) if asscns.frames else MAX_FRAME_S
+    frame = quest.frames.popleft()
+    refresh = sum(quest.frames[-1][0:2]) if quest.frames else MAX_FRAME_S
     #TODO: Send frames to handler for reaction (async?)
 
 
@@ -135,11 +128,10 @@ async def here(request):
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
-            leaves=[],
             here=locn,
-            frame=frame,
             moves=sorted(moves),
-            quest=uid,
+            quest=quest,
+            frame=frame,
             refresh=refresh
         ),
         content_type="text/html"
@@ -148,18 +140,17 @@ async def here(request):
 async def move(request):
     log = logging.getLogger("carmen.main.move")
     quest_uid = uuid.UUID(hex=request.match_info["quest"])
-    log.debug(quest_uid)
-
-    locn, moves = World.moves(quest_uid)
-
-    dest_uid = uuid.UUID(hex=request.match_info["destination"])
-    log.debug(dest_uid)
-
     try:
-        locn = next(i for i in dict(moves).values() if i.id == dest_uid)
-        player = next(i for i in World.quests[quest_uid].lookup if isinstance(i, Player))
-        player.set_state(locn.get_state(Spot))
-        log.info("Player {0} moved to {1}".format(player, locn))
+        quest = World.quests[quest_uid]
+    except KeyError:
+        raise web.HTTPUnauthorized(reason="Quest {0!s} not found.".format(quest_uid))
+
+    locn, moves = World.moves(quest)
+    dest_uid = uuid.UUID(hex=request.match_info["destination"])
+    try:
+        destn = next(i for i in dict(moves).values() if i.id == dest_uid)
+        quest.player.set_state(destn.get_state(Spot))
+        log.info("Player {0} moved to {1}".format(player, destn))
     except Exception as e:
         log.exception(e)
     finally:
