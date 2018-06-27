@@ -26,6 +26,7 @@ from turberfield.dialogue.model import SceneScript
 
 from carmen import __version__ as version # noqa
 from carmen.routefinder import Routefinder
+from carmen.types import Character
 from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Player # noqa
@@ -197,6 +198,21 @@ def associations():
         None,
         Narrator()
     )
+
+    rv.register(
+        None,
+        Character(name="Civis Anatol Ant Bospor").set_state(
+            next(iter(rv.search(label="Common house"))).get_state(Spot)
+        ),
+    )
+
+    rv.register(
+        None,
+        Character(name="Maer Catrine Cadi Ingenbrettar").set_state(
+            next(iter(rv.search(label="Common house"))).get_state(Spot)
+        ),
+    )
+
     return rv
 
 
