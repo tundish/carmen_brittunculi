@@ -19,6 +19,7 @@
 import asyncio
 import argparse
 from collections import deque
+from collections import namedtuple
 import logging
 import re
 import sys
@@ -49,6 +50,8 @@ class World:
 
     quests = {}
 
+    Quest = namedtuple("Quest", ["uid", "player", "frames", "finder", "workers"])
+
     @staticmethod
     def moves(quest_uid):
         try:
@@ -71,13 +74,14 @@ class World:
 
     @staticmethod
     def quest(name):
+        finder = carmen.logic.associations()
+        start = next(iter(finder.search(label="Green lane")))
+        player = Player(name=name).set_state(start.get_state(Spot))
+        finder.register(None, player)
         uid = uuid.uuid4()
-        asscns = carmen.logic.associations()
-        asscns.frames = deque([])
-        start = next(iter(asscns.search(label="Green lane")))
-        asscns.register(None, Player(name=name).set_state(start.get_state(Spot)))
-        World.quests[uid] = asscns
-        return uid
+        rv = World.Quest(uid, player, deque([]), finder, [])
+        World.quests[uid] = rv
+        return rv
 
 async def get_start(request):
     return web.Response(
