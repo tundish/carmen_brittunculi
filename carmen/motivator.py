@@ -29,7 +29,6 @@ class Motivator:
     Move = namedtuple("Move", ["entity", "vector", "hop"])
 
     def __init__(self, actor, finder, *args):
-        self.log = logging.getLogger("motivator")
         self.actor = actor
         self.finder = finder
         self.dramas = args
@@ -47,7 +46,8 @@ class Motivator:
             yield Move(self.actor, vector, hop)
             here = spot
 
-    async def __call__(self, loop=None):
+    async def __call__(self, name, loop=None):
+        log = logging.getLogger(name)
 
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
@@ -56,22 +56,8 @@ class Motivator:
 
             try:
                 await self.actor._lock.acquire()
+                log.info(self.dramas)
 
-                op = self.operations[0]
-
-                if isinstance(op, Delivering):
-                    actions = self.deliver(finder, op)
-
-                for act in actions:
-                    if isinstance(act, Move):
-                        act.entity.set_state(act.hop.get_state(Spot))
-                        self.log.info("{0} goes {1} to {2.label}".format(
-                            "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                            if act.entity is self.actor
-                            else act.entity.label,
-                            Compass.legend(act.vector),
-                            act.hop
-                        ))
-                    await asyncio.sleep(0, loop=loop)
+                await asyncio.sleep(10, loop=loop)
             finally:
                 self.actor._lock.release()

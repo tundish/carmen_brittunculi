@@ -67,13 +67,18 @@ class World:
         return locn, moves
 
     @staticmethod
-    def quest(name):
+    def quest(name, loop=None):
+        loop = loop or asyncio.get_event_loop()
         finder = carmen.logic.associations()
+        activities = carmen.logic.activities(finder)
         start = next(iter(finder.search(label="Green lane")))
         player = Player(name=name).set_state(start.get_state(Spot))
         finder.register(None, player)
         uid = uuid.uuid4()
-        rv = World.Quest(uid, player, deque([]), finder, [])
+        rv = World.Quest(
+            uid, player, deque([]), finder,
+            [loop.create_task(i(str(uid), loop=loop)) for i in activities]
+        )
         World.quests[uid] = rv
         return rv
 
@@ -150,7 +155,7 @@ async def move(request):
     try:
         destn = next(i for i in dict(moves).values() if i.id == dest_uid)
         quest.player.set_state(destn.get_state(Spot))
-        log.info("Player {0} moved to {1}".format(player, destn))
+        log.info("Player {0} moved to {1}".format(quest.player, destn))
     except Exception as e:
         log.exception(e)
     finally:
