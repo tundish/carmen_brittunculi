@@ -18,6 +18,7 @@
 
 import unittest
 
+from carmen.logic import activities
 from carmen.logic import associations
 from carmen.logic import game
 from carmen.main import World
@@ -52,3 +53,14 @@ class TestNavigation(unittest.TestCase):
             predicate=lambda x: isinstance(x, Location)
         )
         self.assertEqual(4, len(neighbours))
+
+class TestActivities(unittest.TestCase):
+
+    def setUp(self):
+        self.asscns = associations()
+        self.activities = activities(self.asscns)
+
+    def test_activities(self):
+        self.assertEqual(1, len(self.activities))
+        self.assertEqual(1, len(self.activities[0].dramas))
+        self.fail(self.activities[0].dramas[0])

@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+from collections import deque
 import datetime
 import itertools
 import pathlib
@@ -25,6 +26,8 @@ import pkg_resources
 from turberfield.dialogue.model import SceneScript
 
 from carmen import __version__ as version # noqa
+from carmen.motivator import Affinity
+from carmen.motivator import Motivator
 from carmen.routefinder import Routefinder
 from carmen.types import Character
 from carmen.types import Location
@@ -215,6 +218,18 @@ def associations():
 
     return rv
 
+def activities(finder):
+    return [
+        Motivator(
+            next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
+            finder,
+            Affinity(
+                finder.search(label="Common house") |
+                finder.search(label="Marsh"),
+                deque([])
+            )
+        )
+    ]
 
 game = SceneScript.Folder(
     pkg="carmen",
