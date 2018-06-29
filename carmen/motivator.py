@@ -22,6 +22,7 @@ from collections import namedtuple
 from enum import Enum
 import logging
 
+from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Spot
 
@@ -78,7 +79,7 @@ class Motivator:
             try:
                 await self.actor._lock.acquire()
                 if self.actions:
-                    act = self.actions.pop()
+                    act = self.actions.popleft()
                     log.info(act)
                     if isinstance(act, Motivator.Move):
                         act.entity.set_state(act.hop.get_state(Spot))
