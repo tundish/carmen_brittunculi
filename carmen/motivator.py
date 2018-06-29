@@ -64,7 +64,7 @@ class Motivator:
         for hop in route:
             spot = hop.get_state(Spot)
             vector = spot.value - here.value
-            yield Move(self.actor, vector, hop)
+            yield Motivator.Move(self.actor, vector, hop)
             here = spot
 
     async def __call__(self, name, loop=None):
@@ -80,7 +80,7 @@ class Motivator:
                 if self.actions:
                     act = self.actions.pop()
                     log.info(act)
-                    if isinstance(act, Move):
+                    if isinstance(act, Motivator.Move):
                         act.entity.set_state(act.hop.get_state(Spot))
                         log.info("{0} goes {1} to {2.label}".format(
                             "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
@@ -96,8 +96,10 @@ class Motivator:
                         if isinstance(drama, Affinity):
                             here = self.actor.get_state(Spot)
                             options = {abs(i.get_state(Spot).value - here.value): i for i in drama.entities}
-                            location = options[min(options)]
+                            location = options[min(filter(None, options))]
+                            log.info(location)
                             self.actions.extend(self.travel(location))
+                            log.info(self.actions)
 
                         self.dramas.rotate(1)
 
