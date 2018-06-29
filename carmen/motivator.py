@@ -24,6 +24,22 @@ import logging
 Drama = namedtuple("Drama", ["entities", "memory"])
 Affinity = namedtuple("Affinity", Drama._fields)
 
+class Clock:
+
+    period = 15
+    tick = None
+
+    async def __call__(self, name, loop=None):
+        log = logging.getLogger(name)
+        if Clock.tick is None:
+            Clock.tick = asyncio.Condition(loop=loop)
+
+        while True:
+            await asyncio.sleep(Clock.period, loop=loop)
+            if await Clock.tick.acquire():
+                Clock.tick.notify_all()
+                Clock.tick.release()
+
 class Motivator:
 
     Move = namedtuple("Move", ["entity", "vector", "hop"])
@@ -58,6 +74,8 @@ class Motivator:
                 await self.actor._lock.acquire()
                 log.info(self.dramas)
 
-                await asyncio.sleep(10, loop=loop)
+                if Clock.tick and await Clock.tick.acquire():
+                    await Clock.tick.wait()
+                    Clock.tick.release()
             finally:
                 self.actor._lock.release()

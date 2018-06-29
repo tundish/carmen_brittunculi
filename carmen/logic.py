@@ -27,6 +27,7 @@ from turberfield.dialogue.model import SceneScript
 
 from carmen import __version__ as version # noqa
 from carmen.motivator import Affinity
+from carmen.motivator import Clock
 from carmen.motivator import Motivator
 from carmen.routefinder import Routefinder
 from carmen.types import Character
@@ -220,6 +221,7 @@ def associations():
 
 def activities(finder):
     return [
+        Clock(),
         Motivator(
             next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
             finder,
