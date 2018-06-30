@@ -19,7 +19,6 @@
 import asyncio
 from collections import deque
 from collections import namedtuple
-from enum import Enum
 import logging
 
 from carmen.types import Compass
@@ -35,7 +34,6 @@ class Clock:
     tick = None
 
     async def __call__(self, name, loop=None):
-        log = logging.getLogger(name)
         if Clock.tick is None:
             Clock.tick = asyncio.Condition(loop=loop)
 
@@ -80,7 +78,6 @@ class Motivator:
                 await self.actor._lock.acquire()
                 if self.actions:
                     act = self.actions.popleft()
-                    log.info(act)
                     if isinstance(act, Motivator.Move):
                         act.entity.set_state(act.hop.get_state(Spot))
                         log.info("{0} goes {1} to {2.label}".format(
@@ -93,14 +90,14 @@ class Motivator:
                 else:
                     drama = self.dramas and self.dramas[-1]
                     if drama:
-                        log.info(drama)
                         if isinstance(drama, Affinity):
                             here = self.actor.get_state(Spot)
-                            options = {abs(i.get_state(Spot).value - here.value): i for i in drama.entities}
+                            options = {
+                                abs(i.get_state(Spot).value - here.value): i
+                                for i in drama.entities
+                            }
                             location = options[min(filter(None, options))]
-                            log.info(location)
                             self.actions.extend(self.travel(location))
-                            log.info(self.actions)
 
                         self.dramas.rotate(1)
 

@@ -21,7 +21,6 @@ import argparse
 from collections import deque
 from collections import namedtuple
 import logging
-import re
 import sys
 import uuid
 
@@ -34,13 +33,12 @@ from turberfield.utils.misc import log_setup
 from carmen import __version__
 from carmen.handler import Handler
 import carmen.logic
-from carmen.types import Coin
 from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Player
 from carmen.types import Spot
 
-MAX_FRAME_S = 21.3 # 8 bars at 90 BPM
+MAX_FRAME_S = 21.3  # 8 bars at 90 BPM
 DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
@@ -124,8 +122,7 @@ async def here(request):
 
     frame = quest.frames.popleft()
     refresh = sum(quest.frames[-1][0:2]) if quest.frames else MAX_FRAME_S
-    #TODO: Send frames to handler for reaction (async?)
-
+    # TODO: Send frames to handler for reaction (async?)
 
     # TODO: cast only entities at this location
     # TODO: fall back to generic location scene

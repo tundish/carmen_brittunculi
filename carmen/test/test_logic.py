@@ -22,6 +22,8 @@ from carmen.logic import activities
 from carmen.logic import associations
 from carmen.logic import game
 from carmen.main import World
+from carmen.motivator import Clock
+from carmen.motivator import Motivator
 from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Via
@@ -62,5 +64,6 @@ class TestActivities(unittest.TestCase):
 
     def test_activities(self):
         self.assertEqual(2, len(self.activities))
+        self.assertIsInstance(self.activities[0], Clock)
+        self.assertIsInstance(self.activities[1], Motivator)
         self.assertEqual(1, len(self.activities[1].dramas))
-        self.fail(self.activities[1].dramas[0])

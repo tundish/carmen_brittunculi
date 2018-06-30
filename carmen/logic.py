@@ -242,6 +242,7 @@ def activities(finder):
         )
     ]
 
+
 game = SceneScript.Folder(
     pkg="carmen",
     description="Dialogue for a Game Jam.",
