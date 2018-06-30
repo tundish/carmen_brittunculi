@@ -31,11 +31,13 @@ from carmen.motivator import Clock
 from carmen.motivator import Motivator
 from carmen.routefinder import Routefinder
 from carmen.types import Character
+from carmen.types import CubbyFruit
 from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Player # noqa
 from carmen.types import Spot
 from carmen.types import Via
+from carmen.types import Visibility
 
 ides_of_march = datetime.date(396, 3, 1)
 
@@ -215,6 +217,13 @@ def associations():
         Character(name="Maer Catrine Cadi Ingenbrettar").set_state(
             next(iter(rv.search(label="Common house"))).get_state(Spot)
         ),
+    )
+
+    rv.register(
+        None,
+        CubbyFruit().set_state(
+            next(iter(rv.search(label="Grove of Hades"))).get_state(Spot)
+        ).set_state(Visibility.hidden),
     )
 
     return rv

@@ -61,6 +61,6 @@ class TestActivities(unittest.TestCase):
         self.activities = activities(self.asscns)
 
     def test_activities(self):
-        self.assertEqual(1, len(self.activities))
-        self.assertEqual(1, len(self.activities[0].dramas))
-        self.fail(self.activities[0].dramas[0])
+        self.assertEqual(2, len(self.activities))
+        self.assertEqual(1, len(self.activities[1].dramas))
+        self.fail(self.activities[1].dramas[0])

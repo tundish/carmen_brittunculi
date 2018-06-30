@@ -148,7 +148,7 @@ class Narrator(Stateful): pass
 class Character(Stateful, Persona): pass
 class Coin(Stateful, DataObject): pass
 class Location(Stateful, DataObject): pass
-class Marker(Stateful, DataObject): pass
+class CubbyFruit(Stateful): pass
 
 
 Assembly.register(Spot)

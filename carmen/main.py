@@ -38,7 +38,6 @@ from carmen.types import Coin
 from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Player
-from carmen.types import Marker
 from carmen.types import Spot
 
 MAX_FRAME_S = 21.3 # 8 bars at 90 BPM
