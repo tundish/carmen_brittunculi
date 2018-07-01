@@ -41,7 +41,7 @@ setup(
     packages=["carmen", "carmen.test", "carmen.utils"],
     package_data={
         "carmen": [
-            "dialogue/*.rst",
+            "dialogue/*/*.rst",
             "static/css/*.css",
             "static/svg/*.svg",
             "templates/*.tpl",

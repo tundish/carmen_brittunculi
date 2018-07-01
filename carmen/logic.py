@@ -252,7 +252,7 @@ game = SceneScript.Folder(
             pkg_resources.resource_filename("carmen", "")
         ))
         for i in pathlib.Path(
-            pkg_resources.resource_filename("carmen", "dialogue")
+            pkg_resources.resource_filename("carmen", "dialogue/local")
         ).glob("*.rst")
     ],
     interludes=itertools.repeat(None)
