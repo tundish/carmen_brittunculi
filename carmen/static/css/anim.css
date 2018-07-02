@@ -1,7 +1,6 @@
 ul.turberfield-dialogue-frame li {
 animation-name: fadeinout;
 animation-fill-mode: both;
-list-style-type: none;
 }
 
 ul.turberfield-dialogue-frame li:last-of-type {

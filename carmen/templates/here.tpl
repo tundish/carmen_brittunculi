@@ -1,6 +1,6 @@
 %rebase("top.tpl")
 <main class="events">
-<h1>{{ here.label.capitalize() }}</h1>
+<h1>{{ frame[0].shot.scene.capitalize() }}</h1>
 
 <ul class="turberfield-dialogue-frame">
 % for element in frame:

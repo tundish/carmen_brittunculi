@@ -123,7 +123,7 @@ async def here(request):
         quest.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
 
     frame = quest.frames.popleft()
-    refresh = sum(quest.frames[-1][0:2]) if quest.frames else MAX_FRAME_S
+    refresh = sum(quest.frames[-1][1:3]) if quest.frames else MAX_FRAME_S
     Handler.react(frame)
 
     return web.Response(

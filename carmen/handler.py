@@ -35,7 +35,7 @@ class Handler:
         "quest": re.compile("[0-9a-f]{32}"),
     }
 
-    Element = namedtuple("Element", ["dialogue", "offset", "duration"])
+    Element = namedtuple("Element", ["dialogue", "shot", "offset", "duration"])
 
     @staticmethod
     def frames(seq, dwell, pause):
@@ -56,11 +56,11 @@ class Handler:
                 if isinstance(item, Model.Shot):
                     shot = item
                 else:
-                    frame.append(Handler.Element(item, item.offset, item.duration))
+                    frame.append(Handler.Element(item, shot, item.offset, item.duration))
 
             elif isinstance(item, Model.Line):
                 durn = pause + dwell * item.text.count(" ")
-                frame.append(Handler.Element(item, offset, durn))
+                frame.append(Handler.Element(item, shot, offset, durn))
                 offset += durn
         else:
             yield frame
