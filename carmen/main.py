@@ -124,7 +124,7 @@ async def here(request):
 
     frame = quest.frames.popleft()
     refresh = sum(quest.frames[-1][0:2]) if quest.frames else MAX_FRAME_S
-    # TODO: Send frames to handler for reaction (async?)
+    Handler.react(frame)
 
     return web.Response(
         text=bottle.template(

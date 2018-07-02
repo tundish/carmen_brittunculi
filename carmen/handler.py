@@ -64,3 +64,10 @@ class Handler:
                 offset += durn
         else:
             yield frame
+
+    @staticmethod
+    def react(frame, loop=None):
+        for element in frame:
+            event = element.dialogue
+            if isinstance(event, Model.Property) and event.object is not None:
+                setattr(event.object, event.attr, event.val)
