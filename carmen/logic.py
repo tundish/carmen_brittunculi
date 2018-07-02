@@ -243,17 +243,33 @@ def activities(finder):
     ]
 
 
-game = SceneScript.Folder(
-    pkg="carmen",
-    description="Dialogue for a Game Jam.",
-    metadata={},
-    paths=[
-        str(i.relative_to(
-            pkg_resources.resource_filename("carmen", "")
-        ))
-        for i in pathlib.Path(
-            pkg_resources.resource_filename("carmen", "dialogue/local")
-        ).glob("*.rst")
-    ],
-    interludes=itertools.repeat(None)
-)
+episodes = [
+    SceneScript.Folder(
+        pkg="carmen",
+        description="Dialogue for a Game Episode 1.",
+        metadata={},
+        paths=[
+            str(i.relative_to(
+                pkg_resources.resource_filename("carmen", "")
+            ))
+            for i in pathlib.Path(
+                pkg_resources.resource_filename("carmen", "dialogue/ep_01")
+            ).glob("*.rst")
+        ],
+        interludes=itertools.repeat(None)
+    ),
+    SceneScript.Folder(
+        pkg="carmen",
+        description="Location descriptions.",
+        metadata={},
+        paths=[
+            str(i.relative_to(
+                pkg_resources.resource_filename("carmen", "")
+            ))
+            for i in pathlib.Path(
+                pkg_resources.resource_filename("carmen", "dialogue/local")
+            ).glob("*.rst")
+        ],
+        interludes=itertools.repeat(None)
+    )
+]

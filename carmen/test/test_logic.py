@@ -20,7 +20,7 @@ import unittest
 
 from carmen.logic import activities
 from carmen.logic import associations
-from carmen.logic import game
+from carmen.logic import episodes
 from carmen.main import World
 from carmen.motivator import Clock
 from carmen.motivator import Motivator
@@ -31,7 +31,7 @@ from carmen.types import Via
 class TestDialogue(unittest.TestCase):
 
     def test_folder(self):
-        self.assertEqual(34, len(game.paths))
+        self.assertEqual(34, len(episodes[-1].paths))
 
     def test_cast(self):
         asscns = associations()

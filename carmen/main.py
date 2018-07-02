@@ -112,7 +112,7 @@ async def here(request):
 
     quest = World.quests[uid]
     locn, moves = World.moves(quest)
-    performer = Performer([carmen.logic.game], quest.finder.ensemble())
+    performer = Performer(carmen.logic.episodes, quest.finder.ensemble())
     if performer.stopped:
         log.warning("Game Over.")
 
