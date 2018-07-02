@@ -112,7 +112,9 @@ async def here(request):
 
     quest = World.quests[uid]
     locn, moves = World.moves(quest)
-    performer = Performer(carmen.logic.episodes, quest.finder.ensemble())
+    spot = locn.get_state(Spot)
+    entities = [i for i in quest.finder.ensemble() if i.get_state(Spot) == spot]
+    performer = Performer(carmen.logic.episodes, entities)
     if performer.stopped:
         log.warning("Game Over.")
 
@@ -124,8 +126,6 @@ async def here(request):
     refresh = sum(quest.frames[-1][0:2]) if quest.frames else MAX_FRAME_S
     # TODO: Send frames to handler for reaction (async?)
 
-    # TODO: cast only entities at this location
-    # TODO: fall back to generic location scene
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),

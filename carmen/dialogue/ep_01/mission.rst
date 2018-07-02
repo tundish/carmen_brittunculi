@@ -12,7 +12,9 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_2005
+
+.. entity:: NPC
+   :types: carmen.logic.Character
 
 Mission
 ~~~~~~~

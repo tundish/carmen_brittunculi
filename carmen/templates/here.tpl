@@ -8,7 +8,10 @@
 <li style="animation-duration: {{ element.duration }}s; animation-delay: {{ element.offset }}s">
 <blockquote class="line">
 % if hasattr(element.dialogue.persona, "name"):
-<header class="persona">{{ element.dialogue.persona.name.fullname }}</header>
+<header class="persona">
+{{ element.dialogue.persona.name.firstname }}
+{{ element.dialogue.persona.name.surname }}
+</header>
 % end
 <p class="speech">{{ element.dialogue.text }}</p>
 </blockquote>
