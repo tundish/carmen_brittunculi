@@ -37,6 +37,7 @@ from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Player
 from carmen.types import Spot
+from carmen.types import Visibility
 
 MAX_FRAME_S = 21.3  # 8 bars at 90 BPM
 DEFAULT_PORT = 8080
@@ -113,7 +114,11 @@ async def here(request):
     quest = World.quests[uid]
     locn, moves = World.moves(quest)
     spot = locn.get_state(Spot)
-    entities = [i for i in quest.finder.ensemble() if i.get_state(Spot) == spot]
+    entities = [
+        i for i in quest.finder.ensemble()
+        if i.get_state(Spot) == spot
+        or i.get_state(Visibility) == Visibility.indicated
+    ]
     performer = Performer(carmen.logic.episodes, entities)
     if performer.stopped:
         log.warning("Game Over.")

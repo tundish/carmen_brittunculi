@@ -12,13 +12,10 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
+   :states: carmen.types.Visibility.indicated
 
 .. entity:: NPC
    :types: carmen.logic.Character
-
-.. entity:: OBJECTIVE
-   :types: carmen.logic.Location
-   :states: carmen.types.Visibility.indicated
 
 Mission
 ~~~~~~~
@@ -28,6 +25,4 @@ Something to do
 
 [NPC]_
 
-    I've got something for you to do. Go to |LOCATION|.
-
-.. |LOCATION| property:: OBJECTIVE.label
+    I've got something for you to do.

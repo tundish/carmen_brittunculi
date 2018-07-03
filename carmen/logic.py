@@ -20,6 +20,7 @@ from collections import deque
 import datetime
 import itertools
 import pathlib
+import random
 
 import pkg_resources
 
@@ -219,12 +220,12 @@ def associations():
         ),
     )
 
-    rv.register(
-        None,
-        CubbyFruit().set_state(
-            next(iter(rv.search(label="Grove of Hades"))).get_state(Spot)
-        ).set_state(Visibility.hidden),
-    )
+    for i in random.sample([i for i in rv.lookup if isinstance(i, Location)], 4):
+        rv.register(
+            None,
+            CubbyFruit().set_state(i.get_state(Spot)).set_state(Visibility.hidden),
+        )
+        i.set_state(Visibility.indicated)
 
     return rv
 
