@@ -20,10 +20,12 @@ import asyncio
 from collections import deque
 from collections import namedtuple
 import logging
+import random
 
 from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Spot
+from carmen.types import Visibility
 
 Drama = namedtuple("Drama", ["entities", "memory"])
 Affinity = namedtuple("Affinity", Drama._fields)
@@ -42,6 +44,30 @@ class Clock:
             if await Clock.tick.acquire():
                 Clock.tick.notify_all()
                 Clock.tick.release()
+
+class Creator:
+
+    def __init__(self, finder, factory, *args, probability=1):
+        self.finder = finder
+        self.factory = factory
+        self.probability = probability
+        self.locns = args or [i for i in finder.lookup if isinstance(i, Location)]
+
+    async def __call__(self, name, loop=None):
+        log = logging.getLogger(name)
+
+        while True:
+
+            if Clock.tick and await Clock.tick.acquire():
+                await Clock.tick.wait()
+                Clock.tick.release()
+
+            if random.random() < self.probability:
+                locn = random.choice(self.locns)
+                obj = self.factory().set_state(locn.get_state(Spot)).set_state(Visibility.new)
+                self.finder.register(None, obj)
+                locn.set_state(Visibility.indicated)
+                log.info("Created {0} at {1}.".format(obj, locn))
 
 class Motivator:
 

@@ -33,7 +33,9 @@ from turberfield.utils.assembly import Assembly
 class Visibility(EnumFactory, enum.Enum):
     hidden = 0
     visible = 1
-    indicated = 1
+    detail = 2
+    indicated = 3
+    new = 4
 
 class Compass:
 

@@ -117,8 +117,9 @@ async def here(request):
     entities = [
         i for i in quest.finder.ensemble()
         if i.get_state(Spot) == spot
-        or i.get_state(Visibility) == Visibility.indicated
+        or i.get_state(Visibility) in (Visibility.indicated, Visibility.new)
     ]
+    log.debug(entities)
     performer = Performer(carmen.logic.episodes, entities)
     if performer.stopped:
         log.warning("Game Over.")
@@ -156,6 +157,8 @@ async def move(request):
     try:
         destn = next(i for i in dict(moves).values() if i.id == dest_uid)
         quest.player.set_state(destn.get_state(Spot))
+        locn.set_state(Visibility.visible)
+        destn.set_state(Visibility.detail)
         log.info("Player {0} moved to {1}".format(quest.player, destn))
     except Exception as e:
         log.exception(e)

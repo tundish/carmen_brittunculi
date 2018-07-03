@@ -16,9 +16,16 @@
 .. entity:: NPC
    :types: carmen.logic.Character
 
-.. entity:: OBJECTIVE
+.. entity:: LOCATION
+   :types: carmen.logic.Location
+   :states: carmen.types.Visibility.detail
+
+.. entity:: DESTINATION
    :types: carmen.logic.Location
    :states: carmen.types.Visibility.indicated
+
+.. entity:: OBJECTIVE
+   :states: carmen.types.Visibility.new
 
 Mission
 ~~~~~~~
@@ -28,6 +35,17 @@ Something to do
 
 [NPC]_
 
-    I've got something for you to do. Go to |LOCATION|.
+    I've got something for you to do.
 
-.. |LOCATION| property:: OBJECTIVE.label
+[NPC]_
+
+    Have a look around the |PLACE|.
+    You might find a |OBJECT|.
+
+[NPC]_
+
+    Come back to the |HERE| when you've got one.
+
+.. |OBJECT| property:: OBJECTIVE.__class__.__name__
+.. |PLACE| property:: DESTINATION.label
+.. |HERE| property:: LOCATION.label

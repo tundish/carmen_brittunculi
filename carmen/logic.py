@@ -18,6 +18,7 @@
 
 from collections import deque
 import datetime
+from fractions import Fraction
 import itertools
 import pathlib
 import random
@@ -29,6 +30,7 @@ from turberfield.dialogue.model import SceneScript
 from carmen import __version__ as version # noqa
 from carmen.motivator import Affinity
 from carmen.motivator import Clock
+from carmen.motivator import Creator
 from carmen.motivator import Motivator
 from carmen.routefinder import Routefinder
 from carmen.types import Character
@@ -220,18 +222,12 @@ def associations():
         ),
     )
 
-    for i in random.sample([i for i in rv.lookup if isinstance(i, Location)], 4):
-        rv.register(
-            None,
-            CubbyFruit().set_state(i.get_state(Spot)).set_state(Visibility.hidden),
-        )
-        i.set_state(Visibility.indicated)
-
     return rv
 
 def activities(finder):
     return [
         Clock(),
+        Creator(finder, CubbyFruit, probability=Fraction(1, 8)),
         Motivator(
             next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
             finder,
