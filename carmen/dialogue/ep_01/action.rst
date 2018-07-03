@@ -29,4 +29,6 @@ Something to do
 
     You pick up the |OBJECT|.
 
+.. property:: OBJECTIVE.state carmen.types.Spot.pockets
+
 .. |OBJECT| property:: OBJECTIVE.__class__.__name__

@@ -18,13 +18,13 @@
 
 import unittest
 
+from carmen.agents import Clock
+from carmen.agents import Creator
+from carmen.agents import Motivator
 from carmen.logic import activities
 from carmen.logic import associations
 from carmen.logic import episodes
 from carmen.main import World
-from carmen.motivator import Clock
-from carmen.motivator import Creator
-from carmen.motivator import Motivator
 from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Via
