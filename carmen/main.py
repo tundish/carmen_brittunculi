@@ -35,6 +35,7 @@ from carmen.handler import Handler
 import carmen.logic
 from carmen.types import Compass
 from carmen.types import Location
+from carmen.types import Narrator
 from carmen.types import Player
 from carmen.types import Spot
 from carmen.types import Visibility
@@ -118,6 +119,7 @@ async def here(request):
         i for i in quest.finder.ensemble()
         if i.get_state(Spot) == spot
         or i.get_state(Visibility) in (Visibility.indicated, Visibility.new)
+        or isinstance(i, Narrator)
     ]
     log.debug(entities)
     performer = Performer(carmen.logic.episodes, entities)
@@ -130,7 +132,7 @@ async def here(request):
 
     frame = quest.frames.popleft()
     refresh = sum(quest.frames[-1][1:3]) if quest.frames else MAX_FRAME_S
-    Handler.react(frame)
+    Handler.react(quest, frame)
 
     return web.Response(
         text=bottle.template(

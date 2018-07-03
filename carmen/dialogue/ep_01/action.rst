@@ -12,10 +12,12 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.types.Visibility.indicated
 
-.. entity:: NPC
-   :types: carmen.logic.Character
+.. entity:: NARRATOR
+   :types: carmen.logic.Narrator
+
+.. entity:: OBJECTIVE
+   :states: carmen.types.Visibility.visible
 
 Mission
 ~~~~~~~
@@ -23,6 +25,8 @@ Mission
 Something to do
 ---------------
 
-[NPC]_
+[Narrator]_
 
-    I've got something for you to do.
+    You pick up the |OBJECT|.
+
+.. |OBJECT| property:: OBJECTIVE.__class__.__name__

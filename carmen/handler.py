@@ -17,6 +17,7 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 from collections import namedtuple
+import logging
 import re
 
 from turberfield.dialogue.model import Model
@@ -62,12 +63,16 @@ class Handler:
                 durn = pause + dwell * item.text.count(" ")
                 frame.append(Handler.Element(item, shot, offset, durn))
                 offset += durn
+            else:
+                frame.append(Handler.Element(item, shot, offset, offset))
         else:
             yield frame
 
     @staticmethod
-    def react(frame, loop=None):
+    def react(quest, frame, loop=None):
+        log = logging.getLogger(str(quest.uid))
         for element in frame:
             event = element.dialogue
             if isinstance(event, Model.Property) and event.object is not None:
                 setattr(event.object, event.attr, event.val)
+                log.info("React on property {0}".format(event))

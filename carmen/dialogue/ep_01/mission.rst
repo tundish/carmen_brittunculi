@@ -46,6 +46,8 @@ Something to do
 
     Come back to the |HERE| when you've got one.
 
+.. property:: OBJECTIVE.state carmen.types.Visibility.visible
+
 .. |OBJECT| property:: OBJECTIVE.__class__.__name__
 .. |PLACE| property:: DESTINATION.label
 .. |HERE| property:: LOCATION.label

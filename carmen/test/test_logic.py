@@ -23,6 +23,7 @@ from carmen.logic import associations
 from carmen.logic import episodes
 from carmen.main import World
 from carmen.motivator import Clock
+from carmen.motivator import Creator
 from carmen.motivator import Motivator
 from carmen.types import Location
 from carmen.types import Narrator
@@ -63,7 +64,8 @@ class TestActivities(unittest.TestCase):
         self.activities = activities(self.asscns)
 
     def test_activities(self):
-        self.assertEqual(2, len(self.activities))
+        self.assertEqual(3, len(self.activities))
         self.assertIsInstance(self.activities[0], Clock)
-        self.assertIsInstance(self.activities[1], Motivator)
-        self.assertEqual(1, len(self.activities[1].dramas))
+        self.assertIsInstance(self.activities[1], Creator)
+        self.assertIsInstance(self.activities[2], Motivator)
+        self.assertEqual(1, len(self.activities[2].dramas))
