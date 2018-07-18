@@ -42,6 +42,8 @@ Something to do
     Have a look around the |PLACE|.
     You might find a |OBJECT|.
 
+.. .. condition:: NPC.disposition carmen.types.Disposition.generous
+
 [NPC]_
 
     Come back to the |HERE| when you've got one.
