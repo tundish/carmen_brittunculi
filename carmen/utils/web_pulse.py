@@ -19,9 +19,12 @@
 from collections import deque
 from decimal import Decimal
 import itertools
+import sys
 
 import aiohttp.web
 import pygal
+
+import carmen.logic
 
 # Text reveal with CSS3:
 # https://www.youtube.com/watch?v=3YKpKpC1O5s
@@ -79,13 +82,18 @@ print("Seconds per measure: {0:0.3}".format(4 / BPM * 60))
 print("Seconds per frame: {0:0.3}".format(8 * 4 / BPM * 60))
 print("Frames per game: {0:0.2f}".format(4 * 60 * 60 / 8 / 4 * BPM / 60))
 
-#print(*list(itertools.islice(oscillator(0.1), 0, 12)))
-data = itertools.islice(delay(), 0, 124)
+# print(*list(itertools.islice(oscillator(0.1), 0, 12)))
+# data = itertools.islice(delay(), 0, 1280)
 # app = configure_app()
 # aiohttp.web.run_app(app)
 
-chart = pygal.XY()
-chart.title = "Wave"
-chart.add("delay osc", list(enumerate(data)))
-chart.render_in_browser()
+finder = carmen.logic.associations()
+chart = pygal.XY(stroke=False)
+chart.title = "Map"
+locns = (i for i in finder.ensemble() if isinstance(i, carmen.logic.Location))
+for locn in locns:
+    spot = locn.get_state(carmen.logic.Spot)
+    chart.add(locn.label, [(spot.value.real, spot.value.imag)], dots_size=12)
+    print(locn, file=sys.stderr)
 
+chart.render_to_file("locations.svg")

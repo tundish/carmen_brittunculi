@@ -56,9 +56,13 @@ setup(
     extras_require={
         "dev": [
             "flake8>=3.5.0",
-            "lxml>=4.2.3",
-            "pygal>=2.4.0",
             "wheel>=0.30.0",
+        ],
+        "doc": [
+            "cssselect>=1.0.3",
+            "lxml>=4.2.3",
+            "tinycss>=0.4",
+            "pygal>=2.4.0",
         ],
     },
     entry_points={
