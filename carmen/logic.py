@@ -47,17 +47,39 @@ ides_of_march = datetime.date(396, 3, 1)
 def associations():
     rv = Routefinder()
     rv.register(
-        Via.bidir,
-        Location(label="Grove of Hades").set_state(Spot.grid_0808),
-        Location(label="Quarry path").set_state(Spot.grid_0610),
-        Location(label="Brambly dell").set_state(Spot.grid_0507),
-        Location(label="Common house").set_state(Spot.grid_1106),
-        Location(label="North gate").set_state(Spot.grid_1109),
+        Via.forwd,
+        Location(label="Green lane").set_state(Spot.grid_1500),
+        Location(label="South gate").set_state(Spot.grid_1302),
     )
+
+    rv.register(
+        Via.bidir,
+        Location(label="Clearing").set_state(Spot.grid_1104),
+        Location(label="Grove of Hades").set_state(Spot.grid_0804),
+        Location(label="Stream").set_state(Spot.grid_0906),
+        Location(label="North gate").set_state(Spot.grid_1109),
+        Location(label="Common house").set_state(Spot.grid_1306),
+        next(iter(rv.search(label="South gate"))),
+    )
+
+    rv.register(
+        Via.bidir,
+        Location(label="Footbridge").set_state(Spot.grid_0908),
+        next(iter(rv.search(label="Stream"))),
+        next(iter(rv.search(label="North gate"))),
+    )
+
     rv.register(
         Via.bidir,
         next(iter(rv.search(label="Common house"))),
-        next(iter(rv.search(label="North gate"))),
+        Location(label="Kitchen").set_state(Spot.grid_1308),
+        Location(label="Woodshed").set_state(Spot.grid_1407),
+    )
+    rv.register(
+        Via.bidir,
+        next(iter(rv.search(label="Grove of Hades"))),
+        Location(label="Quarry path").set_state(Spot.grid_0610),
+        Location(label="Brambly dell").set_state(Spot.grid_0507),
     )
     rv.register(
         Via.bidir,
@@ -197,12 +219,6 @@ def associations():
         next(iter(rv.search(label="Brambly dell"))),
         next(iter(rv.search(label="Rookery"))),
     )
-    rv.register(
-        Via.forwd,
-        Location(label="Green lane").set_state(Spot.grid_1102),
-        next(iter(rv.search(label="Common house"))),
-    )
-
     rv.register(
         None,
         Narrator()
