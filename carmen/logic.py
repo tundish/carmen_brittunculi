@@ -79,13 +79,13 @@ def associations():
         Via.bidir,
         next(iter(rv.search(label="Grove of Hades"))),
         Location(label="Quarry path").set_state(Spot.grid_0610),
-        Location(label="Brambly dell").set_state(Spot.grid_0816),
+        Location(label="Brambly dell").set_state(Spot.grid_1116),
     )
 
     rv.register(
         Via.forwd,
         next(iter(rv.search(label="Brambly dell"))),
-        Location(label="Woody tangle").set_state(Spot.grid_1116),
+        Location(label="Woody tangle").set_state(Spot.grid_0816),
     )
     rv.register(
         Via.forwd,
