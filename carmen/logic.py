@@ -79,13 +79,13 @@ def associations():
         Via.bidir,
         next(iter(rv.search(label="Grove of Hades"))),
         Location(label="Quarry path").set_state(Spot.grid_0610),
-        Location(label="Brambly dell").set_state(Spot.grid_0507),
+        Location(label="Brambly dell").set_state(Spot.grid_0816),
     )
 
     rv.register(
         Via.forwd,
         next(iter(rv.search(label="Brambly dell"))),
-        Location(label="Woody tangle").set_state(Spot.grid_0706),
+        Location(label="Woody tangle").set_state(Spot.grid_1116),
     )
     rv.register(
         Via.forwd,
@@ -95,17 +95,17 @@ def associations():
     rv.register(
         Via.forwd,
         next(iter(rv.search(label="Woody tangle"))),
-        Location(label="Prickly thicket").set_state(Spot.grid_0703),
+        Location(label="Prickly thicket").set_state(Spot.grid_1413),
     )
     rv.register(
         Via.forwd,
         next(iter(rv.search(label="Prickly thicket"))),
-        Location(label="Oak shrine").set_state(Spot.grid_0203),
+        Location(label="Oak shrine").set_state(Spot.grid_1416),
     )
     rv.register(
         Via.forwd,
         next(iter(rv.search(label="Oak shrine"))),
-        Location(label="Rookery").set_state(Spot.grid_0505),
+        Location(label="Rookery").set_state(Spot.grid_1413),
     )
     rv.register(
         Via.bidir,
