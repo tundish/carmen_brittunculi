@@ -45,7 +45,7 @@ class TestNavigation(unittest.TestCase):
 
     def test_new_world(self):
         quest = World.quest("Stig")
-        self.assertEqual(40, len([i for i in quest.finder.lookup if isinstance(i, Location)]))
+        self.assertEqual(41, len([i for i in quest.finder.lookup if isinstance(i, Location)]))
 
     def test_associations(self):
         locn = next(iter(self.a.search(label="Grove of Hades")))
@@ -55,7 +55,7 @@ class TestNavigation(unittest.TestCase):
             reverse=[Via.bidir, Via.bckwd],
             predicate=lambda x: isinstance(x, Location)
         )
-        self.assertEqual(3, len(neighbours))
+        self.assertEqual(2, len(neighbours))
 
 class TestActivities(unittest.TestCase):
 

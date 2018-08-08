@@ -79,45 +79,47 @@ def associations():
         Via.bidir,
         next(iter(rv.search(label="Grove of Hades"))),
         Location(label="Quarry path").set_state(Spot.grid_0610),
-        Location(label="Brambly dell").set_state(Spot.grid_1116),
     )
 
     rv.register(
-        Via.forwd,
-        next(iter(rv.search(label="Brambly dell"))),
+        Via.bidir,
+        Location(label="Rookery").set_state(Spot.grid_1413),
+        Location(label="Shady lane").set_state(Spot.grid_0909),
+        Location(label="Copse").set_state(Spot.grid_1417),
         Location(label="Woody tangle").set_state(Spot.grid_0816),
-    )
-    rv.register(
-        Via.forwd,
-        next(iter(rv.search(label="Woody tangle"))),
-        next(iter(rv.search(label="Common house"))),
-    )
-    rv.register(
-        Via.forwd,
-        next(iter(rv.search(label="Woody tangle"))),
+        Location(label="Brambly dell").set_state(Spot.grid_1116),
+        Location(label="Oak shrine").set_state(Spot.grid_1416),
         Location(label="Prickly thicket").set_state(Spot.grid_1413),
     )
-    rv.register(
-        Via.forwd,
-        next(iter(rv.search(label="Prickly thicket"))),
-        Location(label="Oak shrine").set_state(Spot.grid_1416),
-    )
-    rv.register(
-        Via.forwd,
-        next(iter(rv.search(label="Oak shrine"))),
-        Location(label="Rookery").set_state(Spot.grid_1413),
-    )
+
     rv.register(
         Via.bidir,
+        next(iter(rv.search(label="Oak shrine"))),
         next(iter(rv.search(label="Brambly dell"))),
-        next(iter(rv.search(label="Rookery"))),
+        next(iter(rv.search(label="Prickly thicket"))),
     )
+
+    rv.register(
+        Via.bidir,
+        next(iter(rv.search(label="Woody tangle"))),
+        next(iter(rv.search(label="Copse"))),
+        next(iter(rv.search(label="Brambly dell"))),
+    )
+
+    rv.register(
+        Via.bidir,
+        next(iter(rv.search(label="Shady lane"))),
+        next(iter(rv.search(label="North gate"))),
+        next(iter(rv.search(label="Copse"))),
+    )
+
     rv.register(
         Via.bidir,
         Location(label="Scree").set_state(Spot.grid_1111),
         next(iter(rv.search(label="North gate"))),
         Location(label="Ridge").set_state(Spot.grid_1113),
     )
+
     rv.register(
         Via.bckwd,
         next(iter(rv.search(label="Scree"))),
@@ -158,7 +160,6 @@ def associations():
         Via.bidir,
         Location(label="Sheep track").set_state(Spot.grid_1017),
         Location(label="Cairn").set_state(Spot.grid_1115),
-        Location(label="Copse").set_state(Spot.grid_1417),
     )
     rv.register(
         Via.bidir,
