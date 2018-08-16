@@ -134,11 +134,13 @@ async def here(request):
     refresh = sum(quest.frames[-1][1:3]) if quest.frames else MAX_FRAME_S
     Handler.react(quest, frame)
 
+    items=len([i for i in quest.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
             here=locn,
             moves=sorted(moves),
+            items=items,
             quest=quest,
             frame=frame,
             refresh=refresh

@@ -24,6 +24,10 @@
 <aside class="diorama">
 <img src="/svg/poisson.svg"/>
 <!-- %include("forest.tpl", leaves=leaves) -->
+<dl>
+<dt>Items</dt>
+<dd>{{ items }}<dd>
+</dl>
 </aside>
 <nav>
 <ul>
