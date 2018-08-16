@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1106
+   :states: carmen.logic.Spot.grid_1306
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1106
+   :states: carmen.logic.Spot.grid_1306
 
 Common house
 ~~~~~~~~~~~~

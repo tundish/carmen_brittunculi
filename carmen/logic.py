@@ -83,9 +83,9 @@ def associations():
 
     rv.register(
         Via.bidir,
-        Location(label="Rookery").set_state(Spot.grid_1413),
+        Location(label="Rookery").set_state(Spot.grid_1113),
         Location(label="Shady lane").set_state(Spot.grid_0909),
-        Location(label="Copse").set_state(Spot.grid_1417),
+        Location(label="Copse").set_state(Spot.grid_0813),
         Location(label="Woody tangle").set_state(Spot.grid_0816),
         Location(label="Brambly dell").set_state(Spot.grid_1116),
         Location(label="Oak shrine").set_state(Spot.grid_1416),

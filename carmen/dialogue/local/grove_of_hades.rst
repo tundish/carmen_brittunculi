@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_0808
+   :states: carmen.logic.Spot.grid_0804
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_0808
+   :states: carmen.logic.Spot.grid_0804
 
 Grove of Hades
 ~~~~~~~~~~~~~~

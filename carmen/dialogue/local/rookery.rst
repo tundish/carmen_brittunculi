@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_0505
+   :states: carmen.logic.Spot.grid_1113
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_0505
+   :states: carmen.logic.Spot.grid_1113
 
 Rookery
 ~~~~~~~
