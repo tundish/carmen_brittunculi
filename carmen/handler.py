@@ -82,9 +82,10 @@ class Handler:
 
     @staticmethod
     def interlude(quest, loop=None):
-        log = logging.getLogger(str(quest.uid))
+        log = logging.getLogger("carmen.handler.interlude")
         while quest.interlude:
             operation = quest.interlude.popleft()
-            log.info(operation)
-            yield operation
+            if callable(operation):
+                log.debug(operation)
+                yield operation(quest, log=None, loop=loop)
 

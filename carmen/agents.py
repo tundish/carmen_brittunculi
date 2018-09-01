@@ -30,6 +30,9 @@ from carmen.types import Visibility
 Drama = namedtuple("Drama", ["entities", "memory"])
 Affinity = namedtuple("Affinity", Drama._fields)
 
+def day_night_cycle(quest, *args, log=None, loop=None, **kwargs):
+    log = log or logging.getLogger(str(quest.uid))
+
 class Clock:
 
     period = 15
