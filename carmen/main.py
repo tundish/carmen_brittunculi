@@ -49,7 +49,7 @@ class World:
 
     quests = {}
 
-    Quest = namedtuple("Quest", ["uid", "player", "frames", "finder", "workers"])
+    Quest = namedtuple("Quest", ["uid", "player", "frames", "interlude", "finder", "workers"])
 
     @staticmethod
     def moves(quest):
@@ -75,7 +75,7 @@ class World:
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = World.Quest(
-            uid, player, deque([]), finder,
+            uid, player, deque([]), deque([]), finder,
             [loop.create_task(i(str(uid), loop=loop)) for i in activities]
         )
         World.quests[uid] = rv
@@ -122,17 +122,19 @@ async def here(request):
         or isinstance(i, Narrator)
     ]
     log.debug(entities)
-    performer = Performer(carmen.logic.episodes, entities)
-    if performer.stopped:
-        log.warning("Game Over.")
 
+    performer = Performer(carmen.logic.episodes, entities)
     if not quest.frames:
+        list(Handler.interlude(quest))
+
+        *_, interlude = performer.next(carmen.logic.episodes, entities)
+        quest.interlude.append(interlude)
         scene = performer.run(react=False)
         quest.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
 
     frame = quest.frames.popleft()
     refresh = sum(quest.frames[-1][1:3]) if quest.frames else MAX_FRAME_S
-    Handler.react(quest, frame)
+    list(Handler.react(quest, frame))
 
     items=len([i for i in quest.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
     return web.Response(
