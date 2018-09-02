@@ -45,6 +45,7 @@ DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
 
+# TODO: Game
 class World:
 
     quests = {}

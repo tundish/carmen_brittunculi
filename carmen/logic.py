@@ -32,7 +32,7 @@ from carmen.agents import Affinity
 from carmen.agents import Clock
 from carmen.agents import Creator
 from carmen.agents import Motivator
-from carmen.agents import day_night_cycle
+from carmen.agents import Session
 from carmen.routefinder import Routefinder
 from carmen.types import Character
 from carmen.types import CubbyFruit
@@ -286,6 +286,6 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/local")
             ).glob("*.rst")
         ],
-        interludes=itertools.repeat(day_night_cycle)
+        interludes=itertools.repeat(Session)
     )
 ]
