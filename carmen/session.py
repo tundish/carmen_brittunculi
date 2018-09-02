@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 
 class Play:
     """ TODO: Move to turberfield-dialogue """
@@ -24,7 +26,7 @@ class Play:
 
     def __init__(self, **kwargs):
         for name in self._fields:
-            setattr(self, kwargs.pop(name, None))
+            setattr(self, name, kwargs.pop(name, None))
 
         super().__init__(**kwargs)
 
@@ -57,5 +59,7 @@ class Session(Play):
 
     @Registry.register()
     def day_night_cycle(self, *args, log=None, loop=None, **kwargs):
-        log = log or logging.getLogger(str(quest.uid))
-        return {}
+        log = log or logging.getLogger(str(self.uid))
+        rv = {}
+        log.info(rv)
+        return rv

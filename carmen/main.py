@@ -76,7 +76,7 @@ class World:
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = World.Quest(
-            uid, player, deque([]), deque([]), finder,
+            uid, player, deque([]), None, finder,
             [loop.create_task(i(str(uid), loop=loop)) for i in activities]
         )
         World.quests[uid] = rv
@@ -124,12 +124,14 @@ async def here(request):
     ]
     log.debug(entities)
 
-    performer = Performer(carmen.logic.episodes, entities)
     if not quest.frames:
-        list(Handler.interlude(quest))
+        performer = Performer(carmen.logic.episodes, entities)
+        log.info(quest.interlude)
+        metadata = quest.interlude(folder=None, index=0, references=entities) if quest.interlude else {}
 
-        *_, interlude = performer.next(carmen.logic.episodes, entities)
-        quest.interlude.append(interlude)
+        *_, iCls = performer.next(carmen.logic.episodes, entities)
+        if iCls:
+            World.quests[uid] = quest = quest._replace(interlude=iCls(**quest._asdict()))
         scene = performer.run(react=False)
         quest.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
 

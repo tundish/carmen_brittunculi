@@ -80,12 +80,3 @@ class Handler:
                 log.info("React on property {0}".format(event))
                 yield event
 
-    @staticmethod
-    def interlude(quest, loop=None):
-        log = logging.getLogger("carmen.handler.interlude")
-        while quest.interlude:
-            operation = quest.interlude.popleft()
-            if callable(operation):
-                log.debug(operation)
-                yield operation(quest, log=None, loop=loop)
-
