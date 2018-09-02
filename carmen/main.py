@@ -20,6 +20,7 @@ import asyncio
 import argparse
 from collections import deque
 from collections import namedtuple
+import functools
 import logging
 import sys
 import uuid
@@ -50,12 +51,15 @@ class Game:
 
     sessions = {}
 
-    Quest = namedtuple("Quest", ["uid", "player", "frames", "interlude", "finder", "workers"])
     Session = namedtuple("Session", ["uid", "cache", "frames", "finder", "workers"])
 
     @staticmethod
     def moves(session):
-        spot = session.player.get_state(Spot)
+        player = session.cache.setdefault(
+            "player",
+            next(i for i in session.finder.lookup if isinstance(i, Player))
+        )
+        spot = player.get_state(Spot)
 
         locn = next(
             i for i in session.finder.lookup
@@ -78,11 +82,6 @@ class Game:
         uid = uuid.uuid4()
         rv = Game.Session(
             uid, {"player": player}, deque([]), finder,
-            [loop.create_task(i(str(uid), loop=loop)) for i in activities]
-        )
-        Game.sessions[uid] = rv
-        rv = Game.Quest(
-            uid, player, deque([]), None, finder,
             [loop.create_task(i(str(uid), loop=loop)) for i in activities]
         )
         Game.sessions[uid] = rv
@@ -131,19 +130,27 @@ async def here(resession):
     log.debug(entities)
 
     if not session.frames:
+        # TODO: Do this in Game
         performer = Performer(carmen.logic.episodes, entities)
-        log.info(session.interlude)
-        metadata = session.interlude(folder=None, index=0, references=entities) if session.interlude else {}
-
-        *_, iCls = performer.next(carmen.logic.episodes, entities)
-        if iCls:
-            Game.sessions[uid] = session = session._replace(interlude=iCls(**session._asdict()))
+        folder, index, script, selection, interlude = performer.next(
+            carmen.logic.episodes, entities
+        )
         scene = performer.run(react=False)
         session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
+        if interlude:
+            session.frames.append(
+                functools.partial(
+                    interlude, folder, index, entities,
+                    **session.cache
+                )
+            )
 
     frame = session.frames.popleft()
-    refresh = sum(session.frames[-1][1:3]) if session.frames else MAX_FRAME_S
     list(Handler.react(session, frame))
+    if session.frames and not callable(frame):
+        refresh = sum(session.frames[-1][1:3])
+    else:
+        refresh = MAX_FRAME_S
 
     items=len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
     return web.Response(
@@ -165,7 +172,7 @@ async def move(resession):
     try:
         session = Game.sessions[session_uid]
     except KeyError:
-        raise web.HTTPUnauthorized(reason="Quest {0!s} not found.".format(session_uid))
+        raise web.HTTPUnauthorized(reason="Session {0!s} not found.".format(session_uid))
 
     locn, moves = Game.moves(session)
     dest_uid = uuid.UUID(hex=resession.match_info["destination"])

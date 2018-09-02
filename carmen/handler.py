@@ -73,6 +73,9 @@ class Handler:
     @staticmethod
     def react(session, frame, loop=None):
         log = logging.getLogger(str(session.uid))
+        if callable(frame):
+            #TODO: call interlude
+            pass
         for element in frame:
             event = element.dialogue
             if isinstance(event, Model.Property) and event.object is not None:

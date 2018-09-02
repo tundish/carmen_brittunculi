@@ -20,6 +20,7 @@ from collections import deque
 import datetime
 from fractions import Fraction
 import itertools
+import logging
 import pathlib
 import random
 
@@ -44,6 +45,13 @@ from carmen.types import Via
 from carmen.types import Visibility
 
 ides_of_march = datetime.date(396, 3, 1)
+
+def day_night_cycle(folder, index, references, **kwargs) -> dict:
+    log = log or logging.getLogger(str(self.uid))
+    rv = folder.metadata
+    log.info(kwargs)
+    log.info(rv)
+    return rv
 
 def associations():
     rv = Routefinder()
@@ -286,6 +294,6 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/local")
             ).glob("*.rst")
         ],
-        interludes=itertools.repeat(Session)
+        interludes=itertools.repeat(day_night_cycle)
     )
 ]
