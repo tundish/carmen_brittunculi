@@ -32,8 +32,8 @@ from carmen.agents import Affinity
 from carmen.agents import Clock
 from carmen.agents import Creator
 from carmen.agents import Motivator
-from carmen.agents import Session
 from carmen.routefinder import Routefinder
+from carmen.session import Session
 from carmen.types import Character
 from carmen.types import CubbyFruit
 from carmen.types import Location
