@@ -74,12 +74,13 @@ class Handler:
     def react(session, frame, loop=None):
         log = logging.getLogger(str(session.uid))
         if callable(frame):
-            #TODO: call interlude
-            pass
-        for element in frame:
-            event = element.dialogue
-            if isinstance(event, Model.Property) and event.object is not None:
-                setattr(event.object, event.attr, event.val)
-                log.info("React on property {0}".format(event))
-                yield event
+            frame(log=log, loop=loop)
+        else:
+            for element in frame:
+                event = element.dialogue
+                if isinstance(event, Model.Property) and event.object is not None:
+                    setattr(event.object, event.attr, event.val)
+                    log.info("React on property {0}".format(event))
+                else:
+                    yield element
 

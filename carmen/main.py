@@ -146,19 +146,26 @@ async def here(resession):
             )
 
     frame = session.frames.popleft()
-    list(Handler.react(session, frame))
-    if session.frames and not callable(frame):
-        refresh = sum(session.frames[-1][1:3])
+    frame = list(Handler.react(session, frame))
+    if session.frames:
+        refresh = sum(
+            next(
+                (i for i in reversed(session.frames)
+                 if isinstance(i, Handler.Element)
+                ),
+                (None, 0, 0, 0)
+            )[1:3]
+        )
     else:
         refresh = MAX_FRAME_S
 
-    items=len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
+    n_items=len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
             here=locn,
             moves=sorted(moves),
-            items=items,
+            items=n_items,
             session=session,
             frame=frame,
             refresh=refresh
