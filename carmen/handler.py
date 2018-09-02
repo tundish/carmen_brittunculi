@@ -74,7 +74,7 @@ class Handler:
     def react(session, frame, loop=None):
         log = logging.getLogger(str(session.uid))
         if callable(frame):
-            frame(log=log, loop=loop)
+            frame(session=session, log=log, loop=loop)
         else:
             for element in frame:
                 event = element.dialogue

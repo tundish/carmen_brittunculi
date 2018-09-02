@@ -46,8 +46,10 @@ from carmen.types import Visibility
 
 ides_of_march = datetime.date(396, 3, 1)
 
-def day_night_cycle(folder, index, references, log=None, **kwargs) -> dict:
-    log = log or logging.getLogger(str(self.uid))
+def day_night_cycle(
+    folder, index, references, session, log=None, **kwargs
+) -> dict:
+    log = log or logging.getLogger(str(session.uid))
     rv = folder.metadata
     log.info(kwargs)
     log.info(rv)

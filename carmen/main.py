@@ -87,7 +87,7 @@ class Game:
         Game.sessions[uid] = rv
         return rv
 
-async def get_start(resession):
+async def get_start(request):
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/session.tpl").decode("utf8"),
@@ -97,9 +97,9 @@ async def get_start(resession):
         content_type="text/html"
     )
 
-async def post_start(resession):
+async def post_start(request):
     log = logging.getLogger("carmen.main.start")
-    data = await resession.post()
+    data = await request.post()
     name = data["playername"]
     email = data["email"]
     if not Handler.validation["name"].match(name):
@@ -114,9 +114,9 @@ async def post_start(resession):
     log.info("Player {0} created session {1.uid!s}".format(name, session))
     raise web.HTTPFound("/{0.uid.hex}".format(session))
 
-async def here(resession):
+async def here(request):
     log = logging.getLogger("carmen.main.here")
-    uid = uuid.UUID(hex=resession.match_info["session"])
+    uid = uuid.UUID(hex=request.match_info["session"])
 
     session = Game.sessions[uid]
     locn, moves = Game.moves(session)
@@ -173,16 +173,16 @@ async def here(resession):
         content_type="text/html"
     )
 
-async def move(resession):
+async def move(request):
     log = logging.getLogger("carmen.main.move")
-    session_uid = uuid.UUID(hex=resession.match_info["session"])
+    session_uid = uuid.UUID(hex=request.match_info["session"])
     try:
         session = Game.sessions[session_uid]
     except KeyError:
         raise web.HTTPUnauthorized(reason="Session {0!s} not found.".format(session_uid))
 
     locn, moves = Game.moves(session)
-    dest_uid = uuid.UUID(hex=resession.match_info["destination"])
+    dest_uid = uuid.UUID(hex=request.match_info["destination"])
     try:
         destn = next(i for i in dict(moves).values() if i.id == dest_uid)
         session.player.set_state(destn.get_state(Spot))
