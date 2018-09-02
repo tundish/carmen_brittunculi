@@ -24,7 +24,7 @@ from carmen.agents import Motivator
 from carmen.logic import activities
 from carmen.logic import associations
 from carmen.logic import episodes
-from carmen.main import World
+from carmen.main import Game
 from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Via
@@ -44,8 +44,8 @@ class TestNavigation(unittest.TestCase):
         self.a = associations()
 
     def test_new_world(self):
-        quest = World.quest("Stig")
-        self.assertEqual(41, len([i for i in quest.finder.lookup if isinstance(i, Location)]))
+        session = Game.session("Stig")
+        self.assertEqual(41, len([i for i in session.finder.lookup if isinstance(i, Location)]))
 
     def test_associations(self):
         locn = next(iter(self.a.search(label="Grove of Hades")))

@@ -35,7 +35,7 @@ class Handler:
         ),
         "location": re.compile("[0-9a-f]{32}"),
         "name": re.compile("[A-Z a-z]{2,32}"),
-        "quest": re.compile("[0-9a-f]{32}"),
+        "session": re.compile("[0-9a-f]{32}"),
     }
 
     Element = namedtuple("Element", ["dialogue", "shot", "offset", "duration"])
@@ -71,8 +71,8 @@ class Handler:
             yield frame
 
     @staticmethod
-    def react(quest, frame, loop=None):
-        log = logging.getLogger(str(quest.uid))
+    def react(session, frame, loop=None):
+        log = logging.getLogger(str(session.uid))
         for element in frame:
             event = element.dialogue
             if isinstance(event, Model.Property) and event.object is not None:

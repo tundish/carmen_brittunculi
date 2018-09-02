@@ -46,28 +46,29 @@ DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
 
 # TODO: Game
-class World:
+class Game:
 
-    quests = {}
+    sessions = {}
 
     Quest = namedtuple("Quest", ["uid", "player", "frames", "interlude", "finder", "workers"])
+    Session = namedtuple("Session", ["uid", "cache", "frames", "finder", "workers"])
 
     @staticmethod
-    def moves(quest):
-        spot = quest.player.get_state(Spot)
+    def moves(session):
+        spot = session.player.get_state(Spot)
 
         locn = next(
-            i for i in quest.finder.lookup
+            i for i in session.finder.lookup
             if isinstance(i, Location) and i.get_state(Spot) == spot
         )
         moves = [
             (Compass.legend(k), v)
-            for k, v in quest.finder.navigate(locn).items()
+            for k, v in session.finder.navigate(locn).items()
         ]
         return locn, moves
 
     @staticmethod
-    def quest(name, loop=None):
+    def session(name, loop=None):
         loop = loop or asyncio.get_event_loop()
         finder = carmen.logic.associations()
         activities = carmen.logic.activities(finder)
@@ -75,26 +76,31 @@ class World:
         player = Player(name=name).set_state(start.get_state(Spot))
         finder.register(None, player)
         uid = uuid.uuid4()
-        rv = World.Quest(
+        rv = Game.Session(
+            uid, {"player": player}, deque([]), finder,
+            [loop.create_task(i(str(uid), loop=loop)) for i in activities]
+        )
+        Game.sessions[uid] = rv
+        rv = Game.Quest(
             uid, player, deque([]), None, finder,
             [loop.create_task(i(str(uid), loop=loop)) for i in activities]
         )
-        World.quests[uid] = rv
+        Game.sessions[uid] = rv
         return rv
 
-async def get_start(request):
+async def get_start(resession):
     return web.Response(
         text=bottle.template(
-            pkg_resources.resource_string("carmen", "templates/quest.tpl").decode("utf8"),
+            pkg_resources.resource_string("carmen", "templates/session.tpl").decode("utf8"),
             validation=Handler.validation,
             refresh=None
         ),
         content_type="text/html"
     )
 
-async def post_start(request):
+async def post_start(resession):
     log = logging.getLogger("carmen.main.start")
-    data = await request.post()
+    data = await resession.post()
     name = data["playername"]
     email = data["email"]
     if not Handler.validation["name"].match(name):
@@ -105,74 +111,74 @@ async def post_start(request):
     else:
         log.info("Email offered: {0}".format(email))
 
-    quest = World.quest(name)
-    log.info("Player {0} created quest {1.uid!s}".format(name, quest))
-    raise web.HTTPFound("/{0.uid.hex}".format(quest))
+    session = Game.session(name)
+    log.info("Player {0} created session {1.uid!s}".format(name, session))
+    raise web.HTTPFound("/{0.uid.hex}".format(session))
 
-async def here(request):
+async def here(resession):
     log = logging.getLogger("carmen.main.here")
-    uid = uuid.UUID(hex=request.match_info["quest"])
+    uid = uuid.UUID(hex=resession.match_info["session"])
 
-    quest = World.quests[uid]
-    locn, moves = World.moves(quest)
+    session = Game.sessions[uid]
+    locn, moves = Game.moves(session)
     spot = locn.get_state(Spot)
     entities = [
-        i for i in quest.finder.ensemble()
+        i for i in session.finder.ensemble()
         if i.get_state(Spot) == spot
         or i.get_state(Visibility) in (Visibility.indicated, Visibility.new)
         or isinstance(i, Narrator)
     ]
     log.debug(entities)
 
-    if not quest.frames:
+    if not session.frames:
         performer = Performer(carmen.logic.episodes, entities)
-        log.info(quest.interlude)
-        metadata = quest.interlude(folder=None, index=0, references=entities) if quest.interlude else {}
+        log.info(session.interlude)
+        metadata = session.interlude(folder=None, index=0, references=entities) if session.interlude else {}
 
         *_, iCls = performer.next(carmen.logic.episodes, entities)
         if iCls:
-            World.quests[uid] = quest = quest._replace(interlude=iCls(**quest._asdict()))
+            Game.sessions[uid] = session = session._replace(interlude=iCls(**session._asdict()))
         scene = performer.run(react=False)
-        quest.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
+        session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
 
-    frame = quest.frames.popleft()
-    refresh = sum(quest.frames[-1][1:3]) if quest.frames else MAX_FRAME_S
-    list(Handler.react(quest, frame))
+    frame = session.frames.popleft()
+    refresh = sum(session.frames[-1][1:3]) if session.frames else MAX_FRAME_S
+    list(Handler.react(session, frame))
 
-    items=len([i for i in quest.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
+    items=len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
             here=locn,
             moves=sorted(moves),
             items=items,
-            quest=quest,
+            session=session,
             frame=frame,
             refresh=refresh
         ),
         content_type="text/html"
     )
 
-async def move(request):
+async def move(resession):
     log = logging.getLogger("carmen.main.move")
-    quest_uid = uuid.UUID(hex=request.match_info["quest"])
+    session_uid = uuid.UUID(hex=resession.match_info["session"])
     try:
-        quest = World.quests[quest_uid]
+        session = Game.sessions[session_uid]
     except KeyError:
-        raise web.HTTPUnauthorized(reason="Quest {0!s} not found.".format(quest_uid))
+        raise web.HTTPUnauthorized(reason="Quest {0!s} not found.".format(session_uid))
 
-    locn, moves = World.moves(quest)
-    dest_uid = uuid.UUID(hex=request.match_info["destination"])
+    locn, moves = Game.moves(session)
+    dest_uid = uuid.UUID(hex=resession.match_info["destination"])
     try:
         destn = next(i for i in dict(moves).values() if i.id == dest_uid)
-        quest.player.set_state(destn.get_state(Spot))
+        session.player.set_state(destn.get_state(Spot))
         locn.set_state(Visibility.visible)
         destn.set_state(Visibility.detail)
-        log.info("Player {0} moved to {1}".format(quest.player, destn))
+        log.info("Player {0} moved to {1}".format(session.player, destn))
     except Exception as e:
         log.exception(e)
     finally:
-        raise web.HTTPFound("/{0.hex}".format(quest_uid))
+        raise web.HTTPFound("/{0.hex}".format(session_uid))
 
 def build_app(args):
     app = web.Application()
@@ -187,9 +193,9 @@ def build_app(args):
     add_routes([
         web.get("/", get_start),
         web.post("/", post_start),
-        web.get("/{{quest:{0}}}".format(Handler.validation["quest"].pattern), here),
-        web.post("/{{quest:{0}}}/move/{{destination:{1}}}".format(
-            Handler.validation["quest"].pattern, Handler.validation["location"].pattern
+        web.get("/{{session:{0}}}".format(Handler.validation["session"].pattern), here),
+        web.post("/{{session:{0}}}/move/{{destination:{1}}}".format(
+            Handler.validation["session"].pattern, Handler.validation["location"].pattern
         ), move),
     ])
 
@@ -201,7 +207,7 @@ def build_app(args):
         "/svg/",
         pkg_resources.resource_filename("carmen", "static/svg")
     )
-    app.world = World()
+    app.game = Game()
 
     bottle.TEMPLATE_PATH.append(
         pkg_resources.resource_filename("carmen", "templates")
