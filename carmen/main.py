@@ -146,22 +146,11 @@ async def here(request):
         session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
 
     frame = session.frames.popleft()
-    # Return types? Need to see metadata come back from interlude
     frame = list(Handler.react(session, frame))
-    if session.frames:
-        # Wrong!
-        refresh = sum(
-            next(
-                (i for i in reversed(session.frames)
-                 if isinstance(i, Handler.Element)
-                ),
-                (None, 0, 0, 0)
-            )[1:3]
-        )
-    else:
-        refresh = MAX_FRAME_S
 
+    refresh = sum(session.frames[-1][1:3]) if quest.frames else MAX_FRAME_S
     n_items=len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
+
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),

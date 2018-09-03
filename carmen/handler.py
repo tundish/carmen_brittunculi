@@ -66,7 +66,7 @@ class Handler:
                 frame.append(Handler.Element(item, shot, offset, durn))
                 offset += durn
             else:
-                frame.append(Handler.Element(item, shot, offset, offset))
+                frame.append(Handler.Element(item, shot, offset, 0))
         else:
             yield frame
 
@@ -78,8 +78,8 @@ class Handler:
             if isinstance(event, Model.Property) and event.object is not None:
                 setattr(event.object, event.attr, event.val)
                 log.info("React on property {0}".format(event))
-            elif callable(element):
-                metadata = element(session=session, log=log, loop=loop)
+            elif callable(event):
+                metadata = event(session=session, log=log, loop=loop)
                 log.info("React on interlude. Metadata: {0}".format(metadata))
             else:
                 yield element
