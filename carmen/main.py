@@ -138,6 +138,7 @@ async def here(request):
         scene = performer.run(react=False)
         session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
         if interlude:
+            # Create a proper Element with correct value for offset
             session.frames.append(
                 functools.partial(
                     interlude, folder, index, entities,
@@ -146,8 +147,10 @@ async def here(request):
             )
 
     frame = session.frames.popleft()
+    # Return types? Need to see metadata come back from interlude
     frame = list(Handler.react(session, frame))
     if session.frames:
+        # Wrong!
         refresh = sum(
             next(
                 (i for i in reversed(session.frames)
