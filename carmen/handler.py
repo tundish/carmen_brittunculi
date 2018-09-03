@@ -73,14 +73,13 @@ class Handler:
     @staticmethod
     def react(session, frame, loop=None):
         log = logging.getLogger(str(session.uid))
-        if callable(frame):
-            frame(session=session, log=log, loop=loop)
-        else:
-            for element in frame:
-                event = element.dialogue
-                if isinstance(event, Model.Property) and event.object is not None:
-                    setattr(event.object, event.attr, event.val)
-                    log.info("React on property {0}".format(event))
-                else:
-                    yield element
+        for element in frame:
+            event = element.dialogue
+            if isinstance(event, Model.Property) and event.object is not None:
+                setattr(event.object, event.attr, event.val)
+                log.info("React on property {0}".format(event))
+            elif callable(element):
+                metadata = element(session=session, log=log, loop=loop)
+            else:
+                yield element
 
