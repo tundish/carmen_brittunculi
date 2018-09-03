@@ -47,30 +47,11 @@ DEFAULT_PORT = 8080
 DEFAULT_PAUSE = 1.2
 DEFAULT_DWELL = 0.3
 
-# TODO: Game
 class Game:
 
     sessions = {}
 
     Session = namedtuple("Session", ["uid", "cache", "frames", "finder", "workers"])
-
-    @staticmethod
-    def moves(session):
-        player = session.cache.setdefault(
-            "player",
-            next(i for i in session.finder.lookup if isinstance(i, Player))
-        )
-        spot = player.get_state(Spot)
-
-        locn = next(
-            i for i in session.finder.lookup
-            if isinstance(i, Location) and i.get_state(Spot) == spot
-        )
-        moves = [
-            (Compass.legend(k), v)
-            for k, v in session.finder.navigate(locn).items()
-        ]
-        return locn, moves
 
     @staticmethod
     def session(name, loop=None):
@@ -87,6 +68,61 @@ class Game:
         )
         Game.sessions[uid] = rv
         return rv
+
+    @staticmethod
+    def spot(session):
+        """Return the player's spot."""
+        player = session.cache.setdefault(
+            "player",
+            next(i for i in session.finder.lookup if isinstance(i, Player))
+        )
+        return player.get_state(Spot)
+
+    @staticmethod
+    def moves(session, spot=None):
+        """Return the location and available moves from a spot."""
+        spot = spot or Game.spot(session)
+
+        locn = next(
+            i for i in session.finder.lookup
+            if isinstance(i, Location) and i.get_state(Spot) == spot
+        )
+        moves = [
+            (Compass.legend(k), v)
+            for k, v in session.finder.navigate(locn).items()
+        ]
+        return locn, moves
+
+    @staticmethod
+    def entities(session, spot=None):
+        """Return the entities available around a spot."""
+        spot = spot or Game.spot(session)
+
+        return [
+            i for i in session.finder.ensemble()
+            if i.get_state(Spot) == spot
+            or i.get_state(Visibility) in (Visibility.indicated, Visibility.new)
+            or isinstance(i, Narrator)
+        ]
+
+    @staticmethod
+    def frame(session, entities):
+        """Return the next frame of action for presentation handling."""
+        if not session.frames:
+            performer = Performer(carmen.logic.episodes, entities)
+            folder, index, script, selection, interlude = performer.next(
+                carmen.logic.episodes, entities
+            )
+            scene = itertools.chain(
+                performer.run(react=False),
+                [functools.partial(
+                    interlude, folder, index, entities,
+                    **session.cache
+                )] if interlude else []
+            )
+            session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
+
+        return session.frames.popleft()
 
 async def get_start(request):
     return web.Response(
@@ -122,34 +158,13 @@ async def here(request):
     session = Game.sessions[uid]
     locn, moves = Game.moves(session)
     spot = locn.get_state(Spot)
-    entities = [
-        i for i in session.finder.ensemble()
-        if i.get_state(Spot) == spot
-        or i.get_state(Visibility) in (Visibility.indicated, Visibility.new)
-        or isinstance(i, Narrator)
-    ]
-    log.debug(entities)
 
-    if not session.frames:
-        # TODO: Do this in Game
-        performer = Performer(carmen.logic.episodes, entities)
-        folder, index, script, selection, interlude = performer.next(
-            carmen.logic.episodes, entities
-        )
-        scene = itertools.chain(
-            performer.run(react=False),
-            [functools.partial(
-                interlude, folder, index, entities,
-                **session.cache
-            )] if interlude else []
-        )
-        session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
+    entities = Game.entities(session, spot)
+    frame = Game.frame(session, entities)
+    metadata = Handler.react(session, frame)
 
-    frame = session.frames.popleft()
-    frame = list(Handler.react(session, frame))
-
-    refresh = sum(session.frames[-1][1:3]) if quest.frames else MAX_FRAME_S
-    n_items=len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
+    refresh = sum(session.frames[-1][1:3]) if session.frames else MAX_FRAME_S
+    n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
 
     return web.Response(
         text=bottle.template(

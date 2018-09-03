@@ -22,8 +22,6 @@ import re
 
 from turberfield.dialogue.model import Model
 
-# TODO: Inherit from Performer?
-# TODO: Unify with Quest?
 class Handler:
 
     validation = {
@@ -73,14 +71,14 @@ class Handler:
     @staticmethod
     def react(session, frame, loop=None):
         log = logging.getLogger(str(session.uid))
+        metadata = {}
         for element in frame:
             event = element.dialogue
             if isinstance(event, Model.Property) and event.object is not None:
                 setattr(event.object, event.attr, event.val)
-                log.info("React on property {0}".format(event))
+                log.debug("React on property {0}".format(event))
             elif callable(event):
-                metadata = event(session=session, log=log, loop=loop)
-                log.info("React on interlude. Metadata: {0}".format(metadata))
-            else:
-                yield element
+                metadata.update(event(session=session, log=log, loop=loop))
+                log.debug("React on interlude {0}".format(event))
+        return metadata
 
