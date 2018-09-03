@@ -21,6 +21,7 @@ import argparse
 from collections import deque
 from collections import namedtuple
 import functools
+import itertools
 import logging
 import sys
 import uuid
@@ -135,16 +136,14 @@ async def here(request):
         folder, index, script, selection, interlude = performer.next(
             carmen.logic.episodes, entities
         )
-        scene = performer.run(react=False)
+        scene = itertools.chain(
+            performer.run(react=False),
+            [functools.partial(
+                interlude, folder, index, entities,
+                **session.cache
+            )] if interlude else []
+        )
         session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
-        if interlude:
-            # Create a proper Element with correct value for offset
-            session.frames.append(
-                functools.partial(
-                    interlude, folder, index, entities,
-                    **session.cache
-                )
-            )
 
     frame = session.frames.popleft()
     # Return types? Need to see metadata come back from interlude
@@ -188,10 +187,11 @@ async def move(request):
     dest_uid = uuid.UUID(hex=request.match_info["destination"])
     try:
         destn = next(i for i in dict(moves).values() if i.id == dest_uid)
-        session.player.set_state(destn.get_state(Spot))
+        session.cache["player"].set_state(destn.get_state(Spot))
         locn.set_state(Visibility.visible)
         destn.set_state(Visibility.detail)
-        log.info("Player {0} moved to {1}".format(session.player, destn))
+        log.info("Player {0} moved to {1}".format(
+            session.cache["player"], destn))
     except Exception as e:
         log.exception(e)
     finally:

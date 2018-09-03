@@ -80,6 +80,7 @@ class Handler:
                 log.info("React on property {0}".format(event))
             elif callable(element):
                 metadata = element(session=session, log=log, loop=loop)
+                log.info("React on interlude. Metadata: {0}".format(metadata))
             else:
                 yield element
 
