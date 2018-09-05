@@ -41,6 +41,7 @@ from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Player # noqa
 from carmen.types import Spot
+from carmen.types import Time
 from carmen.types import Via
 from carmen.types import Visibility
 
@@ -50,9 +51,13 @@ def day_night_cycle(
     folder, index, references, session, log=None, **kwargs
 ) -> dict:
     log = log or logging.getLogger(str(session.uid))
+    player = session.cache["player"]
+    time_vals = list(Time)
+    t = time_vals[(time_vals.index(player.get_state(Time)) + 1) % len(Time)]
+    log.info(t)
+    player.set_state(t)
+    locn = next(iter(session.finder.search(label="Common house")))
     rv = folder.metadata
-    log.info(kwargs)
-    log.info(rv)
     return rv
 
 def associations():

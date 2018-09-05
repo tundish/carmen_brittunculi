@@ -40,6 +40,7 @@ from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Player
 from carmen.types import Spot
+from carmen.types import Time
 from carmen.types import Visibility
 
 MAX_FRAME_S = 21.3  # 8 bars at 90 BPM
@@ -60,6 +61,7 @@ class Game:
         activities = carmen.logic.activities(finder)
         start = next(iter(finder.search(label="Green lane")))
         player = Player(name=name).set_state(start.get_state(Spot))
+        player.set_state(Time.sunrise)
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = Game.Session(
