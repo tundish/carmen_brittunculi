@@ -21,6 +21,7 @@ import datetime
 from fractions import Fraction
 import itertools
 import logging
+import operator
 import pathlib
 import random
 
@@ -47,18 +48,27 @@ from carmen.types import Visibility
 
 ides_of_march = datetime.date(396, 3, 1)
 
-def day_night_cycle(
-    folder, index, references, session, log=None, **kwargs
-) -> dict:
-    log = log or logging.getLogger(str(session.uid))
-    player = session.cache["player"]
-    time_vals = list(Time)
-    t = time_vals[(time_vals.index(player.get_state(Time)) + 1) % len(Time)]
-    log.info(t)
-    player.set_state(t)
-    locn = next(iter(session.finder.search(label="Common house")))
-    rv = folder.metadata
-    return rv
+class Zones:
+
+    hours = tuple(sorted(
+        list(Time) + [Time.day] * 6,
+        key=operator.attrgetter("value"),
+        reverse=True
+    ))
+
+    @classmethod
+    def day_night_cycle(
+        cls, folder, index, references, session, log=None, **kwargs
+    ) -> dict:
+        log = log or logging.getLogger(str(session.uid))
+        player = session.cache["player"]
+        t = cls.hours[(list(cls.hours).index(player.get_state(Time)) - 1) % len(cls.hours)]
+        log.info(cls.hours)
+        log.info(t)
+        player.set_state(t)
+        locn = next(iter(session.finder.search(label="Common house")))
+        rv = folder.metadata
+        return rv
 
 def associations():
     rv = Routefinder()
@@ -301,6 +311,6 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/local")
             ).glob("*.rst")
         ],
-        interludes=itertools.repeat(day_night_cycle)
+        interludes=itertools.repeat(Zones.day_night_cycle)
     )
 ]
