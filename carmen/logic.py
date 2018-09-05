@@ -50,7 +50,7 @@ ides_of_march = datetime.date(396, 3, 1)
 
 class Zones:
 
-    hours = tuple(sorted(
+    hours = list(sorted(
         list(Time) + [Time.day] * 6,
         key=operator.attrgetter("value"),
         reverse=True
@@ -62,9 +62,7 @@ class Zones:
     ) -> dict:
         log = log or logging.getLogger(str(session.uid))
         player = session.cache["player"]
-        t = cls.hours[(list(cls.hours).index(player.get_state(Time)) - 1) % len(cls.hours)]
-        log.info(cls.hours)
-        log.info(t)
+        t = cls.hours[(cls.hours.index(player.get_state(Time)) - 1) % len(cls.hours)]
         player.set_state(t)
         locn = next(iter(session.finder.search(label="Common house")))
         rv = folder.metadata
