@@ -30,6 +30,23 @@ from turberfield.dialogue.types import Player # noqa
 from turberfield.dialogue.types import Stateful
 from turberfield.utils.assembly import Assembly
 
+
+class Time(EnumFactory, enum.Enum):
+    midnight = 0
+    night = 1
+    predawn = 2
+    dawn = 3
+    sunrise = 4
+    morning = 5
+    noon = 6
+    day = 7
+    afternoon = 8
+    evening = 9
+    dusk = 10
+    sunset = 11
+    suppertime = 12
+    
+
 class Visibility(EnumFactory, enum.Enum):
     hidden = 0
     visible = 1
