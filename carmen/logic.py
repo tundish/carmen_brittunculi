@@ -50,12 +50,6 @@ ides_of_march = datetime.date(396, 3, 1)
 
 class Zones:
 
-    @staticmethod
-    def advance_time(t: Time) -> Time:
-        members = deque(Time)
-        members.rotate(-t.value - 1)
-        return members[0]
-
     @classmethod
     def day_night_cycle(
         cls, folder, index, references, session, log=None, **kwargs

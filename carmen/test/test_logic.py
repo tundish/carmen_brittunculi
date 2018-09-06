@@ -38,7 +38,7 @@ class TestZones(unittest.TestCase):
         for n, i in enumerate(Time):
             with self.subTest(val=i):
                 self.assertEqual(n, i.value)
-                self.assertEqual((n + 1) % len(Time), Zones.advance_time(i).value)
+                self.assertEqual((n + 1) % len(Time), Time.advance(i).value)
 
 class TestDialogue(unittest.TestCase):
 

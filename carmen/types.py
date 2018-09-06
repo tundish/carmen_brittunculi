@@ -18,6 +18,7 @@
 
 import bisect
 import cmath
+from collections import deque
 from collections import OrderedDict
 from decimal import Decimal
 import enum
@@ -30,8 +31,16 @@ from turberfield.dialogue.types import Player # noqa
 from turberfield.dialogue.types import Stateful
 from turberfield.utils.assembly import Assembly
 
+class Stepper(enum.Enum):
 
-class Time(EnumFactory, enum.Enum):
+    @classmethod
+    def advance(cls, instance):
+        members = deque(cls)
+        members.rotate(-instance.value - 1)
+        return members[0]
+
+
+class Time(EnumFactory, Stepper):
     eve_midnight = 0
     eve_night = 1
     eve_predawn = 2
