@@ -61,7 +61,7 @@ class Game:
         activities = carmen.logic.activities(finder)
         start = next(iter(finder.search(label="Green lane")))
         player = Player(name=name).set_state(start.get_state(Spot))
-        player.set_state(Time.sunrise)
+        player.set_state(Time.day_sunrise)
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = Game.Session(

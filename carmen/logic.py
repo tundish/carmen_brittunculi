@@ -50,11 +50,11 @@ ides_of_march = datetime.date(396, 3, 1)
 
 class Zones:
 
-    hours = list(sorted(
-        list(Time) + [Time.day] * 6,
-        key=operator.attrgetter("value"),
-        reverse=True
-    ))
+    @staticmethod
+    def advance_time(t: Time) -> Time:
+        members = deque(Time)
+        members.rotate(-t.value - 1)
+        return members[0]
 
     @classmethod
     def day_night_cycle(
@@ -62,8 +62,7 @@ class Zones:
     ) -> dict:
         log = log or logging.getLogger(str(session.uid))
         player = session.cache["player"]
-        t = cls.hours[(cls.hours.index(player.get_state(Time)) - 1) % len(cls.hours)]
-        player.set_state(t)
+        player.set_state(Zones.advance_time(player.get_state(Time)))
         locn = next(iter(session.finder.search(label="Common house")))
         rv = folder.metadata
         return rv

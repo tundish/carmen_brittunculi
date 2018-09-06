@@ -32,19 +32,22 @@ from turberfield.utils.assembly import Assembly
 
 
 class Time(EnumFactory, enum.Enum):
-    midnight = 0
-    night = 1
-    predawn = 2
-    dawn = 3
-    sunrise = 4
-    morning = 5
-    noon = 6
-    day = 7
-    afternoon = 8
-    evening = 9
-    dusk = 10
-    sunset = 11
-    suppertime = 12
+    eve_midnight = 0
+    eve_night = 1
+    eve_predawn = 2
+    eve_dawn = 3
+    day_sunrise = 4
+    day_early = 5
+    day_breakfast = 6
+    day_morning = 7
+    day_noon = 8
+    day_lunch = 9
+    day_afternoon = 10
+    day_dinner = 11
+    day_dusk = 12
+    eve_sunset = 13
+    eve_evening = 14
+    eve_supper = 15
     
 
 class Visibility(EnumFactory, enum.Enum):

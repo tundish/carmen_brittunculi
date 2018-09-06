@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+from collections import deque
 import unittest
 
 from carmen.agents import Clock
@@ -24,10 +25,20 @@ from carmen.agents import Motivator
 from carmen.logic import activities
 from carmen.logic import associations
 from carmen.logic import episodes
+from carmen.logic import Zones
 from carmen.main import Game
 from carmen.types import Location
 from carmen.types import Narrator
+from carmen.types import Time
 from carmen.types import Via
+
+class TestZones(unittest.TestCase):
+
+    def test_advance_time(self):
+        for n, i in enumerate(Time):
+            with self.subTest(val=i):
+                self.assertEqual(n, i.value)
+                self.assertEqual((n + 1) % len(Time), Zones.advance_time(i).value)
 
 class TestDialogue(unittest.TestCase):
 
