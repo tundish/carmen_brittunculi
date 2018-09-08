@@ -59,12 +59,12 @@ class Zones:
 
     @classmethod
     def day_night_cycle(
-        cls, folder, index, references, session, log=None, **kwargs
+        cls, folder, index, references, session, player, log=None, **kwargs
     ) -> dict:
         log = log or logging.getLogger(str(session.uid))
-        player = session.cache["player"]
-        player.set_state(Zones.advance_time(player.get_state(Time)))
-        locn = next(iter(session.finder.search(label="Common house")))
+        if player.get_state(Spot) in Zones.common:
+            player.set_state(Time.advance(player.get_state(Time)))
+            log.info(player.get_state(Time))
         rv = folder.metadata
         return rv
 
