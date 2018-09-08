@@ -50,6 +50,13 @@ ides_of_march = datetime.date(396, 3, 1)
 
 class Zones:
 
+    common = [
+        i for i in Spot 
+        if i.value
+        and 8 <= i.value.real <= 15
+        and 0 <= i.value.imag <= 9
+    ]
+
     @classmethod
     def day_night_cycle(
         cls, folder, index, references, session, log=None, **kwargs

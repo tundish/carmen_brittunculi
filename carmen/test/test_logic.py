@@ -40,6 +40,9 @@ class TestZones(unittest.TestCase):
                 self.assertEqual(n, i.value)
                 self.assertEqual((n + 1) % len(Time), Time.advance(i).value)
 
+    def test_zones(self):
+        self.assertEqual(10, len(Zones.common))
+
 class TestDialogue(unittest.TestCase):
 
     def test_folder(self):
