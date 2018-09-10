@@ -66,6 +66,12 @@ class Visibility(EnumFactory, enum.Enum):
     indicated = 3
     new = 4
 
+class Wants(EnumFactory, enum.Enum):
+    nothing = 0
+    warmth = 1
+    food = 2
+    sleep = 3
+
 class Compass:
 
     rose = OrderedDict([
