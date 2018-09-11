@@ -68,9 +68,10 @@ class Visibility(EnumFactory, enum.Enum):
 
 class Wants(EnumFactory, enum.Enum):
     nothing = 0
-    warmth = 1
-    food = 2
-    sleep = 3
+    needs = 1
+    needs_warmth = 2
+    needs_food = 3
+    needs_sleep = 4
 
 class Compass:
 

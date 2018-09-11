@@ -45,6 +45,7 @@ from carmen.types import Spot
 from carmen.types import Time
 from carmen.types import Via
 from carmen.types import Visibility
+from carmen.types import Wants
 
 ides_of_march = datetime.date(396, 3, 1)
 
@@ -64,7 +65,14 @@ class Zones:
         log = log or logging.getLogger(str(session.uid))
         if player.get_state(Spot) in Zones.common:
             player.set_state(Time.advance(player.get_state(Time)))
-            log.info(player.get_state(Time))
+            if player.get_state(Time) == Time.day_dinner:
+                player.set_state(Wants.needs_food)
+            elif player.get_state(Time) == Time.eve_midnight:
+                player.set_state(Wants.needs_sleep)
+        else:
+            player.set_state(Wants.nothing)
+        log.info(player.get_state(Time))
+        log.info(player.get_state(Wants))
         rv = folder.metadata
         return rv
 
