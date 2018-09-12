@@ -160,9 +160,11 @@ async def here(request):
     session = Game.sessions[uid]
     locn, moves = Game.moves(session)
     spot = locn.get_state(Spot)
+    player = session.cache.get("player")
 
     entities = Game.entities(session, spot)
     frame = Game.frame(session, entities)
+    player.set_state(player.get_state(int) + 1)
     metadata = Handler.react(session, frame)
 
     refresh = sum(session.frames[-1][1:3]) if session.frames else MAX_FRAME_S
@@ -176,6 +178,7 @@ async def here(request):
             items=n_items,
             session=session,
             frame=frame,
+            ordinal=player.get_state(int),
             refresh=refresh
         ),
         content_type="text/html"

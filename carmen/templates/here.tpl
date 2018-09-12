@@ -1,6 +1,7 @@
 %rebase("top.tpl")
 <main class="events">
-<h1>{{ frame[0].shot.scene.capitalize() }}</h1>
+<!-- <h1>{{ frame[0].shot.scene.capitalize() }}</h1> -->
+<h1>{{ here.label.capitalize() }}</h1>
 
 <ul class="turberfield-dialogue-frame">
 % for element in frame:
@@ -27,6 +28,8 @@
 <dl>
 <dt>Items</dt>
 <dd>{{ items }}<dd>
+<dt>Frame</dt>
+<dd>{{ ordinal }}<dd>
 </dl>
 </aside>
 <nav>
