@@ -27,7 +27,7 @@ Looking after yourself
 Hungry
 ------
 
-.. .. condition:: PLAYER.disposition carmen.types.Disposition.generous
+.. condition:: PLAYER.state carmen.types.Wants.needs_food
 
 [NARRATOR]_
 
@@ -37,7 +37,7 @@ Hungry
 Tired
 -----
 
-.. .. condition:: NPC.disposition carmen.types.Disposition.generous
+.. condition:: PLAYER.state carmen.types.Wants.needs_sleep
 
 [NARRATOR]_
 
