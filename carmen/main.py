@@ -167,7 +167,7 @@ async def here(request):
     player.set_state(player.get_state(int) + 1)
     metadata = Handler.react(session, frame)
 
-    refresh = sum(session.frames[-1][1:3]) if session.frames else MAX_FRAME_S
+    refresh = sum(frame[-1][2:3]) if frame else MAX_FRAME_S
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
 
     return web.Response(
