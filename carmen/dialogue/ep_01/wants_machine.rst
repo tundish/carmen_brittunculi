@@ -43,6 +43,4 @@ Tired
 
     You're tired.
 
-.. .. property:: OBJECTIVE.state carmen.types.Visibility.visible
-
 .. |HERE| property:: LOCATION.label

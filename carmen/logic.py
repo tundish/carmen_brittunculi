@@ -303,7 +303,7 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/ep_01")
             ).glob("*.rst")
         ],
-        interludes=itertools.repeat(None)
+        interludes=itertools.repeat(Zones.day_night_cycle)
     ),
     SceneScript.Folder(
         pkg="carmen",
