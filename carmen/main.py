@@ -42,6 +42,7 @@ from carmen.types import Player
 from carmen.types import Spot
 from carmen.types import Time
 from carmen.types import Visibility
+from carmen.types import Wants
 
 MAX_FRAME_S = 21.3  # 8 bars at 90 BPM
 DEFAULT_PORT = 8080
@@ -166,6 +167,7 @@ async def here(request):
     frame = Game.frame(session, entities)
     player.set_state(player.get_state(int) + 1)
     metadata = Handler.react(session, frame)
+    log.info(player.get_state(Wants))
 
     refresh = sum(frame[-1][2:3]) if frame else MAX_FRAME_S
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
