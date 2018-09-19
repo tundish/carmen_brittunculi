@@ -82,3 +82,9 @@ class Handler:
                 log.debug("React on interlude {0}".format(event))
         return metadata
 
+    @staticmethod
+    def refresh(frame, max_val=None):
+        return next(
+            (i.offset + i.duration for i in reversed(frame) if i.duration),
+            max_val
+        )

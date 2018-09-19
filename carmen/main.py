@@ -169,10 +169,6 @@ async def here(request):
     metadata = Handler.react(session, frame)
     log.info(player.get_state(Wants))
 
-    refresh = next(
-        (i.offset + i.duration for i in reversed(frame) if i.duration),
-        MAX_FRAME_S
-    )
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
 
     return web.Response(
@@ -184,7 +180,7 @@ async def here(request):
             session=session,
             frame=frame,
             ordinal=player.get_state(int),
-            refresh=refresh
+            refresh=Handler.refresh(frame, MAX_FRAME_S)
         ),
         content_type="text/html"
     )

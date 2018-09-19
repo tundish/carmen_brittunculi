@@ -198,6 +198,9 @@ class HandlerTests(unittest.TestCase):
 
             You're hungry.
 
+        [NARRATOR]_
+
+            Nom nom nom.
 
         Tired
         -----
@@ -207,6 +210,11 @@ class HandlerTests(unittest.TestCase):
         [NARRATOR]_
 
             You're tired.
+
+
+        [NARRATOR]_
+
+            ZZZZZZZZ.
 
             """)
         script = SceneScript("inline", doc=SceneScript.read(content))
@@ -218,6 +226,19 @@ class HandlerTests(unittest.TestCase):
         self.assertEqual(2, len(rv), rv)
         self.assertIsInstance(rv[0][0].dialogue, Model.Condition)
         self.assertTrue(Performer.allows(rv[0][0].dialogue))
+        self.assertIsInstance(rv[0][1].dialogue, Model.Line)
+        self.assertEqual(0, rv[0][1].offset)
+        self.assertEqual(1.3, rv[0][1].duration)
+        self.assertEqual(1.3, rv[0][2].offset)
+        self.assertEqual(1.6, rv[0][2].duration)
+        self.assertAlmostEqual(2.9, Handler.refresh(rv[0]))
+
         self.assertIsInstance(rv[1][0].dialogue, Model.Condition)
         self.assertFalse(Performer.allows(rv[1][0].dialogue))
+        self.assertIsInstance(rv[1][1].dialogue, Model.Line)
+        self.assertEqual(0, rv[1][1].offset)
+        self.assertEqual(1.3, rv[1][1].duration)
+        self.assertEqual(1.3, rv[1][2].offset)
+        self.assertEqual(1.0, rv[1][2].duration)
+        self.assertAlmostEqual(2.3, Handler.refresh(rv[1]))
 
