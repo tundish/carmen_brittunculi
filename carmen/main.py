@@ -111,6 +111,7 @@ class Game:
     @staticmethod
     def frame(session, entities):
         """Return the next frame of action for presentation handling."""
+        log = logging.getLogger("carmen.main.frame")
         if not session.frames:
             performer = Performer(carmen.logic.episodes, entities)
             folder, index, script, selection, interlude = performer.next(
@@ -123,7 +124,13 @@ class Game:
                     **session.cache
                 )] if interlude else []
             )
-            session.frames.extend(Handler.frames(scene, dwell=0.3, pause=1))
+            # FIXME
+            frames = [
+                frame for frame in Handler.frames(scene, dwell=0.3, pause=1)
+                sum(elem.duration for elem in frame)
+            ]
+            log.info("Frames: {0!r}".format(frames))
+            session.frames.extend(frames)
 
         return session.frames.popleft()
 
