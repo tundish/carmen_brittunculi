@@ -21,9 +21,12 @@ import unittest
 
 from turberfield.dialogue.model import Model
 from turberfield.dialogue.model import SceneScript
-from turberfield.dialogue.types import Player
+from turberfield.dialogue.performer import Performer
 
 from carmen.handler import Handler
+from carmen.types import Narrator
+from carmen.types import Player
+from carmen.types import Wants
 
 class HandlerTests(unittest.TestCase):
 
@@ -172,3 +175,49 @@ class HandlerTests(unittest.TestCase):
         self.assertTrue(all(i for i in rv))
         self.assertIsInstance(rv[1][0].dialogue, Model.Audio)
         self.assertIsInstance(rv[2][0].dialogue, Model.Audio)
+
+    def test_handler_frames_conditional_dialogue(self):
+        content = textwrap.dedent("""
+
+        .. entity:: PLAYER
+           :types: carmen.logic.Player
+           :states: carmen.types.Wants.needs
+
+        .. entity:: NARRATOR
+           :types: carmen.logic.Narrator
+
+        Wants
+        ~~~~~
+
+        Hungry
+        ------
+
+        .. condition:: PLAYER.state carmen.types.Wants.needs_food
+
+        [NARRATOR]_
+
+            You're hungry.
+
+
+        Tired
+        -----
+
+        .. condition:: PLAYER.state carmen.types.Wants.needs_sleep
+
+        [NARRATOR]_
+
+            You're tired.
+
+            """)
+        script = SceneScript("inline", doc=SceneScript.read(content))
+        ensemble = [Player(name="test").set_state(Wants.needs_food), Narrator()]
+        script.cast(script.select(ensemble))
+        rv = list(Handler.frames(
+            HandlerTests.dialogue(script.run()), dwell=0.3, pause=1
+        ))
+        self.assertEqual(2, len(rv), rv)
+        self.assertIsInstance(rv[0][0].dialogue, Model.Condition)
+        self.assertTrue(Performer.allows(rv[0][0].dialogue))
+        self.assertIsInstance(rv[1][0].dialogue, Model.Condition)
+        self.assertFalse(Performer.allows(rv[1][0].dialogue))
+
