@@ -117,18 +117,16 @@ class Game:
             folder, index, script, selection, interlude = performer.next(
                 carmen.logic.episodes, entities
             )
-            scene = itertools.chain(
-                performer.run(react=False),
-                [functools.partial(
-                    interlude, folder, index, entities,
-                    **session.cache
-                )] if interlude else []
-            )
-            # FIXME
-            frames = [
-                frame for frame in Handler.frames(scene, dwell=0.3, pause=1)
-                sum(elem.duration for elem in frame)
-            ]
+            scene = performer.run(react=False)
+            frames = list(Handler.frames(scene, dwell=0.3, pause=1))
+            if frames and interlude:
+                frames[-1].append(Handler.Element(
+                    functools.partial(
+                        interlude, folder, index, entities,
+                        **session.cache
+                    ),
+                    None, None, None
+                ))
             log.info("Frames: {0!r}".format(frames))
             session.frames.extend(frames)
 
