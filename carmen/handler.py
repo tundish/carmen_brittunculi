@@ -63,10 +63,11 @@ class Handler:
                 durn = pause + dwell * item.text.count(" ")
                 frame.append(Handler.Element(item, shot, offset, durn))
                 offset += durn
-            else:
+            elif not isinstance(item, Model.Condition):
                 frame.append(Handler.Element(item, shot, offset, 0))
         else:
-            yield frame
+            if any(isinstance(i.dialogue, (Model.Audio, Model.Line)) for i in frame):
+                yield frame
 
     @staticmethod
     def react(session, frame, loop=None):

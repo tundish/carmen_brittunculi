@@ -112,7 +112,7 @@ class Game:
     def frame(session, entities):
         """Return the next frame of action for presentation handling."""
         log = logging.getLogger("carmen.main.frame")
-        if not session.frames:
+        while not session.frames:
             performer = Performer(carmen.logic.episodes, entities)
             folder, index, script, selection, interlude = performer.next(
                 carmen.logic.episodes, entities
