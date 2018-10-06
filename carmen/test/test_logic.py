@@ -41,7 +41,7 @@ class TestZones(unittest.TestCase):
                 self.assertEqual((n + 1) % len(Time), Time.advance(i).value)
 
     def test_zones(self):
-        self.assertEqual(10, len(Zones.common))
+        self.assertEqual(10, len(Zones.common), "Map TBD")
 
 class TestDialogue(unittest.TestCase):
 
