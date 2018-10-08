@@ -320,3 +320,5 @@ episodes = [
         interludes=itertools.repeat(Zones.day_night_cycle)
     )
 ]
+
+rehearsal = list(associations().ensemble()) + [Player(name="Player").set_state(Spot.grid_1407)]
