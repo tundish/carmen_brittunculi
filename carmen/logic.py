@@ -60,10 +60,11 @@ class Zones:
 
     @classmethod
     def day_night_cycle(
-        cls, folder, index, references, session, log=None, **kwargs
+        cls, folder, index, references, *,
+        session, player=None, log=None, **kwargs
     ) -> dict:
         log = log or logging.getLogger(str(getattr(session, "uid", "day_night_cycle")))
-        player = kwargs.get("player", next(i for i in references if isinstance(i, Player)))
+        player = player or next(i for i in references if isinstance(i, Player))
         if player.get_state(Spot) in Zones.common:
             player.set_state(Time.advance(player.get_state(Time)))
             if player.get_state(Time) == Time.day_dinner:
@@ -321,6 +322,8 @@ episodes = [
         interludes=itertools.repeat(Zones.day_night_cycle)
     )
 ]
+
+first, *rest = episodes
 
 rehearsal = list(associations().ensemble()) + [
     Player(name="Player").set_state(Spot.grid_1407).set_state(Time.day_sunrise)

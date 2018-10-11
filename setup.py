@@ -50,7 +50,7 @@ setup(
     install_requires=[
         "aiohttp>=2.3.10",
         "bottle>=0.12.13",
-        "turberfield-dialogue>=0.17.0",
+        "turberfield-dialogue>=0.18.0",
         "turberfield-utils>=0.34.0",
     ],
     extras_require={

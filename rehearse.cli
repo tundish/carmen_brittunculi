@@ -1,5 +1,5 @@
 --references=carmen.logic:rehearsal
---folder=carmen.logic:episodes
+--folder=carmen.logic:first
 --roles=1
 --repeat=0
 --strict
