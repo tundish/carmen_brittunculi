@@ -105,8 +105,8 @@ def associations():
 
     rv.register(
         Via.bidir,
-        next(iter(rv.search(label="Common house"))),
         Location(label="Kitchen").set_state(Spot.grid_1308),
+        next(iter(rv.search(label="Common house"))),
         Location(label="Woodshed").set_state(Spot.grid_1407),
     )
     rv.register(
