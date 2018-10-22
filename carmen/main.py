@@ -60,9 +60,9 @@ class Game:
         loop = loop or asyncio.get_event_loop()
         finder = carmen.logic.associations()
         activities = carmen.logic.activities(finder)
-        start = next(iter(finder.search(label="Green lane")))
+        start = next(iter(finder.search(label="Woodshed")))
         player = Player(name=name).set_state(start.get_state(Spot))
-        player.set_state(Time.day_sunrise)
+        player.set_state(Time.eve_predawn)
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = Game.Session(
