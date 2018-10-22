@@ -46,7 +46,7 @@ A correction
 
 [BRYN]_
 
-    Care not for smoke after dark. Save dry wood for the day.
+    Care not for smoke after dark. Save that dry wood for the day.
 
 [CADI]_
 
@@ -58,35 +58,35 @@ A correction
 
 [CADI]_
 
-    It is of Larch. The smell will carry to him.
+    It is of Larch. The smell would carry to him.
 
 [BRYN]_
 
-    Hah! Brock cannot smell Larch.
+    Hah! Brock cannot smell any Larchwood.
 
     His nose is flat across his face.
 
-    He cannot smell a fallen mule roasting in a deep pit of Larch.
+    He cannot smell a fallen mule roasting in a quarry pit of Larch trees.
 
 [CADI]_
 
     But one of them would smell it.
 
-    I keep the wet Larch to burn in the night without breeze.
+    I only burn the wet Larch in the eve without breeze.
 
 A nudge
 -------
 
 [BRYN]_
 
-    Good so. |PLAYER| knows well the wood.
+    Good so. |PLAYER| knows well the Wood.
 
 [CADI]_
 
-    Then can I teach the Ale?
+    Then next I teach the Ale?
 
 [BRYN]_
 
-    Yes, |PLAYER| must learn the Ale. But wood for now.
+    Yes, |PLAYER| must learn the Ale. But Wood for now.
 
 .. |PLAYER| property:: PLAYER.name.firstname
