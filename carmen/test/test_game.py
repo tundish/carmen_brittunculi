@@ -27,16 +27,13 @@ from turberfield.utils.misc import group_by_type
 
 from carmen.logic import associations
 from carmen.logic import episodes
+from carmen.main import Game
 from carmen.types import Player
 from carmen.types import Spot
 from carmen.types import Time
 from carmen.types import Visibility
 
 class Episode01Tests(unittest.TestCase):
-
-    def make_association(obj, associations):
-        if isinstance(obj, Model.Memory) and obj.object:
-            associations.register(obj.state, obj.subject, obj.object)
 
     @classmethod
     def setUpClass(cls):
@@ -58,10 +55,11 @@ class Episode01Tests(unittest.TestCase):
         )
 
     def tearDown(self):
-        print("Teardown", self.folder.paths[self.index], file=sys.stderr)
-        print("Interlude", self.interlude, file=sys.stderr)
         if isinstance(self.interlude, Callable):
-            metadata = self.interlude(self.folder, self.index, self.ensemble)
+            metadata = self.interlude(
+                self.folder, self.index, self.ensemble,
+                session = Game.Session(None, None, None, None, None)
+            )
             self.assertIn(metadata, (None, self.folder.metadata))
 
     def test_001(self):
@@ -71,9 +69,6 @@ class Episode01Tests(unittest.TestCase):
         )
 
         list(self.performer.run())
-        self.assertTrue(self.performer.script.fP.endswith("step_forward.rst"))
+        self.assertTrue(self.performer.script.fP.endswith("woodshed.rst"))
         self.assertEqual(1, len(self.performer.shots))
-        self.assertEqual(
-            "ray is on the landing",
-            self.performer.shots[-1].name
-        )
+        self.assertEqual("waking", self.performer.shots[-1].name)

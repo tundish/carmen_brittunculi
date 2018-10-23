@@ -270,7 +270,7 @@ def associations():
     rv.register(
         None,
         Character(name="Maer Catrine Cadi Ingenbrettar").set_state(
-            next(iter(rv.search(label="Common house"))).get_state(Spot)
+            next(iter(rv.search(label="Kitchen"))).get_state(Spot)
         ),
     )
 
