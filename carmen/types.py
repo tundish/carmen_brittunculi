@@ -45,6 +45,7 @@ class Time(EnumFactory, Stepper):
     eve_night = 1
     eve_predawn = 2
     eve_dawn = 3
+    day = 4
     day_sunrise = 4
     day_early = 5
     day_breakfast = 6
@@ -54,6 +55,7 @@ class Time(EnumFactory, Stepper):
     day_afternoon = 10
     day_dinner = 11
     day_dusk = 12
+    eve = 12
     eve_sunset = 13
     eve_evening = 14
     eve_supper = 15

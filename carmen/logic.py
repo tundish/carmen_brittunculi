@@ -326,5 +326,5 @@ episodes = [
 first, *rest = episodes
 
 rehearsal = list(associations().ensemble()) + [
-    Player(name="Player").set_state(Spot.grid_1407).set_state(Time.day_sunrise)
+    Player(name="Player").set_state(Spot.grid_1407).set_state(Time.eve_predawn)
 ]
