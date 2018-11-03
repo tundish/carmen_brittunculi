@@ -232,6 +232,10 @@ def build_app(args):
     ])
 
     add_static(
+        "/audio/",
+        pkg_resources.resource_filename("carmen", "static/audio")
+    )
+    add_static(
         "/css/",
         pkg_resources.resource_filename("carmen", "static/css")
     )

@@ -17,6 +17,15 @@
 <p class="speech">{{ element.dialogue.text }}</p>
 </blockquote>
 </li>
+% elif hasattr(element.dialogue, "loop"):
+<li>
+<audio
+    src="/audio/{{ element.dialogue.resource }}"
+    autoplay="autoplay" preload="auto"
+>
+    Your browser does not support the <code>audio</code> element.
+</audio>
+</li>
 % end
 % end
 </ul>
