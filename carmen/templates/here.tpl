@@ -23,7 +23,6 @@
     src="/audio/{{ element.dialogue.resource }}"
     autoplay="autoplay" preload="auto"
 >
-    Your browser does not support the <code>audio</code> element.
 </audio>
 </li>
 % end

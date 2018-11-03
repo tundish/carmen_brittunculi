@@ -185,7 +185,7 @@ async def here(request):
             session=session,
             frame=frame,
             ordinal=player.get_state(int),
-            refresh=Handler.refresh(frame, MAX_FRAME_S)
+            refresh=Handler.refresh(frame)
         ),
         content_type="text/html"
     )

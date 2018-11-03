@@ -57,7 +57,9 @@ class Handler:
                 if isinstance(item, Model.Shot):
                     shot = item
                 else:
-                    frame.append(Handler.Element(item, shot, item.offset, item.duration))
+                    frame.append(Handler.Element(
+                        item, shot, item.offset / 1000, item.duration / 1000
+                    ))
 
             elif isinstance(item, Model.Line):
                 durn = pause + dwell * item.text.count(" ")
