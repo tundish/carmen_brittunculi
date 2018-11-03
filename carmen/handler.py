@@ -84,8 +84,10 @@ class Handler:
         return metadata
 
     @staticmethod
-    def refresh(frame, max_val=None):
-        return next(
-            (i.offset + i.duration for i in reversed(frame) if i.duration),
-            max_val
-        )
+    def refresh(frame):
+        try:
+            return max(
+                (i.offset + i.duration for i in reversed(frame) if i.duration)
+            )
+        except ValueError:
+            return None
