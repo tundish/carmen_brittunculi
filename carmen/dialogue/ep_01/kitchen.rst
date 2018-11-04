@@ -31,11 +31,6 @@ In the kitchen
 Waking
 ------
 
-.. fx:: carmen.static.audio demo_theme-slide_lead.mp3
-   :offset: 0
-   :duration: 26000
-   :loop: 1
-
 [NARRATOR]_
 
     She has taken the skin from the chimney.

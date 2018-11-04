@@ -49,7 +49,7 @@ from carmen.types import Wants
 
 ides_of_march = datetime.date(396, 3, 1)
 
-class Zones:
+class Rules:
 
     common = [
         i for i in Spot 
@@ -58,14 +58,32 @@ class Zones:
         and 0 <= i.value.imag <= 9
     ]
 
-    @classmethod
+    class Registry:
+
+        operations = []
+
+        @classmethod
+        def register(cls):
+            def decorator(method):
+                cls.operations.append(method)
+                return method
+            return decorator
+
+    def __call__(self, folder, index, references, **kwargs) -> dict:
+        metadata = {}
+        for function in self.Registry.operations:
+            rv = function(self, folder, index, references, **kwargs)
+            metadata.update(rv)
+        return metadata
+
+    @Registry.register()
     def day_night_cycle(
-        cls, folder, index, references, *,
+        self, folder, index, references, *,
         session, player=None, log=None, **kwargs
     ) -> dict:
         log = log or logging.getLogger(str(getattr(session, "uid", "day_night_cycle")))
         player = player or next(i for i in references if isinstance(i, Player))
-        if player.get_state(Spot) in Zones.common:
+        if player.get_state(Spot) in Rules.common:
             player.set_state(Time.advance(player.get_state(Time)))
             if player.get_state(Time) == Time.day_dinner:
                 player.set_state(Wants.needs_food)
@@ -305,7 +323,7 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/ep_01")
             ).glob("*.rst")
         ],
-        interludes=itertools.repeat(Zones.day_night_cycle)
+        interludes=itertools.repeat(Rules())
     ),
     SceneScript.Folder(
         pkg="carmen",
@@ -319,7 +337,7 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/local")
             ).glob("*.rst")
         ],
-        interludes=itertools.repeat(Zones.day_night_cycle)
+        interludes=itertools.repeat(Rules())
     )
 ]
 

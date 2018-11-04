@@ -24,6 +24,11 @@ Kitchen
 Looking around
 --------------
 
+.. fx:: carmen.static.audio demo_theme-slide_lead.mp3
+   :offset: 0
+   :duration: 26000
+   :loop: 1
+
 [LOCATION]_
 
     Here is the kitchen.

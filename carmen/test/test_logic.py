@@ -25,14 +25,14 @@ from carmen.agents import Motivator
 from carmen.logic import activities
 from carmen.logic import associations
 from carmen.logic import episodes
-from carmen.logic import Zones
+from carmen.logic import Rules
 from carmen.main import Game
 from carmen.types import Location
 from carmen.types import Narrator
 from carmen.types import Time
 from carmen.types import Via
 
-class TestZones(unittest.TestCase):
+class TestRules(unittest.TestCase):
 
     def test_advance_time(self):
         for n, i in enumerate(Time):
@@ -40,8 +40,8 @@ class TestZones(unittest.TestCase):
                 self.assertEqual(n, i.value)
                 self.assertEqual((n + 1) % len(Time), Time.advance(i).value)
 
-    def test_zones(self):
-        self.assertEqual(10, len(Zones.common), "Map TBD")
+    def test_rules(self):
+        self.assertEqual(10, len(Rules.common), "Map TBD")
 
 class TestDialogue(unittest.TestCase):
 
