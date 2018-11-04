@@ -50,20 +50,20 @@ class TestOrders(unittest.TestCase):
     def test_simple_class(self):
         o = TestOrders.StandingOrders()
         self.assertEqual(
-            [(0, "do_first"), (1, "do_second"), (2, "do_last")],
-            o.sequence
+            ["do_first", "do_second", "do_last"],
+            [i[1] for i in o.sequence]
         )
 
     def test_subclass(self):
         o = TestOrders.EmergencyOrders()
         self.assertEqual(
-            [(0, "do_first"), (1, "do_second"), (2, "do_last")],
-            o.sequence
+            ["do_first", "do_second", "do_last"],
+            [i[1] for i in o.sequence]
         )
 
     def test_override(self):
         o = TestOrders.CancelledOrders()
         self.assertEqual(
-            [(0, "do_first"), (2, "do_last")],
-            o.sequence
+            ["do_first", "do_last"],
+            [i[1] for i in o.sequence]
         )

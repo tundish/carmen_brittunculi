@@ -34,6 +34,7 @@ from carmen.agents import Affinity
 from carmen.agents import Clock
 from carmen.agents import Creator
 from carmen.agents import Motivator
+from carmen.orders import Orders
 from carmen.routefinder import Routefinder
 from carmen.session import Session
 from carmen.types import Character
@@ -49,7 +50,7 @@ from carmen.types import Wants
 
 ides_of_march = datetime.date(396, 3, 1)
 
-class Rules:
+class Rules(Orders):
 
     common = [
         i for i in Spot 
@@ -58,25 +59,15 @@ class Rules:
         and 0 <= i.value.imag <= 9
     ]
 
-    class Registry:
-
-        operations = []
-
-        @classmethod
-        def register(cls):
-            def decorator(method):
-                cls.operations.append(method)
-                return method
-            return decorator
-
     def __call__(self, folder, index, references, **kwargs) -> dict:
         metadata = {}
-        for function in self.Registry.operations:
-            rv = function(self, folder, index, references, **kwargs)
+        for n, name in self.sequence:
+            method = getattr(self, name)
+            rv = method(folder, index, references, **kwargs)
             metadata.update(rv)
         return metadata
 
-    @Registry.register()
+    @Orders.register()
     def day_night_cycle(
         self, folder, index, references, *,
         session, player=None, log=None, **kwargs
