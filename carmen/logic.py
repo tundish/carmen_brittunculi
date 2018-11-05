@@ -52,7 +52,7 @@ ides_of_march = datetime.date(396, 3, 1)
 
 class Rules(Orders):
 
-    common = [
+    zone = [
         i for i in Spot 
         if i.value
         and 8 <= i.value.real <= 15
@@ -82,14 +82,15 @@ class Rules(Orders):
         self, folder, index, references, *,
         session, player, log, **kwargs
     ) -> dict:
-        if player.get_state(Spot) in Rules.common:
-            player.set_state(Time.advance(player.get_state(Time)))
-            if player.get_state(Time) == Time.day_dinner:
-                player.set_state(Wants.needs_food)
-            elif player.get_state(Time) == Time.eve_midnight:
-                player.set_state(Wants.needs_sleep)
-        else:
+        player.set_state(Time.advance(player.get_state(Time)))
+
+        if player.get_state(Time) == Time.day_dinner:
+            player.set_state(Wants.needs_food)
+        elif player.get_state(Time) == Time.eve_midnight:
+            player.set_state(Wants.needs_sleep)
+        elif player.get_state(Time) == Time.day_sunrise:
             player.set_state(Wants.nothing)
+
         return folder.metadata
 
     @Orders.register()
@@ -97,18 +98,26 @@ class Rules(Orders):
         self, folder, index, references, *,
         session, player, log, **kwargs
     ) -> dict:
-        if random.random() < Fraction(1, 8):
-            spot = random.choice(self.common)
-            locn = next((
-                i for i in references
-                if isinstance(i, Location) and i.get_state(Spot) == spot),
-                None
+
+        if any(
+            i for i in session.finder.lookup
+            if isinstance(i, CubbyFruit) and
+            i.get_state(Visibility) in (Visibility.new, Visibility.visible)
+        ):
+            return folder.metadata
+
+        locns = [
+            i for i in session.finder.lookup
+            if getattr(i, "label", None) in (
+                "South gate", "Clearing", "Grove of Hades",
+                "Stream", "Footbridge", "North gate"
             )
-            if locn is not None:
-                obj = CubbyFruit().set_state(spot).set_state(Visibility.new)
-                session.finder.register(None, obj)
-                locn.set_state(Visibility.indicated)
-                log.info("Created {0} at {1}.".format(obj, locn))
+        ]
+        locn = random.choice(locns)
+        obj = CubbyFruit().set_state(locn.get_state(Spot)).set_state(Visibility.new)
+        session.finder.register(None, obj)
+        locn.set_state(Visibility.indicated)
+        log.info("Created {0} at {1}.".format(obj, locn))
         return folder.metadata
 
 def associations():

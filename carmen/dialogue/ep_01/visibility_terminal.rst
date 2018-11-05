@@ -27,7 +27,7 @@ Something to do
 
 [Narrator]_
 
-    You pick up the |OBJECT|.
+    You pick up a |OBJECT|.
 
 .. property:: OBJECTIVE.state carmen.types.Spot.pockets
 
