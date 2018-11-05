@@ -81,7 +81,7 @@ class Handler:
                 setattr(event.object, event.attr, event.val)
                 log.debug("React on property {0}".format(event))
             elif callable(event):
-                metadata.update(event(session=session, log=log, loop=loop))
+                metadata.update(event(session=session, loop=loop))
                 log.debug("React on interlude {0}".format(event))
         return metadata
 

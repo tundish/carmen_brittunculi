@@ -59,21 +59,29 @@ class Rules(Orders):
         and 0 <= i.value.imag <= 9
     ]
 
-    def __call__(self, folder, index, references, **kwargs) -> dict:
+    def __call__(self, folder, index, references, *,
+        session, player=None, **kwargs
+    ) -> dict:
+        log = logging.getLogger(
+            "{0!s}.{1}".format(session.uid, self.__class__.__name__)
+        )
+        player = player or next(i for i in references if isinstance(i, Player))
         metadata = {}
         for n, name in self.sequence:
             method = getattr(self, name)
-            rv = method(folder, index, references, **kwargs)
+            rv = method(
+                folder, index, references,
+                session=session, player=player, log=log,
+                **kwargs
+            )
             metadata.update(rv)
         return metadata
 
     @Orders.register()
     def day_night_cycle(
         self, folder, index, references, *,
-        session, player=None, log=None, **kwargs
+        session, player, log, **kwargs
     ) -> dict:
-        log = log or logging.getLogger(str(getattr(session, "uid", "day_night_cycle")))
-        player = player or next(i for i in references if isinstance(i, Player))
         if player.get_state(Spot) in Rules.common:
             player.set_state(Time.advance(player.get_state(Time)))
             if player.get_state(Time) == Time.day_dinner:
@@ -82,10 +90,26 @@ class Rules(Orders):
                 player.set_state(Wants.needs_sleep)
         else:
             player.set_state(Wants.nothing)
-        log.info(player.get_state(Time))
-        log.info(player.get_state(Wants))
-        rv = folder.metadata
-        return rv
+        return folder.metadata
+
+    @Orders.register()
+    def windfall(
+        self, folder, index, references, *,
+        session, player, log, **kwargs
+    ) -> dict:
+        if random.random() < Fraction(1, 8):
+            spot = random.choice(self.common)
+            locn = next((
+                i for i in references
+                if isinstance(i, Location) and i.get_state(Spot) == spot),
+                None
+            )
+            if locn is not None:
+                obj = CubbyFruit().set_state(spot).set_state(Visibility.new)
+                session.finder.register(None, obj)
+                locn.set_state(Visibility.indicated)
+                log.info("Created {0} at {1}.".format(obj, locn))
+        return folder.metadata
 
 def associations():
     rv = Routefinder()
@@ -288,7 +312,7 @@ def associations():
 def activities(finder):
     return [
         Clock(),
-        Creator(finder, CubbyFruit, probability=Fraction(1, 8)),
+        #Creator(finder, CubbyFruit, probability=Fraction(1, 8)),
         Motivator(
             next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
             finder,
