@@ -42,5 +42,5 @@ class Orders:
             if callable(obj) and hasattr(obj, "n") and not isinstance(obj, type)
         ]
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         self.sequence = sorted([(obj.n, name) for name, obj in self.methods])

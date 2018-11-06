@@ -41,7 +41,7 @@ class TestRules(unittest.TestCase):
                 self.assertEqual((n + 1) % len(Time), Time.advance(i).value)
 
     def test_rules(self):
-        self.assertEqual(10, len(Rules.common), "Map TBD")
+        self.assertEqual(10, len(Rules.zone), "Map TBD")
 
 class TestDialogue(unittest.TestCase):
 
@@ -78,8 +78,7 @@ class TestActivities(unittest.TestCase):
         self.activities = activities(self.asscns)
 
     def test_activities(self):
-        self.assertEqual(3, len(self.activities))
+        self.assertEqual(2, len(self.activities))
         self.assertIsInstance(self.activities[0], Clock)
-        self.assertIsInstance(self.activities[1], Creator)
-        self.assertIsInstance(self.activities[2], Motivator)
-        self.assertEqual(1, len(self.activities[2].dramas))
+        self.assertIsInstance(self.activities[1], Motivator)
+        self.assertEqual(1, len(self.activities[1].dramas))

@@ -59,6 +59,10 @@ class Rules(Orders):
         and 0 <= i.value.imag <= 9
     ]
 
+    def __init__(self, windfall_rate=None):
+        super().__init__()
+        self.windfall_rate = windfall_rate or Fraction(1, 4)
+
     def __call__(self, folder, index, references, *,
         session, player=None, **kwargs
     ) -> dict:
