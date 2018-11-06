@@ -127,7 +127,6 @@ class Game:
                     ),
                     None, None, None
                 ))
-            log.info("Frames: {0!r}".format(frames))
             session.frames.extend(frames)
 
         return session.frames.popleft()

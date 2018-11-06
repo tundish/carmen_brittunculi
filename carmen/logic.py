@@ -107,7 +107,7 @@ class Rules(Orders):
             i for i in session.finder.lookup
             if isinstance(i, CubbyFruit) and
             i.get_state(Visibility) in (Visibility.new, Visibility.visible)
-        ):
+        ) or random.random() > self.windfall_rate:
             return folder.metadata
 
         locns = [
@@ -121,7 +121,7 @@ class Rules(Orders):
         obj = CubbyFruit().set_state(locn.get_state(Spot)).set_state(Visibility.new)
         session.finder.register(None, obj)
         locn.set_state(Visibility.indicated)
-        log.info("Created {0} at {1}.".format(obj, locn))
+        log.info("Created {0.__class__.__name__} at {1.label}.".format(obj, locn))
         return folder.metadata
 
 def associations():
@@ -351,7 +351,7 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/ep_01")
             ).glob("*.rst")
         ],
-        interludes=itertools.repeat(Rules())
+        interludes=itertools.repeat(Rules(windfall_rate=1))
     ),
     SceneScript.Folder(
         pkg="carmen",
