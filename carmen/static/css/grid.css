@@ -10,29 +10,32 @@ grid-template-areas:
 "nav";
 }
 
-main.events, form.titles {
+main.events, form.titles, section{
 grid-area: events;
 }
 
-aside.diorama {
+aside.diorama{
+grid-area: diorama;
+}
+
+aside.diorama, section{
 border-radius: 1em;
 font-family: var(--font-family-monospace);
-grid-area: diorama;
 margin: 1em;
 padding: 1.3em;
 background-color: var(--picnic-green);
 }
 
-aside.diorama dl{
+aside.diorama dl, section dl{
 font-weight: lighter;
 content: ":";
 }
 
-aside.diorama dt:after{
+aside.diorama dt:after, section dt:after{
 content: ":";
 }
 
-aside.diorama dd{
+aside.diorama dd, section dd{
 font-weight: bold;
 margin: 1em;
 }

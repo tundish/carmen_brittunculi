@@ -131,6 +131,15 @@ class Game:
 
         return session.frames.popleft()
 
+async def get_about(request):
+    return web.Response(
+        text=bottle.template(
+            pkg_resources.resource_string("carmen", "templates/about.tpl").decode("utf8"),
+            refresh=None
+        ),
+        content_type="text/html"
+    )
+
 async def get_start(request):
     return web.Response(
         text=bottle.template(
@@ -145,14 +154,8 @@ async def post_start(request):
     log = logging.getLogger("carmen.main.start")
     data = await request.post()
     name = data["playername"]
-    email = data["email"]
     if not Handler.validation["name"].match(name):
         raise web.HTTPUnauthorized(reason="User input invalid name.")
-
-    if not Handler.validation["email"].match(email):
-        log.warning("User input invalid email.")
-    else:
-        log.info("Email offered: {0}".format(email))
 
     session = Game.session(name)
     log.info("Player {0} created session {1.uid!s}".format(name, session))
@@ -222,6 +225,7 @@ def build_app(args):
         add_static = app.router.add_static
 
     add_routes([
+        web.get("/about", get_about),
         web.get("/", get_start),
         web.post("/", post_start),
         web.get("/{{session:{0}}}".format(Handler.validation["session"].pattern), here),
