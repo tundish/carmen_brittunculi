@@ -24,6 +24,11 @@ Grove of Hades
 Looking around
 --------------
 
+.. fx:: carmen.static.audio desolate-wind.mp3
+   :offset: 0
+   :duration: 26000
+   :loop: 1
+
 [LOCATION]_
 
     Here on the well-used path is a shrine to the god Hades.

@@ -24,6 +24,11 @@ South gate
 Looking around
 --------------
 
+.. fx:: carmen.static.audio desolate-wind.mp3
+   :offset: 0
+   :duration: 26000
+   :loop: 1
+
 [LOCATION]_
 
     The gate to the South is braced shut. It would take much work to open

@@ -24,6 +24,11 @@ North gate
 Looking around
 --------------
 
+.. fx:: carmen.static.audio desolate-wind.mp3
+   :offset: 0
+   :duration: 26000
+   :loop: 1
+
 [LOCATION]_
 
     The track runs out from mud on to rock. This is the
