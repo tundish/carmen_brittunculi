@@ -21,9 +21,22 @@ import unittest
 
 from carmen.types import Compass
 from carmen.types import Spot
+from carmen.types import Time
 from carmen.types import Phrase
 from turberfield.dialogue.types import Stateful
 from turberfield.utils.assembly import Assembly
+
+class TimeTests(unittest.TestCase):
+
+    def test_time_sequence_from_superstate(self):
+        then = Time.eve
+        now = Time.advance(then)
+        self.assertEqual(Time.eve_evening, now)
+
+    def test_time_sequence_past_superstate(self):
+        then = Time.day_dusk
+        now = Time.advance(then)
+        self.assertEqual(Time.eve_sunset, now)
 
 class CompassTests(unittest.TestCase):
 

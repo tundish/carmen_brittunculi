@@ -12,7 +12,7 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Time.eve
+   :states: carmen.logic.Time.eve_night
 
 .. entity:: NARRATOR
    :types: carmen.logic.Narrator

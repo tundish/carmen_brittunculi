@@ -69,6 +69,9 @@ class Episode01Tests(unittest.TestCase):
         )
 
         list(self.performer.run())
-        self.assertTrue(self.performer.script.fP.endswith("woodshed.rst"))
+        self.assertTrue(
+            self.performer.script.fP.endswith("woodshed.rst"),
+            self.performer.script.fP
+        )
         self.assertEqual(1, len(self.performer.shots))
         self.assertEqual("waking", self.performer.shots[-1].name)

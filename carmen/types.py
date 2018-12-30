@@ -35,6 +35,7 @@ class Stepper(enum.Enum):
 
     @classmethod
     def advance(cls, instance):
+        """Return the next highest member of the enum class."""
         members = deque(cls)
         members.rotate(-instance.value - 1)
         return members[0]
@@ -55,7 +56,7 @@ class Time(EnumFactory, Stepper):
     day_afternoon = 10
     day_dinner = 11
     day_dusk = 12
-    eve = 12
+    eve = 13
     eve_sunset = 13
     eve_evening = 14
     eve_supper = 15
