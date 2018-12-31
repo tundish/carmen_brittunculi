@@ -45,7 +45,11 @@
   % for legend, locn in moves:
     <li>
         <form role="form" action="/{{ session.uid.hex }}/move/{{ locn.id.hex }}" method="post" name="move-{{ legend }}" >
+    % if session.cache["visits"][locn]:
+        <button type="submit">{{ locn.label }}</button>
+    % else:
         <button type="submit">Go {{ legend }}</button>
+    % end
         </form>
     </li>
   % end

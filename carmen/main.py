@@ -18,6 +18,7 @@
 
 import asyncio
 import argparse
+from collections import Counter
 from collections import deque
 from collections import namedtuple
 import functools
@@ -65,7 +66,7 @@ class Game:
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = Game.Session(
-            uid, {"player": player}, deque([]), finder,
+            uid, {"player": player, "visits": Counter()}, deque([]), finder,
             [loop.create_task(i(str(uid), loop=loop)) for i in activities]
         )
         Game.sessions[uid] = rv
@@ -204,6 +205,7 @@ async def move(request):
     try:
         destn = next(i for i in dict(moves).values() if i.id == dest_uid)
         session.cache["player"].set_state(destn.get_state(Spot))
+        session.cache["visits"][destn] += 1
         locn.set_state(Visibility.visible)
         destn.set_state(Visibility.detail)
         log.info("Player {0} moved to {1}".format(
