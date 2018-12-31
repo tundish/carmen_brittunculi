@@ -22,7 +22,6 @@ import unittest
 from carmen.types import Compass
 from carmen.types import Spot
 from carmen.types import Time
-from carmen.types import Phrase
 from turberfield.dialogue.types import Stateful
 from turberfield.utils.assembly import Assembly
 
@@ -80,17 +79,3 @@ class SpotTests(unittest.TestCase):
         rv = Assembly.loads(data)
         self.assertIsInstance(rv, Spot)
         self.assertEqual(obj.value, rv.value)
-
-class PhraseTests(unittest.TestCase):
-
-    def test_class_name(self):
-        self.assertEqual(
-            "Thats1MonthsWorkAllWasted",
-            Phrase.class_name("That's 1 month's work __all__   wasted!")
-        )
-
-    def test_no_html(self):
-        cls = Phrase.build("these are dangerous times")
-        self.assertTrue(issubclass(cls, Stateful))
-        obj = cls.instance()
-        self.assertIsInstance(obj, Stateful)

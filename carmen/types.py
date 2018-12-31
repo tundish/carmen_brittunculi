@@ -111,14 +111,6 @@ class Compass:
         pos = bisect.bisect_left(keys, val)
         return values[pos]
 
-class Speech(EnumFactory, enum.Enum):
-    overheard = "overheard"
-    studied = "studied"
-    unspoken = "unspoken"
-    spoken = "spoken"
-    ignored = "ignored"
-    repeated = "repeated"
-
 
 Spot = enum.Enum(
     "Spot", [
@@ -145,53 +137,11 @@ Spot = enum.Enum(
     type=EnumFactory
 )
 
-class Travel(EnumFactory, enum.Enum):
-    refusal = "refusal"
-    intention = "intention"
-    departure = "departure"
-    transit = "transit"
-    arrival = "arrival"
-
 class Via(EnumFactory, enum.Enum):
     block = 0
     forwd = 1
     bckwd = 2
     bidir = 3
-
-class Phrase:
-
-    """
-    Allows on-the-fly creation of singleton classes to represent spoken phrases.
-    The instance object is stateful, so can be an entity in a dialogue file.
-
-    """
-
-    _table = {
-        ord(c): val
-        for seq, val in ((string.punctuation, None), (string.whitespace, " "))
-        for c in seq
-    }
-
-    @staticmethod
-    def build(text, html=None):
-
-        @classmethod
-        def instance(cls):
-            if getattr(cls, "_instance", None) is None:
-                cls._instance = cls()
-            return cls._instance
-
-        html = html or text
-        return type(
-            Phrase.class_name(text),
-            (Stateful,),
-            {"text": text, "html": html, "instance": instance}
-        )
-
-    @staticmethod
-    def class_name(text):
-        sane = text.lower().translate(Phrase._table)
-        return "".join(i.capitalize() for i in sane.split())
 
 class Narrator(Stateful): pass
 class Character(Stateful, Persona): pass
