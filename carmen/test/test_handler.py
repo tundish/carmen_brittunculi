@@ -241,4 +241,3 @@ class HandlerTests(unittest.TestCase):
         self.assertEqual(1.3, rv[1][1].offset)
         self.assertEqual(1.0, rv[1][1].duration)
         self.assertAlmostEqual(2.3, Handler.refresh(rv[1]))
-

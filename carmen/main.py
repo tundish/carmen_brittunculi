@@ -21,7 +21,6 @@ import argparse
 from collections import deque
 from collections import namedtuple
 import functools
-import itertools
 import logging
 import sys
 import uuid
@@ -103,15 +102,14 @@ class Game:
 
         return [
             i for i in session.finder.ensemble()
-            if i.get_state(Spot) == spot
-            or i.get_state(Visibility) in (Visibility.indicated, Visibility.new)
-            or isinstance(i, Narrator)
+            if i.get_state(Spot) == spot or
+            i.get_state(Visibility) in (Visibility.indicated, Visibility.new) or
+            isinstance(i, Narrator)
         ]
 
     @staticmethod
     def frame(session, entities):
         """Return the next frame of action for presentation handling."""
-        log = logging.getLogger("carmen.main.frame")
         while not session.frames:
             performer = Performer(carmen.logic.episodes, entities)
             folder, index, script, selection, interlude = performer.next(
@@ -174,7 +172,8 @@ async def here(request):
     frame = Game.frame(session, entities)
     player.set_state(player.get_state(int) + 1)
     metadata = Handler.react(session, frame)
-    log.info(player.get_state(Wants))
+    log.debug(metadata)
+    log.debug(player.get_state(Wants))
 
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
 

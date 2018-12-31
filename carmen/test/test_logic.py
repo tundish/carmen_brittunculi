@@ -16,11 +16,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
-from collections import deque
 import unittest
 
 from carmen.agents import Clock
-from carmen.agents import Creator
 from carmen.agents import Motivator
 from carmen.logic import activities
 from carmen.logic import associations

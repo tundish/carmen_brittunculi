@@ -21,7 +21,6 @@ import datetime
 from fractions import Fraction
 import itertools
 import logging
-import operator
 import pathlib
 import random
 
@@ -32,11 +31,9 @@ from turberfield.dialogue.model import SceneScript
 from carmen import __version__ as version # noqa
 from carmen.agents import Affinity
 from carmen.agents import Clock
-from carmen.agents import Creator
 from carmen.agents import Motivator
 from carmen.orders import Orders
 from carmen.routefinder import Routefinder
-from carmen.session import Session
 from carmen.types import Character
 from carmen.types import CubbyFruit
 from carmen.types import Location
@@ -53,17 +50,18 @@ ides_of_march = datetime.date(396, 3, 1)
 class Rules(Orders):
 
     zone = [
-        i for i in Spot 
-        if i.value
-        and 8 <= i.value.real <= 15
-        and 0 <= i.value.imag <= 9
+        i for i in Spot
+        if i.value and
+        8 <= i.value.real <= 15 and
+        0 <= i.value.imag <= 9
     ]
 
     def __init__(self, windfall_rate=None):
         super().__init__()
         self.windfall_rate = windfall_rate or Fraction(1, 4)
 
-    def __call__(self, folder, index, references, *,
+    def __call__(
+        self, folder, index, references, *,
         session, player=None, **kwargs
     ) -> dict:
         log = logging.getLogger(
@@ -325,7 +323,7 @@ def associations():
 def activities(finder):
     return [
         Clock(),
-        #Creator(finder, CubbyFruit, probability=Fraction(1, 8)),
+        # Creator(finder, CubbyFruit, probability=Fraction(1, 8)),
         Motivator(
             next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
             finder,

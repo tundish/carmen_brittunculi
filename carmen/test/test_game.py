@@ -18,10 +18,8 @@
 
 from collections.abc import Callable
 import copy
-import sys
 import unittest
 
-from turberfield.dialogue.model import Model
 from turberfield.dialogue.performer import Performer
 from turberfield.utils.misc import group_by_type
 
@@ -31,7 +29,6 @@ from carmen.main import Game
 from carmen.types import Player
 from carmen.types import Spot
 from carmen.types import Time
-from carmen.types import Visibility
 
 class Episode01Tests(unittest.TestCase):
 

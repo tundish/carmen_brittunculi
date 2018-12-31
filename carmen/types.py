@@ -60,7 +60,7 @@ class Time(EnumFactory, Stepper):
     eve_sunset = 13
     eve_evening = 14
     eve_supper = 15
-    
+
 
 class Visibility(EnumFactory, enum.Enum):
     hidden = 0
