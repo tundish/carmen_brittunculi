@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
+import asyncio
 import unittest
 
 from carmen.agents import Clock
@@ -56,8 +57,12 @@ class TestNavigation(unittest.TestCase):
         self.a = associations()
 
     def test_new_world(self):
-        session = Game.session("Stig")
-        self.assertEqual(41, len([i for i in session.finder.lookup if isinstance(i, Location)]))
+        loop = asyncio.new_event_loop()
+        try:
+            session = Game.session("Stig", loop=loop)
+            self.assertEqual(41, len([i for i in session.finder.lookup if isinstance(i, Location)]))
+        finally:
+            loop.close()
 
     def test_associations(self):
         locn = next(iter(self.a.search(label="Grove of Hades")))

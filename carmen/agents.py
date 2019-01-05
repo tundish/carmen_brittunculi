@@ -36,15 +36,23 @@ class Clock:
     period = 15
     tick = None
 
-    async def __call__(self, name, loop=None):
+    def __init__(self, period=1, stop=0):
+        self.period = period
+        self.stop = stop
+        self.turn = None
+
+    async def __call__(self, name=None, loop=None):
         if Clock.tick is None:
             Clock.tick = asyncio.Condition(loop=loop)
 
-        while True:
+        self.turn = 1
+        while self.turn != self.stop:
             await asyncio.sleep(Clock.period, loop=loop)
             if await Clock.tick.acquire():
                 Clock.tick.notify_all()
                 Clock.tick.release()
+            print(self.turn)
+            self.turn += 1
 
 class Creator:
 
