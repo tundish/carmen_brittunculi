@@ -34,6 +34,10 @@ class ClockTests(unittest.TestCase):
     def test_tick(self):
         clock = Clock(period=0.01, stop=3)
         self.loop.run_until_complete(
-            self.loop.create_task(clock(loop=self.loop))
+            asyncio.wait(
+                [clock(loop=self.loop)],
+                loop=self.loop,
+                timeout=12
+            )
         )
-        self.fail(clock)
+        self.assertEqual(3, clock.turn)

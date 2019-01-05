@@ -33,7 +33,6 @@ Affinity = namedtuple("Affinity", Drama._fields)
 
 class Clock:
 
-    period = 15
     tick = None
 
     def __init__(self, period=1, stop=0):
