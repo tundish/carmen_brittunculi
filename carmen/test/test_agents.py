@@ -25,17 +25,15 @@ from carmen.agents import Clock
 class ClockTests(unittest.TestCase):
 
     def setUp(self):
-        self.loop = asyncio.SelectorEventLoop()
+        self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(None)
 
     def tearDown(self):
         self.loop.close()
 
     def test_tick(self):
-        #test = self.loop.create_task(
-        #    run_then_cancel(coro, progress, down, up, loop=loop)
-        #)
-        clock = Clock(stop=3)
-        #test = self.loop.create_task(clock(loop=self.loop))
-        self.loop.run_until_complete(clock(loop=self.loop))
+        clock = Clock(period=0.01, stop=3)
+        self.loop.run_until_complete(
+            self.loop.create_task(clock(loop=self.loop))
+        )
         self.fail(clock)

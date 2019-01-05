@@ -47,11 +47,10 @@ class Clock:
 
         self.turn = 1
         while self.turn != self.stop:
-            await asyncio.sleep(Clock.period, loop=loop)
+            await asyncio.sleep(self.period, loop=loop)
             if await Clock.tick.acquire():
                 Clock.tick.notify_all()
                 Clock.tick.release()
-            print(self.turn)
             self.turn += 1
 
 class Creator:
