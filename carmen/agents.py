@@ -40,6 +40,13 @@ class Clock:
         self.stop = stop
         self.turn = None
 
+    @classmethod
+    async def next_event(cls, name="tick"):
+        condition = getattr(cls, name, None)
+        if condition and await condition.acquire():
+            await condition.wait()
+            condition.release()
+
     async def __call__(self, name=None, loop=None):
         if Clock.tick is None:
             Clock.tick = asyncio.Condition(loop=loop)
@@ -51,6 +58,7 @@ class Clock:
                 Clock.tick.notify_all()
                 Clock.tick.release()
             self.turn += 1
+
 
 class Creator:
 
