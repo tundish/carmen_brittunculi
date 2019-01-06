@@ -323,7 +323,6 @@ def associations():
 def activities(finder):
     return [
         Clock(),
-        # Creator(finder, CubbyFruit, probability=Fraction(1, 8)),
         Motivator(
             next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
             finder,
