@@ -321,7 +321,7 @@ def associations():
 
     return rv
 
-def activities(finder):
+def routines(finder):
     return [
         Clock(period=15),
         Stalker(

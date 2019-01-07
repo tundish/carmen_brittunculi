@@ -21,7 +21,7 @@ import unittest
 
 from carmen.agents import Clock
 from carmen.agents import Motivator
-from carmen.logic import activities
+from carmen.logic import routines
 from carmen.logic import associations
 from carmen.logic import episodes
 from carmen.logic import Rules
@@ -78,10 +78,10 @@ class TestActivities(unittest.TestCase):
 
     def setUp(self):
         self.asscns = associations()
-        self.activities = activities(self.asscns)
+        self.routines = routines(self.asscns)
 
-    def test_activities(self):
-        self.assertEqual(2, len(self.activities))
-        self.assertIsInstance(self.activities[0], Clock)
-        self.assertIsInstance(self.activities[1], Motivator)
-        self.assertEqual(1, len(self.activities[1].dramas))
+    def test_routines(self):
+        self.assertEqual(2, len(self.routines))
+        self.assertIsInstance(self.routines[0], Clock)
+        self.assertIsInstance(self.routines[1], Motivator)
+        self.assertEqual(1, len(self.routines[1].dramas))

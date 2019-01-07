@@ -59,16 +59,20 @@ class Game:
     def session(name, loop=None):
         loop = loop or asyncio.get_event_loop()
         finder = carmen.logic.associations()
-        activities = carmen.logic.activities(finder)
         start = next(iter(finder.search(label="Woodshed")))
         player = Player(name=name).set_state(start.get_state(Spot))
         player.set_state(Time.eve_predawn)
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = Game.Session(
-            uid, {"player": player, "visits": Counter()}, deque([]), finder,
-            [loop.create_task(i(finder, loop=loop)) for i in activities]
+            uid=uid,
+            cache={"player": player, "visits": Counter()},
+            frames=deque([]),
+            finder=finder,
+            workers=[]
         )
+        for routine in carmen.logic.routines(finder):
+            rv.workers.append(loop.create_task(routine(rv, loop=loop)))
         Game.sessions[uid] = rv
         return rv
 

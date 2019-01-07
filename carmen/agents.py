@@ -83,7 +83,7 @@ class Stalker:
         self.targets = targets
         self.moves = deque([])
 
-    async def __call__(self, finder, loop=None):
+    async def __call__(self, session, loop=None):
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
 
@@ -102,7 +102,9 @@ class Stalker:
                         for i in self.targets
                     }
                     location = options[min(filter(None, options))]
-                    self.moves.extend(self.movements(finder, self.actor, location))
+                    self.moves.extend(
+                        self.movements(session.finder, self.actor, location)
+                    )
 
                 await Clock.next_event()
 
