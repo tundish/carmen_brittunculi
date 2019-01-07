@@ -47,7 +47,7 @@ class Clock:
             await condition.wait()
             condition.release()
 
-    async def __call__(self, name=None, loop=None):
+    async def __call__(self, *args, loop=None):
         if Clock.tick is None:
             Clock.tick = asyncio.Condition(loop=loop)
 
@@ -58,6 +58,56 @@ class Clock:
                 Clock.tick.notify_all()
                 Clock.tick.release()
             self.turn += 1
+
+
+class Stalker:
+
+    Move = namedtuple("Move", ["entity", "vector", "hop"])
+
+    @staticmethod
+    def movements(finder, actor, destination, maxlen=20):
+        here = actor.get_state(Spot)
+        location = next(
+            i for i in finder.ensemble()
+            if isinstance(i, Location) and i.get_state(Spot) == here
+        )
+        route = finder.route(location, destination, maxlen=maxlen)
+        for hop in route:
+            spot = hop.get_state(Spot)
+            vector = spot.value - here.value
+            yield Stalker.Move(actor, vector, hop)
+            here = spot
+
+    def __init__(self, actor, targets):
+        self.actor = actor
+        self.targets = targets
+        self.moves = deque([])
+
+    async def __call__(self, finder, loop=None):
+        if not hasattr(self.actor, "_lock"):
+            self.actor._lock = asyncio.Lock(loop=loop)
+
+        while True:
+            try:
+                await self.actor._lock.acquire()
+
+                try:
+                    move = self.actions.popleft()
+                    move.entity.set_state(move.hop.get_state(Spot))
+                except IndexError:
+                    here = self.actor.get_state(Spot)
+                    #  TODO: Closest spot to player
+                    options = {
+                        abs(i.get_state(Spot).value - here.value): i
+                        for i in self.targets
+                    }
+                    location = options[min(filter(None, options))]
+                    self.moves.extend(self.movements(finder, self.actor, location))
+
+                await Clock.next_event()
+
+            finally:
+                self.actor._lock.release()
 
 
 class Motivator:

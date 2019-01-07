@@ -67,7 +67,7 @@ class Game:
         uid = uuid.uuid4()
         rv = Game.Session(
             uid, {"player": player, "visits": Counter()}, deque([]), finder,
-            [loop.create_task(i(str(uid), loop=loop)) for i in activities]
+            [loop.create_task(i(finder, loop=loop)) for i in activities]
         )
         Game.sessions[uid] = rv
         return rv
