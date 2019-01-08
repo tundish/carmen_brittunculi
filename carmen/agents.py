@@ -47,7 +47,9 @@ class Clock:
             await condition.wait()
             condition.release()
 
-    async def __call__(self, *args, loop=None):
+    async def __call__(self, session, loop=None):
+        log = logging.getLogger(session.uid)
+        log.info(self)
         if Clock.tick is None:
             Clock.tick = asyncio.Condition(loop=loop)
 
@@ -84,6 +86,8 @@ class Stalker:
         self.moves = deque([])
 
     async def __call__(self, session, loop=None):
+        log = logging.getLogger(session.uid)
+        log.info(self)
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
 
@@ -94,6 +98,13 @@ class Stalker:
                 try:
                     move = self.actions.popleft()
                     move.entity.set_state(move.hop.get_state(Spot))
+                    log.info("{0} goes {1} to {2.label}".format(
+                        "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                        if move.entity is self.actor
+                        else move.entity.label,
+                        Compass.legend(move.vector),
+                        move.hop
+                    ))
                 except IndexError:
                     here = self.actor.get_state(Spot)
                     #  TODO: Closest spot to player

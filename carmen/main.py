@@ -161,6 +161,7 @@ async def post_start(request):
         raise web.HTTPUnauthorized(reason="User input invalid name.")
 
     session = Game.session(name)
+    log.info(session.workers)
     log.info("Player {0} created session {1.uid!s}".format(name, session))
     raise web.HTTPFound("/{0.uid.hex}".format(session))
 
