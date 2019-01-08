@@ -32,7 +32,7 @@ from carmen import __version__ as version # noqa
 from carmen.agents import Affinity
 from carmen.agents import Clock
 from carmen.agents import Motivator
-from carmen.agents import Stalker
+from carmen.agents import Stalk
 from carmen.orders import Orders
 from carmen.routefinder import Routefinder
 from carmen.types import Character
@@ -324,22 +324,13 @@ def associations():
 def routines(finder):
     return [
         Clock(period=15),
-        Stalker(
+        Stalk(
             next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
             list( 
                 finder.search(label="Common house") |
                 finder.search(label="Marsh")
             )
         ),
-        #Motivator(
-        #    next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
-        #    finder,
-        #    Affinity(
-        #        finder.search(label="Common house") |
-        #        finder.search(label="Marsh"),
-        #        deque([])
-        #    )
-        #)
     ]
 
 

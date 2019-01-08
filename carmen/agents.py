@@ -48,13 +48,15 @@ class Clock:
             condition.release()
 
     async def __call__(self, session, loop=None):
-        log = logging.getLogger(session.uid)
-        log.info(self)
+        log = logging.getLogger(
+            "{0!s}.{1}".format(session.uid, self.__class__.__name__)
+        )
         if Clock.tick is None:
             Clock.tick = asyncio.Condition(loop=loop)
 
         self.turn = 1
         while self.turn != self.stop:
+            log.info(self.turn)
             await asyncio.sleep(self.period, loop=loop)
             if await Clock.tick.acquire():
                 Clock.tick.notify_all()
@@ -62,7 +64,7 @@ class Clock:
             self.turn += 1
 
 
-class Stalker:
+class Stalk:
 
     Move = namedtuple("Move", ["entity", "vector", "hop"])
 
@@ -77,7 +79,7 @@ class Stalker:
         for hop in route:
             spot = hop.get_state(Spot)
             vector = spot.value - here.value
-            yield Stalker.Move(actor, vector, hop)
+            yield Stalk.Move(actor, vector, hop)
             here = spot
 
     def __init__(self, actor, targets):
@@ -86,8 +88,9 @@ class Stalker:
         self.moves = deque([])
 
     async def __call__(self, session, loop=None):
-        log = logging.getLogger(session.uid)
-        log.info(self)
+        log = logging.getLogger(
+            "{0!s}.{1}".format(session.uid, self.__class__.__name__)
+        )
         if not hasattr(self.actor, "_lock"):
             self.actor._lock = asyncio.Lock(loop=loop)
 
@@ -96,7 +99,7 @@ class Stalker:
                 await self.actor._lock.acquire()
 
                 try:
-                    move = self.actions.popleft()
+                    move = self.moves.popleft()
                     move.entity.set_state(move.hop.get_state(Spot))
                     log.info("{0} goes {1} to {2.label}".format(
                         "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
