@@ -329,6 +329,13 @@ def routines(finder):
                 finder.search(label="Marsh")
             )
         ),
+        Stalk(
+            next(iter(finder.search(_name="Maer Catrine Cadi Ingenbrettar"))),
+            list(
+                finder.search(label="Common house") |
+                finder.search(label="Kitchen")
+            )
+        ),
     ]
 
 

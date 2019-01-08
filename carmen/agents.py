@@ -106,16 +106,16 @@ class Stalk:
                         move.hop
                     ))
                 except IndexError:
-                    here = self.actor.get_state(Spot)
-                    #  TODO: Closest spot to player
+                    player = session.cache.get("player", self.actor)
+                    where = player.get_state(Spot)
                     options = {
-                        abs(i.get_state(Spot).value - here.value): i
+                        abs(i.get_state(Spot).value - where.value): i
                         for i in self.targets
                     }
                     location = options[min(filter(None, options))]
-                    self.moves.extend(
-                        self.movements(session.finder, self.actor, location)
-                    )
+                    route = list(self.movements(session.finder, self.actor, location))
+                    if route:
+                        self.moves.extend(route)
 
                 await Clock.next_event()
 
