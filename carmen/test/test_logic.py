@@ -20,7 +20,7 @@ import asyncio
 import unittest
 
 from carmen.agents import Clock
-from carmen.agents import Motivator
+from carmen.agents import Stalk
 from carmen.logic import routines
 from carmen.logic import associations
 from carmen.logic import episodes
@@ -83,5 +83,4 @@ class TestActivities(unittest.TestCase):
     def test_routines(self):
         self.assertEqual(2, len(self.routines))
         self.assertIsInstance(self.routines[0], Clock)
-        self.assertIsInstance(self.routines[1], Motivator)
-        self.assertEqual(1, len(self.routines[1].dramas))
+        self.assertIsInstance(self.routines[1], Stalk)

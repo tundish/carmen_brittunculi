@@ -20,6 +20,7 @@ import asyncio
 import unittest
 
 from carmen.agents import Clock
+from carmen.main import Game
 
 
 class ClockTests(unittest.TestCase):
@@ -33,9 +34,10 @@ class ClockTests(unittest.TestCase):
 
     def test_tick(self):
         clock = Clock(period=0.01, stop=3)
+        session = Game.Session("uid", None, None, None, None)
         self.loop.run_until_complete(
             asyncio.wait(
-                [clock(loop=self.loop)],
+                [clock(session, loop=self.loop)],
                 loop=self.loop,
                 timeout=12
             )

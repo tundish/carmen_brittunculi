@@ -27,9 +27,6 @@ from carmen.types import Location
 from carmen.types import Spot
 from carmen.types import Visibility
 
-Drama = namedtuple("Drama", ["entities", "memory"])
-Affinity = namedtuple("Affinity", Drama._fields)
-
 
 class Clock:
 
@@ -122,70 +119,5 @@ class Stalk:
 
                 await Clock.next_event()
 
-            finally:
-                self.actor._lock.release()
-
-
-class Motivator:
-
-    Move = namedtuple("Move", ["entity", "vector", "hop"])
-
-    def __init__(self, actor, finder, *args):
-        self.actor = actor
-        self.finder = finder
-        self.dramas = deque(args)
-        self.actions = deque([])
-
-    def travel(self, destination, maxlen=20):
-        here = self.actor.get_state(Spot)
-        location = next(
-            i for i in self.finder.ensemble()
-            if isinstance(i, Location) and i.get_state(Spot) == here
-        )
-        route = self.finder.route(location, destination, maxlen=maxlen)
-        for hop in route:
-            spot = hop.get_state(Spot)
-            vector = spot.value - here.value
-            yield Motivator.Move(self.actor, vector, hop)
-            here = spot
-
-    async def __call__(self, name, loop=None):
-        log = logging.getLogger(name)
-
-        if not hasattr(self.actor, "_lock"):
-            self.actor._lock = asyncio.Lock(loop=loop)
-
-        while True:
-
-            try:
-                await self.actor._lock.acquire()
-                if self.actions:
-                    act = self.actions.popleft()
-                    if isinstance(act, Motivator.Move):
-                        act.entity.set_state(act.hop.get_state(Spot))
-                        log.info("{0} goes {1} to {2.label}".format(
-                            "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                            if act.entity is self.actor
-                            else act.entity.label,
-                            Compass.legend(act.vector),
-                            act.hop
-                        ))
-                else:
-                    drama = self.dramas and self.dramas[-1]
-                    if drama:
-                        if isinstance(drama, Affinity):
-                            here = self.actor.get_state(Spot)
-                            options = {
-                                abs(i.get_state(Spot).value - here.value): i
-                                for i in drama.entities
-                            }
-                            location = options[min(filter(None, options))]
-                            self.actions.extend(self.travel(location))
-
-                        self.dramas.rotate(1)
-
-                if Clock.tick and await Clock.tick.acquire():
-                    await Clock.tick.wait()
-                    Clock.tick.release()
             finally:
                 self.actor._lock.release()

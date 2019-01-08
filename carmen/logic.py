@@ -29,9 +29,7 @@ import pkg_resources
 from turberfield.dialogue.model import SceneScript
 
 from carmen import __version__ as version # noqa
-from carmen.agents import Affinity
 from carmen.agents import Clock
-from carmen.agents import Motivator
 from carmen.agents import Stalk
 from carmen.orders import Orders
 from carmen.routefinder import Routefinder
