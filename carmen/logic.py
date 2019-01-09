@@ -30,7 +30,7 @@ from turberfield.dialogue.model import SceneScript
 
 from carmen import __version__ as version # noqa
 from carmen.agents import Clock
-from carmen.agents import Stalk
+from carmen.agents import Angel
 from carmen.orders import Orders
 from carmen.routefinder import Routefinder
 from carmen.types import Character
@@ -322,16 +322,16 @@ def associations():
 def routines(finder):
     return [
         Clock(period=15),
-        Stalk(
+        Angel(
             next(iter(finder.search(_name="Civis Anatol Ant Bospor"))),
-            list( 
+            (
                 finder.search(label="Common house") |
                 finder.search(label="Marsh")
             )
         ),
-        Stalk(
+        Angel(
             next(iter(finder.search(_name="Maer Catrine Cadi Ingenbrettar"))),
-            list(
+            (
                 finder.search(label="Common house") |
                 finder.search(label="Kitchen")
             )

@@ -61,7 +61,7 @@ class Clock:
             self.turn += 1
 
 
-class Stalk:
+class Angel:
 
     Move = namedtuple("Move", ["entity", "vector", "hop"])
 
@@ -76,8 +76,12 @@ class Stalk:
         for hop in route:
             spot = hop.get_state(Spot)
             vector = spot.value - here.value
-            yield Stalk.Move(actor, vector, hop)
+            yield Angel.Move(actor, vector, hop)
             here = spot
+
+    @staticmethod
+    def visit(target, options):
+        return None
 
     def __init__(self, actor, targets):
         self.actor = actor

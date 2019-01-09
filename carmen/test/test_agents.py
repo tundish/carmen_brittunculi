@@ -20,6 +20,8 @@ import asyncio
 import unittest
 
 from carmen.agents import Clock
+from carmen.agents import Angel
+from carmen.logic import associations
 from carmen.main import Game
 
 
@@ -43,3 +45,18 @@ class ClockTests(unittest.TestCase):
             )
         )
         self.assertEqual(3, clock.turn)
+
+class AngelTests(unittest.TestCase):
+
+    def setUp(self):
+        self.a = associations()
+
+    def test_moves(self):
+        target = next(iter(self.a.search(label="Woodshed")))
+        options = (
+            self.a.search(label="Kitchen") |
+            self.a.search(label="Common house")
+        )
+        location = Angel.visit(target, options)
+        self.fail(location)
+
