@@ -53,10 +53,11 @@ class AngelTests(unittest.TestCase):
 
     def test_moves(self):
         target = next(iter(self.a.search(label="Woodshed")))
+        choice = next(iter(self.a.search(label="Kitchen")))
         options = (
             self.a.search(label="Kitchen") |
             self.a.search(label="Common house")
         )
-        location = Angel.visit(target, options)
-        self.fail(location)
+        location = Angel.visit(self.a, target, options)
+        self.assertIs(location, choice)
 

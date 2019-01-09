@@ -80,8 +80,11 @@ class Angel:
             here = spot
 
     @staticmethod
-    def visit(target, options):
-        return None
+    def visit(finder, target, options, maxlen=20):
+        def hops(locn):
+            return len(finder.route(target, locn, maxlen))
+
+        return next(iter(sorted(options, key=hops)), None)
 
     def __init__(self, actor, targets):
         self.actor = actor
