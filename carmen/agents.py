@@ -66,12 +66,13 @@ class Angel:
     Move = namedtuple("Move", ["entity", "vector", "hop"])
 
     @staticmethod
-    def movements(finder, actor, destination, maxlen=20):
+    def moves(finder, actor, destination, maxlen=20):
         here = actor.get_state(Spot)
         location = next(
             i for i in finder.ensemble()
             if isinstance(i, Location) and i.get_state(Spot) == here
         )
+        # TODO: actor
         route = finder.route(location, destination, maxlen=maxlen)
         for hop in route:
             spot = hop.get_state(Spot)
@@ -82,14 +83,15 @@ class Angel:
     @staticmethod
     def visit(finder, target, options, maxlen=20):
         def hops(locn):
-            return len(finder.route(target, locn, maxlen))
+            route = finder.route(target, locn, maxlen)
+            return len(route) if route else []
 
         return next(iter(sorted(options, key=hops)), None)
 
-    def __init__(self, actor, targets):
+    def __init__(self, actor, options):
         self.actor = actor
-        self.targets = targets
-        self.moves = deque([])
+        self.options = options
+        self.actions = deque([])
 
     async def __call__(self, session, loop=None):
         log = logging.getLogger(
@@ -102,29 +104,32 @@ class Angel:
             try:
                 await self.actor._lock.acquire()
 
-                try:
-                    move = self.moves.popleft()
-                    move.entity.set_state(move.hop.get_state(Spot))
-                    log.info("{0} goes {1} to {2.label}".format(
-                        "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                        if move.entity is self.actor
-                        else move.entity.label,
-                        Compass.legend(move.vector),
-                        move.hop
-                    ))
-                except IndexError:
-                    player = session.cache.get("player", self.actor)
-                    where = player.get_state(Spot)
-                    options = {
-                        abs(i.get_state(Spot).value - where.value): i
-                        for i in self.targets
-                    }
-                    location = options[min(filter(None, options))]
-                    route = list(self.movements(session.finder, self.actor, location))
-                    if route:
-                        self.moves.extend(route)
+                if self.actions:
+                    try:
+                        move = self.actions.popleft()
+                        move.entity.set_state(move.hop.get_state(Spot))
+                        log.info("{0} goes {1} to {2.label}".format(
+                            "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                            if move.entity is self.actor
+                            else move.entity.label,
+                            Compass.legend(move.vector),
+                            move.hop
+                        ))
+                    except Exception as e:
+                        log.exception(e)
+
+                else:
+                    try:
+                        player = session.cache.get("player", self.actor)
+                        location = self.visit(session.finder, player, self.options)
+                        for move in self.moves(
+                            session.finder, self.actor, location
+                        ):
+                            self.actions.append(move)
+
+                    except Exception as e:
+                        log.exception(e)
 
                 await Clock.next_event()
-
             finally:
                 self.actor._lock.release()
