@@ -51,7 +51,7 @@ class AngelTests(unittest.TestCase):
     def setUp(self):
         self.a = associations()
 
-    def test_moves(self):
+    def test_visit_closer(self):
         target = next(iter(self.a.search(label="Woodshed")))
         choice = next(iter(self.a.search(label="Kitchen")))
         options = (
@@ -61,3 +61,8 @@ class AngelTests(unittest.TestCase):
         location = Angel.visit(self.a, target, options)
         self.assertIs(location, choice)
 
+    def test_move_closer(self):
+        actor = next(iter(self.a.search(_name="Civis Anatol Ant Bospor")))
+        destn = next(iter(self.a.search(label="Marsh")))
+        moves = list(Angel.moves(self.a, actor, destn))
+        self.assertEqual(1, len(moves), moves)

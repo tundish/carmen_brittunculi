@@ -68,12 +68,7 @@ class Angel:
     @staticmethod
     def moves(finder, actor, destination, maxlen=20):
         here = actor.get_state(Spot)
-        location = next(
-            i for i in finder.ensemble()
-            if isinstance(i, Location) and i.get_state(Spot) == here
-        )
-        # TODO: actor
-        route = finder.route(location, destination, maxlen=maxlen)
+        route = finder.route(actor, destination, maxlen=maxlen) or []
         for hop in route:
             spot = hop.get_state(Spot)
             vector = spot.value - here.value
@@ -121,7 +116,9 @@ class Angel:
                 else:
                     try:
                         player = session.cache.get("player", self.actor)
-                        location = self.visit(session.finder, player, self.options)
+                        location = self.visit(
+                            session.finder, player, self.options
+                        )
                         for move in self.moves(
                             session.finder, self.actor, location
                         ):
