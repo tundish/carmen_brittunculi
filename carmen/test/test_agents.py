@@ -61,8 +61,22 @@ class AngelTests(unittest.TestCase):
         location = Angel.visit(self.a, target, options)
         self.assertIs(location, choice)
 
+    def test_visit_same(self):
+        target = next(iter(self.a.search(label="Woodshed")))
+        choice = next(iter(self.a.search(label="Woodshed")))
+        options = (
+            self.a.search(label="Kitchen") |
+            self.a.search(label="Woodshed")
+        )
+        location = Angel.visit(self.a, target, options)
+        self.assertIs(location, choice)
+
     def test_move_closer(self):
         actor = next(iter(self.a.search(_name="Civis Anatol Ant Bospor")))
+        destn = next(iter(self.a.search(label="Common house")))
+        moves = list(Angel.moves(self.a, actor, destn))
+        self.assertEqual(0, len(moves), moves)
+
         destn = next(iter(self.a.search(label="Marsh")))
         moves = list(Angel.moves(self.a, actor, destn))
-        self.assertEqual(1, len(moves), moves)
+        self.assertEqual(10, len(moves), moves)
