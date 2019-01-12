@@ -66,12 +66,18 @@ class Angel:
     Move = namedtuple("Move", ["entity", "vector", "hop"])
 
     @staticmethod
+    def locate(finder, actor):
+        where = actor.get_state(Spot)
+        return next((
+            i for i in finder.ensemble()
+            if isinstance(i, Location) and i.get_state(Spot) == where),
+            None
+        )
+
+    @staticmethod
     def moves(finder, actor, destination, maxlen=20):
         here = actor.get_state(Spot)
-        location = next(
-            i for i in finder.ensemble()
-            if isinstance(i, Location) and i.get_state(Spot) == here
-        )
+        location = Angel.locate(finder, actor)
         route = finder.route(location, destination, maxlen=maxlen) or []
         for hop in route:
             spot = hop.get_state(Spot)
@@ -120,9 +126,15 @@ class Angel:
                 else:
                     try:
                         player = session.cache.get("player", self.actor)
+                        log.info("{0.actor.name.firstname} {0.actor.name.surname} tracks {1.name.firstname}".format(self, player))
                         location = self.visit(
-                            session.finder, player, self.options
+                            session.finder,
+                            self.locate(session.finder, player),
+                            self.options
                         )
+                        log.info("{0.actor.name.firstname} {0.actor.name.surname} chooses {1.label}".format(
+                            self, location
+                        ))
                         self.actions.extend(self.moves(session.finder, self.actor, location))
 
                     except Exception as e:
