@@ -110,36 +110,30 @@ class Angel:
                 await self.actor._lock.acquire()
 
                 if self.actions:
-                    try:
-                        move = self.actions.popleft()
-                        move.entity.set_state(move.hop.get_state(Spot))
-                        log.info("{0} goes {1} to {2.label}".format(
-                            "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
-                            if move.entity is self.actor
-                            else move.entity.label,
-                            Compass.legend(move.vector),
-                            move.hop
-                        ))
-                    except Exception as e:
-                        log.exception(e)
+                    move = self.actions.popleft()
+                    move.entity.set_state(move.hop.get_state(Spot))
+                    log.info("{0} goes {1} to {2.label}".format(
+                        "{0.actor.name.firstname} {0.actor.name.surname}".format(self)
+                        if move.entity is self.actor
+                        else move.entity.label,
+                        Compass.legend(move.vector),
+                        move.hop
+                    ))
 
                 else:
-                    try:
-                        player = session.cache.get("player", self.actor)
-                        log.info("{0.actor.name.firstname} {0.actor.name.surname} tracks {1.name.firstname}".format(self, player))
-                        location = self.visit(
-                            session.finder,
-                            self.locate(session.finder, player),
-                            self.options
-                        )
-                        log.info("{0.actor.name.firstname} {0.actor.name.surname} chooses {1.label}".format(
-                            self, location
-                        ))
-                        self.actions.extend(self.moves(session.finder, self.actor, location))
-
-                    except Exception as e:
-                        log.exception(e)
+                    player = session.cache.get("player", self.actor)
+                    log.info("{0.actor.name.firstname} {0.actor.name.surname} tracks {1.name.firstname}".format(self, player))
+                    location = self.visit(
+                        session.finder,
+                        self.locate(session.finder, player),
+                        self.options
+                    )
+                    log.info("{0.actor.name.firstname} {0.actor.name.surname} chooses {1.label}".format(
+                        self, location
+                    ))
+                    self.actions.extend(self.moves(session.finder, self.actor, location))
 
                 await Clock.next_event()
+
             finally:
                 self.actor._lock.release()
