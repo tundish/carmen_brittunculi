@@ -1,6 +1,6 @@
 %rebase("top.tpl")
 <form role="form" action="/" method="POST" name="quest" class="titles">
-  <legend>Start a new game.</legend>
+  <legend>Start a new story.</legend>
     <fieldset>
     <label for="player-name">Player</label>
     <input

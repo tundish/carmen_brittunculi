@@ -34,13 +34,13 @@ Waking
 
     When the door slaps shut, then I wake.
 
-    Slowly I recall I'd been listening to the creaking for some time. And the
-    knocking of the blocks as they drop into the basket.
+    In my sleep I heard a creaking. And the
+    knocking of the blocks as they dropped in a basket.
 
 [NARRATOR]_
 
-    Which logs did she choose?
+    Which logs does she take today?
 
     From the top of the pile along from the door.
 
-    That is the dry wood.
+    That is my dry wood.
