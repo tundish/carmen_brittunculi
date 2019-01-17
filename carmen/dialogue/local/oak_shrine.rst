@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_0203
+   :states: carmen.logic.Spot.grid_1416
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_0203
+   :states: carmen.logic.Spot.grid_1416
 
 Oak shrine
 ~~~~~~~~~~

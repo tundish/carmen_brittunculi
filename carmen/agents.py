@@ -53,7 +53,7 @@ class Clock:
 
         self.turn = 1
         while self.turn != self.stop:
-            log.info(self.turn)
+            log.debug(self.turn)
             await asyncio.sleep(self.period, loop=loop)
             if await Clock.tick.acquire():
                 Clock.tick.notify_all()
@@ -122,7 +122,7 @@ class Angel:
 
                 else:
                     player = session.cache.get("player", self.actor)
-                    log.info("{0.actor.name.firstname} {0.actor.name.surname} tracks {1.name.firstname}".format(self, player))
+                    log.debug("{0.actor.name.firstname} {0.actor.name.surname} tracks {1.name.firstname}".format(self, player))
                     location = self.visit(
                         session.finder,
                         self.locate(session.finder, player),

@@ -35,7 +35,7 @@ Waking
     When the door slaps shut, then I wake.
 
     In my sleep I heard a creaking. And the
-    knocking of the blocks as they dropped in a basket.
+    knocking of the blocks as they drop in a basket.
 
 [NARRATOR]_
 
