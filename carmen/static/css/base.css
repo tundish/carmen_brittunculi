@@ -18,6 +18,7 @@
 /* resize to viewport-relative vw, vh, vmin, vmax */
 /* redefine colours using hsla                    */
 /* scope custom values to parent container        */
+/* Textures in SVG: https://stackoverflow.com/a/49108254 */
 
 :root {
   --houseplant-green: rgba(88, 112, 64, 1); /* #587040 */
