@@ -42,6 +42,7 @@ setup(
     package_data={
         "carmen": [
             "dialogue/*/*.rst",
+            "dialogue/*/*/*.rst",
             "static/audio/*.mp3",
             "static/css/*.css",
             "static/svg/*.svg",

@@ -348,9 +348,17 @@ episodes = [
             str(i.relative_to(
                 pkg_resources.resource_filename("carmen", "")
             ))
-            for i in pathlib.Path(
-                pkg_resources.resource_filename("carmen", "dialogue/ep_01")
-            ).glob("*.rst")
+            for i in itertools.chain(
+                pathlib.Path(
+                    pkg_resources.resource_filename("carmen", "dialogue/ep_01")
+                ).glob("*.rst"),
+                pathlib.Path(
+                    pkg_resources.resource_filename("carmen", "dialogue/ep_01/apples")
+                ).glob("*.rst"),
+                pathlib.Path(
+                    pkg_resources.resource_filename("carmen", "dialogue/ep_01/wood")
+                ).glob("*.rst")
+            )
         ],
         interludes=itertools.repeat(Rules(windfall_rate=1))
     ),
