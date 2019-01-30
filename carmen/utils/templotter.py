@@ -24,7 +24,12 @@ Create new files from a template and some names.
 
 """
 
+DEFAULT_LOCATION = "."
+DEFAULT_PREFIX = ""
+DEFAULT_SUFFIX = ".txt"
+
 def main(args):
+    print(args)
     return 0
 
 def parser(description=__doc__):
@@ -32,8 +37,25 @@ def parser(description=__doc__):
         description,
         fromfile_prefix_chars="@"
     )
+    rv.add_argument(
+        "--dir", default=DEFAULT_LOCATION, required=False,
+        help="set a location for the new files [{0}]".format(DEFAULT_LOCATION)
+    )
+    rv.add_argument(
+        "--prefix", default=DEFAULT_PREFIX, required=False,
+        help="prefix each file name ['{0}']".format(DEFAULT_PREFIX)
+    )
+    rv.add_argument(
+        "--suffix", default=DEFAULT_SUFFIX, required=False,
+        help="add a suffix after each file name ['{0}']".format(DEFAULT_SUFFIX)
+    )
+    rv.add_argument(
+        "--template", type=argparse.FileType("r"), required=False,
+        help="define a template for new file content"
+    )
+    rv.add_argument("names", nargs="*", help="supply a list of file names")
     return rv
-
+    
 
 if __name__ == "__main__":
     p = parser()
