@@ -33,8 +33,32 @@ DEFAULT_FORMAT = "{name}"
 DEFAULT_SUFFIX = ".txt"
 
 DEFAULT_NAMES = [
-"about", "always", "approach", "ante", "attention", "action", "agency", "autonomy",
-"zero", "zig", "zag", "zigzag", "zen", "zeal"
+    "about", "always", "approach", "ante", "action",
+    "beforehand", "backstory", "beginning", "bargain", "betterment", "bother",
+    "character", "creation", "coda", "collect", "coronation", "credits", "credentials",
+    "domestics", "daily", "duty", "deliberate", "dally",
+    "episode", "eviction", "emphasis", "epilogue", "ending",
+    "funny", "forwards", "failure", "freedom", "false", "fade",
+    "gravity", "gain",
+    "habit", "hero", "herald",
+    "initiate", "impediment", "inspiration", "insert",
+    "joke", "jolt", "justice", "jetison",
+    "kill", "kettle", "kicker",
+    "launch", "luggage", "loop",
+    "misery", "manage", "mayhem", "mission", "middle", "me",
+    "narrative", "neglect", "notice", "neighbour", "nominate", "nearby", "no",
+    "obvious", "outwitted", "outside", "otherwise",
+    "practice", "portal", "problem", "present", "picture", "pantomime", "peril",
+    "questions", "quarry", "queue", "quarrel",
+    "reversal", "return", "reminder", "refusal", "reveal", "right",
+    "stasis", "story", "success", "shock", "shatter", "suddenly", "slowly", "showtime",
+    "together", "tragedy", "temporary", "tutorial", "test", "triumph", "taken", "true",
+    "ulterior", "ultimate", "unknown", "ugly", "unify",
+    "victory", "vanquished", "veil", "valuables", "verify", "validation",
+    "war", "worry", "welcome", "wishes", "wrong", "wandering", "wonder",
+    "xit", "xellence", "xeunt", "xtraction", "xpiation",
+    "yes", "yesterday", "you", "yet", "yonder",
+    "zero", "zig", "zag", "zigzag", "zen", "zeal"
 ]
 
 DEFAULT_TEMPLATE = """{name}
@@ -100,7 +124,7 @@ def parser(description=__doc__):
     )
     rv.add_argument("names", nargs="*", help="supply a list of file names")
     return rv
-    
+
 
 if __name__ == "__main__":
     p = parser()
