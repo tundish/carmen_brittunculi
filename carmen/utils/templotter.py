@@ -24,7 +24,7 @@ import random
 import sys
 
 __doc__ = """
-Create new files from a template and some names.
+Create new dialogue files from a template and some names.
 
 """
 
@@ -33,32 +33,35 @@ DEFAULT_FORMAT = "{name}"
 DEFAULT_SUFFIX = ".txt"
 
 DEFAULT_NAMES = [
-    "about", "always", "approach", "ante", "action",
+    "about", "always", "approach", "ante", "action", "aside", "angel",
     "beforehand", "backstory", "beginning", "bargain", "betterment", "bother",
-    "character", "creation", "coda", "collect", "coronation", "credits", "credentials",
-    "domestics", "daily", "duty", "deliberate", "dally",
+    "character", "creation", "challenge", "collect", "coronation", "credo",
+    "domestics", "daily", "duty", "deliberate", "dally", "doom", "details",
     "episode", "eviction", "emphasis", "epilogue", "ending",
     "funny", "forwards", "failure", "freedom", "false", "fade",
-    "gravity", "gain",
-    "habit", "hero", "herald",
-    "initiate", "impediment", "inspiration", "insert",
-    "joke", "jolt", "justice", "jetison",
-    "kill", "kettle", "kicker",
-    "launch", "luggage", "loop",
+    "gravity", "gain", "gap", "greeting",
+    "habit", "hero", "herald", "hope", "help",
+    "initiate", "impediment", "inspiration", "insert", "interlude"
+    "joke", "jolt", "justice", "jettison", "jump",
+    "kill", "kettle", "kicker", "knock", "knackered", "knight",
+    "launch", "loop", "light", "law", "lore",
     "misery", "manage", "mayhem", "mission", "middle", "me",
     "narrative", "neglect", "notice", "neighbour", "nominate", "nearby", "no",
+    "nemesis", "notices",
     "obvious", "outwitted", "outside", "otherwise",
     "practice", "portal", "problem", "present", "picture", "pantomime", "peril",
     "questions", "quarry", "queue", "quarrel",
-    "reversal", "return", "reminder", "refusal", "reveal", "right",
-    "stasis", "story", "success", "shock", "shatter", "suddenly", "slowly", "showtime",
-    "together", "tragedy", "temporary", "tutorial", "test", "triumph", "taken", "true",
+    "reversal", "return", "reminder", "refusal", "reveal", "right", "routine",
+    "scare", "success", "shock", "shatter", "suddenly", "slowly", "shade",
+    "together", "tragedy", "tension", "test", "triumph", "taken", "true",
+    "technique", "technical", "them",
     "ulterior", "ultimate", "unknown", "ugly", "unify",
     "victory", "vanquished", "veil", "valuables", "verify", "validation",
     "war", "worry", "welcome", "wishes", "wrong", "wandering", "wonder",
+    "whenever",
     "xit", "xellence", "xeunt", "xtraction", "xpiation",
     "yes", "yesterday", "you", "yet", "yonder",
-    "zero", "zig", "zag", "zigzag", "zen", "zeal"
+    "zero", "zig", "zag", "zigzag", "zen", "zeal", "zenith"
 ]
 
 DEFAULT_TEMPLATE = """{name}
