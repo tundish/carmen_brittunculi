@@ -35,14 +35,14 @@ DEFAULT_SUFFIX = ".txt"
 DEFAULT_NAMES = [
     "about", "always", "approach", "ante", "action", "aside", "angel", "attack",
     "beforehand", "backstory", "beginning", "bargain", "betterment", "bother",
-    "birth", "battle",
+    "birth", "battle", "background",
     "character", "creation", "challenge", "collect", "coronation", "credo",
     "curtain", "caring",
     "domestic", "daily", "duty", "deliberate", "dally", "doom", "details",
     "death", "done",
     "episode", "eviction", "emphasis", "epilogue", "ending",
     "funny", "forwards", "failure", "freedom", "false", "fade", "forever",
-    "gravity", "gain", "gap", "greeting", "grave", "grievous",
+    "gravity", "gain", "gap", "greeting", "grave", "grievous", "gist",
     "habit", "hero", "herald", "hope", "help", "history", "honour",
     "initiate", "impediment", "inspiration", "insert", "interlude"
     "joke", "jolt", "justice", "jettison", "jump", "jester", "juvenile",
