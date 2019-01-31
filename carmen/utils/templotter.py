@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding: UTF-8
 
 # This file is part of Carmen Brittunculi.
@@ -17,6 +17,10 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
+import itertools
+import operator
+import pathlib
+import random
 import sys
 
 __doc__ = """
@@ -28,14 +32,36 @@ DEFAULT_LOCATION = "."
 DEFAULT_PREFIX = ""
 DEFAULT_SUFFIX = ".txt"
 
+DEFAULT_NAMES = [
+"about", "always", "approach", "ante", "attention", "action", "agency", "autonomy",
+"zero", "zig", "zag", "zigzag", "zen", "zeal"
+]
+
+def pick_one(names):
+    return names[0]
+
+def generate_names(picker):
+    for group, names in itertools.groupby(DEFAULT_NAMES, key=operator.itemgetter(0)):
+        name = picker(list(names))
+        if name is not None:
+            yield name
+
 def main(args):
-    print(args)
+    picker = pick_one if args.pick else random.choice
+    names = args.names or generate_names(picker)
+    for name in names:
+        path = pathlib.Path(args.dir).expanduser().joinpath(name).with_suffix(args.suffix)
+        print(path)
     return 0
 
 def parser(description=__doc__):
     rv = argparse.ArgumentParser(
         description,
         fromfile_prefix_chars="@"
+    )
+    rv.add_argument(
+        "--pick", default=False, action="store_true",
+        help="interactively pick each name"
     )
     rv.add_argument(
         "--dir", default=DEFAULT_LOCATION, required=False,
