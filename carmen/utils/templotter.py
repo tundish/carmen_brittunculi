@@ -29,7 +29,7 @@ Create new files from a template and some names.
 """
 
 DEFAULT_LOCATION = "."
-DEFAULT_PREFIX = ""
+DEFAULT_FORMAT = "{name}"
 DEFAULT_SUFFIX = ".txt"
 
 DEFAULT_NAMES = [
@@ -37,8 +37,23 @@ DEFAULT_NAMES = [
 "zero", "zig", "zag", "zigzag", "zen", "zeal"
 ]
 
+DEFAULT_TEMPLATE = """{name}
+"""
+
 def pick_one(names):
-    return names[0]
+    names = sorted(names)
+    print("", file=sys.stderr)
+    print(
+        *["{0}: {1}".format(n + 1, name) for n, name in enumerate(names)],
+        sep="\n", file=sys.stderr
+    )
+    print("0: SKIP".format(len(names)), file=sys.stderr)
+    print("=> ", end="", file=sys.stderr)
+    choice = input()
+    try:
+        return None if not int(choice) else names[int(choice) - 1]
+    except (IndexError, ValueError):
+        return None
 
 def generate_names(picker):
     for group, names in itertools.groupby(DEFAULT_NAMES, key=operator.itemgetter(0)):
@@ -49,9 +64,13 @@ def generate_names(picker):
 def main(args):
     picker = pick_one if args.pick else random.choice
     names = args.names or generate_names(picker)
-    for name in names:
-        path = pathlib.Path(args.dir).expanduser().joinpath(name).with_suffix(args.suffix)
-        print(path)
+    template = args.template.read() if args.template else DEFAULT_TEMPLATE
+    for n, name in enumerate(names):
+        text = args.format.format(n, name=name)
+        path = pathlib.Path(args.dir).expanduser().joinpath(text).with_suffix(args.suffix)
+        path.touch()
+        print(path.resolve(), file=sys.stdout)
+        path.write_text(template.format(name=name, path=path.resolve()))
     return 0
 
 def parser(description=__doc__):
@@ -68,8 +87,8 @@ def parser(description=__doc__):
         help="set a location for the new files [{0}]".format(DEFAULT_LOCATION)
     )
     rv.add_argument(
-        "--prefix", default=DEFAULT_PREFIX, required=False,
-        help="prefix each file name ['{0}']".format(DEFAULT_PREFIX)
+        "--format", default=DEFAULT_FORMAT, required=False,
+        help="format string for each file name ['{0}']".format(DEFAULT_FORMAT)
     )
     rv.add_argument(
         "--suffix", default=DEFAULT_SUFFIX, required=False,
