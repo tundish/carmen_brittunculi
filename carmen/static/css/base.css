@@ -46,11 +46,11 @@ color: var(--shadow);
 font-family: var(--font-family-sans-serif);
 }
 
-ul.turberfield-dialogue-frame {
+ul.mod-dialogue {
 padding: 0.5em;
 }
 
-ul.turberfield-dialogue-frame li {
+ul.mod-dialogue li {
 list-style-type: none;
 }
 

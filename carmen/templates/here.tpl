@@ -3,7 +3,7 @@
 <!-- <h1>{{ frame[0].shot.scene.capitalize() }}</h1> -->
 <h1>{{ here.label.capitalize() }}</h1>
 
-<ul class="turberfield-dialogue-frame">
+<ul class="mod-dialogue">
 % for element in frame:
 % if hasattr(element.dialogue, "persona"):
 <li style="animation-duration: {{ element.duration }}s; animation-delay: {{ element.offset }}s">

@@ -1,9 +1,9 @@
-ul.turberfield-dialogue-frame li {
+ul.mod-dialogue li {
 animation-name: fadeinout;
 animation-fill-mode: both;
 }
 
-ul.turberfield-dialogue-frame li:last-of-type {
+ul.mod-dialogue li:last-of-type {
 animation-name: fadein;
 }
 
