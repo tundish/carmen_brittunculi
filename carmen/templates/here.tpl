@@ -1,5 +1,5 @@
 %rebase("top.tpl")
-<main class="events">
+<main class="grid-events">
 <!-- <h1>{{ frame[0].shot.scene.capitalize() }}</h1> -->
 <h1>{{ here.label.capitalize() }}</h1>
 
@@ -30,7 +30,7 @@
 </ul>
 
 </main>
-<aside class="diorama">
+<aside class="grid-diorama diorama">
 <img src="/svg/poisson.svg"/>
 <!-- %include("forest.tpl", leaves=leaves) -->
 <dl>
