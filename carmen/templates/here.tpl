@@ -30,7 +30,14 @@
 </ul>
 
 </main>
+<aside class="grid-roof vista">
+<img src="/svg/poisson.svg"/>
+</aside>
+
 <aside class="grid-rear diorama">
+</aside>
+
+<aside class="grid-wing vista">
 <img src="/svg/poisson.svg"/>
 <!-- %include("forest.tpl", leaves=leaves) -->
 </aside>
@@ -49,8 +56,8 @@
   % end
 </ul>
 </nav>
-<section class="grid-dash stats">
-<dl>
+<section class="grid-dash">
+<dl class="mod-stats">
 <dt>Items</dt>
 <dd>{{ items }}<dd>
 <dt>Frame</dt>
