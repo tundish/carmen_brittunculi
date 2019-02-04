@@ -1,0 +1,13 @@
+.stats dl {
+font-weight: lighter;
+content: ":";
+}
+
+.stats dt:after {
+content: ":";
+}
+
+.stats dd {
+font-weight: bold;
+margin: 1em;
+}

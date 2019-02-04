@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/css/grid.css" />
 <link rel="stylesheet" href="/css/svg.css" />
 <link rel="stylesheet" href="/css/mod_dialogue.css" />
+<link rel="stylesheet" href="/css/mod_stats.css" />
 </head>
 <body>
 {{!base}}

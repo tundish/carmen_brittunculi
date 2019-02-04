@@ -33,12 +33,6 @@
 <aside class="grid-rear diorama">
 <img src="/svg/poisson.svg"/>
 <!-- %include("forest.tpl", leaves=leaves) -->
-<dl>
-<dt>Items</dt>
-<dd>{{ items }}<dd>
-<dt>Frame</dt>
-<dd>{{ ordinal }}<dd>
-</dl>
 </aside>
 <nav class="grid-steer">
 <ul>
@@ -55,3 +49,11 @@
   % end
 </ul>
 </nav>
+<section class="grid-dash stats">
+<dl>
+<dt>Items</dt>
+<dd>{{ items }}<dd>
+<dt>Frame</dt>
+<dd>{{ ordinal }}<dd>
+</dl>
+</section>

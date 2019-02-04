@@ -7,8 +7,8 @@ display: grid;
 grid-template-areas:
 "front"
 "rear"
-"steer";
-"dash";
+"steer"
+"dash"
 "gear";
 }
 
@@ -112,7 +112,7 @@ form.titles button:hover {
 border: 2px solid white;
 }
 
-@media (min-width: 800px) {
+@media (orientation: landscape) {
 
 body {
   display: grid;
@@ -120,7 +120,7 @@ body {
   grid-template-areas:
 "roof   front   rear    wing"
 "roof   front   rear    wing"
-"roof   front   steer   wing";
+"roof   front   steer   wing"
 "dash   dash    dash    dash";
 }
 
