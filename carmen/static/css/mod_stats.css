@@ -1,13 +1,12 @@
 dl.mod-stats {
 font-weight: lighter;
+}
+
+dl.mod-stats dt:after {
 content: ":";
 }
 
-dt.mod-stats:after {
-content: ":";
-}
-
-dd.mod-stats {
+dl.mod-stats dd {
 font-weight: bold;
 margin: 1em;
 }
