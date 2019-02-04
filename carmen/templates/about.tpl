@@ -1,5 +1,5 @@
 %rebase("top.tpl")
-<section class="grid-events">
+<section class="grid-front">
 <p><em>Carmen Brittunculi</em> is a short adventure game.</p>
 <p>I wrote it in 2018 for the <a href="https://itch.io/jam/roman-mytholojam">Roman Mytholojam</a>.</p>
 <p>It's an example of a Web Native game. It uses only Python, SVG, HTML5 and CSS3.</p>

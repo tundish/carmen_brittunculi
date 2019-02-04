@@ -1,5 +1,5 @@
 %rebase("top.tpl")
-<main class="grid-events">
+<main class="grid-front">
 <!-- <h1>{{ frame[0].shot.scene.capitalize() }}</h1> -->
 <h1>{{ here.label.capitalize() }}</h1>
 
@@ -30,7 +30,7 @@
 </ul>
 
 </main>
-<aside class="grid-diorama diorama">
+<aside class="grid-rear diorama">
 <img src="/svg/poisson.svg"/>
 <!-- %include("forest.tpl", leaves=leaves) -->
 <dl>
@@ -40,7 +40,7 @@
 <dd>{{ ordinal }}<dd>
 </dl>
 </aside>
-<nav>
+<nav class="grid-steer">
 <ul>
   % for legend, locn in moves:
     <li>

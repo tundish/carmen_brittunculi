@@ -5,17 +5,39 @@
 body {
 display: grid;
 grid-template-areas:
-"events"
-"diorama"
-"nav";
+"front"
+"rear"
+"steer";
+"dash";
+"gear";
 }
 
-.grid-events {
-grid-area: events;
+.grid-dash {
+grid-area: dash;
 }
 
-.grid-diorama{
-grid-area: diorama;
+.grid-front {
+grid-area: front;
+}
+
+.grid-gear {
+grid-area: gear;
+}
+
+.grid-rear {
+grid-area: rear;
+}
+
+.grid-roof {
+grid-area: roof;
+}
+
+.grid-steer {
+grid-area: steer;
+}
+
+.grid-wing {
+grid-area: wing;
 }
 
 aside.diorama, section{
@@ -38,10 +60,6 @@ content: ":";
 aside.diorama dd, section dd{
 font-weight: bold;
 margin: 1em;
-}
-
-nav {
-grid-area: nav;
 }
 
 form.titles input {
@@ -100,9 +118,10 @@ body {
   display: grid;
   grid-template-columns: 2fr 3fr 1fr 2fr;
   grid-template-areas:
-".  events  diorama    ."
-".  events  diorama    ."
-".  events  nav        .";
+"roof   front   rear    wing"
+"roof   front   rear    wing"
+"roof   front   steer   wing";
+"dash   dash    dash    dash";
 }
 
 }
