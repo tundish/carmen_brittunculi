@@ -36,7 +36,11 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-* { box-sizing: border-box; }
+* {
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+}
 
 body {
 background-color: #867a6e;
@@ -44,6 +48,8 @@ color: #221c2e;
 background-color: var(--porcini);
 color: var(--shadow);
 font-family: var(--font-family-sans-serif);
+height: 100vh;
+width: 100vw;
 }
 
 ul.mod-dialogue {

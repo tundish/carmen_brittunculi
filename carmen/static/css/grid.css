@@ -2,15 +2,6 @@
 /* https://www.smashingmagazine.com/2017/10/naming-things-css-grid-layout/ */
 /* https://rachelandrew.co.uk/archives/2017/06/01/breaking-out-with-css-grid-explained/ */
 
-body {
-display: grid;
-grid-template-areas:
-"front"
-"rear"
-"steer"
-"dash"
-"gear";
-}
 
 .grid-dash {
 grid-area: dash;
@@ -112,12 +103,33 @@ form.titles button:hover {
 border: 2px solid white;
 }
 
+@media (orientation: portrait) {
+body {
+display: grid;
+grid-template-areas:
+"front"
+"rear"
+"steer"
+"dash"
+"gear";
+}
+
+.grid-roof {
+display: none;
+}
+
+.grid-wing {
+display: none;
+}
+
+}
+
 @media (orientation: landscape) {
 
 body {
-  display: grid;
-  grid-template-columns: 2fr 3fr 1fr 2fr;
-  grid-template-areas:
+display: grid;
+grid-template-columns: 2fr 3fr 1fr 2fr;
+grid-template-areas:
 "roof   front   rear    wing"
 "roof   front   rear    wing"
 "roof   front   steer   wing"
