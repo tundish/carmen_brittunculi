@@ -40,7 +40,7 @@ grid-area: steer;
 grid-area: wing;
 }
 
-aside.diorama, section{
+aside.diorama {
 border-radius: 1em;
 font-family: var(--font-family-monospace);
 margin: 1em;
@@ -48,16 +48,16 @@ padding: 1.3em;
 background-color: var(--picnic-green);
 }
 
-aside.diorama dl, section dl{
+aside.diorama dl {
 font-weight: lighter;
 content: ":";
 }
 
-aside.diorama dt:after, section dt:after{
+aside.diorama dt:after {
 content: ":";
 }
 
-aside.diorama dd, section dd{
+aside.diorama dd {
 font-weight: bold;
 margin: 1em;
 }
