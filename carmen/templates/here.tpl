@@ -1,4 +1,4 @@
-%rebase("top.tpl")
+%rebase("_page.tpl")
 <main class="grid-front">
 <!-- <h1>{{ frame[0].shot.scene.capitalize() }}</h1> -->
 <h1>{{ here.label.capitalize() }}</h1>

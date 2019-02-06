@@ -1,4 +1,4 @@
-%rebase("top.tpl")
+%rebase("_page.tpl")
 <section class="grid-front stats">
 <p><em>Carmen Brittunculi</em> is a short adventure game.</p>
 <p>I wrote it in 2018 for the <a href="https://itch.io/jam/roman-mytholojam">Roman Mytholojam</a>.</p>

@@ -146,7 +146,7 @@ async def get_about(request):
 async def get_start(request):
     return web.Response(
         text=bottle.template(
-            pkg_resources.resource_string("carmen", "templates/session.tpl").decode("utf8"),
+            pkg_resources.resource_string("carmen", "templates/titles.tpl").decode("utf8"),
             validation=Handler.validation,
             refresh=None
         ),
