@@ -35,6 +35,13 @@
 </aside>
 
 <aside class="grid-rear diorama">
+<ul>
+  % for entity in entities:
+    % if hasattr(entity, "name") and entity is not player:
+        <li>{{ entity.name.firstname[0].upper() }}</li>
+    % end
+  % end
+</ul>
 </aside>
 
 <aside class="grid-wing vista">

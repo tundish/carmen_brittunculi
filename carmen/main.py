@@ -190,6 +190,8 @@ async def here(request):
             moves=sorted(moves),
             items=n_items,
             session=session,
+            player=player,
+            entities=entities,
             frame=frame,
             ordinal=player.get_state(int),
             refresh=Handler.refresh(frame)
