@@ -1,21 +1,26 @@
-.mod-diorama {
+aside.mod-diorama {
 background-color: var(--picnic-green);
 border-radius: 1em;
-font-family: var(--font-family-monospace);
-margin: 1em;
-padding: 1.3em;
+padding: 0.5em;
+margin: 0.2em;
 }
 
 .mod-diorama ul {
-display: flex;
+align-items: center;
 list-style-type: none;
 }
 
-.mod-diorama li {
-border: 3px solid lightgray;
-border-radius: 2px;
-color: white;
-font-size: 2em;
+.mod-diorama ul li {
 margin: 0.5em;
-padding: 0.2em;
+}
+
+svg.mod-diorama text {
+alignment-baseline: central;
+fill: lightgray;
+font-family: var(--font-family-serif);
+font-size: 0.8em;
+stroke: white;
+stroke-linecap: round;
+stroke-width: 0.1px;
+text-anchor: middle;
 }

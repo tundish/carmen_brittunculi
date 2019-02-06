@@ -37,10 +37,10 @@
 <ul>
   % for entity in entities:
     % if hasattr(entity, "name") and entity is not player:
-        <li>{{ entity.name.firstname[0].upper() }}
-            <!--<svg viewBox="0 0 64 64" class="mod-diorama">
-            <text x="0" y="64">{{ entity.name.firstname[0].upper() }}</text>
-            </svg>-->
+        <li>
+            <svg viewBox="0 0 16 16" class="mod-diorama" preserveAspectRatio="none">
+            <text x="8" y="9">{{ entity.name.firstname[0].upper() }}</text>
+            </svg>
         </li>
     % end
   % end

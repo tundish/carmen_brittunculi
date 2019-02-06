@@ -36,10 +36,12 @@ body {
 display: grid;
 grid-template-areas:
 "front"
+"front"
+"front"
 "rear"
 "steer"
-"dash"
-"gear";
+"steer"
+"dash";
 }
 
 .grid-roof {
