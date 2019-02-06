@@ -1,5 +1,5 @@
 aside.mod-diorama {
-background-color: var(--picnic-green);
+background-color: var(--walnut);
 border-radius: 1em;
 padding: 0.5em;
 margin: 0.2em;
@@ -16,10 +16,10 @@ margin: 0.5em;
 
 svg.mod-diorama text {
 alignment-baseline: central;
-fill: lightgray;
+fill: var(--shadow);
 font-family: var(--font-family-serif);
 font-size: 0.8em;
-stroke: white;
+stroke: var(--sturdy-brown);
 stroke-linecap: round;
 stroke-width: 0.1px;
 text-anchor: middle;

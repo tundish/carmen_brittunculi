@@ -21,16 +21,17 @@
 /* Textures in SVG: https://stackoverflow.com/a/49108254 */
 
 :root {
-  --houseplant-green: rgba(88, 112, 64, 1); /* #587040 */
-  --paradise-green: rgba(107, 134, 55, 1);  /* #6b8637 */
-  --picnic-green: rgba(153, 195, 131, 1);   /* #99c383 */
-  --waterfall-blue: rgba(77, 97, 96, 1);    /* #4d6160 */
-  --massif-blue: rgba(37, 55, 69, 1);       /* #253745 */
-  --wild-magenta: rgba(180, 80, 144, 1);    /* #b45090 */
-  --sturdy-brown: rgba(82, 48, 0, 1);       /* #523000 */
-  --porcini: rgba(134, 122, 110, 1);        /* #867a6e */
-  --shadow: rgba(34, 28, 46, 1);        /* #221c2e */
-  --walnut: rgba(83, 55, 62, 1);        /* #53373e */
+  --houseplant-green: hsl(90, 27%, 34%, 1.0);
+  --paradise-green: hsl(81, 42%, 37%, 1.0);
+  --picnic-green: hsl(99, 34%, 64%, 1.0);
+  --waterfall-blue: hsl(177, 11%, 34%, 1.0);
+  --massif-blue: hsl(206, 30%, 21%, 1.0);
+  --wild-magenta: hsl(322, 40%, 51%, 1.0);
+  --sturdy-brown: hsl(14, 90%, 16%, 1.0);
+  --porcini: hsl(30, 10%, 48%, 1.0);
+  --emperor: hsl(260, 24%, 14%, 1.0);
+  --shadow: hsl(10, 24%, 0%, 1.0);
+  --walnut: hsl(11, 50%, 17%, 1.0);
   --font-family-serif: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;

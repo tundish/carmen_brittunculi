@@ -41,6 +41,6 @@ border: 2px solid white;
 }
 
 section.grid-dash {
-background-color: var(--shadow);
+background-color: var(--emperor);
 color: white;
 }
