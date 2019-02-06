@@ -31,78 +31,6 @@ grid-area: steer;
 grid-area: wing;
 }
 
-aside.diorama {
-border-radius: 1em;
-font-family: var(--font-family-monospace);
-margin: 1em;
-padding: 1.3em;
-background-color: var(--picnic-green);
-}
-
-aside.diorama dl {
-font-weight: lighter;
-content: ":";
-}
-
-aside.diorama dt:after {
-content: ":";
-}
-
-aside.diorama dd {
-font-weight: bold;
-margin: 1em;
-}
-
-form.titles input {
-background-color: #99c383;
-border: 2px solid transparent;
-color: #221c2e;
-background-color: var(--picnic-green);
-font-size: 1.1em;
-font-weight: bold;
-margin: 0.2em 1em 0.2em 1em;
-padding: 0.2em 0.2em 0.2em 1em;
-color: var(--shadow);
-}
-
-form.titles legend {
-color: #99c383;
-font-size: 3em;
-font-weight: normal;
-margin: 1em;
-color: var(--picnic-green);
-}
-
-form.titles label {
-color: lightgrey;
-font-weight: bold;
-}
-
-form.titles fieldset {
-border-radius: 1.3em;
-color: lightgrey;
-margin: 0.8em;
-font-size: 1em;
-padding: 1.2em;
-border: 2px solid var(--walnut);
-}
-
-form.titles button {
-border: 2px solid transparent;
-color: white;
-font-size: 1em;
-font-weight: bold;
-margin: 2em auto 2em 32em;
-padding: 0.6em;
-text-align: center;
-width: 6em;
-background-color: var(--houseplant-green);
-}
-
-form.titles button:hover {
-border: 2px solid white;
-}
-
 @media (orientation: portrait) {
 body {
 display: grid;
@@ -132,6 +60,8 @@ grid-template-columns: 2fr 3fr 1fr 2fr;
 grid-template-areas:
 "roof   front   rear    wing"
 "roof   front   rear    wing"
+"roof   front   steer   wing"
+"roof   front   steer   wing"
 "roof   front   steer   wing"
 "dash   dash    dash    dash";
 }

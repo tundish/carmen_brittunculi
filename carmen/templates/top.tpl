@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="/css/grid.css" />
 <link rel="stylesheet" href="/css/svg.css" />
 <link rel="stylesheet" href="/css/mod_dialogue.css" />
+<link rel="stylesheet" href="/css/mod_diorama.css" />
 <link rel="stylesheet" href="/css/mod_stats.css" />
+<link rel="stylesheet" href="/css/mod_titles.css" />
 <link rel="stylesheet" href="/css/theme.css" />
 </head>
 <body>

@@ -1,10 +1,33 @@
+ul.mod-dialogue {
+padding: 0.5em;
+}
+
 ul.mod-dialogue li {
 animation-name: fadeinout;
 animation-fill-mode: both;
+list-style-type: none;
+padding-bottom: 1.5em;
 }
 
 ul.mod-dialogue li:last-of-type {
 animation-name: fadein;
+}
+
+header.persona {
+color: #99c383;
+color: var(--picnic-green);
+font-family: var(--font-family-sans-serif);
+font-size: 1.5em;
+}
+
+header.persona:after{
+content: ":";
+}
+
+p.speech {
+color: whitesmoke;
+font-family: var(--font-family-serif);
+font-size: 1.3em;
 }
 
 @keyframes fadein {

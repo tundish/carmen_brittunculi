@@ -1,0 +1,7 @@
+aside.diorama {
+border-radius: 1em;
+font-family: var(--font-family-monospace);
+margin: 1em;
+padding: 1.3em;
+background-color: var(--picnic-green);
+}
