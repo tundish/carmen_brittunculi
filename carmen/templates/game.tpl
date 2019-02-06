@@ -1,5 +1,5 @@
 %rebase("_page.tpl")
-<form role="form" action="/" method="POST" name="quest" class="grid-front titles">
+<form role="form" action="/" method="POST" name="quest" class="grid-front mod-titles">
   <legend>Start a new story.</legend>
     <fieldset>
     <label for="player-name">Player</label>

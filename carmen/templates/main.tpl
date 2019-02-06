@@ -1,6 +1,5 @@
 %rebase("_page.tpl")
 <main class="grid-front">
-<!-- <h1>{{ frame[0].shot.scene.capitalize() }}</h1> -->
 <h1>{{ here.label.capitalize() }}</h1>
 
 <ul class="mod-dialogue">
@@ -30,22 +29,25 @@
 </ul>
 
 </main>
-<aside class="grid-roof vista">
-<img src="/svg/poisson.svg"/>
+<aside class="grid-roof mod-vista">
+<!-- <img src="/svg/poisson.svg"/> -->
 </aside>
 
-<aside class="grid-rear diorama">
+<aside class="grid-rear mod-diorama">
 <ul>
   % for entity in entities:
     % if hasattr(entity, "name") and entity is not player:
-        <li>{{ entity.name.firstname[0].upper() }}</li>
+        <li>{{ entity.name.firstname[0].upper() }}
+            <!--<svg viewBox="0 0 64 64" class="mod-diorama">
+            <text x="0" y="64">{{ entity.name.firstname[0].upper() }}</text>
+            </svg>-->
+        </li>
     % end
   % end
 </ul>
 </aside>
 
-<aside class="grid-wing vista">
-<img src="/svg/poisson.svg"/>
+<aside class="grid-wing mod-vista">
 <!-- %include("forest.tpl", leaves=leaves) -->
 </aside>
 <nav class="grid-steer">

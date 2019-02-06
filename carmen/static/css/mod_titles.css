@@ -1,4 +1,4 @@
-form.titles input {
+form.mod-titles input {
 background-color: #99c383;
 border: 2px solid transparent;
 color: #221c2e;
@@ -10,7 +10,7 @@ padding: 0.2em 0.2em 0.2em 1em;
 color: var(--shadow);
 }
 
-form.titles legend {
+form.mod-titles legend {
 color: #99c383;
 font-size: 3em;
 font-weight: normal;
@@ -18,12 +18,12 @@ margin: 1em;
 color: var(--picnic-green);
 }
 
-form.titles label {
+form.mod-titles label {
 color: lightgrey;
 font-weight: bold;
 }
 
-form.titles fieldset {
+form.mod-titles fieldset {
 border-radius: 1.3em;
 color: lightgrey;
 margin: 0.8em;
@@ -32,7 +32,7 @@ padding: 1.2em;
 border: 2px solid var(--shadow);
 }
 
-form.titles button {
+form.mod-titles button {
 border: 2px solid transparent;
 color: white;
 font-size: 1em;
@@ -44,7 +44,7 @@ width: 6em;
 background-color: var(--houseplant-green);
 }
 
-form.titles button:hover {
+form.mod-titles button:hover {
 border: 2px solid white;
 }
 
