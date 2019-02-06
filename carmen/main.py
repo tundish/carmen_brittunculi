@@ -146,7 +146,7 @@ async def get_about(request):
 async def get_start(request):
     return web.Response(
         text=bottle.template(
-            pkg_resources.resource_string("carmen", "templates/titles.tpl").decode("utf8"),
+            pkg_resources.resource_string("carmen", "templates/game.tpl").decode("utf8"),
             validation=Handler.validation,
             refresh=None
         ),
@@ -185,7 +185,7 @@ async def here(request):
 
     return web.Response(
         text=bottle.template(
-            pkg_resources.resource_string("carmen", "templates/here.tpl").decode("utf8"),
+            pkg_resources.resource_string("carmen", "templates/main.tpl").decode("utf8"),
             here=locn,
             moves=sorted(moves),
             items=n_items,
