@@ -74,7 +74,7 @@ class Handler:
     @staticmethod
     def react(session, frame, loop=None):
         log = logging.getLogger(str(session.uid))
-        metadata = {}
+        metadata = session.cache.get("metadata", {})
         for element in frame:
             event = element.dialogue
             if isinstance(event, Model.Property) and event.object is not None:
@@ -83,7 +83,7 @@ class Handler:
             elif callable(event):
                 metadata.update(event(session=session, loop=loop))
                 log.debug("React on interlude {0}".format(event))
-        return metadata
+            yield element
 
     @staticmethod
     def refresh(frame):

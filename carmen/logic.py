@@ -343,7 +343,7 @@ episodes = [
     SceneScript.Folder(
         pkg="carmen",
         description="Dialogue for a Game Episode 1.",
-        metadata={},
+        metadata={"day": ides_of_march},
         paths=[
             str(i.relative_to(
                 pkg_resources.resource_filename("carmen", "")

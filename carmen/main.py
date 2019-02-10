@@ -67,7 +67,11 @@ class Game:
         uid = uuid.uuid4()
         rv = Game.Session(
             uid=uid,
-            cache={"player": player, "visits": Counter()},
+            cache={
+                "metadata": {"day": carmen.logic.ides_of_march},
+                "player": player,
+                "visits": Counter()
+            },
             frames=deque([]),
             finder=finder,
             workers=[]
@@ -178,11 +182,10 @@ async def here(request):
     entities = Game.entities(session, spot)
     frame = Game.frame(session, entities)
     player.set_state(player.get_state(int) + 1)
-    metadata = Handler.react(session, frame)
+    list(Handler.react(session, frame))
     # TODO: match folders by metadata
     # matcher = Matcher(folders)
     # branch = next(matcher.options(metadata))
-    log.debug(metadata)
     log.debug(player.get_state(Wants))
 
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
