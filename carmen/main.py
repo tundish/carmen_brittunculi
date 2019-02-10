@@ -29,6 +29,7 @@ import uuid
 from aiohttp import web
 import bottle
 import pkg_resources
+from turberfield.dialogue.matcher import Matcher
 from turberfield.dialogue.performer import Performer
 from turberfield.utils.misc import log_setup
 
@@ -178,6 +179,9 @@ async def here(request):
     frame = Game.frame(session, entities)
     player.set_state(player.get_state(int) + 1)
     metadata = Handler.react(session, frame)
+    # TODO: match folders by metadata
+    # matcher = Matcher(folders)
+    # branch = next(matcher.options(metadata))
     log.debug(metadata)
     log.debug(player.get_state(Wants))
 

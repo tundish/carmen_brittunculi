@@ -42,6 +42,7 @@ grid-template-areas:
 "steer"
 "steer"
 "dash";
+justify-items: center;
 }
 
 .grid-roof {
