@@ -121,14 +121,17 @@ class Game:
     def frame(session, entities):
         """Return the next frame of action for presentation handling."""
         while not session.frames:
+            matcher = Matcher(carmen.logic.episodes)
+            branching = list(matcher.options(session.cache.get("metadata", {})))
             performer = Performer(carmen.logic.episodes, entities)
             folder, index, script, selection, interlude = performer.next(
                 carmen.logic.episodes, entities
             )
             scene = performer.run(react=False)
-            frames = list(Handler.frames(scene, dwell=0.3, pause=1))
+            frames = list(Handler.frames(folder.paths[index], scene, dwell=0.3, pause=1))
             if frames and interlude:
                 frames[-1].append(Handler.Element(
+                    None,
                     functools.partial(
                         interlude, folder, index, entities,
                         **session.cache
@@ -183,9 +186,6 @@ async def here(request):
     frame = Game.frame(session, entities)
     player.set_state(player.get_state(int) + 1)
     list(Handler.react(session, frame))
-    # TODO: match folders by metadata
-    # matcher = Matcher(folders)
-    # branch = next(matcher.options(metadata))
     log.debug(player.get_state(Wants))
 
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])

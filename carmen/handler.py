@@ -36,10 +36,10 @@ class Handler:
         "session": re.compile("[0-9a-f]{32}"),
     }
 
-    Element = namedtuple("Element", ["dialogue", "shot", "offset", "duration"])
+    Element = namedtuple("Element", ["source", "dialogue", "shot", "offset", "duration"])
 
     @staticmethod
-    def frames(seq, dwell, pause):
+    def frames(source, seq, dwell, pause):
         """
         A new Frame on each Shot, and every FX item.
 
@@ -58,15 +58,15 @@ class Handler:
                     shot = item
                 else:
                     frame.append(Handler.Element(
-                        item, shot, item.offset / 1000, item.duration / 1000
+                        source, item, shot, item.offset / 1000, item.duration / 1000
                     ))
 
             elif isinstance(item, Model.Line):
                 durn = pause + dwell * item.text.count(" ")
-                frame.append(Handler.Element(item, shot, offset, durn))
+                frame.append(Handler.Element(source, item, shot, offset, durn))
                 offset += durn
             elif not isinstance(item, Model.Condition):
-                frame.append(Handler.Element(item, shot, offset, 0))
+                frame.append(Handler.Element(source, item, shot, offset, 0))
         else:
             if any(isinstance(i.dialogue, (Model.Audio, Model.Line)) for i in frame):
                 yield frame
