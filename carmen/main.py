@@ -123,6 +123,7 @@ class Game:
         while not session.frames:
             matcher = Matcher(carmen.logic.episodes)
             branching = list(matcher.options(session.cache.get("metadata", {})))
+            # TODO: decide metadata protocol and perform branching.
             performer = Performer(carmen.logic.episodes, entities)
             folder, index, script, selection, interlude = performer.next(
                 carmen.logic.episodes, entities
