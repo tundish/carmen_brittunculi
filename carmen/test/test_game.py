@@ -67,7 +67,7 @@ class Episode01Tests(unittest.TestCase):
 
         list(self.performer.run())
         self.assertTrue(
-            self.performer.script.fP.endswith("woodshed.rst"),
+            self.performer.script.fP.endswith("wood/enter.rst"),
             self.performer.script.fP
         )
         self.assertEqual(1, len(self.performer.shots))
