@@ -124,6 +124,8 @@ class Game:
             matcher = Matcher(carmen.logic.episodes)
             branching = list(matcher.options(session.cache.get("metadata", {})))
             # TODO: decide metadata protocol and perform branching.
+            # NOTE: metadata helps interludes favour themes (folders)
+            # so then; at minimum, metadata uniquely identifies a folder.
             performer = Performer(carmen.logic.episodes, entities)
             folder, index, script, selection, interlude = performer.next(
                 carmen.logic.episodes, entities
