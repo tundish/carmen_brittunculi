@@ -44,7 +44,7 @@ DEFAULT_NAMES = [
     "episode", "eviction", "emphasis", "epilogue", "ending", "enter", "exit",
     "funny", "forwards", "failure", "freedom", "false", "fade", "forever",
     "found",
-    "gravity", "gain", "gap", "greeting", "grave", "grievous", "gist",
+    "gravity", "gain", "gap", "greeting", "grave", "grievous", "gist", "given",
     "habit", "hero", "herald", "hope", "help", "history", "honour",
     "initiate", "impediment", "inspiration", "insert", "interlude"
     "joke", "jolt", "justice", "jettison", "jump", "jester", "juvenile",
@@ -59,7 +59,7 @@ DEFAULT_NAMES = [
     "pretence", "protest", "persona", "prologue", "promise",
     "questions", "quarry", "queue", "quarrel",
     "reversal", "return", "reminder", "refusal", "reveal", "right", "routine",
-    "rhyme", "rhythm", "rumour", "role", "ruling", "recitative",
+    "rhyme", "rhythm", "rumour", "role", "ruling", "recitative", "reward",
     "scare", "success", "shock", "shatter", "suddenly", "slowly", "shade",
     "service", "set", "sink", "source",
     "together", "tragedy", "tension", "test", "triumph", "taken", "true",

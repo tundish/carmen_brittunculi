@@ -10,6 +10,7 @@ content: ":";
 }
 
 dl.mod-stats dd {
+font-family: var(--font-family-monospace);
 font-weight: bold;
 margin: 1em;
 }
