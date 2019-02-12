@@ -344,28 +344,28 @@ episodes = [
         pkg="carmen",
         description="Dialogue for a Game Episode 1.",
         metadata={"episode": 1},
-        paths=[
+        paths=sorted([
             str(i.relative_to(
                 pkg_resources.resource_filename("carmen", "")
             ))
             for i in pathlib.Path(
                 pkg_resources.resource_filename("carmen", "dialogue/ep_01")
             ).glob("*/*.rst")
-        ],
+        ]),
         interludes=itertools.repeat(Rules(windfall_rate=1))
     ),
     SceneScript.Folder(
         pkg="carmen",
         description="Location descriptions.",
         metadata={"episode": 2},
-        paths=[
+        paths=sorted([
             str(i.relative_to(
                 pkg_resources.resource_filename("carmen", "")
             ))
             for i in pathlib.Path(
                 pkg_resources.resource_filename("carmen", "dialogue/ep_02")
             ).glob("*/*.rst")
-        ],
+        ]),
         interludes=itertools.repeat(Rules())
     )
 ]
