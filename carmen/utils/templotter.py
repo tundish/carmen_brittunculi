@@ -43,6 +43,7 @@ DEFAULT_NAMES = [
     "death", "done", "dominate", "drama",
     "episode", "eviction", "emphasis", "epilogue", "ending", "enter", "exit",
     "funny", "forwards", "failure", "freedom", "false", "fade", "forever",
+    "found",
     "gravity", "gain", "gap", "greeting", "grave", "grievous", "gist",
     "habit", "hero", "herald", "hope", "help", "history", "honour",
     "initiate", "impediment", "inspiration", "insert", "interlude"
@@ -62,7 +63,8 @@ DEFAULT_NAMES = [
     "scare", "success", "shock", "shatter", "suddenly", "slowly", "shade",
     "service", "set", "sink", "source",
     "together", "tragedy", "tension", "test", "triumph", "taken", "true",
-    "technique", "technical", "them", "theatre", "thrown", "tradition",
+    "technique", "technical", "them", "theatre", "thrown",
+    "tradition", "thanks",
     "ulterior", "ultimate", "unknown", "ugly", "unify", "ultimiatum",
     "victory", "vanquished", "veil", "valuables", "verify", "validation",
     "war", "worry", "welcome", "wishes", "wrong", "wandering", "wonder",
