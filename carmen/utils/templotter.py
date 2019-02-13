@@ -17,6 +17,7 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
+import datetime
 import itertools
 import operator
 import pathlib
@@ -107,7 +108,10 @@ def main(args):
         path = pathlib.Path(args.dir).expanduser().joinpath(text).with_suffix(args.suffix)
         path.touch()
         print(path.resolve(), file=sys.stdout)
-        path.write_text(template.format(name=name, path=path.resolve()))
+        path.write_text(template.format(
+            name=name, path=path.resolve(),
+            today=datetime.date.today()
+        ))
     return 0
 
 def parser(description=__doc__):
