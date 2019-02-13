@@ -112,7 +112,7 @@ class Game:
 
         return [
             i for i in session.finder.ensemble()
-            if i.get_state(Spot) == spot or
+            if i.get_state(Spot) in (spot, Spot.pockets) or
             i.get_state(Visibility) in (Visibility.indicated, Visibility.new) or
             isinstance(i, Narrator)
         ]

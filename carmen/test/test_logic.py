@@ -45,7 +45,7 @@ class TestRules(unittest.TestCase):
 class TestDialogue(unittest.TestCase):
 
     def test_folder(self):
-        self.assertEqual(46, len(episodes[0].paths))
+        self.assertEqual(49, len(episodes[0].paths))
 
     def test_cast(self):
         asscns = associations()

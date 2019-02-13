@@ -45,7 +45,7 @@ class Episode01Tests(unittest.TestCase):
         cls.performer = Performer(cls.dialogue, cls.ensemble)
 
     def setUp(self):
-        self.assertEqual(45, len(self.ensemble))
+        self.assertEqual(47, len(self.ensemble))
         (self.folder, self.index, self.script, self.selection,
          self.interlude) = self.performer.next(
             self.dialogue, self.ensemble, strict=True, roles=1

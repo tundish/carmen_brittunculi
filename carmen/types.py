@@ -131,7 +131,8 @@ Spot = enum.Enum(
             (3, 18), (7, 18), (10, 17), (14, 17), (17, 17), (21, 17)
         )
     ] + [
-        ("pockets", None)
+        ("grid", True),
+        ("pockets", False)
     ],
     module=__name__,
     type=EnumFactory

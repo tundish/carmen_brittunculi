@@ -26,7 +26,7 @@ Looking around
 
 [LOCATION]_
 
-    You stand before a large circular structure. It is built of
+    You stand within a large circular structure. It is built of
     wood and thatch. This is a common house for shelter and storage.
 
 [LOCATION]_

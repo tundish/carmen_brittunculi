@@ -16,8 +16,14 @@
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
 
+.. entity:: LOCATION
+   :types: carmen.types.Location
+   :states: carmen.types.Visibility.detail
+
 .. entity:: OBJECTIVE
-   :states: carmen.types.Visibility.visible
+   :types: carmen.types.CubbyFruit
+   :states: carmen.types.Spot.grid
+            carmen.types.Visibility.visible
 
 Mission
 ~~~~~~~
@@ -25,7 +31,7 @@ Mission
 Something to do
 ---------------
 
-[Narrator]_
+[NARRATOR]_
 
     You pick up a |OBJECT|.
 
