@@ -100,10 +100,12 @@ class Rules(Orders):
         session, player, log, **kwargs
     ) -> dict:
 
+        fruit = [i for i in session.finder.lookup if isinstance(i, CubbyFruit)]
+        for i in fruit:
+            log.info(vars(i))
         if any(
-            i for i in session.finder.lookup
-            if isinstance(i, CubbyFruit) and
-            i.get_state(Visibility) in (Visibility.new, Visibility.visible)
+            i for i in fruit
+            if i.get_state(Visibility) in (Visibility.new, Visibility.visible)
         ) or random.random() > self.windfall_rate:
             return folder.metadata
 
@@ -312,8 +314,22 @@ def associations():
 
     rv.register(
         None,
+        Character(name="Derwodain Bryn Cariadoc").set_state(
+            next(iter(rv.search(label="Quarry"))).get_state(Spot)
+        ),
+    )
+
+    rv.register(
+        None,
         Character(name="Maer Catrine Cadi Ingenbrettar").set_state(
             next(iter(rv.search(label="Kitchen"))).get_state(Spot)
+        ),
+    )
+
+    rv.register(
+        None,
+        Character(name="Offeiriad Dolphus Bifling").set_state(
+            next(iter(rv.search(label="Mithraeum"))).get_state(Spot)
         ),
     )
 

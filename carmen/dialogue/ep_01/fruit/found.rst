@@ -11,10 +11,10 @@
 :version: |VERSION|
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
+   :types: carmen.types.Player
 
 .. entity:: NARRATOR
-   :types: carmen.logic.Narrator
+   :types: carmen.types.Narrator
 
 .. entity:: OBJECTIVE
    :states: carmen.types.Visibility.visible
