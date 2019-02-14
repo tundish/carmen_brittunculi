@@ -13,17 +13,32 @@
 .. entity:: PLAYER
    :types: carmen.logic.Player
 
-.. entity:: NARRATOR
-   :types: carmen.logic.Narrator
+.. entity:: CADI
+   :types: carmen.logic.Character
 
-reminder
-~~~~~~
+Reminder
+~~~~~~~~
 
-Shot
-----
+.. Consider dialogue conditional on Cadi's spot.
 
-[NARRATOR]_
+Cadi's advice
+-------------
 
-    ...
+[CADI]_
+
+    Be sure to keep the pattern I taught you.
+
+    We stack the wet logs at the end where the wind comes in.
+
+[CADI]_
+
+    Before Bryn comes here with new wood, you must pile up the dry
+    logs in the Kitchen.
+    
+[CADI]_
+
+    Hah, it's done already!
+
+    |PLAYER| you're the only one I trust.
 
 .. |PLAYER| property:: PLAYER.name.firstname
