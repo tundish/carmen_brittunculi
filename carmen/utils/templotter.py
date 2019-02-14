@@ -31,7 +31,7 @@ Create new dialogue files from a template and some names.
 
 DEFAULT_LOCATION = "."
 DEFAULT_FORMAT = "{name}"
-DEFAULT_SUFFIX = ".txt"
+DEFAULT_SUFFIX = ".rst"
 
 DEFAULT_NAMES = [
     "about", "always", "approach", "ante", "action", "aside", "angel", "attack",
