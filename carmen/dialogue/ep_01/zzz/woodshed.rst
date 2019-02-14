@@ -24,11 +24,18 @@ Woodshed
 Looking around
 --------------
 
-.. fx:: carmen.static.audio demo_theme-slide_lead.mp3
-   :offset: 0
-   :duration: 26000
-   :loop: 1
+.. condition:: PLAYER.state carmen.types.Time.day
 
 [LOCATION]_
 
     You are in a high roofed place. There are stacks of bundled wood.
+
+Bumping into things
+-------------------
+
+.. condition:: PLAYER.state carmen.types.Time.eve
+
+[LOCATION]_
+
+    You are in a high roofed place. It smells of damp wood.
+

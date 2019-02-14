@@ -145,7 +145,9 @@ class Game:
 async def get_about(request):
     return web.Response(
         text=bottle.template(
-            pkg_resources.resource_string("carmen", "templates/about.tpl").decode("utf8"),
+            pkg_resources.resource_string(
+                "carmen", "templates/about.tpl"
+            ).decode("utf8"),
             refresh=None
         ),
         content_type="text/html"
