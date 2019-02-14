@@ -55,9 +55,9 @@ class Rules(Orders):
         0 <= i.value.imag <= 9
     ]
 
-    def __init__(self, windfall_rate=None):
+    def __init__(self, **kwargs):
         super().__init__()
-        self.windfall_rate = windfall_rate or Fraction(1, 4)
+        self.kwargs = kwargs
 
     def __call__(
         self, folder, index, references, *,
@@ -68,12 +68,14 @@ class Rules(Orders):
         )
         player = player or next(i for i in references if isinstance(i, Player))
         metadata = {}
+        keyword_args = self.kwargs.copy()
+        keyword_args.update(kwargs)
         for n, name in self.sequence:
             method = getattr(self, name)
             rv = method(
                 folder, index, references,
                 session=session, player=player, log=log,
-                **kwargs
+                **keyword_args
             )
             metadata.update(rv)
         return metadata
@@ -97,8 +99,11 @@ class Rules(Orders):
     @Orders.register()
     def windfall(
         self, folder, index, references, *,
-        session, player, log, **kwargs
+        session, player, log,
+        windfall_rate=None,
+        **kwargs
     ) -> dict:
+        windfall_rate = windfall_rate or Fraction(1, 4)
 
         fruit = [i for i in session.finder.lookup if isinstance(i, CubbyFruit)]
         for i in fruit:
@@ -106,7 +111,7 @@ class Rules(Orders):
         if any(
             i for i in fruit
             if i.get_state(Visibility) in (Visibility.new, Visibility.visible)
-        ) or random.random() > self.windfall_rate:
+        ) or random.random() > windfall_rate:
             return folder.metadata
 
         locns = [
@@ -368,7 +373,7 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/ep_01")
             ).glob("*/*.rst")
         ]),
-        interludes=itertools.repeat(Rules(windfall_rate=1))
+        interludes=itertools.repeat(Rules())
     ),
     SceneScript.Folder(
         pkg="carmen",
@@ -382,7 +387,7 @@ episodes = [
                 pkg_resources.resource_filename("carmen", "dialogue/ep_02")
             ).glob("*/*.rst")
         ]),
-        interludes=itertools.repeat(Rules())
+        interludes=itertools.repeat(Rules(windfall_rate=1))
     )
 ]
 
