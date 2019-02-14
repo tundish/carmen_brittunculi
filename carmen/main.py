@@ -195,12 +195,13 @@ async def here(request):
             pkg_resources.resource_string("carmen", "templates/main.tpl").decode("utf8"),
             here=locn,
             moves=sorted(moves),
-            items=n_items,
             session=session,
             player=player,
             entities=entities,
             frame=frame,
             ordinal=player.get_state(int),
+            time=player.get_state(Time),
+            items=n_items,
             refresh=Handler.refresh(frame)
         ),
         content_type="text/html"

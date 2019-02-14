@@ -67,11 +67,13 @@
 </nav>
 <section class="grid-dash">
 <dl class="mod-stats">
-<dt>Items</dt>
-<dd>{{ items }}<dd>
 <dt>Frame</dt>
-<dd>{{ ordinal }}<dd>
+<dd>{{ ordinal }}</dd>
+<dt>Hour</dt>
+<dd>{{ time.name.split("_")[-1] }}</dd>
 <dt>Source</dt>
 <dd>{{ frame[0].source }}</dd>
+<dt>Items</dt>
+<dd>{{ items }}</dd>
 </dl>
 </section>
