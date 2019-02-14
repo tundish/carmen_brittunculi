@@ -12,12 +12,11 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
+   :states: carmen.logic.Time.day_noon
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
-
-.. entity:: OBJECTIVE
-   :states: carmen.types.Visibility.visible
+   :states: 101
 
 Summary
 ~~~~~~~
@@ -36,3 +35,5 @@ What we know
 
     And so for weeks I have been picking up windfall Cubby Fruit for
     Cadi Ingenbrettar.
+
+.. property:: NARRATOR.state 102

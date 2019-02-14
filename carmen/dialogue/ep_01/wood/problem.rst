@@ -12,9 +12,11 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
+   :states: carmen.logic.Time.day_noon
 
 .. entity:: NARRATOR
    :types: carmen.logic.Narrator
+   :states: 104
 
 Problem
 ~~~~~~~
@@ -35,3 +37,5 @@ Inner voice
     The miners know of Harac. Some are of his family.
 
     None of them want to see him again.
+
+.. property:: NARRATOR.state 105

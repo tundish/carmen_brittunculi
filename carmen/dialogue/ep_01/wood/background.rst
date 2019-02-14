@@ -12,9 +12,11 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
+   :states: carmen.logic.Time.day_noon
 
 .. entity:: NARRATOR
    :types: carmen.logic.Narrator
+   :states: 102
 
 Background
 ~~~~~~~~~~
@@ -30,3 +32,5 @@ Inner voice
     But if they want a fire, they know they must come to Cadi.
 
     She has fire, and food.
+
+.. property:: NARRATOR.state 103

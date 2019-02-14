@@ -12,10 +12,11 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
+   :states: carmen.logic.Time.day_noon
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
-   :states: 1
+   :states: 100
 
 Lore
 ~~~~
@@ -36,3 +37,5 @@ What we know
 [NARRATOR]_
 
     Chance a pig will snuffle it and crush it, but they mostly leave them be.
+
+.. property:: NARRATOR.state 101

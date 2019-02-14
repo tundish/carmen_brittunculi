@@ -44,3 +44,5 @@ Waking
     From the top of the pile along from the door.
 
     That is my dry wood.
+
+.. property:: NARRATOR.state 100

@@ -12,9 +12,11 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
+   :states: carmen.logic.Time.day_noon
 
 .. entity:: NARRATOR
    :types: carmen.logic.Narrator
+   :states: 103
 
 Duty
 ~~~~
@@ -33,3 +35,5 @@ Inner voice
     He builds the miners their platforms and their gantries.
 
     And he carts logs up to Cadi.
+
+.. property:: NARRATOR.state 104

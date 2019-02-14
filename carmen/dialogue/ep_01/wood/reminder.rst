@@ -12,6 +12,7 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
+   :states: carmen.logic.Time.eve
 
 .. entity:: CADI
    :types: carmen.logic.Character
