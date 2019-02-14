@@ -15,9 +15,7 @@
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
-
-.. entity:: OBJECTIVE
-   :states: carmen.types.Visibility.visible
+   :states: 1
 
 Lore
 ~~~~

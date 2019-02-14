@@ -123,11 +123,9 @@ class Game:
         while not session.frames:
             matcher = Matcher(carmen.logic.episodes)
             branching = list(matcher.options(session.cache.get("metadata", {})))
-            # NOTE: metadata helps interludes favour themes (folders)
-            # so then; at minimum, metadata uniquely identifies a folder.
             performer = Performer(branching, entities)
             folder, index, script, selection, interlude = performer.next(
-                carmen.logic.episodes, entities
+                branching, entities
             )
             scene = performer.run(react=False)
             frames = list(Handler.frames(folder.paths[index], scene, dwell=0.3, pause=1))
