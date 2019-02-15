@@ -62,7 +62,7 @@ class Game:
         finder = carmen.logic.associations()
         start = next(iter(finder.search(label="Woodshed")))
         player = Player(name=name).set_state(start.get_state(Spot))
-        player.set_state(Time.eve_predawn)
+        player.set_state(Time.eve_predawn).set_state(Wants.nothing)
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = Game.Session(
@@ -188,7 +188,6 @@ async def here(request):
     frame = Game.frame(session, entities)
     player.set_state(player.get_state(int) + 1)
     list(Handler.react(session, frame))
-    log.debug(player.get_state(Wants))
 
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
 

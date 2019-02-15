@@ -39,7 +39,7 @@ Waking
 
 [NARRATOR]_
 
-    Which logs does she take today?
+    Which logs did she take today?
 
     From the top of the pile along from the door.
 

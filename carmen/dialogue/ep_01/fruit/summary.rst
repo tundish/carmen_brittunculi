@@ -33,7 +33,7 @@ What we know
 
 [NARRATOR]_
 
-    And so for weeks I have been picking up windfall Cubby Fruit for
+    And so I have been hunting windfall Cubby Fruit for
     Cadi Ingenbrettar.
 
 .. property:: NARRATOR.state 102
