@@ -11,21 +11,22 @@
 :version: |VERSION|
 
 .. entity:: LOCATION
-   :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1308
+   :types: carmen.types.Location
+   :states: carmen.types.Spot.grid_1308
+            carmen.types.Spot.grid_1308
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1308
+   :types: carmen.types.Player
+   :states: carmen.types.Spot.grid_1308
 
 .. entity:: NARRATOR
-   :types: carmen.logic.Narrator
+   :types: carmen.types.Narrator
 
 .. entity:: BRYN
-   :types: carmen.logic.Character
+   :types: carmen.types.Character
 
 .. entity:: CADI
-   :types: carmen.logic.Character
+   :types: carmen.types.Character
 
 Bryn and Cadi talk Wood
 ~~~~~~~~~~~~~~~~~~~~~~~

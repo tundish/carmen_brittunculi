@@ -146,6 +146,7 @@ class Via(EnumFactory, enum.Enum):
 
 class Narrator(Stateful): pass
 class Character(Stateful, Persona): pass
+class Woodsman(Character): pass
 class Coin(Stateful, DataObject): pass
 class Location(Stateful, DataObject): pass
 class CubbyFruit(Stateful): pass

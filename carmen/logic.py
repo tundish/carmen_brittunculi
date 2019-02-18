@@ -43,6 +43,7 @@ from carmen.types import Time
 from carmen.types import Via
 from carmen.types import Visibility
 from carmen.types import Wants
+from carmen.types import Woodsman
 
 ides_of_march = datetime.date(396, 3, 1)
 
@@ -319,7 +320,7 @@ def associations():
 
     rv.register(
         None,
-        Character(name="Derwodain Bryn Cariadoc").set_state(
+        Woodsman(name="Derwodain Bryn Cariadoc").set_state(
             next(iter(rv.search(label="Quarry"))).get_state(Spot)
         ),
     )
@@ -348,6 +349,13 @@ def routines(finder):
             (
                 finder.search(label="Common house") |
                 finder.search(label="Marsh")
+            )
+        ),
+        Angel(
+            next(iter(finder.search(_name="Derwodain Bryn Cariadoc"))),
+            (
+                finder.search(label="Common house") |
+                finder.search(label="Quarry")
             )
         ),
         Angel(
