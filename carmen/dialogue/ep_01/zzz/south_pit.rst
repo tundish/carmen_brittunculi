@@ -26,7 +26,7 @@ Looking around
 
 [LOCATION]_
 
-    This room is smaller than the last, bit more busy.
+    This room is smaller than the last, but more busy.
 
 [LOCATION]_
 
