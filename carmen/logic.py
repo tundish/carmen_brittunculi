@@ -35,9 +35,12 @@ from carmen.orders import Orders
 from carmen.routefinder import Routefinder
 from carmen.types import Character
 from carmen.types import CubbyFruit
+from carmen.types import Innkeeper
 from carmen.types import Location
+from carmen.types import Merchant
 from carmen.types import Narrator
 from carmen.types import Player # noqa
+from carmen.types import Priest
 from carmen.types import Spot
 from carmen.types import Time
 from carmen.types import Via
@@ -313,7 +316,7 @@ def associations():
 
     rv.register(
         None,
-        Character(name="Civis Anatol Ant Bospor").set_state(
+        Merchant(name="Civis Anatol Ant Bospor").set_state(
             next(iter(rv.search(label="Common house"))).get_state(Spot)
         ),
     )
@@ -327,14 +330,14 @@ def associations():
 
     rv.register(
         None,
-        Character(name="Maer Catrine Cadi Ingenbrettar").set_state(
+        Innkeeper(name="Maer Catrine Cadi Ingenbrettar").set_state(
             next(iter(rv.search(label="Kitchen"))).get_state(Spot)
         ),
     )
 
     rv.register(
         None,
-        Character(name="Offeiriad Dolphus Bifling").set_state(
+        Priest(name="Offeiriad Dolphus Bifling").set_state(
             next(iter(rv.search(label="Mithraeum"))).get_state(Spot)
         ),
     )

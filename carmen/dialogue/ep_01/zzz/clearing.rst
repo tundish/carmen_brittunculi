@@ -30,5 +30,5 @@ Looking around
 
 [LOCATION]_
 
-   Between the low stumps which remain, span wide low bridges for to cross
+   Between the low stumps which remain, span wide low bridges across
    the muddy between.

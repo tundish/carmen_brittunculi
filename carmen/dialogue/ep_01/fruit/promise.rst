@@ -17,11 +17,8 @@
 .. entity:: NARRATOR
    :types: carmen.logic.Narrator
 
-.. entity:: BRYN
-   :types: carmen.logic.Character
-
 .. entity:: CADI
-   :types: carmen.logic.Character
+   :types: carmen.logic.Innkeeper
 
 Cadi talks of Cubby Apples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,20 +28,16 @@ Good news
 
 [CADI]_
 
-    I have told to |BRYN| how well you know the Wood.
+    I have told to Bryn how well you know the Wood.
 
 [NARRATOR]_
 
-    She has split the apples.
-
-    Around the grate are the inner stones, roasting.
-
+    She has split the apples. Around the grate are the stones, roasting.
     The rest is in the bronze.
 
 [CADI]_
 
-    These apples are forever unbitten.
-
+    The apples are unbitten.
     You know well not to eat them, |PLAYER|!
 
 [NARRATOR]_
@@ -62,7 +55,6 @@ Good news
 [CADI]_
 
     It is the skin which makes the Ale brew.
-
     I put the peelings in with the grain. And water from the stream.
 
 [NARRATOR]_
@@ -71,10 +63,6 @@ Good news
 
 [CADI]_
 
-    From the stream. Never take the water of the pool.
+    Soon we'll make Ale together!
 
-    Soon we'll make the Ale together!
-
-
-.. |BRYN| property:: BRYN.name.firstname
 .. |PLAYER| property:: PLAYER.name.firstname

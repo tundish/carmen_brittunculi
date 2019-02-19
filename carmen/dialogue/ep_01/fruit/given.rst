@@ -17,8 +17,8 @@
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
 
-.. entity:: RECIPIENT
-   :types: carmen.types.Character
+.. entity:: CADI
+   :types: carmen.types.Innkeeper
    :states: carmen.types.Spot.grid_1308
 
 .. entity:: OBJECTIVE
@@ -32,9 +32,11 @@ Mission
 Handing it over
 ---------------
 
-[RECIPIENT]_
+[CADI]_
 
-    Ta.
+    Thank you, |PLAYER|.
+
+    Yet I need more.
 
 .. property:: OBJECTIVE.state carmen.types.Spot.grid_1308
 .. property:: OBJECTIVE.state carmen.types.Visibility.hidden
