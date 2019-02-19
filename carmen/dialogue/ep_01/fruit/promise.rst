@@ -35,13 +35,6 @@ Good news
     She has split the apples. Around the grate are the stones, roasting.
     The rest is in the bronze.
 
-[CADI]_
-
-    The apples are unbitten.
-    You know well not to eat them, |PLAYER|!
-
-[NARRATOR]_
-
     She takes a board and stamps the mash.
 
 [CADI]_
