@@ -3,6 +3,7 @@
   <legend>Start a new story.</legend>
     <fieldset>
     <label for="player-name">Player</label>
+    <small id="player-name-tip">Choose a Roman or Brythonic name</small>
     <input
     name="playername"
     type="text"

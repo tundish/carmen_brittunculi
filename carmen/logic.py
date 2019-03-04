@@ -18,6 +18,7 @@
 
 from collections import deque
 import datetime
+from decimal import Decimal
 from fractions import Fraction
 import itertools
 import logging
@@ -375,7 +376,7 @@ episodes = [
     SceneScript.Folder(
         pkg="carmen",
         description="Dialogue for a Game Episode 1.",
-        metadata={"episode": 1},
+        metadata={"episode": Decimal(1)},
         paths=sorted([
             str(i.relative_to(
                 pkg_resources.resource_filename("carmen", "")
@@ -389,7 +390,7 @@ episodes = [
     SceneScript.Folder(
         pkg="carmen",
         description="Location descriptions.",
-        metadata={"episode": 2},
+        metadata={"episode": Decimal(2)},
         paths=sorted([
             str(i.relative_to(
                 pkg_resources.resource_filename("carmen", "")
