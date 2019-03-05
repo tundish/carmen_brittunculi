@@ -32,7 +32,7 @@ class Handler:
             # http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
         ),
         "location": re.compile("[0-9a-f]{32}"),
-        "name": re.compile("[A-Z a-z]{2,32}"),
+        "name": re.compile("[A-Z a-z]{2,42}"),
         "session": re.compile("[0-9a-f]{32}"),
     }
 

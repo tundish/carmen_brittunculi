@@ -1,9 +1,8 @@
 %rebase("_page.tpl")
 <form role="form" action="/" method="POST" name="quest" class="grid-front mod-titles">
-  <legend>Start a new story.</legend>
+  <h1>Start a new story.</h1>
     <fieldset>
-    <label for="player-name">Player</label>
-    <small id="player-name-tip">Choose a Roman or Brythonic name</small>
+    <label for="player-name" id="player-name-tip">Choose a Roman or Brythonic name</label>
     <input
     name="playername"
     type="text"
@@ -13,7 +12,7 @@
     placeholder="?"
     pattern="{{ validation["name"].pattern }}"
     >
-    <small id="player-name-tip">at least 2 letters long</small>
+    <button type="submit">Enter</button>
     </fieldset>
     <!-- <fieldset>
     <label for="email">Email</label>
@@ -26,6 +25,6 @@
     >
     <small id="email-tip">optional</small>
     </fieldset> -->
-  <button type="submit">Enter</button>
+    <a href="/about">About Carmen Brittunculi</a>
 </form>
 
