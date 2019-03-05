@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding: UTF-8
 
 # This file is part of Carmen Brittunculi.
@@ -19,14 +19,17 @@
 __doc__ = """
 Example:
 
-python3 disk_sample.py --spacing 24 --spacing 24 --spacing 32 > carmen/static/svg/poisson.svg
+python3 scenery.py --spacing 24 --spacing 24 --spacing 32 > carmen/static/svg/poisson.svg
 
 """
 import argparse
 import cmath
+from collections import defaultdict
 from collections import deque
 import random
 import sys
+
+DEFAULT_SYMBOL = "spot"
 
 svg = """
 <svg xmlns="http://www.w3.org/2000/svg"
@@ -84,6 +87,25 @@ cx="3" cy="3" r="2"
     ],
 }
 
+symbols = {
+"spot": (5, """
+<symbol id="spot">
+<circle stroke="red" fill="dimgrey" stroke-width="1"
+cx="3" cy="3" r="2"
+/>
+</symbol>"""),
+"leaf": (24, """
+<symbol id="svg-leaf">
+<path
+    d="M 12 11 C 21,2 17,22 23,27 C 8,25 3,11 12,11 z M 18,16 C 16,14 17,22 20,24 z"
+    stroke-width="0.2"
+    stroke="yellow"
+    fill="currentColor"
+    fill-rule="evenodd"
+/>
+</symbol>"""),
+}
+
 DEFAULT_WIDTH = 360
 DEFAULT_HEIGHT = 600
 DEFAULT_POINTS = 600
@@ -101,9 +123,8 @@ def poisson_disk(
     n_gen=12, min_dist=16, max_dist=42,
     origin=complex(0, 0), top=complex(DEFAULT_WIDTH, DEFAULT_HEIGHT)
 ):
-    seed = random.choice(seeds)
-    q = deque([seed])
-    pop = set([seed])
+    q = deque(seeds)
+    pop = set(seeds)
     while len(pop) < n_points:
         try:
             s = q.popleft()
@@ -122,10 +143,10 @@ def poisson_disk(
                 yield p, gap
 
 def paint(points, width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT):
-    content = [symbol for i in symbols.values() for name, symbol in i]
+    content = [s for n, s in symbols.values()]
     content.extend([
-        use.format(klass=name, name=name, point=point)
-        for name, point in points
+        use.format(klass=klass, name=name, point=point)
+        for klass, name, point in points
     ])
     return svg.format("\n".join(content), width=width, height=height)
 
@@ -137,6 +158,12 @@ def parser(description=__doc__):
     rv.add_argument(
         "--spacing", action="append", type=float,
         help="Give a sequence of pixel sizes for spacing."
+    )
+    rv.add_argument(
+        "--symbol", action="append", type=str, default=[DEFAULT_SYMBOL],
+        help="Pick one or more symbol to use ({0}) [{1}].".format(
+            ",".join(symbols.keys()), DEFAULT_SYMBOL
+        )
     )
     rv.add_argument(
         "--debug", action="store_true", default=False,
@@ -158,17 +185,27 @@ def parser(description=__doc__):
 
 def main(args):
     scene = []
-    spacing = args.spacing or [5]
+    spacing = [symbols[name][0] for name in args.symbol]
+    lookup = defaultdict(list)
+    for name in args.symbol:
+        gap, data = symbols[name]
+        lookup[gap].append(name)
+
+    classes = ["plain"]
     for n, (point, gap) in enumerate(
         poisson_disk(
             args.points,
             spacing,
-            seeds=[complex(args.width / 2, args.height / 2)],
+            seeds=[
+                complex(args.width / 3, args.height / 3),
+                complex(2 * args.width / 3, args.height / 3),
+                complex(2 * args.width / 3, 2 * args.height / 3)
+            ],
             top=complex(args.width, args.height)
         )
     ):
-        name, symbol = random.choice(symbols[gap])
-        scene.append((name, point))
+        name = random.choice(lookup[gap])
+        scene.append((random.choice(classes), name, point))
         if args.debug:
             print(point, file=sys.stderr)
 
