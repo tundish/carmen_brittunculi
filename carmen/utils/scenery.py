@@ -19,16 +19,20 @@
 __doc__ = """
 Example:
 
-python3 scenery.py --spacing 24 --spacing 24 --spacing 32 > carmen/static/svg/poisson.svg
+python3 scenery.py --symbol leaf > scenery.svg
+
 
 """
 import argparse
 import cmath
 from collections import defaultdict
 from collections import deque
+import itertools
 import random
 import sys
 
+# TODO: convert symbol -> defs but without own attributes
+# TODO: add title, desc
 svg = """
 <svg xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -47,15 +51,9 @@ xlink:href="#{name}" />
 """
 
 style = """
-<style>
-/* <![CDATA[ */
-use.med {
-    transform="scale(1.4)";
-}
-use.r45 {
-    transform="rotate(45 16 16)";
-}
-/* ]]> */
+<style type="text/css">
+#use.med {transform: scale(1.4);}
+#use.r45 {transform: rotate(45 16 16);}
 </style>
 """
 
@@ -121,8 +119,8 @@ def paint(points, width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT):
     content = [style]
     content.extend([s.strip() for n, s in symbols.values()])
     content.extend([
-        use.format(klass=klass, name=name, point=point).strip()
-        for klass, name, point in points
+        use.format(klass=" ".join(classes), name=name, point=point).strip()
+        for classes, name, point in points
     ])
     return svg.format("\n".join(content), width=width, height=height)
 
@@ -169,25 +167,34 @@ def main(args):
         lookup[gap].append(name)
 
     classes = ["plain", "r45", "med"]
+    pad = max(symbols[name][0] for name in args.symbol)
+    height = args.height - pad
+    width = args.width - pad
     for n, (point, gap) in enumerate(
         poisson_disk(
             args.points,
             spacing,
             seeds=[
-                complex(args.width / 3, args.height / 3),
-                complex(2 * args.width / 3, args.height / 3),
-                complex(2 * args.width / 3, 2 * args.height / 3)
+                complex(width / 3, height / 3),
+                complex(2 * width / 3, height / 3),
+                complex(2 * width / 3, 2 * height / 3)
             ],
-            top=complex(args.width, args.height)
+            top=complex(width, height)
         )
     ):
         name = random.choice(lookup[gap])
-        scene.append((random.choice(classes), name, point))
+        scene.append((
+            random.choice(list(itertools.combinations(
+                classes, random.randint(1, len(classes))
+            ))),
+            name,
+            point
+        ))
         if args.debug:
             print(name, gap, point, file=sys.stderr)
 
     print("{0} items".format(n), file=sys.stderr)
-    print(paint(scene, args.width, args.height), file=sys.stdout)
+    print(paint(scene, args.width + pad, args.height + pad), file=sys.stdout)
     return 0
 
 def run():
