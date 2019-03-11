@@ -13,14 +13,3 @@ list-style-type: none;
 .mod-diorama ul li {
 margin: 0.2em;
 }
-
-svg.mod-diorama text {
-alignment-baseline: central;
-fill: var(--shadow);
-font-family: var(--font-family-serif);
-font-size: 0.6em;
-stroke: var(--sturdy-brown);
-stroke-linecap: round;
-stroke-width: 0.1px;
-text-anchor: middle;
-}

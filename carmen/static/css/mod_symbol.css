@@ -1,0 +1,17 @@
+svg.mod-symbol {
+border: 1px solid hsl(12, 20%, 20%);
+width: 100%;
+}
+
+svg.mod-symbol text {
+alignment-baseline: central;
+dominant-baseline: middle;
+fill: var(--shadow);
+font-family: var(--font-family-serif);
+font-size: 0.6em;
+stroke: var(--sturdy-brown);
+stroke-linecap: round;
+stroke-width: 0.1px;
+text-anchor: middle;
+}
+

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/css/mod_dialogue.css" />
 <link rel="stylesheet" href="/css/mod_diorama.css" />
 <link rel="stylesheet" href="/css/mod_stats.css" />
+<link rel="stylesheet" href="/css/mod_symbol.css" />
 <link rel="stylesheet" href="/css/mod_titles.css" />
 <link rel="stylesheet" href="/css/theme.css" />
 </head>
