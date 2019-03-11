@@ -148,7 +148,8 @@ async def get_about(request):
             pkg_resources.resource_string(
                 "carmen", "templates/about.tpl"
             ).decode("utf8"),
-            refresh=None
+            refresh=None,
+            version=__version__,
         ),
         content_type="text/html"
     )
