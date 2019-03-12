@@ -1,8 +1,8 @@
 aside.mod-diorama {
 background-color: var(--walnut);
-border-radius: 1em;
-padding: 0.2em;
-margin: 0.2em;
+border-radius: 1rem;
+padding: 0.2rem;
+margin: 0.2rem;
 }
 
 .mod-diorama ul {
@@ -11,5 +11,5 @@ list-style-type: none;
 }
 
 .mod-diorama ul li {
-margin: 0.2em;
+margin: 0.2rem;
 }
