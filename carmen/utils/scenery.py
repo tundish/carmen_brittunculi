@@ -192,9 +192,12 @@ def main(args):
         ))
         if args.debug:
             print(name, gap, point, file=sys.stderr)
+    else:
+        n = 0
 
     print("{0} items".format(n), file=sys.stderr)
     print(paint(scene, args.width + pad, args.height + pad), file=sys.stdout)
+
     return 0
 
 def run():
