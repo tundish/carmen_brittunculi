@@ -375,7 +375,7 @@ def routines(finder):
 episodes = [
     SceneScript.Folder(
         pkg="carmen",
-        description="Dialogue for a Game Episode 1.",
+        description="Dialogue for a game episode 1.",
         metadata={"episode": Decimal(1)},
         paths=sorted([
             str(i.relative_to(
@@ -389,7 +389,7 @@ episodes = [
     ),
     SceneScript.Folder(
         pkg="carmen",
-        description="Location descriptions.",
+        description="Dialogue for game episode 2.",
         metadata={"episode": Decimal(2)},
         paths=sorted([
             str(i.relative_to(
@@ -400,6 +400,20 @@ episodes = [
             ).glob("*/*.rst")
         ]),
         interludes=itertools.repeat(Rules(windfall_rate=1))
+    ),
+    SceneScript.Folder(
+        pkg="carmen",
+        description="Game over.",
+        metadata={"episode": None},
+        paths=sorted([
+            str(i.relative_to(
+                pkg_resources.resource_filename("carmen", "")
+            ))
+            for i in pathlib.Path(
+                pkg_resources.resource_filename("carmen", "dialogue/exit")
+            ).glob("*.rst")
+        ]),
+        interludes=itertools.repeat(None)
     )
 ]
 
