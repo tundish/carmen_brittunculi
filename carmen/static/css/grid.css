@@ -17,6 +17,7 @@ grid-area: gear;
 
 .grid-rear {
 grid-area: rear;
+height: 10vh;
 }
 
 .grid-roof {
@@ -67,6 +68,10 @@ grid-template-areas:
 "roof   front   steer   wing"
 "roof   front   steer   wing"
 "dash   dash    dash    dash";
+}
+
+.grid-rear {
+height: 25vh;
 }
 
 }

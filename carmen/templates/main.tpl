@@ -41,7 +41,9 @@
             <svg
                 xmlns="http://www.w3.org/2000/svg" version="1.1"
                 viewBox="0 0 12 12"
-                class="mod-symbol">
+                height="12"
+                class="mod-symbol"
+                preserveAspectRatio="xMidYMid meet">
             <text x="6" y="6">{{ entity.name.firstname[0].upper() }}</text>
             </svg>
         </li>

@@ -1,14 +1,11 @@
 svg.mod-symbol {
-height: 25%;
-width: 100%;
 }
 
 svg.mod-symbol text {
-alignment-baseline: central;
+color: var(--shadow);
 dominant-baseline: middle;
-fill: var(--shadow);
+fill: currentColor;
 font-family: var(--font-family-serif);
-font-size: 0.6em;
 stroke: var(--sturdy-brown);
 stroke-linecap: round;
 stroke-width: 0.1px;

@@ -3,13 +3,23 @@ background-color: var(--walnut);
 border-radius: 1rem;
 padding: 0.2rem;
 margin: 0.2rem;
+min-width: 12rem;
 }
 
 .mod-diorama ul {
 align-items: center;
 list-style-type: none;
+display: flex;
+flex-direction: column;
+justify-content: center;
 }
 
 .mod-diorama ul li {
 margin: 0.2rem;
+}
+
+@media (orientation: portrait) {
+.mod-diorama ul {
+flex-direction: row;
+}
 }
