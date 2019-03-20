@@ -133,6 +133,22 @@ class Rules(Orders):
         log.info("Created {0.__class__.__name__} at {1.label}.".format(obj, locn))
         return folder.metadata
 
+    @Orders.register()
+    def end_game(
+        self, folder, index, references, *,
+        session, player, log,
+        windfall_rate=None,
+        **kwargs
+    ) -> dict:
+        n_items = len(
+            [i for i in session.finder.ensemble()
+             if i.get_state(Visibility) == Visibility.hidden]
+        )
+        rv = folder.metadata
+        if n_items > 3:
+            rv["episode"] = 3
+        return rv
+
 def associations():
     rv = Routefinder()
     rv.register(
@@ -404,7 +420,7 @@ episodes = [
     SceneScript.Folder(
         pkg="carmen",
         description="Game over.",
-        metadata={"episode": None},
+        metadata={"episode": Decimal(3)},
         paths=sorted([
             str(i.relative_to(
                 pkg_resources.resource_filename("carmen", "")
