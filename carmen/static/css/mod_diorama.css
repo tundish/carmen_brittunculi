@@ -1,6 +1,4 @@
 aside.mod-diorama {
-background-color: var(--walnut);
-border-radius: 1rem;
 padding: 0.2rem;
 margin: 0.2rem;
 min-width: 12rem;
@@ -8,9 +6,12 @@ min-width: 12rem;
 
 .mod-diorama ul {
 align-items: center;
+background-color: var(--walnut);
+border-radius: 1rem;
 list-style-type: none;
 display: flex;
 flex-direction: column;
+height: 100%;
 justify-content: center;
 }
 
