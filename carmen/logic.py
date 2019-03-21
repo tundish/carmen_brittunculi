@@ -144,8 +144,8 @@ class Rules(Orders):
             [i for i in session.finder.ensemble()
              if i.get_state(Visibility) == Visibility.hidden]
         )
-        rv = folder.metadata
-        if n_items > 3:
+        rv = folder.metadata.copy()
+        if n_items > 2:
             rv["episode"] = 3
         return rv
 
