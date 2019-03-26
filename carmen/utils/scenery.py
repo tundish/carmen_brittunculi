@@ -71,6 +71,10 @@ cx="3" cy="3" r="2"
     fill-rule="evenodd"
     transform="inherit"
 />"""),
+"wattle": (16, """
+  <path d="m18.938 1038.1c0.06787 1.9318-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5c0-3.433 3.875-6.875 3.875-6.875s2.75 3.317 2.875 6.875z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+  <path d="m25.812 1032.6c0 1.933-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5-1.739-5.375 0.125-5.375 6.625 3.442 6.625 5.375z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+  <path style="stroke:#000;stroke-width:0.4;fill:#241c1c" d="m35 1026.5c1.8327-1.3799 16.346-2.0293 19.5 0 3.1543 2.0293 2.9043 9.9707-0.125 12.375s-14.096 2.5293-17.625-0.75c-3.5293-3.2793-4.2793-9.7207-1.75-11.625z"/>"""),
 }
 
 DEFAULT_WIDTH = 360
@@ -170,6 +174,7 @@ def main(args):
     pad = max(symbols[name][0] for name in args.symbol)
     height = args.height - pad
     width = args.width - pad
+    n = 0
     for n, (point, gap) in enumerate(
         poisson_disk(
             args.points,
@@ -192,8 +197,6 @@ def main(args):
         ))
         if args.debug:
             print(name, gap, point, file=sys.stderr)
-    else:
-        n = 0
 
     print("{0} items".format(n), file=sys.stderr)
     print(paint(scene, args.width + pad, args.height + pad), file=sys.stdout)
