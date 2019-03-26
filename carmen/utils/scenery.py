@@ -59,13 +59,10 @@ style = """
 
 symbols = {
 "spot": (5, """
-<symbol id="spot">
 <circle stroke="red" fill="dimgrey" stroke-width="1"
 cx="3" cy="3" r="2"
-/>
-</symbol>"""),
+/>"""),
 "leaf": (16, """
-<symbol id="leaf">
 <path
     d="M 12 11 C 21,2 17,22 23,27 C 8,25 3,11 12,11 z M 18,16 C 16,14 17,22 20,24 z"
     stroke-width="0.2"
@@ -73,8 +70,7 @@ cx="3" cy="3" r="2"
     fill="green"
     fill-rule="evenodd"
     transform="inherit"
-/>
-</symbol>"""),
+/>"""),
 }
 
 DEFAULT_WIDTH = 360
@@ -117,7 +113,11 @@ def poisson_disk(
 
 def paint(points, width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT):
     content = [style]
-    content.extend([s.strip() for n, s in symbols.values()])
+
+    content.extend([
+        '<symbol id="{0}">\n{1}\n</symbol>'.format(name, data.strip())
+        for name, (gap, data) in symbols.items()
+    ])
     content.extend([
         use.format(klass=" ".join(classes), name=name, point=point).strip()
         for classes, name, point in points
