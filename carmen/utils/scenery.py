@@ -47,13 +47,21 @@ preserveAspectRatio="none"
 use = """
 <use class="{klass}"
 x="{point.real:.0f}" y="{point.imag:.0f}" transform="inherit"
+style="transform-origin: {point.real:.0f}px {point.imag:.0f}px;"
 xlink:href="#{name}" />
 """
 
 style = """
 <style type="text/css">
-#use.med {transform: scale(1.4);}
-#use.r45 {transform: rotate(45 16 16);}
+<![CDATA[
+use.med {
+transform: scale(1.1);
+}
+
+use.r45 {
+transform: rotate(45deg);
+}
+]]>
 </style>
 """
 
@@ -110,7 +118,8 @@ def sow(seed, min_dist, max_dist):
 def poisson_disk(
     n_points, gaps, seeds,
     n_gen=12, min_dist=16, max_dist=42,
-    origin=complex(0, 0), top=complex(DEFAULT_WIDTH, DEFAULT_HEIGHT)
+    origin=complex(0, 0),
+    top=complex(DEFAULT_WIDTH, DEFAULT_HEIGHT)
 ):
     q = deque(seeds)
     pop = set(seeds)
