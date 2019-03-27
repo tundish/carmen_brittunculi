@@ -18,7 +18,10 @@
 
 from collections import namedtuple
 import logging
+import pathlib
 import re
+
+import pkg_resources
 
 from turberfield.dialogue.model import Model
 
@@ -93,3 +96,13 @@ class Handler:
             )
         except ValueError:
             return None
+
+    @staticmethod
+    def scenery(location):
+        root = pkg_resources.resource_filename("carmen", "static")
+        parent = pkg_resources.resource_filename("carmen", "static/svg")
+        pattern = "scenery-leaf*.svg"
+        assets = [
+            i.relative_to(root) for i in pathlib.Path(parent).glob(pattern)
+        ]
+        return next(iter(assets))

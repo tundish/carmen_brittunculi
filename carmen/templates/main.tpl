@@ -30,7 +30,7 @@
 
 </main>
 <aside class="grid-roof mod-vista">
-<!-- <img src="/svg/poisson.svg"/> -->
+<img src="{{ vista }}" style="width: 100%;"/>
 </aside>
 
 <aside class="grid-rear mod-diorama">

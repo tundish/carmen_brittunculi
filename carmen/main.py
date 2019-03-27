@@ -201,6 +201,7 @@ async def here(request):
             player=player,
             entities=entities,
             frame=frame,
+            vista=Handler.scenery(locn),
             ordinal=player.get_state(int),
             time=player.get_state(Time),
             items=n_items,
