@@ -1,0 +1,1826 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+width="376" height="616"
+viewBox="0 0 376 616"
+preserveAspectRatio="none"
+>
+
+<style type="text/css">
+<![CDATA[
+use.med {
+transform: scale(1.1);
+}
+
+use.r15 {
+transform: rotate(15deg);
+}
+
+use.r345 {
+transform: rotate(-15deg);
+}
+]]>
+</style>
+
+<symbol id="rock">
+<ellipse
+    fill="#241c1c"
+    stroke-width="7"
+    rx="13" ry="6.6" cy="10" cx="10"
+  />
+  <path style="fill:#6c5353;stroke-width:7" d="m53.214 1008.4c-0.26777 2.0125-2.9286 2.7679-8.3036 2.7679s-8.6608-0.934-8.6607-2.9465c0 0 5.5132 1.4474 8.8393 1.4286 3.6707-0.021 8.125-1.25 8.125-1.25z"/>
+</symbol>
+<symbol id="leaf">
+<path
+    d="M 12 11 C 21,2 17,22 23,27 C 8,25 3,11 12,11 z M 18,16 C 16,14 17,22 20,24 z"
+    stroke-width="0.2"
+    stroke="yellow"
+    fill="green"
+    fill-rule="evenodd"
+    transform="inherit"
+/>
+</symbol>
+<symbol id="spot">
+<circle stroke="red" fill="dimgrey" stroke-width="1"
+cx="3" cy="3" r="2"
+/>
+</symbol>
+<symbol id="slab">
+<path
+    stroke="black"
+    stroke-width="0.4"
+    fill="#241c1c;"
+    d="m12 11 c1.8327-1.3799 16.346-2.0293 19.5 0 3.1543 2.0293 2.9043 9.9707-0.125 12.375s-14.096 2.5293-17.625-0.75c-3.5293-3.2793-4.2793-9.7207-1.75-11.625z"
+/>
+</symbol>
+<symbol id="wattle">
+<path d="m8 10 c-0.89167 1.7151-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5 7.636-5.5 9.5-5.5-2.75 5.5-2.75 5.5z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+  <path d="m16 12 c0.06787 1.9318-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5c0-3.433 3.875-6.875 3.875-6.875s2.75 3.317 2.875 6.875z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+  <path d="m24 10 c0 1.933-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5-1.739-5.375 0.125-5.375 6.625 3.442 6.625 5.375z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+</symbol>
+<use class="plain r15 r345 med"
+x="146" y="176" transform="inherit"
+style="transform-origin: 146px 176px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="119" y="222" transform="inherit"
+style="transform-origin: 119px 222px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="100" y="204" transform="inherit"
+style="transform-origin: 100px 204px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="127" y="205" transform="inherit"
+style="transform-origin: 127px 205px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="74" y="190" transform="inherit"
+style="transform-origin: 74px 190px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="130" y="176" transform="inherit"
+style="transform-origin: 130px 176px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="264" y="175" transform="inherit"
+style="transform-origin: 264px 175px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="211" y="194" transform="inherit"
+style="transform-origin: 211px 194px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="248" y="177" transform="inherit"
+style="transform-origin: 248px 177px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="259" y="209" transform="inherit"
+style="transform-origin: 259px 209px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="244" y="222" transform="inherit"
+style="transform-origin: 244px 222px;"
+xlink:href="#wattle" />
+<use class="med"
+x="204" y="175" transform="inherit"
+style="transform-origin: 204px 175px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="214" y="216" transform="inherit"
+style="transform-origin: 214px 216px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="204" y="377" transform="inherit"
+style="transform-origin: 204px 377px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="233" y="420" transform="inherit"
+style="transform-origin: 233px 420px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="261" y="396" transform="inherit"
+style="transform-origin: 261px 396px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="230" y="363" transform="inherit"
+style="transform-origin: 230px 363px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="251" y="369" transform="inherit"
+style="transform-origin: 251px 369px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="210" y="402" transform="inherit"
+style="transform-origin: 210px 402px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="121" y="157" transform="inherit"
+style="transform-origin: 121px 157px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="169" y="190" transform="inherit"
+style="transform-origin: 169px 190px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="110" y="178" transform="inherit"
+style="transform-origin: 110px 178px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="171" y="173" transform="inherit"
+style="transform-origin: 171px 173px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="140" y="158" transform="inherit"
+style="transform-origin: 140px 158px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="168" y="141" transform="inherit"
+style="transform-origin: 168px 141px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="106" y="233" transform="inherit"
+style="transform-origin: 106px 233px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="86" y="226" transform="inherit"
+style="transform-origin: 86px 226px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="104" y="251" transform="inherit"
+style="transform-origin: 104px 251px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="138" y="236" transform="inherit"
+style="transform-origin: 138px 236px;"
+xlink:href="#wattle" />
+<use class="med"
+x="160" y="212" transform="inherit"
+style="transform-origin: 160px 212px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="122" y="244" transform="inherit"
+style="transform-origin: 122px 244px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="95" y="166" transform="inherit"
+style="transform-origin: 95px 166px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="64" y="227" transform="inherit"
+style="transform-origin: 64px 227px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="141" y="195" transform="inherit"
+style="transform-origin: 141px 195px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="35" y="176" transform="inherit"
+style="transform-origin: 35px 176px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="57" y="210" transform="inherit"
+style="transform-origin: 57px 210px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="65" y="163" transform="inherit"
+style="transform-origin: 65px 163px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="79" y="150" transform="inherit"
+style="transform-origin: 79px 150px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="110" y="141" transform="inherit"
+style="transform-origin: 110px 141px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="269" y="149" transform="inherit"
+style="transform-origin: 269px 149px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="296" y="177" transform="inherit"
+style="transform-origin: 296px 177px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="291" y="158" transform="inherit"
+style="transform-origin: 291px 158px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="187" y="202" transform="inherit"
+style="transform-origin: 187px 202px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="187" y="185" transform="inherit"
+style="transform-origin: 187px 185px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="245" y="195" transform="inherit"
+style="transform-origin: 245px 195px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="245" y="152" transform="inherit"
+style="transform-origin: 245px 152px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="274" y="240" transform="inherit"
+style="transform-origin: 274px 240px;"
+xlink:href="#wattle" />
+<use class="med"
+x="253" y="239" transform="inherit"
+style="transform-origin: 253px 239px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="267" y="191" transform="inherit"
+style="transform-origin: 267px 191px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="227" y="239" transform="inherit"
+style="transform-origin: 227px 239px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="201" y="139" transform="inherit"
+style="transform-origin: 201px 139px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="189" y="166" transform="inherit"
+style="transform-origin: 189px 166px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="221" y="175" transform="inherit"
+style="transform-origin: 221px 175px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="199" y="251" transform="inherit"
+style="transform-origin: 199px 251px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="180" y="236" transform="inherit"
+style="transform-origin: 180px 236px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="213" y="363" transform="inherit"
+style="transform-origin: 213px 363px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="184" y="405" transform="inherit"
+style="transform-origin: 184px 405px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="199" y="357" transform="inherit"
+style="transform-origin: 199px 357px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="245" y="405" transform="inherit"
+style="transform-origin: 245px 405px;"
+xlink:href="#wattle" />
+<use class="med"
+x="202" y="427" transform="inherit"
+style="transform-origin: 202px 427px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="259" y="418" transform="inherit"
+style="transform-origin: 259px 418px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="233" y="441" transform="inherit"
+style="transform-origin: 233px 441px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="252" y="435" transform="inherit"
+style="transform-origin: 252px 435px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="269" y="435" transform="inherit"
+style="transform-origin: 269px 435px;"
+xlink:href="#wattle" />
+<use class="med"
+x="286" y="396" transform="inherit"
+style="transform-origin: 286px 396px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="270" y="366" transform="inherit"
+style="transform-origin: 270px 366px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="289" y="376" transform="inherit"
+style="transform-origin: 289px 376px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="276" y="416" transform="inherit"
+style="transform-origin: 276px 416px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="295" y="413" transform="inherit"
+style="transform-origin: 295px 413px;"
+xlink:href="#wattle" />
+<use class="med"
+x="242" y="335" transform="inherit"
+style="transform-origin: 242px 335px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="258" y="341" transform="inherit"
+style="transform-origin: 258px 341px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="219" y="346" transform="inherit"
+style="transform-origin: 219px 346px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="142" y="142" transform="inherit"
+style="transform-origin: 142px 142px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="127" y="126" transform="inherit"
+style="transform-origin: 127px 126px;"
+xlink:href="#wattle" />
+<use class="med"
+x="171" y="156" transform="inherit"
+style="transform-origin: 171px 156px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="153" y="120" transform="inherit"
+style="transform-origin: 153px 120px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="181" y="122" transform="inherit"
+style="transform-origin: 181px 122px;"
+xlink:href="#wattle" />
+<use class="med"
+x="198" y="118" transform="inherit"
+style="transform-origin: 198px 118px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="91" y="268" transform="inherit"
+style="transform-origin: 91px 268px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="124" y="267" transform="inherit"
+style="transform-origin: 124px 267px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="77" y="241" transform="inherit"
+style="transform-origin: 77px 241px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="84" y="209" transform="inherit"
+style="transform-origin: 84px 209px;"
+xlink:href="#wattle" />
+<use class="med"
+x="84" y="285" transform="inherit"
+style="transform-origin: 84px 285px;"
+xlink:href="#wattle" />
+<use class="med"
+x="122" y="286" transform="inherit"
+style="transform-origin: 122px 286px;"
+xlink:href="#wattle" />
+<use class="med"
+x="143" y="263" transform="inherit"
+style="transform-origin: 143px 263px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="168" y="253" transform="inherit"
+style="transform-origin: 168px 253px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="142" y="218" transform="inherit"
+style="transform-origin: 142px 218px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="94" y="189" transform="inherit"
+style="transform-origin: 94px 189px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="24" y="225" transform="inherit"
+style="transform-origin: 24px 225px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="45" y="251" transform="inherit"
+style="transform-origin: 45px 251px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="43" y="222" transform="inherit"
+style="transform-origin: 43px 222px;"
+xlink:href="#wattle" />
+<use class="med"
+x="25" y="155" transform="inherit"
+style="transform-origin: 25px 155px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="50" y="149" transform="inherit"
+style="transform-origin: 50px 149px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="8" y="157" transform="inherit"
+style="transform-origin: 8px 157px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="12" y="188" transform="inherit"
+style="transform-origin: 12px 188px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="25" y="201" transform="inherit"
+style="transform-origin: 25px 201px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="62" y="133" transform="inherit"
+style="transform-origin: 62px 133px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="56" y="179" transform="inherit"
+style="transform-origin: 56px 179px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="45" y="129" transform="inherit"
+style="transform-origin: 45px 129px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="91" y="117" transform="inherit"
+style="transform-origin: 91px 117px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="107" y="119" transform="inherit"
+style="transform-origin: 107px 119px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="125" y="106" transform="inherit"
+style="transform-origin: 125px 106px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="100" y="103" transform="inherit"
+style="transform-origin: 100px 103px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="308" y="148" transform="inherit"
+style="transform-origin: 308px 148px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="268" y="114" transform="inherit"
+style="transform-origin: 268px 114px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="295" y="124" transform="inherit"
+style="transform-origin: 295px 124px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="272" y="132" transform="inherit"
+style="transform-origin: 272px 132px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="314" y="164" transform="inherit"
+style="transform-origin: 314px 164px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="315" y="194" transform="inherit"
+style="transform-origin: 315px 194px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="287" y="200" transform="inherit"
+style="transform-origin: 287px 200px;"
+xlink:href="#wattle" />
+<use class="med"
+x="324" y="142" transform="inherit"
+style="transform-origin: 324px 142px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="181" y="219" transform="inherit"
+style="transform-origin: 181px 219px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="230" y="130" transform="inherit"
+style="transform-origin: 230px 130px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="246" y="136" transform="inherit"
+style="transform-origin: 246px 136px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="223" y="153" transform="inherit"
+style="transform-origin: 223px 153px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="244" y="117" transform="inherit"
+style="transform-origin: 244px 117px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="305" y="257" transform="inherit"
+style="transform-origin: 305px 257px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="298" y="221" transform="inherit"
+style="transform-origin: 298px 221px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="281" y="259" transform="inherit"
+style="transform-origin: 281px 259px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="295" y="272" transform="inherit"
+style="transform-origin: 295px 272px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="242" y="277" transform="inherit"
+style="transform-origin: 242px 277px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="233" y="256" transform="inherit"
+style="transform-origin: 233px 256px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="227" y="273" transform="inherit"
+style="transform-origin: 227px 273px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="210" y="237" transform="inherit"
+style="transform-origin: 210px 237px;"
+xlink:href="#wattle" />
+<use class="med"
+x="189" y="287" transform="inherit"
+style="transform-origin: 189px 287px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="168" y="273" transform="inherit"
+style="transform-origin: 168px 273px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="209" y="276" transform="inherit"
+style="transform-origin: 209px 276px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="154" y="244" transform="inherit"
+style="transform-origin: 154px 244px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="189" y="270" transform="inherit"
+style="transform-origin: 189px 270px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="200" y="333" transform="inherit"
+style="transform-origin: 200px 333px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="176" y="350" transform="inherit"
+style="transform-origin: 176px 350px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="150" y="406" transform="inherit"
+style="transform-origin: 150px 406px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="153" y="381" transform="inherit"
+style="transform-origin: 153px 381px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="169" y="434" transform="inherit"
+style="transform-origin: 169px 434px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="186" y="388" transform="inherit"
+style="transform-origin: 186px 388px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="182" y="367" transform="inherit"
+style="transform-origin: 182px 367px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="212" y="447" transform="inherit"
+style="transform-origin: 212px 447px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="177" y="451" transform="inherit"
+style="transform-origin: 177px 451px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="250" y="456" transform="inherit"
+style="transform-origin: 250px 456px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="229" y="459" transform="inherit"
+style="transform-origin: 229px 459px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="235" y="477" transform="inherit"
+style="transform-origin: 235px 477px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="293" y="436" transform="inherit"
+style="transform-origin: 293px 436px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="266" y="460" transform="inherit"
+style="transform-origin: 266px 460px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="308" y="378" transform="inherit"
+style="transform-origin: 308px 378px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="285" y="359" transform="inherit"
+style="transform-origin: 285px 359px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="303" y="340" transform="inherit"
+style="transform-origin: 303px 340px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="317" y="401" transform="inherit"
+style="transform-origin: 317px 401px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="278" y="337" transform="inherit"
+style="transform-origin: 278px 337px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="258" y="325" transform="inherit"
+style="transform-origin: 258px 325px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="270" y="309" transform="inherit"
+style="transform-origin: 270px 309px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="225" y="310" transform="inherit"
+style="transform-origin: 225px 310px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="243" y="305" transform="inherit"
+style="transform-origin: 243px 305px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="193" y="316" transform="inherit"
+style="transform-origin: 193px 316px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="134" y="91" transform="inherit"
+style="transform-origin: 134px 91px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="169" y="111" transform="inherit"
+style="transform-origin: 169px 111px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="166" y="93" transform="inherit"
+style="transform-origin: 166px 93px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="219" y="112" transform="inherit"
+style="transform-origin: 219px 112px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="185" y="138" transform="inherit"
+style="transform-origin: 185px 138px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="200" y="96" transform="inherit"
+style="transform-origin: 200px 96px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="213" y="82" transform="inherit"
+style="transform-origin: 213px 82px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="70" y="258" transform="inherit"
+style="transform-origin: 70px 258px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="113" y="300" transform="inherit"
+style="transform-origin: 113px 300px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="141" y="280" transform="inherit"
+style="transform-origin: 141px 280px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="108" y="270" transform="inherit"
+style="transform-origin: 108px 270px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="57" y="272" transform="inherit"
+style="transform-origin: 57px 272px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="58" y="307" transform="inherit"
+style="transform-origin: 58px 307px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="89" y="317" transform="inherit"
+style="transform-origin: 89px 317px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="65" y="288" transform="inherit"
+style="transform-origin: 65px 288px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="106" y="317" transform="inherit"
+style="transform-origin: 106px 317px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="47" y="292" transform="inherit"
+style="transform-origin: 47px 292px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="121" y="323" transform="inherit"
+style="transform-origin: 121px 323px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="198" y="223" transform="inherit"
+style="transform-origin: 198px 223px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="82" y="176" transform="inherit"
+style="transform-origin: 82px 176px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="14" y="261" transform="inherit"
+style="transform-origin: 14px 261px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="11" y="241" transform="inherit"
+style="transform-origin: 11px 241px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="43" y="202" transform="inherit"
+style="transform-origin: 43px 202px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="20" y="123" transform="inherit"
+style="transform-origin: 20px 123px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="11" y="139" transform="inherit"
+style="transform-origin: 11px 139px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="19" y="172" transform="inherit"
+style="transform-origin: 19px 172px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="1" y="172" transform="inherit"
+style="transform-origin: 1px 172px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="3" y="223" transform="inherit"
+style="transform-origin: 3px 223px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="65" y="115" transform="inherit"
+style="transform-origin: 65px 115px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="89" y="135" transform="inherit"
+style="transform-origin: 89px 135px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="54" y="102" transform="inherit"
+style="transform-origin: 54px 102px;"
+xlink:href="#wattle" />
+<use class="med"
+x="17" y="105" transform="inherit"
+style="transform-origin: 17px 105px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="81" y="100" transform="inherit"
+style="transform-origin: 81px 100px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="104" y="87" transform="inherit"
+style="transform-origin: 104px 87px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="82" y="84" transform="inherit"
+style="transform-origin: 82px 84px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="119" y="79" transform="inherit"
+style="transform-origin: 119px 79px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="154" y="80" transform="inherit"
+style="transform-origin: 154px 80px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="95" y="68" transform="inherit"
+style="transform-origin: 95px 68px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="311" y="115" transform="inherit"
+style="transform-origin: 311px 115px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="245" y="81" transform="inherit"
+style="transform-origin: 245px 81px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="291" y="92" transform="inherit"
+style="transform-origin: 291px 92px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="267" y="90" transform="inherit"
+style="transform-origin: 267px 90px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="315" y="231" transform="inherit"
+style="transform-origin: 315px 231px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="297" y="237" transform="inherit"
+style="transform-origin: 297px 237px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="328" y="123" transform="inherit"
+style="transform-origin: 328px 123px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="250" y="100" transform="inherit"
+style="transform-origin: 250px 100px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="230" y="93" transform="inherit"
+style="transform-origin: 230px 93px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="308" y="289" transform="inherit"
+style="transform-origin: 308px 289px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="319" y="267" transform="inherit"
+style="transform-origin: 319px 267px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="291" y="296" transform="inherit"
+style="transform-origin: 291px 296px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="272" y="280" transform="inherit"
+style="transform-origin: 272px 280px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="258" y="289" transform="inherit"
+style="transform-origin: 258px 289px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="215" y="260" transform="inherit"
+style="transform-origin: 215px 260px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="165" y="295" transform="inherit"
+style="transform-origin: 165px 295px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="174" y="308" transform="inherit"
+style="transform-origin: 174px 308px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="217" y="295" transform="inherit"
+style="transform-origin: 217px 295px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="139" y="299" transform="inherit"
+style="transform-origin: 139px 299px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="165" y="364" transform="inherit"
+style="transform-origin: 165px 364px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="175" y="331" transform="inherit"
+style="transform-origin: 175px 331px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="123" y="386" transform="inherit"
+style="transform-origin: 123px 386px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="145" y="447" transform="inherit"
+style="transform-origin: 145px 447px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="134" y="399" transform="inherit"
+style="transform-origin: 134px 399px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="113" y="412" transform="inherit"
+style="transform-origin: 113px 412px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="146" y="366" transform="inherit"
+style="transform-origin: 146px 366px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="147" y="427" transform="inherit"
+style="transform-origin: 147px 427px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="207" y="475" transform="inherit"
+style="transform-origin: 207px 475px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="186" y="436" transform="inherit"
+style="transform-origin: 186px 436px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="189" y="465" transform="inherit"
+style="transform-origin: 189px 465px;"
+xlink:href="#wattle" />
+<use class="med"
+x="288" y="452" transform="inherit"
+style="transform-origin: 288px 452px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="254" y="485" transform="inherit"
+style="transform-origin: 254px 485px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="224" y="518" transform="inherit"
+style="transform-origin: 224px 518px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="214" y="501" transform="inherit"
+style="transform-origin: 214px 501px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="266" y="505" transform="inherit"
+style="transform-origin: 266px 505px;"
+xlink:href="#wattle" />
+<use class="med"
+x="274" y="483" transform="inherit"
+style="transform-origin: 274px 483px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="310" y="452" transform="inherit"
+style="transform-origin: 310px 452px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="283" y="468" transform="inherit"
+style="transform-origin: 283px 468px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="318" y="435" transform="inherit"
+style="transform-origin: 318px 435px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="292" y="489" transform="inherit"
+style="transform-origin: 292px 489px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="305" y="311" transform="inherit"
+style="transform-origin: 305px 311px;"
+xlink:href="#wattle" />
+<use class="med"
+x="315" y="359" transform="inherit"
+style="transform-origin: 315px 359px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="312" y="417" transform="inherit"
+style="transform-origin: 312px 417px;"
+xlink:href="#wattle" />
+<use class="med"
+x="314" y="328" transform="inherit"
+style="transform-origin: 314px 328px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="293" y="327" transform="inherit"
+style="transform-origin: 293px 327px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="142" y="60" transform="inherit"
+style="transform-origin: 142px 60px;"
+xlink:href="#wattle" />
+<use class="med"
+x="182" y="81" transform="inherit"
+style="transform-origin: 182px 81px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="174" y="55" transform="inherit"
+style="transform-origin: 174px 55px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="229" y="71" transform="inherit"
+style="transform-origin: 229px 71px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="183" y="102" transform="inherit"
+style="transform-origin: 183px 102px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="208" y="58" transform="inherit"
+style="transform-origin: 208px 58px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="194" y="69" transform="inherit"
+style="transform-origin: 194px 69px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="220" y="47" transform="inherit"
+style="transform-origin: 220px 47px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="39" y="278" transform="inherit"
+style="transform-origin: 39px 278px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="23" y="280" transform="inherit"
+style="transform-origin: 23px 280px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="53" y="324" transform="inherit"
+style="transform-origin: 53px 324px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="37" y="310" transform="inherit"
+style="transform-origin: 37px 310px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="43" y="337" transform="inherit"
+style="transform-origin: 43px 337px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="78" y="336" transform="inherit"
+style="transform-origin: 78px 336px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="104" y="349" transform="inherit"
+style="transform-origin: 104px 349px;"
+xlink:href="#wattle" />
+<use class="med"
+x="121" y="346" transform="inherit"
+style="transform-origin: 121px 346px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="144" y="321" transform="inherit"
+style="transform-origin: 144px 321px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="13" y="307" transform="inherit"
+style="transform-origin: 13px 307px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="2" y="273" transform="inherit"
+style="transform-origin: 2px 273px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="7" y="207" transform="inherit"
+style="transform-origin: 7px 207px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="27" y="242" transform="inherit"
+style="transform-origin: 27px 242px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="3" y="125" transform="inherit"
+style="transform-origin: 3px 125px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="33" y="100" transform="inherit"
+style="transform-origin: 33px 100px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="1" y="106" transform="inherit"
+style="transform-origin: 1px 106px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="51" y="62" transform="inherit"
+style="transform-origin: 51px 62px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="68" y="74" transform="inherit"
+style="transform-origin: 68px 74px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="10" y="84" transform="inherit"
+style="transform-origin: 10px 84px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="77" y="50" transform="inherit"
+style="transform-origin: 77px 50px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="109" y="44" transform="inherit"
+style="transform-origin: 109px 44px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="124" y="54" transform="inherit"
+style="transform-origin: 124px 54px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="154" y="40" transform="inherit"
+style="transform-origin: 154px 40px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="324" y="94" transform="inherit"
+style="transform-origin: 324px 94px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="300" y="78" transform="inherit"
+style="transform-origin: 300px 78px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="247" y="49" transform="inherit"
+style="transform-origin: 247px 49px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="275" y="62" transform="inherit"
+style="transform-origin: 275px 62px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="310" y="63" transform="inherit"
+style="transform-origin: 310px 63px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="279" y="218" transform="inherit"
+style="transform-origin: 279px 218px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="253" y="66" transform="inherit"
+style="transform-origin: 253px 66px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="325" y="291" transform="inherit"
+style="transform-origin: 325px 291px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="158" y="346" transform="inherit"
+style="transform-origin: 158px 346px;"
+xlink:href="#wattle" />
+<use class="med"
+x="93" y="385" transform="inherit"
+style="transform-origin: 93px 385px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="129" y="370" transform="inherit"
+style="transform-origin: 129px 370px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="110" y="364" transform="inherit"
+style="transform-origin: 110px 364px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="156" y="461" transform="inherit"
+style="transform-origin: 156px 461px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="127" y="440" transform="inherit"
+style="transform-origin: 127px 440px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="123" y="458" transform="inherit"
+style="transform-origin: 123px 458px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="135" y="416" transform="inherit"
+style="transform-origin: 135px 416px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="107" y="396" transform="inherit"
+style="transform-origin: 107px 396px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="110" y="434" transform="inherit"
+style="transform-origin: 110px 434px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="78" y="395" transform="inherit"
+style="transform-origin: 78px 395px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="166" y="412" transform="inherit"
+style="transform-origin: 166px 412px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="178" y="486" transform="inherit"
+style="transform-origin: 178px 486px;"
+xlink:href="#wattle" />
+<use class="med"
+x="167" y="473" transform="inherit"
+style="transform-origin: 167px 473px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="314" y="471" transform="inherit"
+style="transform-origin: 314px 471px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="259" y="520" transform="inherit"
+style="transform-origin: 259px 520px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="247" y="501" transform="inherit"
+style="transform-origin: 247px 501px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="190" y="530" transform="inherit"
+style="transform-origin: 190px 530px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="194" y="507" transform="inherit"
+style="transform-origin: 194px 507px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="219" y="544" transform="inherit"
+style="transform-origin: 219px 544px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="255" y="539" transform="inherit"
+style="transform-origin: 255px 539px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="277" y="528" transform="inherit"
+style="transform-origin: 277px 528px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="302" y="518" transform="inherit"
+style="transform-origin: 302px 518px;"
+xlink:href="#wattle" />
+<use class="med"
+x="322" y="491" transform="inherit"
+style="transform-origin: 322px 491px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="328" y="449" transform="inherit"
+style="transform-origin: 328px 449px;"
+xlink:href="#wattle" />
+<use class="med"
+x="318" y="508" transform="inherit"
+style="transform-origin: 318px 508px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="290" y="506" transform="inherit"
+style="transform-origin: 290px 506px;"
+xlink:href="#wattle" />
+<use class="med"
+x="160" y="25" transform="inherit"
+style="transform-origin: 160px 25px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="171" y="39" transform="inherit"
+style="transform-origin: 171px 39px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="127" y="25" transform="inherit"
+style="transform-origin: 127px 25px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="200" y="44" transform="inherit"
+style="transform-origin: 200px 44px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="188" y="27" transform="inherit"
+style="transform-origin: 188px 27px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="235" y="35" transform="inherit"
+style="transform-origin: 235px 35px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="207" y="18" transform="inherit"
+style="transform-origin: 207px 18px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="14" y="340" transform="inherit"
+style="transform-origin: 14px 340px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="25" y="322" transform="inherit"
+style="transform-origin: 25px 322px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="26" y="365" transform="inherit"
+style="transform-origin: 26px 365px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="45" y="356" transform="inherit"
+style="transform-origin: 45px 356px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="71" y="376" transform="inherit"
+style="transform-origin: 71px 376px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="82" y="361" transform="inherit"
+style="transform-origin: 82px 361px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="63" y="346" transform="inherit"
+style="transform-origin: 63px 346px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="140" y="346" transform="inherit"
+style="transform-origin: 140px 346px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="97" y="333" transform="inherit"
+style="transform-origin: 97px 333px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="42" y="81" transform="inherit"
+style="transform-origin: 42px 81px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="34" y="63" transform="inherit"
+style="transform-origin: 34px 63px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="57" y="43" transform="inherit"
+style="transform-origin: 57px 43px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="10" y="63" transform="inherit"
+style="transform-origin: 10px 63px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="22" y="36" transform="inherit"
+style="transform-origin: 22px 36px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="53" y="26" transform="inherit"
+style="transform-origin: 53px 26px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="93" y="20" transform="inherit"
+style="transform-origin: 93px 20px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="75" y="34" transform="inherit"
+style="transform-origin: 75px 34px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="93" y="40" transform="inherit"
+style="transform-origin: 93px 40px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="143" y="26" transform="inherit"
+style="transform-origin: 143px 26px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="171" y="8" transform="inherit"
+style="transform-origin: 171px 8px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="154" y="9" transform="inherit"
+style="transform-origin: 154px 9px;"
+xlink:href="#wattle" />
+<use class="med"
+x="295" y="55" transform="inherit"
+style="transform-origin: 295px 55px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="307" y="37" transform="inherit"
+style="transform-origin: 307px 37px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="257" y="19" transform="inherit"
+style="transform-origin: 257px 19px;"
+xlink:href="#wattle" />
+<use class="med"
+x="265" y="42" transform="inherit"
+style="transform-origin: 265px 42px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="288" y="25" transform="inherit"
+style="transform-origin: 288px 25px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="321" y="77" transform="inherit"
+style="transform-origin: 321px 77px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="318" y="213" transform="inherit"
+style="transform-origin: 318px 213px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="56" y="396" transform="inherit"
+style="transform-origin: 56px 396px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="98" y="422" transform="inherit"
+style="transform-origin: 98px 422px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="83" y="414" transform="inherit"
+style="transform-origin: 83px 414px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="137" y="470" transform="inherit"
+style="transform-origin: 137px 470px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="118" y="475" transform="inherit"
+style="transform-origin: 118px 475px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="101" y="474" transform="inherit"
+style="transform-origin: 101px 474px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="117" y="496" transform="inherit"
+style="transform-origin: 117px 496px;"
+xlink:href="#wattle" />
+<use class="med"
+x="103" y="457" transform="inherit"
+style="transform-origin: 103px 457px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="167" y="392" transform="inherit"
+style="transform-origin: 167px 392px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="83" y="453" transform="inherit"
+style="transform-origin: 83px 453px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="48" y="378" transform="inherit"
+style="transform-origin: 48px 378px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="87" y="434" transform="inherit"
+style="transform-origin: 87px 434px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="164" y="494" transform="inherit"
+style="transform-origin: 164px 494px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="174" y="510" transform="inherit"
+style="transform-origin: 174px 510px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="240" y="534" transform="inherit"
+style="transform-origin: 240px 534px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="174" y="537" transform="inherit"
+style="transform-origin: 174px 537px;"
+xlink:href="#wattle" />
+<use class="med"
+x="187" y="551" transform="inherit"
+style="transform-origin: 187px 551px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="151" y="543" transform="inherit"
+style="transform-origin: 151px 543px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="155" y="513" transform="inherit"
+style="transform-origin: 155px 513px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="204" y="523" transform="inherit"
+style="transform-origin: 204px 523px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="248" y="565" transform="inherit"
+style="transform-origin: 248px 565px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="275" y="551" transform="inherit"
+style="transform-origin: 275px 551px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="302" y="561" transform="inherit"
+style="transform-origin: 302px 561px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="319" y="553" transform="inherit"
+style="transform-origin: 319px 553px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="323" y="531" transform="inherit"
+style="transform-origin: 323px 531px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="302" y="543" transform="inherit"
+style="transform-origin: 302px 543px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="136" y="40" transform="inherit"
+style="transform-origin: 136px 40px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="191" y="8" transform="inherit"
+style="transform-origin: 191px 8px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="257" y="0" transform="inherit"
+style="transform-origin: 257px 0px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="222" y="1" transform="inherit"
+style="transform-origin: 222px 1px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="38" y="392" transform="inherit"
+style="transform-origin: 38px 392px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="40" y="41" transform="inherit"
+style="transform-origin: 40px 41px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="1" y="39" transform="inherit"
+style="transform-origin: 1px 39px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="1" y="5" transform="inherit"
+style="transform-origin: 1px 5px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="32" y="5" transform="inherit"
+style="transform-origin: 32px 5px;"
+xlink:href="#wattle" />
+<use class="r345 med"
+x="9" y="24" transform="inherit"
+style="transform-origin: 9px 24px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="71" y="0" transform="inherit"
+style="transform-origin: 71px 0px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="106" y="3" transform="inherit"
+style="transform-origin: 106px 3px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="75" y="18" transform="inherit"
+style="transform-origin: 75px 18px;"
+xlink:href="#wattle" />
+<use class="plain r15"
+x="137" y="11" transform="inherit"
+style="transform-origin: 137px 11px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="328" y="36" transform="inherit"
+style="transform-origin: 328px 36px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="293" y="4" transform="inherit"
+style="transform-origin: 293px 4px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="305" y="20" transform="inherit"
+style="transform-origin: 305px 20px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="238" y="9" transform="inherit"
+style="transform-origin: 238px 9px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="278" y="12" transform="inherit"
+style="transform-origin: 278px 12px;"
+xlink:href="#wattle" />
+<use class="med"
+x="322" y="3" transform="inherit"
+style="transform-origin: 322px 3px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="328" y="250" transform="inherit"
+style="transform-origin: 328px 250px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="58" y="422" transform="inherit"
+style="transform-origin: 58px 422px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="38" y="412" transform="inherit"
+style="transform-origin: 38px 412px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="19" y="407" transform="inherit"
+style="transform-origin: 19px 407px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="68" y="445" transform="inherit"
+style="transform-origin: 68px 445px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="139" y="491" transform="inherit"
+style="transform-origin: 139px 491px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="101" y="495" transform="inherit"
+style="transform-origin: 101px 495px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="104" y="511" transform="inherit"
+style="transform-origin: 104px 511px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="83" y="475" transform="inherit"
+style="transform-origin: 83px 475px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="67" y="498" transform="inherit"
+style="transform-origin: 67px 498px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="122" y="529" transform="inherit"
+style="transform-origin: 122px 529px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="58" y="472" transform="inherit"
+style="transform-origin: 58px 472px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="51" y="457" transform="inherit"
+style="transform-origin: 51px 457px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="153" y="481" transform="inherit"
+style="transform-origin: 153px 481px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="227" y="567" transform="inherit"
+style="transform-origin: 227px 567px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="167" y="556" transform="inherit"
+style="transform-origin: 167px 556px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="208" y="567" transform="inherit"
+style="transform-origin: 208px 567px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="140" y="555" transform="inherit"
+style="transform-origin: 140px 555px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="129" y="509" transform="inherit"
+style="transform-origin: 129px 509px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="139" y="524" transform="inherit"
+style="transform-origin: 139px 524px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="327" y="567" transform="inherit"
+style="transform-origin: 327px 567px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="12" y="391" transform="inherit"
+style="transform-origin: 12px 391px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="34" y="22" transform="inherit"
+style="transform-origin: 34px 22px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="111" y="18" transform="inherit"
+style="transform-origin: 111px 18px;"
+xlink:href="#wattle" />
+<use class="r15 r345"
+x="272" y="27" transform="inherit"
+style="transform-origin: 272px 27px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="30" y="442" transform="inherit"
+style="transform-origin: 30px 442px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="53" y="438" transform="inherit"
+style="transform-origin: 53px 438px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="25" y="425" transform="inherit"
+style="transform-origin: 25px 425px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="3" y="416" transform="inherit"
+style="transform-origin: 3px 416px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="84" y="524" transform="inherit"
+style="transform-origin: 84px 524px;"
+xlink:href="#wattle" />
+<use class="r15"
+x="96" y="549" transform="inherit"
+style="transform-origin: 96px 549px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="39" y="483" transform="inherit"
+style="transform-origin: 39px 483px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="40" y="525" transform="inherit"
+style="transform-origin: 40px 525px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="68" y="531" transform="inherit"
+style="transform-origin: 68px 531px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="122" y="559" transform="inherit"
+style="transform-origin: 122px 559px;"
+xlink:href="#wattle" />
+<use class="r345"
+x="100" y="532" transform="inherit"
+style="transform-origin: 100px 532px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="25" y="468" transform="inherit"
+style="transform-origin: 25px 468px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="22" y="485" transform="inherit"
+style="transform-origin: 22px 485px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="151" y="567" transform="inherit"
+style="transform-origin: 151px 567px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="124" y="1" transform="inherit"
+style="transform-origin: 124px 1px;"
+xlink:href="#wattle" />
+<use class="plain r15 med"
+x="2" y="442" transform="inherit"
+style="transform-origin: 2px 442px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="67" y="408" transform="inherit"
+style="transform-origin: 67px 408px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="56" y="545" transform="inherit"
+style="transform-origin: 56px 545px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="71" y="514" transform="inherit"
+style="transform-origin: 71px 514px;"
+xlink:href="#wattle" />
+<use class="plain r345 med"
+x="112" y="543" transform="inherit"
+style="transform-origin: 112px 543px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="25" y="540" transform="inherit"
+style="transform-origin: 25px 540px;"
+xlink:href="#wattle" />
+<use class="med"
+x="12" y="520" transform="inherit"
+style="transform-origin: 12px 520px;"
+xlink:href="#wattle" />
+<use class="plain r345"
+x="9" y="541" transform="inherit"
+style="transform-origin: 9px 541px;"
+xlink:href="#wattle" />
+<use class="plain"
+x="81" y="566" transform="inherit"
+style="transform-origin: 81px 566px;"
+xlink:href="#wattle" />
+<use class="r15 med"
+x="39" y="507" transform="inherit"
+style="transform-origin: 39px 507px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345 med"
+x="78" y="545" transform="inherit"
+style="transform-origin: 78px 545px;"
+xlink:href="#wattle" />
+<use class="med"
+x="1" y="492" transform="inherit"
+style="transform-origin: 1px 492px;"
+xlink:href="#wattle" />
+<use class="med"
+x="50" y="495" transform="inherit"
+style="transform-origin: 50px 495px;"
+xlink:href="#wattle" />
+<use class="plain r15 r345"
+x="8" y="459" transform="inherit"
+style="transform-origin: 8px 459px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="45" y="560" transform="inherit"
+style="transform-origin: 45px 560px;"
+xlink:href="#wattle" />
+<use class="plain med"
+x="22" y="563" transform="inherit"
+style="transform-origin: 22px 563px;"
+xlink:href="#wattle" />
+<use class="r15 r345 med"
+x="1" y="556" transform="inherit"
+style="transform-origin: 1px 556px;"
+xlink:href="#wattle" />
+<use class="med"
+x="97" y="566" transform="inherit"
+style="transform-origin: 97px 566px;"
+xlink:href="#wattle" />
+</svg>
+

@@ -1,0 +1,1810 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+width="376" height="616"
+viewBox="0 0 376 616"
+preserveAspectRatio="none"
+>
+
+<style type="text/css">
+<![CDATA[
+use.med {
+transform: scale(1.1);
+}
+
+use.r15 {
+transform: rotate(15deg);
+}
+
+use.r345 {
+transform: rotate(-15deg);
+}
+]]>
+</style>
+
+<symbol id="wattle">
+<path d="m8 10 c-0.89167 1.7151-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5 7.636-5.5 9.5-5.5-2.75 5.5-2.75 5.5z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+  <path d="m16 12 c0.06787 1.9318-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5c0-3.433 3.875-6.875 3.875-6.875s2.75 3.317 2.875 6.875z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+  <path d="m24 10 c0 1.933-1.511 3.5-3.375 3.5s-3.375-1.567-3.375-3.5-1.739-5.375 0.125-5.375 6.625 3.442 6.625 5.375z" style="stroke:#000;stroke-width:0.8;fill:#520"/>
+</symbol>
+<symbol id="spot">
+<circle stroke="red" fill="dimgrey" stroke-width="1"
+cx="3" cy="3" r="2"
+/>
+</symbol>
+<symbol id="leaf">
+<path
+    d="M 12 11 C 21,2 17,22 23,27 C 8,25 3,11 12,11 z M 18,16 C 16,14 17,22 20,24 z"
+    stroke-width="0.2"
+    stroke="yellow"
+    fill="green"
+    fill-rule="evenodd"
+    transform="inherit"
+/>
+</symbol>
+<symbol id="slab">
+<path
+    stroke="black"
+    stroke-width="0.4"
+    fill="#241c1c;"
+    d="m12 11 c1.8327-1.3799 16.346-2.0293 19.5 0 3.1543 2.0293 2.9043 9.9707-0.125 12.375s-14.096 2.5293-17.625-0.75c-3.5293-3.2793-4.2793-9.7207-1.75-11.625z"
+/>
+</symbol>
+<symbol id="rock">
+<ellipse
+    fill="#241c1c"
+    stroke-width="7"
+    rx="13" ry="6.6" cy="10" cx="10"
+  />
+  <path style="fill:#6c5353;stroke-width:7" d="m53.214 1008.4c-0.26777 2.0125-2.9286 2.7679-8.3036 2.7679s-8.6608-0.934-8.6607-2.9465c0 0 5.5132 1.4474 8.8393 1.4286 3.6707-0.021 8.125-1.25 8.125-1.25z"/>
+</symbol>
+<use class="plain r15"
+x="96" y="215" transform="inherit"
+style="transform-origin: 96px 215px;"
+xlink:href="#rock" />
+<use class="plain"
+x="99" y="178" transform="inherit"
+style="transform-origin: 99px 178px;"
+xlink:href="#rock" />
+<use class="med"
+x="133" y="181" transform="inherit"
+style="transform-origin: 133px 181px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="124" y="208" transform="inherit"
+style="transform-origin: 124px 208px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="108" y="163" transform="inherit"
+style="transform-origin: 108px 163px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="149" y="213" transform="inherit"
+style="transform-origin: 149px 213px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="91" y="164" transform="inherit"
+style="transform-origin: 91px 164px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="246" y="204" transform="inherit"
+style="transform-origin: 246px 204px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="212" y="220" transform="inherit"
+style="transform-origin: 212px 220px;"
+xlink:href="#rock" />
+<use class="plain"
+x="214" y="159" transform="inherit"
+style="transform-origin: 214px 159px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="210" y="185" transform="inherit"
+style="transform-origin: 210px 185px;"
+xlink:href="#rock" />
+<use class="med"
+x="229" y="221" transform="inherit"
+style="transform-origin: 229px 221px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="253" y="164" transform="inherit"
+style="transform-origin: 253px 164px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="215" y="371" transform="inherit"
+style="transform-origin: 215px 371px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="207" y="412" transform="inherit"
+style="transform-origin: 207px 412px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="245" y="372" transform="inherit"
+style="transform-origin: 245px 372px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="255" y="411" transform="inherit"
+style="transform-origin: 255px 411px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="221" y="356" transform="inherit"
+style="transform-origin: 221px 356px;"
+xlink:href="#rock" />
+<use class="r345"
+x="192" y="402" transform="inherit"
+style="transform-origin: 192px 402px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="263" y="378" transform="inherit"
+style="transform-origin: 263px 378px;"
+xlink:href="#rock" />
+<use class="med"
+x="239" y="423" transform="inherit"
+style="transform-origin: 239px 423px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="91" y="246" transform="inherit"
+style="transform-origin: 91px 246px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="66" y="230" transform="inherit"
+style="transform-origin: 66px 230px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="60" y="203" transform="inherit"
+style="transform-origin: 60px 203px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="66" y="183" transform="inherit"
+style="transform-origin: 66px 183px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="77" y="146" transform="inherit"
+style="transform-origin: 77px 146px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="131" y="161" transform="inherit"
+style="transform-origin: 131px 161px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="92" y="143" transform="inherit"
+style="transform-origin: 92px 143px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="146" y="172" transform="inherit"
+style="transform-origin: 146px 172px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="170" y="172" transform="inherit"
+style="transform-origin: 170px 172px;"
+xlink:href="#rock" />
+<use class="plain"
+x="123" y="228" transform="inherit"
+style="transform-origin: 123px 228px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="83" y="194" transform="inherit"
+style="transform-origin: 83px 194px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="108" y="134" transform="inherit"
+style="transform-origin: 108px 134px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="177" y="209" transform="inherit"
+style="transform-origin: 177px 209px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="173" y="244" transform="inherit"
+style="transform-origin: 173px 244px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="160" y="189" transform="inherit"
+style="transform-origin: 160px 189px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="154" y="235" transform="inherit"
+style="transform-origin: 154px 235px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="138" y="234" transform="inherit"
+style="transform-origin: 138px 234px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="53" y="173" transform="inherit"
+style="transform-origin: 53px 173px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="252" y="243" transform="inherit"
+style="transform-origin: 252px 243px;"
+xlink:href="#rock" />
+<use class="r15"
+x="240" y="180" transform="inherit"
+style="transform-origin: 240px 180px;"
+xlink:href="#rock" />
+<use class="r345"
+x="262" y="188" transform="inherit"
+style="transform-origin: 262px 188px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="284" y="204" transform="inherit"
+style="transform-origin: 284px 204px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="228" y="251" transform="inherit"
+style="transform-origin: 228px 251px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="195" y="248" transform="inherit"
+style="transform-origin: 195px 248px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="202" y="207" transform="inherit"
+style="transform-origin: 202px 207px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="199" y="231" transform="inherit"
+style="transform-origin: 199px 231px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="207" y="142" transform="inherit"
+style="transform-origin: 207px 142px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="192" y="164" transform="inherit"
+style="transform-origin: 192px 164px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="188" y="130" transform="inherit"
+style="transform-origin: 188px 130px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="224" y="130" transform="inherit"
+style="transform-origin: 224px 130px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="240" y="155" transform="inherit"
+style="transform-origin: 240px 155px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="188" y="185" transform="inherit"
+style="transform-origin: 188px 185px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="216" y="239" transform="inherit"
+style="transform-origin: 216px 239px;"
+xlink:href="#rock" />
+<use class="r345"
+x="211" y="257" transform="inherit"
+style="transform-origin: 211px 257px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="269" y="223" transform="inherit"
+style="transform-origin: 269px 223px;"
+xlink:href="#rock" />
+<use class="r15"
+x="256" y="147" transform="inherit"
+style="transform-origin: 256px 147px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="276" y="160" transform="inherit"
+style="transform-origin: 276px 160px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="292" y="157" transform="inherit"
+style="transform-origin: 292px 157px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="213" y="389" transform="inherit"
+style="transform-origin: 213px 389px;"
+xlink:href="#rock" />
+<use class="med"
+x="190" y="366" transform="inherit"
+style="transform-origin: 190px 366px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="224" y="409" transform="inherit"
+style="transform-origin: 224px 409px;"
+xlink:href="#rock" />
+<use class="med"
+x="188" y="444" transform="inherit"
+style="transform-origin: 188px 444px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="166" y="409" transform="inherit"
+style="transform-origin: 166px 409px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="216" y="431" transform="inherit"
+style="transform-origin: 216px 431px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="252" y="390" transform="inherit"
+style="transform-origin: 252px 390px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="258" y="360" transform="inherit"
+style="transform-origin: 258px 360px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="235" y="345" transform="inherit"
+style="transform-origin: 235px 345px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="278" y="398" transform="inherit"
+style="transform-origin: 278px 398px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="241" y="440" transform="inherit"
+style="transform-origin: 241px 440px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="213" y="331" transform="inherit"
+style="transform-origin: 213px 331px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="237" y="320" transform="inherit"
+style="transform-origin: 237px 320px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="171" y="367" transform="inherit"
+style="transform-origin: 171px 367px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="182" y="417" transform="inherit"
+style="transform-origin: 182px 417px;"
+xlink:href="#rock" />
+<use class="r345"
+x="290" y="365" transform="inherit"
+style="transform-origin: 290px 365px;"
+xlink:href="#rock" />
+<use class="med"
+x="296" y="398" transform="inherit"
+style="transform-origin: 296px 398px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="259" y="344" transform="inherit"
+style="transform-origin: 259px 344px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="239" y="464" transform="inherit"
+style="transform-origin: 239px 464px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="264" y="431" transform="inherit"
+style="transform-origin: 264px 431px;"
+xlink:href="#rock" />
+<use class="med"
+x="216" y="450" transform="inherit"
+style="transform-origin: 216px 450px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="253" y="450" transform="inherit"
+style="transform-origin: 253px 450px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="199" y="431" transform="inherit"
+style="transform-origin: 199px 431px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="104" y="273" transform="inherit"
+style="transform-origin: 104px 273px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="59" y="262" transform="inherit"
+style="transform-origin: 59px 262px;"
+xlink:href="#rock" />
+<use class="r345"
+x="130" y="254" transform="inherit"
+style="transform-origin: 130px 254px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="40" y="225" transform="inherit"
+style="transform-origin: 40px 225px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="106" y="235" transform="inherit"
+style="transform-origin: 106px 235px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="43" y="191" transform="inherit"
+style="transform-origin: 43px 191px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="56" y="154" transform="inherit"
+style="transform-origin: 56px 154px;"
+xlink:href="#rock" />
+<use class="med"
+x="79" y="115" transform="inherit"
+style="transform-origin: 79px 115px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="55" y="116" transform="inherit"
+style="transform-origin: 55px 116px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="168" y="144" transform="inherit"
+style="transform-origin: 168px 144px;"
+xlink:href="#rock" />
+<use class="plain"
+x="138" y="144" transform="inherit"
+style="transform-origin: 138px 144px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="117" y="117" transform="inherit"
+style="transform-origin: 117px 117px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="81" y="222" transform="inherit"
+style="transform-origin: 81px 222px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="98" y="114" transform="inherit"
+style="transform-origin: 98px 114px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="165" y="222" transform="inherit"
+style="transform-origin: 165px 222px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="155" y="254" transform="inherit"
+style="transform-origin: 155px 254px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="143" y="268" transform="inherit"
+style="transform-origin: 143px 268px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="28" y="158" transform="inherit"
+style="transform-origin: 28px 158px;"
+xlink:href="#rock" />
+<use class="med"
+x="72" y="165" transform="inherit"
+style="transform-origin: 72px 165px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="61" y="134" transform="inherit"
+style="transform-origin: 61px 134px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="26" y="198" transform="inherit"
+style="transform-origin: 26px 198px;"
+xlink:href="#rock" />
+<use class="r15"
+x="263" y="272" transform="inherit"
+style="transform-origin: 263px 272px;"
+xlink:href="#rock" />
+<use class="r345"
+x="277" y="240" transform="inherit"
+style="transform-origin: 277px 240px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="276" y="179" transform="inherit"
+style="transform-origin: 276px 179px;"
+xlink:href="#rock" />
+<use class="med"
+x="310" y="196" transform="inherit"
+style="transform-origin: 310px 196px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="309" y="174" transform="inherit"
+style="transform-origin: 309px 174px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="285" y="220" transform="inherit"
+style="transform-origin: 285px 220px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="249" y="278" transform="inherit"
+style="transform-origin: 249px 278px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="222" y="278" transform="inherit"
+style="transform-origin: 222px 278px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="169" y="269" transform="inherit"
+style="transform-origin: 169px 269px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="233" y="108" transform="inherit"
+style="transform-origin: 233px 108px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="170" y="124" transform="inherit"
+style="transform-origin: 170px 124px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="153" y="117" transform="inherit"
+style="transform-origin: 153px 117px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="208" y="115" transform="inherit"
+style="transform-origin: 208px 115px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="174" y="101" transform="inherit"
+style="transform-origin: 174px 101px;"
+xlink:href="#rock" />
+<use class="r345"
+x="257" y="109" transform="inherit"
+style="transform-origin: 257px 109px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="196" y="101" transform="inherit"
+style="transform-origin: 196px 101px;"
+xlink:href="#rock" />
+<use class="plain"
+x="205" y="275" transform="inherit"
+style="transform-origin: 205px 275px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="233" y="290" transform="inherit"
+style="transform-origin: 233px 290px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="191" y="287" transform="inherit"
+style="transform-origin: 191px 287px;"
+xlink:href="#rock" />
+<use class="plain"
+x="264" y="204" transform="inherit"
+style="transform-origin: 264px 204px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="247" y="226" transform="inherit"
+style="transform-origin: 247px 226px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="245" y="129" transform="inherit"
+style="transform-origin: 245px 129px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="274" y="110" transform="inherit"
+style="transform-origin: 274px 110px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="270" y="126" transform="inherit"
+style="transform-origin: 270px 126px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="288" y="126" transform="inherit"
+style="transform-origin: 288px 126px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="313" y="145" transform="inherit"
+style="transform-origin: 313px 145px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="281" y="142" transform="inherit"
+style="transform-origin: 281px 142px;"
+xlink:href="#rock" />
+<use class="r15"
+x="314" y="125" transform="inherit"
+style="transform-origin: 314px 125px;"
+xlink:href="#rock" />
+<use class="r15"
+x="179" y="387" transform="inherit"
+style="transform-origin: 179px 387px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="177" y="341" transform="inherit"
+style="transform-origin: 177px 341px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="159" y="392" transform="inherit"
+style="transform-origin: 159px 392px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="203" y="352" transform="inherit"
+style="transform-origin: 203px 352px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="174" y="467" transform="inherit"
+style="transform-origin: 174px 467px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="167" y="443" transform="inherit"
+style="transform-origin: 167px 443px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="197" y="468" transform="inherit"
+style="transform-origin: 197px 468px;"
+xlink:href="#rock" />
+<use class="plain"
+x="133" y="409" transform="inherit"
+style="transform-origin: 133px 409px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="220" y="468" transform="inherit"
+style="transform-origin: 220px 468px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="256" y="323" transform="inherit"
+style="transform-origin: 256px 323px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="282" y="381" transform="inherit"
+style="transform-origin: 282px 381px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="215" y="313" transform="inherit"
+style="transform-origin: 215px 313px;"
+xlink:href="#rock" />
+<use class="med"
+x="294" y="435" transform="inherit"
+style="transform-origin: 294px 435px;"
+xlink:href="#rock" />
+<use class="med"
+x="299" y="417" transform="inherit"
+style="transform-origin: 299px 417px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="196" y="324" transform="inherit"
+style="transform-origin: 196px 324px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="217" y="294" transform="inherit"
+style="transform-origin: 217px 294px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="264" y="299" transform="inherit"
+style="transform-origin: 264px 299px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="277" y="329" transform="inherit"
+style="transform-origin: 277px 329px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="131" y="371" transform="inherit"
+style="transform-origin: 131px 371px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="149" y="379" transform="inherit"
+style="transform-origin: 149px 379px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="156" y="361" transform="inherit"
+style="transform-origin: 156px 361px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="145" y="429" transform="inherit"
+style="transform-origin: 145px 429px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="304" y="329" transform="inherit"
+style="transform-origin: 304px 329px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="320" y="373" transform="inherit"
+style="transform-origin: 320px 373px;"
+xlink:href="#rock" />
+<use class="plain"
+x="320" y="407" transform="inherit"
+style="transform-origin: 320px 407px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="274" y="356" transform="inherit"
+style="transform-origin: 274px 356px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="273" y="466" transform="inherit"
+style="transform-origin: 273px 466px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="225" y="499" transform="inherit"
+style="transform-origin: 225px 499px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="275" y="416" transform="inherit"
+style="transform-origin: 275px 416px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="203" y="485" transform="inherit"
+style="transform-origin: 203px 485px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="248" y="483" transform="inherit"
+style="transform-origin: 248px 483px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="126" y="285" transform="inherit"
+style="transform-origin: 126px 285px;"
+xlink:href="#rock" />
+<use class="r345"
+x="105" y="297" transform="inherit"
+style="transform-origin: 105px 297px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="91" y="264" transform="inherit"
+style="transform-origin: 91px 264px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="88" y="296" transform="inherit"
+style="transform-origin: 88px 296px;"
+xlink:href="#rock" />
+<use class="plain"
+x="41" y="287" transform="inherit"
+style="transform-origin: 41px 287px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="43" y="262" transform="inherit"
+style="transform-origin: 43px 262px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="76" y="275" transform="inherit"
+style="transform-origin: 76px 275px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="23" y="237" transform="inherit"
+style="transform-origin: 23px 237px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="27" y="262" transform="inherit"
+style="transform-origin: 27px 262px;"
+xlink:href="#rock" />
+<use class="med"
+x="10" y="168" transform="inherit"
+style="transform-origin: 10px 168px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="43" y="138" transform="inherit"
+style="transform-origin: 43px 138px;"
+xlink:href="#rock" />
+<use class="r15"
+x="80" y="88" transform="inherit"
+style="transform-origin: 80px 88px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="66" y="100" transform="inherit"
+style="transform-origin: 66px 100px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="104" y="86" transform="inherit"
+style="transform-origin: 104px 86px;"
+xlink:href="#rock" />
+<use class="plain"
+x="59" y="85" transform="inherit"
+style="transform-origin: 59px 85px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="155" y="154" transform="inherit"
+style="transform-origin: 155px 154px;"
+xlink:href="#rock" />
+<use class="r345"
+x="124" y="81" transform="inherit"
+style="transform-origin: 124px 81px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="125" y="99" transform="inherit"
+style="transform-origin: 125px 99px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="168" y="288" transform="inherit"
+style="transform-origin: 168px 288px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="150" y="307" transform="inherit"
+style="transform-origin: 150px 307px;"
+xlink:href="#rock" />
+<use class="r345"
+x="17" y="121" transform="inherit"
+style="transform-origin: 17px 121px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="3" y="191" transform="inherit"
+style="transform-origin: 3px 191px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="289" y="283" transform="inherit"
+style="transform-origin: 289px 283px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="314" y="232" transform="inherit"
+style="transform-origin: 314px 232px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="294" y="258" transform="inherit"
+style="transform-origin: 294px 258px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="327" y="204" transform="inherit"
+style="transform-origin: 327px 204px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="312" y="212" transform="inherit"
+style="transform-origin: 312px 212px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="294" y="186" transform="inherit"
+style="transform-origin: 294px 186px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="325" y="166" transform="inherit"
+style="transform-origin: 325px 166px;"
+xlink:href="#rock" />
+<use class="r15"
+x="246" y="259" transform="inherit"
+style="transform-origin: 246px 259px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="188" y="269" transform="inherit"
+style="transform-origin: 188px 269px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="143" y="291" transform="inherit"
+style="transform-origin: 143px 291px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="206" y="83" transform="inherit"
+style="transform-origin: 206px 83px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="214" y="97" transform="inherit"
+style="transform-origin: 214px 97px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="242" y="86" transform="inherit"
+style="transform-origin: 242px 86px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="181" y="83" transform="inherit"
+style="transform-origin: 181px 83px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="154" y="94" transform="inherit"
+style="transform-origin: 154px 94px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="156" y="77" transform="inherit"
+style="transform-origin: 156px 77px;"
+xlink:href="#rock" />
+<use class="med"
+x="191" y="63" transform="inherit"
+style="transform-origin: 191px 63px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="272" y="84" transform="inherit"
+style="transform-origin: 272px 84px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="225" y="85" transform="inherit"
+style="transform-origin: 225px 85px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="173" y="318" transform="inherit"
+style="transform-origin: 173px 318px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="200" y="305" transform="inherit"
+style="transform-origin: 200px 305px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="301" y="114" transform="inherit"
+style="transform-origin: 301px 114px;"
+xlink:href="#rock" />
+<use class="med"
+x="284" y="97" transform="inherit"
+style="transform-origin: 284px 97px;"
+xlink:href="#rock" />
+<use class="r345"
+x="298" y="87" transform="inherit"
+style="transform-origin: 298px 87px;"
+xlink:href="#rock" />
+<use class="r345"
+x="140" y="337" transform="inherit"
+style="transform-origin: 140px 337px;"
+xlink:href="#rock" />
+<use class="med"
+x="142" y="394" transform="inherit"
+style="transform-origin: 142px 394px;"
+xlink:href="#rock" />
+<use class="med"
+x="148" y="486" transform="inherit"
+style="transform-origin: 148px 486px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="165" y="487" transform="inherit"
+style="transform-origin: 165px 487px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="134" y="459" transform="inherit"
+style="transform-origin: 134px 459px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="151" y="466" transform="inherit"
+style="transform-origin: 151px 466px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="184" y="487" transform="inherit"
+style="transform-origin: 184px 487px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="210" y="507" transform="inherit"
+style="transform-origin: 210px 507px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="96" y="397" transform="inherit"
+style="transform-origin: 96px 397px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="112" y="442" transform="inherit"
+style="transform-origin: 112px 442px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="112" y="426" transform="inherit"
+style="transform-origin: 112px 426px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="288" y="310" transform="inherit"
+style="transform-origin: 288px 310px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="287" y="459" transform="inherit"
+style="transform-origin: 287px 459px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="313" y="465" transform="inherit"
+style="transform-origin: 313px 465px;"
+xlink:href="#rock" />
+<use class="plain"
+x="276" y="444" transform="inherit"
+style="transform-origin: 276px 444px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="319" y="438" transform="inherit"
+style="transform-origin: 319px 438px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="303" y="300" transform="inherit"
+style="transform-origin: 303px 300px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="93" y="357" transform="inherit"
+style="transform-origin: 93px 357px;"
+xlink:href="#rock" />
+<use class="med"
+x="107" y="348" transform="inherit"
+style="transform-origin: 107px 348px;"
+xlink:href="#rock" />
+<use class="r15"
+x="107" y="371" transform="inherit"
+style="transform-origin: 107px 371px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="110" y="406" transform="inherit"
+style="transform-origin: 110px 406px;"
+xlink:href="#rock" />
+<use class="r345"
+x="154" y="322" transform="inherit"
+style="transform-origin: 154px 322px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="141" y="354" transform="inherit"
+style="transform-origin: 141px 354px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="324" y="314" transform="inherit"
+style="transform-origin: 324px 314px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="290" y="346" transform="inherit"
+style="transform-origin: 290px 346px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="309" y="483" transform="inherit"
+style="transform-origin: 309px 483px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="274" y="485" transform="inherit"
+style="transform-origin: 274px 485px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="219" y="540" transform="inherit"
+style="transform-origin: 219px 540px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="239" y="403" transform="inherit"
+style="transform-origin: 239px 403px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="264" y="498" transform="inherit"
+style="transform-origin: 264px 498px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="270" y="513" transform="inherit"
+style="transform-origin: 270px 513px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="89" y="324" transform="inherit"
+style="transform-origin: 89px 324px;"
+xlink:href="#rock" />
+<use class="med"
+x="120" y="320" transform="inherit"
+style="transform-origin: 120px 320px;"
+xlink:href="#rock" />
+<use class="r345"
+x="51" y="306" transform="inherit"
+style="transform-origin: 51px 306px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="71" y="290" transform="inherit"
+style="transform-origin: 71px 290px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="30" y="300" transform="inherit"
+style="transform-origin: 30px 300px;"
+xlink:href="#rock" />
+<use class="r15"
+x="16" y="280" transform="inherit"
+style="transform-origin: 16px 280px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="4" y="304" transform="inherit"
+style="transform-origin: 4px 304px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="5" y="256" transform="inherit"
+style="transform-origin: 5px 256px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="37" y="245" transform="inherit"
+style="transform-origin: 37px 245px;"
+xlink:href="#rock" />
+<use class="r345"
+x="5" y="210" transform="inherit"
+style="transform-origin: 5px 210px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="4" y="228" transform="inherit"
+style="transform-origin: 4px 228px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="26" y="175" transform="inherit"
+style="transform-origin: 26px 175px;"
+xlink:href="#rock" />
+<use class="plain"
+x="22" y="138" transform="inherit"
+style="transform-origin: 22px 138px;"
+xlink:href="#rock" />
+<use class="med"
+x="35" y="97" transform="inherit"
+style="transform-origin: 35px 97px;"
+xlink:href="#rock" />
+<use class="med"
+x="33" y="118" transform="inherit"
+style="transform-origin: 33px 118px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="80" y="66" transform="inherit"
+style="transform-origin: 80px 66px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="60" y="56" transform="inherit"
+style="transform-origin: 60px 56px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="108" y="69" transform="inherit"
+style="transform-origin: 108px 69px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="42" y="78" transform="inherit"
+style="transform-origin: 42px 78px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="128" y="58" transform="inherit"
+style="transform-origin: 128px 58px;"
+xlink:href="#rock" />
+<use class="r345"
+x="180" y="301" transform="inherit"
+style="transform-origin: 180px 301px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="16" y="99" transform="inherit"
+style="transform-origin: 16px 99px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="310" y="256" transform="inherit"
+style="transform-origin: 310px 256px;"
+xlink:href="#rock" />
+<use class="plain"
+x="322" y="272" transform="inherit"
+style="transform-origin: 322px 272px;"
+xlink:href="#rock" />
+<use class="r15"
+x="325" y="246" transform="inherit"
+style="transform-origin: 325px 246px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="205" y="51" transform="inherit"
+style="transform-origin: 205px 51px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="237" y="56" transform="inherit"
+style="transform-origin: 237px 56px;"
+xlink:href="#rock" />
+<use class="plain"
+x="252" y="70" transform="inherit"
+style="transform-origin: 252px 70px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="172" y="58" transform="inherit"
+style="transform-origin: 172px 58px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="144" y="65" transform="inherit"
+style="transform-origin: 144px 65px;"
+xlink:href="#rock" />
+<use class="plain"
+x="221" y="51" transform="inherit"
+style="transform-origin: 221px 51px;"
+xlink:href="#rock" />
+<use class="med"
+x="198" y="36" transform="inherit"
+style="transform-origin: 198px 36px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="215" y="68" transform="inherit"
+style="transform-origin: 215px 68px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="296" y="65" transform="inherit"
+style="transform-origin: 296px 65px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="322" y="92" transform="inherit"
+style="transform-origin: 322px 92px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="273" y="55" transform="inherit"
+style="transform-origin: 273px 55px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="118" y="384" transform="inherit"
+style="transform-origin: 118px 384px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="116" y="478" transform="inherit"
+style="transform-origin: 116px 478px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="178" y="513" transform="inherit"
+style="transform-origin: 178px 513px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="122" y="505" transform="inherit"
+style="transform-origin: 122px 505px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="162" y="517" transform="inherit"
+style="transform-origin: 162px 517px;"
+xlink:href="#rock" />
+<use class="med"
+x="110" y="494" transform="inherit"
+style="transform-origin: 110px 494px;"
+xlink:href="#rock" />
+<use class="r345"
+x="132" y="440" transform="inherit"
+style="transform-origin: 132px 440px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="110" y="462" transform="inherit"
+style="transform-origin: 110px 462px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="243" y="502" transform="inherit"
+style="transform-origin: 243px 502px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="192" y="536" transform="inherit"
+style="transform-origin: 192px 536px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="207" y="524" transform="inherit"
+style="transform-origin: 207px 524px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="85" y="385" transform="inherit"
+style="transform-origin: 85px 385px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="72" y="409" transform="inherit"
+style="transform-origin: 72px 409px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="73" y="370" transform="inherit"
+style="transform-origin: 73px 370px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="80" y="448" transform="inherit"
+style="transform-origin: 80px 448px;"
+xlink:href="#rock" />
+<use class="r345"
+x="91" y="432" transform="inherit"
+style="transform-origin: 91px 432px;"
+xlink:href="#rock" />
+<use class="med"
+x="292" y="477" transform="inherit"
+style="transform-origin: 292px 477px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="303" y="502" transform="inherit"
+style="transform-origin: 303px 502px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="80" y="338" transform="inherit"
+style="transform-origin: 80px 338px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="136" y="321" transform="inherit"
+style="transform-origin: 136px 321px;"
+xlink:href="#rock" />
+<use class="r345"
+x="300" y="381" transform="inherit"
+style="transform-origin: 300px 381px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="327" y="490" transform="inherit"
+style="transform-origin: 327px 490px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="286" y="504" transform="inherit"
+style="transform-origin: 286px 504px;"
+xlink:href="#rock" />
+<use class="plain"
+x="200" y="566" transform="inherit"
+style="transform-origin: 200px 566px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="246" y="530" transform="inherit"
+style="transform-origin: 246px 530px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="230" y="562" transform="inherit"
+style="transform-origin: 230px 562px;"
+xlink:href="#rock" />
+<use class="r15"
+x="270" y="533" transform="inherit"
+style="transform-origin: 270px 533px;"
+xlink:href="#rock" />
+<use class="r345"
+x="233" y="519" transform="inherit"
+style="transform-origin: 233px 519px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="285" y="523" transform="inherit"
+style="transform-origin: 285px 523px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="263" y="553" transform="inherit"
+style="transform-origin: 263px 553px;"
+xlink:href="#rock" />
+<use class="plain"
+x="282" y="550" transform="inherit"
+style="transform-origin: 282px 550px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="66" y="351" transform="inherit"
+style="transform-origin: 66px 351px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="64" y="328" transform="inherit"
+style="transform-origin: 64px 328px;"
+xlink:href="#rock" />
+<use class="r345"
+x="26" y="317" transform="inherit"
+style="transform-origin: 26px 317px;"
+xlink:href="#rock" />
+<use class="med"
+x="44" y="326" transform="inherit"
+style="transform-origin: 44px 326px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="22" y="336" transform="inherit"
+style="transform-origin: 22px 336px;"
+xlink:href="#rock" />
+<use class="plain"
+x="20" y="219" transform="inherit"
+style="transform-origin: 20px 219px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="5" y="148" transform="inherit"
+style="transform-origin: 5px 148px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="3" y="73" transform="inherit"
+style="transform-origin: 3px 73px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="73" y="37" transform="inherit"
+style="transform-origin: 73px 37px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="103" y="34" transform="inherit"
+style="transform-origin: 103px 34px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="20" y="62" transform="inherit"
+style="transform-origin: 20px 62px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="43" y="55" transform="inherit"
+style="transform-origin: 43px 55px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="54" y="36" transform="inherit"
+style="transform-origin: 54px 36px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="95" y="55" transform="inherit"
+style="transform-origin: 95px 55px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="125" y="31" transform="inherit"
+style="transform-origin: 125px 31px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="20" y="82" transform="inherit"
+style="transform-origin: 20px 82px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="222" y="17" transform="inherit"
+style="transform-origin: 222px 17px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="174" y="30" transform="inherit"
+style="transform-origin: 174px 30px;"
+xlink:href="#rock" />
+<use class="r15"
+x="229" y="36" transform="inherit"
+style="transform-origin: 229px 36px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="256" y="23" transform="inherit"
+style="transform-origin: 256px 23px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="157" y="36" transform="inherit"
+style="transform-origin: 157px 36px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="164" y="18" transform="inherit"
+style="transform-origin: 164px 18px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="306" y="34" transform="inherit"
+style="transform-origin: 306px 34px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="318" y="70" transform="inherit"
+style="transform-origin: 318px 70px;"
+xlink:href="#rock" />
+<use class="r15"
+x="321" y="54" transform="inherit"
+style="transform-origin: 321px 54px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="266" y="37" transform="inherit"
+style="transform-origin: 266px 37px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="292" y="41" transform="inherit"
+style="transform-origin: 292px 41px;"
+xlink:href="#rock" />
+<use class="r345"
+x="96" y="480" transform="inherit"
+style="transform-origin: 96px 480px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="87" y="504" transform="inherit"
+style="transform-origin: 87px 504px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="147" y="535" transform="inherit"
+style="transform-origin: 147px 535px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="140" y="510" transform="inherit"
+style="transform-origin: 140px 510px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="132" y="525" transform="inherit"
+style="transform-origin: 132px 525px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="103" y="529" transform="inherit"
+style="transform-origin: 103px 529px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="116" y="540" transform="inherit"
+style="transform-origin: 116px 540px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="168" y="536" transform="inherit"
+style="transform-origin: 168px 536px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="75" y="464" transform="inherit"
+style="transform-origin: 75px 464px;"
+xlink:href="#rock" />
+<use class="r15"
+x="229" y="483" transform="inherit"
+style="transform-origin: 229px 483px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="186" y="556" transform="inherit"
+style="transform-origin: 186px 556px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="68" y="389" transform="inherit"
+style="transform-origin: 68px 389px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="48" y="404" transform="inherit"
+style="transform-origin: 48px 404px;"
+xlink:href="#rock" />
+<use class="r345"
+x="56" y="429" transform="inherit"
+style="transform-origin: 56px 429px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="49" y="388" transform="inherit"
+style="transform-origin: 49px 388px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="79" y="484" transform="inherit"
+style="transform-origin: 79px 484px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="60" y="445" transform="inherit"
+style="transform-origin: 60px 445px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="75" y="428" transform="inherit"
+style="transform-origin: 75px 428px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="306" y="518" transform="inherit"
+style="transform-origin: 306px 518px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="320" y="509" transform="inherit"
+style="transform-origin: 320px 509px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="73" y="310" transform="inherit"
+style="transform-origin: 73px 310px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="313" y="392" transform="inherit"
+style="transform-origin: 313px 392px;"
+xlink:href="#rock" />
+<use class="med"
+x="325" y="526" transform="inherit"
+style="transform-origin: 325px 526px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="236" y="546" transform="inherit"
+style="transform-origin: 236px 546px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="296" y="559" transform="inherit"
+style="transform-origin: 296px 559px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="251" y="563" transform="inherit"
+style="transform-origin: 251px 563px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="51" y="361" transform="inherit"
+style="transform-origin: 51px 361px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="39" y="344" transform="inherit"
+style="transform-origin: 39px 344px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="2" y="320" transform="inherit"
+style="transform-origin: 2px 320px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="23" y="367" transform="inherit"
+style="transform-origin: 23px 367px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="2" y="55" transform="inherit"
+style="transform-origin: 2px 55px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="23" y="45" transform="inherit"
+style="transform-origin: 23px 45px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="51" y="6" transform="inherit"
+style="transform-origin: 51px 6px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="77" y="20" transform="inherit"
+style="transform-origin: 77px 20px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="85" y="2" transform="inherit"
+style="transform-origin: 85px 2px;"
+xlink:href="#rock" />
+<use class="plain med"
+x="1" y="95" transform="inherit"
+style="transform-origin: 1px 95px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="19" y="25" transform="inherit"
+style="transform-origin: 19px 25px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="35" y="17" transform="inherit"
+style="transform-origin: 35px 17px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="30" y="1" transform="inherit"
+style="transform-origin: 30px 1px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="140" y="39" transform="inherit"
+style="transform-origin: 140px 39px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="147" y="23" transform="inherit"
+style="transform-origin: 147px 23px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="121" y="7" transform="inherit"
+style="transform-origin: 121px 7px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="117" y="46" transform="inherit"
+style="transform-origin: 117px 46px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="234" y="1" transform="inherit"
+style="transform-origin: 234px 1px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="191" y="9" transform="inherit"
+style="transform-origin: 191px 9px;"
+xlink:href="#rock" />
+<use class="med"
+x="212" y="2" transform="inherit"
+style="transform-origin: 212px 2px;"
+xlink:href="#rock" />
+<use class="r15"
+x="294" y="20" transform="inherit"
+style="transform-origin: 294px 20px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="279" y="12" transform="inherit"
+style="transform-origin: 279px 12px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="324" y="32" transform="inherit"
+style="transform-origin: 324px 32px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="325" y="15" transform="inherit"
+style="transform-origin: 325px 15px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="251" y="7" transform="inherit"
+style="transform-origin: 251px 7px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="67" y="503" transform="inherit"
+style="transform-origin: 67px 503px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="79" y="532" transform="inherit"
+style="transform-origin: 79px 532px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="55" y="491" transform="inherit"
+style="transform-origin: 55px 491px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="160" y="566" transform="inherit"
+style="transform-origin: 160px 566px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="145" y="552" transform="inherit"
+style="transform-origin: 145px 552px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="156" y="501" transform="inherit"
+style="transform-origin: 156px 501px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="71" y="552" transform="inherit"
+style="transform-origin: 71px 552px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="108" y="556" transform="inherit"
+style="transform-origin: 108px 556px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="39" y="453" transform="inherit"
+style="transform-origin: 39px 453px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="42" y="474" transform="inherit"
+style="transform-origin: 42px 474px;"
+xlink:href="#rock" />
+<use class="r15"
+x="20" y="425" transform="inherit"
+style="transform-origin: 20px 425px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="27" y="403" transform="inherit"
+style="transform-origin: 27px 403px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="10" y="377" transform="inherit"
+style="transform-origin: 10px 377px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="38" y="490" transform="inherit"
+style="transform-origin: 38px 490px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="40" y="436" transform="inherit"
+style="transform-origin: 40px 436px;"
+xlink:href="#rock" />
+<use class="med"
+x="56" y="278" transform="inherit"
+style="transform-origin: 56px 278px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="312" y="356" transform="inherit"
+style="transform-origin: 312px 356px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="320" y="562" transform="inherit"
+style="transform-origin: 320px 562px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="325" y="545" transform="inherit"
+style="transform-origin: 325px 545px;"
+xlink:href="#rock" />
+<use class="plain"
+x="31" y="386" transform="inherit"
+style="transform-origin: 31px 386px;"
+xlink:href="#rock" />
+<use class="med"
+x="102" y="1" transform="inherit"
+style="transform-origin: 102px 1px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="0" y="27" transform="inherit"
+style="transform-origin: 0px 27px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="37" y="34" transform="inherit"
+style="transform-origin: 37px 34px;"
+xlink:href="#rock" />
+<use class="plain r15 r345"
+x="3" y="10" transform="inherit"
+style="transform-origin: 3px 10px;"
+xlink:href="#rock" />
+<use class="plain"
+x="153" y="6" transform="inherit"
+style="transform-origin: 153px 6px;"
+xlink:href="#rock" />
+<use class="med"
+x="206" y="21" transform="inherit"
+style="transform-origin: 206px 21px;"
+xlink:href="#rock" />
+<use class="r15"
+x="297" y="3" transform="inherit"
+style="transform-origin: 297px 3px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="46" y="523" transform="inherit"
+style="transform-origin: 46px 523px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="64" y="538" transform="inherit"
+style="transform-origin: 64px 538px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="36" y="562" transform="inherit"
+style="transform-origin: 36px 562px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="54" y="551" transform="inherit"
+style="transform-origin: 54px 551px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="86" y="562" transform="inherit"
+style="transform-origin: 86px 562px;"
+xlink:href="#rock" />
+<use class="r15"
+x="3" y="438" transform="inherit"
+style="transform-origin: 3px 438px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="18" y="475" transform="inherit"
+style="transform-origin: 18px 475px;"
+xlink:href="#rock" />
+<use class="r15 r345 med"
+x="17" y="500" transform="inherit"
+style="transform-origin: 17px 500px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="54" y="461" transform="inherit"
+style="transform-origin: 54px 461px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="21" y="453" transform="inherit"
+style="transform-origin: 21px 453px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="5" y="413" transform="inherit"
+style="transform-origin: 5px 413px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="10" y="352" transform="inherit"
+style="transform-origin: 10px 352px;"
+xlink:href="#rock" />
+<use class="plain r15"
+x="11" y="393" transform="inherit"
+style="transform-origin: 11px 393px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="321" y="338" transform="inherit"
+style="transform-origin: 321px 338px;"
+xlink:href="#rock" />
+<use class="r15 r345"
+x="302" y="541" transform="inherit"
+style="transform-origin: 302px 541px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="27" y="517" transform="inherit"
+style="transform-origin: 27px 517px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="31" y="532" transform="inherit"
+style="transform-origin: 31px 532px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="11" y="531" transform="inherit"
+style="transform-origin: 11px 531px;"
+xlink:href="#rock" />
+<use class="plain r345 med"
+x="67" y="568" transform="inherit"
+style="transform-origin: 67px 568px;"
+xlink:href="#rock" />
+<use class="plain r15 med"
+x="1" y="481" transform="inherit"
+style="transform-origin: 1px 481px;"
+xlink:href="#rock" />
+<use class="plain r15 r345 med"
+x="6" y="460" transform="inherit"
+style="transform-origin: 6px 460px;"
+xlink:href="#rock" />
+<use class="r345 med"
+x="322" y="296" transform="inherit"
+style="transform-origin: 322px 296px;"
+xlink:href="#rock" />
+<use class="r15"
+x="48" y="505" transform="inherit"
+style="transform-origin: 48px 505px;"
+xlink:href="#rock" />
+<use class="r15 med"
+x="20" y="565" transform="inherit"
+style="transform-origin: 20px 565px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="95" y="544" transform="inherit"
+style="transform-origin: 95px 544px;"
+xlink:href="#rock" />
+<use class="plain r345"
+x="11" y="550" transform="inherit"
+style="transform-origin: 11px 550px;"
+xlink:href="#rock" />
+</svg>
+

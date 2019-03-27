@@ -17,13 +17,26 @@
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
 from collections import namedtuple
+import itertools
 import logging
 import pathlib
+import random
 import re
 
 import pkg_resources
 
 from turberfield.dialogue.model import Model
+
+from carmen.types import Court
+from carmen.types import Dwelling
+from carmen.types import Forest
+from carmen.types import Heath
+from carmen.types import Pit
+from carmen.types import Sanctum
+from carmen.types import Settlement
+from carmen.types import Woodland
+from carmen.types import Workings
+
 
 class Handler:
 
@@ -101,8 +114,18 @@ class Handler:
     def scenery(location):
         root = pkg_resources.resource_filename("carmen", "static")
         parent = pkg_resources.resource_filename("carmen", "static/svg")
-        pattern = "scenery-leaf*.svg"
+        if isinstance(location, (Forest, Heath, Woodland)):
+            pattern = "scenery-leaf*.svg"
+        elif isinstance(location, (Dwelling, Settlement)):
+            pattern = "scenery-wattle*.svg"
+        elif isinstance(location, (Pit, Workings)):
+            pattern = "scenery-rock*.svg"
+        elif isinstance(location, Sanctum):
+            pattern = "scenery-slab*.svg"
+        else:
+            pattern = "scenery-leaf*.svg"
         assets = [
             i.relative_to(root) for i in pathlib.Path(parent).glob(pattern)
         ]
-        return next(iter(assets))
+        random.shuffle(assets)
+        return itertools.cycle(assets)

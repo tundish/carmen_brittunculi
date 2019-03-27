@@ -30,7 +30,7 @@
 
 </main>
 <aside class="grid-roof mod-vista">
-<img src="{{ vista }}" style="width: 100%;"/>
+<img src="{{ next(vista) }}" style="width: 100%;"/>
 </aside>
 
 <aside class="grid-rear mod-diorama">
@@ -53,7 +53,7 @@
 </aside>
 
 <aside class="grid-wing mod-vista">
-<!-- %include("forest.tpl", leaves=leaves) -->
+<img src="{{ next(vista) }}" style="width: 100%;"/>
 </aside>
 <nav class="grid-steer">
 <ul>
