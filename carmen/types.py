@@ -119,8 +119,6 @@ Spot = enum.Enum(
             (15, 0), (13, 2), (11, 4), (8, 4), (8, 13), (13, 6),
             (9, 6), (9, 8), (9, 9), (13, 8), (14, 7),
             (14, 13), (8, 16), (11, 16), (14, 16),
-
-            # master branch
             (2, 3), (7, 3), (11, 2), (16, 3), (20, 3),
             (5, 5), (7, 6), (11, 6), (16, 5), (20, 5),
             (5, 7), (18, 7),
@@ -150,9 +148,21 @@ class Innkeeper(Character): pass
 class Merchant(Character): pass
 class Priest(Character): pass
 class Woodsman(Character): pass
+
 class Coin(Stateful, DataObject): pass
-class Location(Stateful, DataObject): pass
 class CubbyFruit(Stateful): pass
 
+class Location(Stateful, DataObject): pass
+class Exterior(Location): pass
+class Interior(Location): pass
+class Dwelling(Interior): pass
+class Settlement(Exterior): pass
+class Court(Exterior): pass
+class Sanctum(Interior): pass
+class Pit(Exterior): pass
+class Workings(Interior): pass
+class Forest(Interior): pass
+class Heath(Exterior): pass
+class Woodland(Exterior): pass
 
 Assembly.register(Spot)

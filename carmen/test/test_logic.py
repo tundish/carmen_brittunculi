@@ -45,7 +45,7 @@ class TestRules(unittest.TestCase):
 class TestDialogue(unittest.TestCase):
 
     def test_folder(self):
-        self.assertEqual(53, len(episodes[0].paths))
+        self.assertEqual(55, len(episodes[0].paths))
 
     def test_cast(self):
         asscns = associations()
@@ -81,6 +81,6 @@ class TestActivities(unittest.TestCase):
         self.routines = routines(self.asscns)
 
     def test_routines(self):
-        self.assertEqual(3, len(self.routines))
+        self.assertEqual(4, len(self.routines))
         self.assertIsInstance(self.routines[0], Clock)
         self.assertIsInstance(self.routines[1], Angel)

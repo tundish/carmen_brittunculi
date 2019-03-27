@@ -35,18 +35,27 @@ from carmen.agents import Angel
 from carmen.orders import Orders
 from carmen.routefinder import Routefinder
 from carmen.types import Character
+from carmen.types import Court
 from carmen.types import CubbyFruit
+from carmen.types import Dwelling
+from carmen.types import Forest
+from carmen.types import Heath
 from carmen.types import Innkeeper
 from carmen.types import Location
 from carmen.types import Merchant
 from carmen.types import Narrator
+from carmen.types import Pit
 from carmen.types import Player # noqa
 from carmen.types import Priest
+from carmen.types import Sanctum
+from carmen.types import Settlement
 from carmen.types import Spot
 from carmen.types import Time
 from carmen.types import Via
 from carmen.types import Visibility
 from carmen.types import Wants
+from carmen.types import Woodland
+from carmen.types import Workings
 from carmen.types import Woodsman
 
 ides_of_march = datetime.date(396, 3, 1)
@@ -153,48 +162,48 @@ def associations():
     rv = Routefinder()
     rv.register(
         Via.forwd,
-        Location(label="Green lane").set_state(Spot.grid_1500),
-        Location(label="South gate").set_state(Spot.grid_1302),
+        Woodland(label="Green lane").set_state(Spot.grid_1500),
+        Settlement(label="South gate").set_state(Spot.grid_1302),
     )
 
     rv.register(
         Via.bidir,
-        Location(label="Clearing").set_state(Spot.grid_1104),
-        Location(label="Grove of Hades").set_state(Spot.grid_0804),
-        Location(label="Stream").set_state(Spot.grid_0906),
-        Location(label="North gate").set_state(Spot.grid_1109),
-        Location(label="Common house").set_state(Spot.grid_1306),
+        Settlement(label="Clearing").set_state(Spot.grid_1104),
+        Woodland(label="Grove of Hades").set_state(Spot.grid_0804),
+        Woodland(label="Stream").set_state(Spot.grid_0906),
+        Settlement(label="North gate").set_state(Spot.grid_1109),
+        Dwelling(label="Common house").set_state(Spot.grid_1306),
         next(iter(rv.search(label="South gate"))),
     )
 
     rv.register(
         Via.bidir,
-        Location(label="Footbridge").set_state(Spot.grid_0908),
+        Settlement(label="Footbridge").set_state(Spot.grid_0908),
         next(iter(rv.search(label="Stream"))),
         next(iter(rv.search(label="North gate"))),
     )
 
     rv.register(
         Via.bidir,
-        Location(label="Kitchen").set_state(Spot.grid_1308),
+        Dwelling(label="Kitchen").set_state(Spot.grid_1308),
         next(iter(rv.search(label="Common house"))),
-        Location(label="Woodshed").set_state(Spot.grid_1407),
+        Dwelling(label="Woodshed").set_state(Spot.grid_1407),
     )
     rv.register(
         Via.bidir,
         next(iter(rv.search(label="Grove of Hades"))),
-        Location(label="Quarry path").set_state(Spot.grid_0610),
+        Heath(label="Quarry path").set_state(Spot.grid_0610),
     )
 
     rv.register(
         Via.bidir,
-        Location(label="Rookery").set_state(Spot.grid_1113),
-        Location(label="Shady lane").set_state(Spot.grid_0909),
-        Location(label="Copse").set_state(Spot.grid_0813),
-        Location(label="Woody tangle").set_state(Spot.grid_0816),
-        Location(label="Brambly dell").set_state(Spot.grid_1116),
-        Location(label="Oak shrine").set_state(Spot.grid_1416),
-        Location(label="Prickly thicket").set_state(Spot.grid_1413),
+        Woodland(label="Rookery").set_state(Spot.grid_1113),
+        Forest(label="Shady lane").set_state(Spot.grid_0909),
+        Forest(label="Copse").set_state(Spot.grid_0813),
+        Forest(label="Woody tangle").set_state(Spot.grid_0816),
+        Forest(label="Brambly dell").set_state(Spot.grid_1116),
+        Forest(label="Oak shrine").set_state(Spot.grid_1416),
+        Forest(label="Prickly thicket").set_state(Spot.grid_1413),
     )
 
     rv.register(
@@ -220,31 +229,31 @@ def associations():
 
     rv.register(
         Via.bidir,
-        Location(label="Scree").set_state(Spot.grid_1111),
+        Heath(label="Scree").set_state(Spot.grid_1111),
         next(iter(rv.search(label="North gate"))),
-        Location(label="Ridge").set_state(Spot.grid_1113),
+        Heath(label="Ridge").set_state(Spot.grid_1113),
     )
 
     rv.register(
         Via.bckwd,
         next(iter(rv.search(label="Scree"))),
-        Location(label="Shelf").set_state(Spot.grid_0911),
+        Heath(label="Shelf").set_state(Spot.grid_0911),
     )
     rv.register(
         Via.forwd,
         next(iter(rv.search(label="Scree"))),
-        Location(label="Gully").set_state(Spot.grid_1411),
+        Heath(label="Gully").set_state(Spot.grid_1411),
     )
     rv.register(
         Via.bidir,
-        Location(label="First hall").set_state(Spot.grid_0214),
-        Location(label="South pit").set_state(Spot.grid_0211),
-        Location(label="Quarry").set_state(Spot.grid_0714),
+        Workings(label="First hall").set_state(Spot.grid_0214),
+        Workings(label="South pit").set_state(Spot.grid_0211),
+        Pit(label="Quarry").set_state(Spot.grid_0714),
     )
     rv.register(
         Via.bidir,
-        Location(label="Pulpit").set_state(Spot.grid_0318),
-        Location(label="Scramble").set_state(Spot.grid_0718),
+        Heath(label="Pulpit").set_state(Spot.grid_0318),
+        Heath(label="Scramble").set_state(Spot.grid_0718),
     )
     rv.register(
         Via.bidir,
@@ -263,8 +272,8 @@ def associations():
     )
     rv.register(
         Via.bidir,
-        Location(label="Sheep track").set_state(Spot.grid_1017),
-        Location(label="Cairn").set_state(Spot.grid_1115),
+        Heath(label="Sheep track").set_state(Spot.grid_1017),
+        Heath(label="Cairn").set_state(Spot.grid_1115),
     )
     rv.register(
         Via.bidir,
@@ -283,38 +292,38 @@ def associations():
     )
     rv.register(
         Via.bidir,
-        Location(label="Mithraeum").set_state(Spot.grid_1614),
+        Court(label="Mithraeum").set_state(Spot.grid_1614),
         next(iter(rv.search(label="Gully"))),
-        Location(label="Pool").set_state(Spot.grid_1610),
-        Location(label="First chamber").set_state(Spot.grid_2114),
+        Woodland(label="Pool").set_state(Spot.grid_1610),
+        Sanctum(label="First chamber").set_state(Spot.grid_2114),
     )
     rv.register(
         Via.bidir,
-        Location(label="Second chamber").set_state(Spot.grid_2010),
+        Sanctum(label="Second chamber").set_state(Spot.grid_2010),
         next(iter(rv.search(label="First chamber"))),
-        Location(label="Spelunca").set_state(Spot.grid_1807),
+        Sanctum(label="Spelunca").set_state(Spot.grid_1807),
     )
     rv.register(
         Via.bidir,
-        Location(label="Hearth").set_state(Spot.grid_1605),
+        Sanctum(label="Hearth").set_state(Spot.grid_1605),
         next(iter(rv.search(label="Spelunca"))),
-        Location(label="Dormitory").set_state(Spot.grid_1603),
+        Sanctum(label="Dormitory").set_state(Spot.grid_1603),
     )
     rv.register(
         Via.bidir,
-        Location(label="Armoury").set_state(Spot.grid_2005),
+        Sanctum(label="Armoury").set_state(Spot.grid_2005),
         next(iter(rv.search(label="Spelunca"))),
-        Location(label="Vault").set_state(Spot.grid_2003),
+        Sanctum(label="Vault").set_state(Spot.grid_2003),
     )
     rv.register(
         Via.bidir,
         next(iter(rv.search(label="Pool"))),
-        Location(label="Waterfall").set_state(Spot.grid_1508),
+        Woodland(label="Waterfall").set_state(Spot.grid_1508),
     )
     rv.register(
         Via.bidir,
-        Location(label="Marsh").set_state(Spot.grid_2117),
-        Location(label="Glade").set_state(Spot.grid_1717),
+        Heath(label="Marsh").set_state(Spot.grid_2117),
+        Woodland(label="Glade").set_state(Spot.grid_1717),
     )
     rv.register(
         Via.forwd,
