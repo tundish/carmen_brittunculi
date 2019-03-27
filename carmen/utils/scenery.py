@@ -58,8 +58,12 @@ use.med {
 transform: scale(1.1);
 }
 
-use.r45 {
-transform: rotate(45deg);
+use.r15 {
+transform: rotate(15deg);
+}
+
+use.r345 {
+transform: rotate(-15deg);
 }
 ]]>
 </style>
@@ -195,7 +199,7 @@ def main(args):
         gap, data = symbols[name]
         lookup[gap].append(name)
 
-    classes = ["plain", "r45", "med"]
+    classes = ["plain", "r15", "r345", "med"]
     pad = max(symbols[name][0] for name in args.symbol)
     height = args.height - pad
     width = args.width - pad
