@@ -116,16 +116,16 @@ class Handler:
         parent = pkg_resources.resource_filename("carmen", "static/svg")
         if isinstance(location, (Forest, Heath, Woodland)):
             pattern = "scenery-leaf*.svg"
-        elif isinstance(location, (Dwelling, Settlement)):
+        elif isinstance(location, Dwelling):
             pattern = "scenery-wattle*.svg"
         elif isinstance(location, (Pit, Workings)):
             pattern = "scenery-rock*.svg"
         elif isinstance(location, Sanctum):
             pattern = "scenery-slab*.svg"
         else:
-            pattern = "scenery-leaf*.svg"
+            pattern = "scenery-none.svg"
         assets = [
             i.relative_to(root) for i in pathlib.Path(parent).glob(pattern)
         ]
         random.shuffle(assets)
-        return itertools.cycle(assets)
+        return itertools.cycle(assets or ["hack_throws_404.svg"])
