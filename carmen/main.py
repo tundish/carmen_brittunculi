@@ -23,6 +23,7 @@ from collections import deque
 from collections import namedtuple
 import functools
 import logging
+import signal
 import sys
 import uuid
 
@@ -46,10 +47,6 @@ from carmen.types import Time
 from carmen.types import Visibility
 from carmen.types import Wants
 
-MAX_FRAME_S = 21.3  # 8 bars at 90 BPM
-DEFAULT_PORT = 8080
-DEFAULT_PAUSE = 1.2
-DEFAULT_DWELL = 0.3
 
 class Game:
 
@@ -285,6 +282,11 @@ def main(args):
     # TODO: Migrate to aiohttp v3 and use
     # https://docs.aiohttp.org/en/stable/web_advanced.html#background-tasks
     loop = asyncio.get_event_loop()
+    loop.add_signal_handler(signal.SIGINT, functools.partial(loop.call_soon, loop.stop))
+    loop.add_signal_handler(signal.SIGTERM, functools.partial(loop.call_soon, loop.stop))
+    loop.add_signal_handler(
+        signal.SIGHUP, functools.partial(loop.call_soon, Config.load, args.config)
+    )
     asyncio.set_event_loop(loop)
 
     handler = app.make_handler()
@@ -297,10 +299,8 @@ def main(args):
     except KeyboardInterrupt:
         pass
     finally:
-        loop.run_until_complete(handler.finish_connections(1.0))
         srv.close()
         loop.run_until_complete(srv.wait_closed())
-        loop.run_until_complete(app.finish())
     loop.close()
 
 def parser(description=__doc__):
