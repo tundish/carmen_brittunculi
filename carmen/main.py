@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding: UTF-8
 
 # This file is part of Carmen Brittunculi.
@@ -34,6 +34,7 @@ from turberfield.dialogue.performer import Performer
 from turberfield.utils.misc import log_setup
 
 from carmen import __version__
+from carmen.config import Config
 from carmen.handler import Handler
 import carmen.logic
 from carmen.types import Compass
@@ -233,7 +234,7 @@ async def move(request):
     finally:
         raise web.HTTPFound("/{0.hex}".format(session_uid))
 
-def build_app(args):
+def build_app(cfg):
     app = web.Application()
     try:
         add_routes = app.add_routes
@@ -276,7 +277,10 @@ def build_app(args):
 def main(args):
     log = logging.getLogger(log_setup(args, ""))
 
-    app = build_app(args)
+    path, cfg = Config.load(args.config)
+    host = cfg["server"]["host"]
+    port = cfg.getint("server", "port")
+    app = build_app(cfg)
 
     # TODO: Migrate to aiohttp v3 and use
     # https://docs.aiohttp.org/en/stable/web_advanced.html#background-tasks
@@ -284,7 +288,7 @@ def main(args):
     asyncio.set_event_loop(loop)
 
     handler = app.make_handler()
-    f = loop.create_server(handler, "0.0.0.0", args.port)
+    f = loop.create_server(handler, host, port)
     srv = loop.run_until_complete(f)
 
     log.info("Serving on {0[0]}:{0[1]}".format(srv.sockets[0].getsockname()))
@@ -314,24 +318,9 @@ def parser(description=__doc__):
         help="Increase the verbosity of output.")
     rv.add_argument(
         "--log", default=None, dest="log_path",
-        help="Set a file path for log output.")
-    rv.add_argument(
-        "--port", type=int, default=DEFAULT_PORT,
-        help="Specify the port number [{}].".format(
-            DEFAULT_PORT
-        )
+        help="Set a file path for log output."
     )
-    rv.add_argument(
-        "--pause", type=float, default=DEFAULT_PAUSE,
-        help="Time in seconds [{0:0.3}] to pause after a line.".format(DEFAULT_PAUSE)
-    )
-    rv.add_argument(
-        "--dwell", type=float, default=DEFAULT_DWELL,
-        help="Time in seconds [{0:0.3}] to dwell on each word.".format(DEFAULT_DWELL)
-    )
-    rv.add_argument(
-        "--db", required=False, default=None,
-        help="Database URL.")
+    rv.add_argument("--config", default=None, help="Specify a config file")
     return rv
 
 

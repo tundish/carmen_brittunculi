@@ -41,6 +41,7 @@ setup(
     packages=["carmen", "carmen.test", "carmen.utils"],
     package_data={
         "carmen": [
+            "data/*.cfg",
             "dialogue/*/*.rst",
             "dialogue/*/*/*.rst",
             "static/audio/*.mp3",
