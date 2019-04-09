@@ -21,6 +21,7 @@ import argparse
 from collections import Counter
 from collections import deque
 from collections import namedtuple
+from datetime import datetime
 import functools
 import logging
 import signal
@@ -52,7 +53,10 @@ class Game:
 
     sessions = {}
 
-    Session = namedtuple("Session", ["uid", "cache", "frames", "finder", "workers"])
+    Session = namedtuple(
+        "Session",
+        ["uid", "ts", "cache", "frames", "finder", "workers"]
+    )
 
     @staticmethod
     def session(name, loop=None):
@@ -65,6 +69,7 @@ class Game:
         uid = uuid.uuid4()
         rv = Game.Session(
             uid=uid,
+            ts=datetime.utcnow(),
             cache={
                 "metadata": {"episode": 1},
                 "player": player,
@@ -231,6 +236,19 @@ async def move(request):
     finally:
         raise web.HTTPFound("/{0.hex}".format(session_uid))
 
+async def get_sessions(request):
+    data = {
+        "sessions": [
+            {
+                "uid": str(s.uid),
+                "start": s.ts.isoformat(),
+                "turns": s.cache.get("player").get_state(int)
+            }
+            for s in Game.sessions.values()
+        ]
+    }
+    return web.json_response(data)
+
 def build_app(cfg):
     app = web.Application()
     try:
@@ -243,6 +261,7 @@ def build_app(cfg):
 
     add_routes([
         web.get("/about", get_about),
+        web.get("/sessions", get_sessions),
         web.get("/", get_start),
         web.post("/", post_start),
         web.get("/{{session:{0}}}".format(Handler.validation["session"].pattern), here),

@@ -55,7 +55,7 @@ class Episode01Tests(unittest.TestCase):
         if isinstance(self.interlude, Callable):
             metadata = self.interlude(
                 self.folder, self.index, self.ensemble,
-                session=Game.Session(None, None, None, self.asscns, None)
+                session=Game.Session(None, None, None, None, self.asscns, None)
             )
             self.assertIn(metadata, (None, self.folder.metadata))
 

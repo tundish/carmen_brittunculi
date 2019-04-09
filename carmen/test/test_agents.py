@@ -36,7 +36,7 @@ class ClockTests(unittest.TestCase):
 
     def test_tick(self):
         clock = Clock(period=0.01, stop=3)
-        session = Game.Session("uid", None, None, None, None)
+        session = Game.Session("uid", None, None, None, None, None)
         self.loop.run_until_complete(
             asyncio.wait(
                 [clock(session, loop=self.loop)],
