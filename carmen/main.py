@@ -25,6 +25,7 @@ from datetime import datetime
 import functools
 import logging
 import signal
+import socket
 import sys
 import uuid
 
@@ -236,8 +237,9 @@ async def move(request):
     finally:
         raise web.HTTPFound("/{0.hex}".format(session_uid))
 
-async def get_sessions(request):
+async def get_metricz(request):
     data = {
+        "host": {"name": socket.gethostname()},
         "sessions": [
             {
                 "uid": str(s.uid),
@@ -261,7 +263,7 @@ def build_app(cfg):
 
     add_routes([
         web.get("/about", get_about),
-        web.get("/sessions", get_sessions),
+        web.get("/metricz", get_metricz),
         web.get("/", get_start),
         web.post("/", post_start),
         web.get("/{{session:{0}}}".format(Handler.validation["session"].pattern), here),
