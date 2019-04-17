@@ -164,22 +164,22 @@ def associations():
     rv.register(
         Via.forwd,
         Woodland(label="Green lane").set_state(Spot.grid_1500),
-        Settlement(label="South gate").set_state(Spot.grid_1302),
+        Settlement(label="South gate", produce=(CubbyFruit, )).set_state(Spot.grid_1302),
     )
 
     rv.register(
         Via.bidir,
-        Settlement(label="Clearing").set_state(Spot.grid_1104),
-        Woodland(label="Grove of Hades").set_state(Spot.grid_0804),
-        Woodland(label="Stream").set_state(Spot.grid_0906),
-        Settlement(label="North gate").set_state(Spot.grid_1109),
+        Settlement(label="Clearing", produce=(CubbyFruit, )).set_state(Spot.grid_1104),
+        Woodland(label="Grove of Hades", produce=(Bowl, CubbyFruit)).set_state(Spot.grid_0804),
+        Woodland(label="Stream", produce=(CubbyFruit, )).set_state(Spot.grid_0906),
+        Settlement(label="North gate", produce=(CubbyFruit, )).set_state(Spot.grid_1109),
         Dwelling(label="Common house").set_state(Spot.grid_1306),
         next(iter(rv.search(label="South gate"))),
     )
 
     rv.register(
         Via.bidir,
-        Settlement(label="Footbridge").set_state(Spot.grid_0908),
+        Settlement(label="Footbridge", produce=(CubbyFruit, )).set_state(Spot.grid_0908),
         next(iter(rv.search(label="Stream"))),
         next(iter(rv.search(label="North gate"))),
     )
@@ -193,7 +193,7 @@ def associations():
     rv.register(
         Via.bidir,
         next(iter(rv.search(label="Grove of Hades"))),
-        Heath(label="Quarry path").set_state(Spot.grid_0610),
+        Heath(label="Quarry path", produce=(Bowl, )).set_state(Spot.grid_0610),
     )
 
     rv.register(
@@ -247,9 +247,9 @@ def associations():
     )
     rv.register(
         Via.bidir,
-        Workings(label="First hall").set_state(Spot.grid_0214),
-        Workings(label="South pit").set_state(Spot.grid_0211),
-        Pit(label="Quarry").set_state(Spot.grid_0714),
+        Workings(label="First hall", produce=(Bowl, )).set_state(Spot.grid_0214),
+        Workings(label="South pit", produce=(Bowl, )).set_state(Spot.grid_0211),
+        Pit(label="Quarry", produce=(Bowl, )).set_state(Spot.grid_0714),
     )
     rv.register(
         Via.bidir,
