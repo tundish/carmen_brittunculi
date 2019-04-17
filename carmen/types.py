@@ -149,6 +149,7 @@ class Merchant(Character): pass
 class Priest(Character): pass
 class Woodsman(Character): pass
 
+class Bowl(Stateful): pass
 class Coin(Stateful, DataObject): pass
 class CubbyFruit(Stateful): pass
 

@@ -34,6 +34,7 @@ from carmen.agents import Clock
 from carmen.agents import Angel
 from carmen.orders import Orders
 from carmen.routefinder import Routefinder
+from carmen.types import Bowl
 from carmen.types import Character
 from carmen.types import Court
 from carmen.types import CubbyFruit
@@ -119,15 +120,15 @@ class Rules(Orders):
     ) -> dict:
         windfall_rate = windfall_rate or Fraction(1, 4)
 
-        fruit = [i for i in session.finder.lookup if isinstance(i, CubbyFruit)]
-        for i in fruit:
-            log.info(vars(i))
+        items = [i for i in session.finder.lookup
+                 if isinstance(i, (Bowl, CubbyFruit))]
         if any(
-            i for i in fruit
+            i for i in items
             if i.get_state(Visibility) in (Visibility.new, Visibility.visible)
         ) or random.random() > windfall_rate:
             return folder.metadata
 
+        # TODO decide an item to drop and where to drop it
         locns = [
             i for i in session.finder.lookup
             if getattr(i, "label", None) in (
