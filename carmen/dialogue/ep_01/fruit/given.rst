@@ -22,7 +22,7 @@
    :states: carmen.types.Spot.grid_1308
 
 .. entity:: OBJECTIVE
-   :types: carmen.types.CubbyFruit
+   :types: carmen.types.Collectable
    :states: carmen.types.Spot.pockets
             carmen.types.Visibility.visible
 

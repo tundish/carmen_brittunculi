@@ -129,16 +129,19 @@ class Rules(Orders):
             return folder.metadata
 
         if len(items) > 4:
-            query = set([Bowl, CubbyFruit])
+            produce = [Bowl, CubbyFruit]
         else:
-            query = set([CubbyFruit])
+            produce = [CubbyFruit]
 
+        cls = random.choice(produce)
         locns = [
             i for i in session.finder.lookup
-            if set(getattr(i, "produce", [])) >= query
+            if cls in set(getattr(i, "produce", []))
         ]
         locn = random.choice(locns)
-        obj = CubbyFruit().set_state(locn.get_state(Spot)).set_state(Visibility.new)
+        obj = cls().set_state(locn.get_state(Spot)).set_state(Visibility.new)
+        log.info(locn)
+        log.info(obj)
         session.finder.register(None, obj)
         locn.set_state(Visibility.indicated)
         log.info("Created {0.__class__.__name__} at {1.label}.".format(obj, locn))
@@ -156,7 +159,7 @@ class Rules(Orders):
              if i.get_state(Visibility) == Visibility.hidden]
         )
         rv = folder.metadata.copy()
-        if n_items > 2:
+        if n_items > 6:
             rv["episode"] = 3
         return rv
 

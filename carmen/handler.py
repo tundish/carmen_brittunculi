@@ -104,9 +104,10 @@ class Handler:
     @staticmethod
     def refresh(frame):
         try:
-            return max(
-                (i.offset + i.duration for i in reversed(frame) if i.duration)
+            span = max(
+                (i.offset + i.duration for i in frame if i.duration)
             )
+            return max([span, 16])
         except ValueError:
             return None
 

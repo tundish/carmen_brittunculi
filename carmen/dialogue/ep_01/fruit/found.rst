@@ -21,7 +21,7 @@
    :states: carmen.types.Visibility.detail
 
 .. entity:: OBJECTIVE
-   :types: carmen.types.CubbyFruit
+   :types: carmen.types.Collectable
    :states: carmen.types.Spot.grid
             carmen.types.Visibility.visible
 

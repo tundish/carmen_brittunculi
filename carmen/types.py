@@ -149,9 +149,10 @@ class Merchant(Character): pass
 class Priest(Character): pass
 class Woodsman(Character): pass
 
-class Bowl(Stateful): pass
-class Coin(Stateful, DataObject): pass
-class CubbyFruit(Stateful): pass
+class Collectable(Stateful): pass
+class Bowl(Collectable): pass
+class Coin(Collectable, DataObject): pass
+class CubbyFruit(Collectable): pass
 
 class Location(Stateful, DataObject): pass
 class Exterior(Location): pass
