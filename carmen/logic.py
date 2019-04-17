@@ -128,13 +128,14 @@ class Rules(Orders):
         ) or random.random() > windfall_rate:
             return folder.metadata
 
-        # TODO decide an item to drop and where to drop it
+        if len(items) > 4:
+            query = set([Bowl, CubbyFruit])
+        else:
+            query = set([CubbyFruit])
+
         locns = [
             i for i in session.finder.lookup
-            if getattr(i, "label", None) in (
-                "South gate", "Clearing", "Grove of Hades",
-                "Stream", "Footbridge", "North gate"
-            )
+            if set(getattr(i, "produce", [])) >= query
         ]
         locn = random.choice(locns)
         obj = CubbyFruit().set_state(locn.get_state(Spot)).set_state(Visibility.new)
