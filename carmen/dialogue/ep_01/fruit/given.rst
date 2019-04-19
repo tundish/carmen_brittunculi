@@ -32,6 +32,11 @@ Mission
 Handing it over
 ---------------
 
+.. fx:: carmen.static.audio  VOC_190403-0017-warm.mp3
+   :offset: 0
+   :duration: 15386
+   :loop: 1
+
 [CADI]_
 
     Thank you, |PLAYER|.

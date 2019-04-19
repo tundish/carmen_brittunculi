@@ -26,7 +26,7 @@ Looking around
 
 .. fx:: carmen.static.audio desolate-wind.mp3
    :offset: 0
-   :duration: 27000
+   :duration: 25600
    :loop: 1
 
 [LOCATION]_

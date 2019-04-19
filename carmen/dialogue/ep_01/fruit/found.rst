@@ -25,11 +25,16 @@
    :states: carmen.types.Spot.grid
             carmen.types.Visibility.visible
 
-Mission
-~~~~~~~
+Found
+~~~~~
 
-Something to do
+An item claimed
 ---------------
+
+.. fx:: carmen.static.audio  VOC_190403-0017-super.mp3
+   :offset: 0
+   :duration: 18756
+   :loop: 1
 
 [NARRATOR]_
 

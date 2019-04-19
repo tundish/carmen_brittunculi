@@ -30,6 +30,11 @@ Prevarication
 What are you waiting for
 ------------------------
 
+.. fx:: carmen.static.audio  VOC_190402-0014-horns.mp3
+   :offset: 0
+   :duration: 18599
+   :loop: 1
+
 [NARRATOR]_
 
     She tends the fire.
