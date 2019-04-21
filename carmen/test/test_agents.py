@@ -79,4 +79,4 @@ class AngelTests(unittest.TestCase):
 
         destn = next(iter(self.a.search(label="Marsh")))
         moves = list(Angel.moves(self.a, actor, destn))
-        self.assertEqual(10, len(moves), moves)
+        self.assertEqual(9, len(moves), moves)

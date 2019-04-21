@@ -203,57 +203,58 @@ def associations():
     rv.register(
         Via.bidir,
         Woodland(label="Rookery").set_state(Spot.grid_0913),
-        Forest(label="Shady lane").set_state(Spot.grid_0909),
+        Forest(label="Shady lane").set_state(Spot.grid_1111),
+        Forest(label="Brambly dell").set_state(Spot.grid_0911),
         Forest(label="Copse").set_state(Spot.grid_0713),
         Forest(label="Woody tangle").set_state(Spot.grid_0816),
-        Forest(label="Brambly dell").set_state(Spot.grid_1409),
-        Forest(label="Oak shrine").set_state(Spot.grid_1416),
-        Forest(label="Prickly thicket").set_state(Spot.grid_1413),
-    )
-
-    rv.register(
-        Via.bidir,
-        next(iter(rv.search(label="Oak shrine"))),
-        next(iter(rv.search(label="Brambly dell"))),
-        next(iter(rv.search(label="Prickly thicket"))),
+        Forest(label="Oak shrine").set_state(Spot.grid_1116),
+        Forest(label="Prickly thicket").set_state(Spot.grid_1113),
     )
 
     rv.register(
         Via.bidir,
         next(iter(rv.search(label="Woody tangle"))),
+        next(iter(rv.search(label="Oak shrine"))),
         next(iter(rv.search(label="Copse"))),
+    )
+
+    rv.register(
+        Via.bidir,
         next(iter(rv.search(label="Brambly dell"))),
+        next(iter(rv.search(label="Shady lane"))),
+        next(iter(rv.search(label="Copse"))),
     )
 
     rv.register(
         Via.bidir,
         next(iter(rv.search(label="Shady lane"))),
+        next(iter(rv.search(label="Prickly thicket"))),
         next(iter(rv.search(label="North gate"))),
-        next(iter(rv.search(label="Copse"))),
+        next(iter(rv.search(label="Brambly dell"))),
     )
 
     rv.register(
         Via.bidir,
-        Heath(label="Scree").set_state(Spot.grid_1111),
+        Heath(label="Scree").set_state(Spot.grid_1310),
         next(iter(rv.search(label="North gate"))),
-        Heath(label="Ridge").set_state(Spot.grid_1113),
+        Heath(label="Ridge").set_state(Spot.grid_1413),
     )
 
     rv.register(
         Via.bckwd,
         next(iter(rv.search(label="Scree"))),
-        Heath(label="Shelf").set_state(Spot.grid_0911),
+        Heath(label="Shelf").set_state(Spot.grid_0910),
     )
     rv.register(
         Via.forwd,
         next(iter(rv.search(label="Scree"))),
-        Heath(label="Gully").set_state(Spot.grid_1411),
+        Heath(label="Gully").set_state(Spot.grid_1610),
     )
     rv.register(
         Via.bidir,
-        Workings(label="First hall", produce=(Bowl, )).set_state(Spot.grid_0214),
-        Workings(label="South pit", produce=(Bowl, )).set_state(Spot.grid_0211),
-        Pit(label="Quarry", produce=(Bowl, )).set_state(Spot.grid_0714),
+        Workings(label="First hall", produce=(Bowl, )).set_state(Spot.grid_0211),
+        Workings(label="South pit", produce=(Bowl, )).set_state(Spot.grid_0209),
+        Pit(label="Quarry", produce=(Bowl, )).set_state(Spot.grid_0313),
     )
     rv.register(
         Via.bidir,
@@ -272,18 +273,19 @@ def associations():
     )
     rv.register(
         Via.bidir,
-        next(iter(rv.search(label="Quarry"))),
+        next(iter(rv.search(label="Quarry path"))),
         next(iter(rv.search(label="Shelf"))),
     )
     rv.register(
         Via.bidir,
         Heath(label="Sheep track").set_state(Spot.grid_1017),
-        Heath(label="Cairn").set_state(Spot.grid_1115),
+        Heath(label="Cairn").set_state(Spot.grid_1416),
     )
     rv.register(
         Via.bidir,
         next(iter(rv.search(label="Cairn"))),
         next(iter(rv.search(label="Ridge"))),
+        Woodland(label="Glade").set_state(Spot.grid_1717),
     )
     rv.register(
         Via.forwd,
@@ -292,14 +294,9 @@ def associations():
     )
     rv.register(
         Via.bidir,
-        next(iter(rv.search(label="Cairn"))),
-        next(iter(rv.search(label="Copse"))),
-    )
-    rv.register(
-        Via.bidir,
         Court(label="Mithraeum").set_state(Spot.grid_1614),
         next(iter(rv.search(label="Gully"))),
-        Woodland(label="Pool").set_state(Spot.grid_1610),
+        Woodland(label="Pool").set_state(Spot.grid_1609),
         Sanctum(label="First chamber").set_state(Spot.grid_2114),
     )
     rv.register(
@@ -328,7 +325,7 @@ def associations():
     rv.register(
         Via.bidir,
         Heath(label="Marsh").set_state(Spot.grid_2117),
-        Woodland(label="Glade").set_state(Spot.grid_1717),
+        next(iter(rv.search(label="Glade"))),
     )
     rv.register(
         Via.forwd,
