@@ -204,9 +204,9 @@ def associations():
         Via.bidir,
         Woodland(label="Rookery").set_state(Spot.grid_0913),
         Forest(label="Shady lane").set_state(Spot.grid_0909),
-        Forest(label="Copse").set_state(Spot.grid_0813),
+        Forest(label="Copse").set_state(Spot.grid_0713),
         Forest(label="Woody tangle").set_state(Spot.grid_0816),
-        Forest(label="Brambly dell").set_state(Spot.grid_1116),
+        Forest(label="Brambly dell").set_state(Spot.grid_1409),
         Forest(label="Oak shrine").set_state(Spot.grid_1416),
         Forest(label="Prickly thicket").set_state(Spot.grid_1413),
     )
