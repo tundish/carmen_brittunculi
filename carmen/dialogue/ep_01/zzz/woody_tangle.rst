@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_0706
+   :states: carmen.logic.Spot.grid_0816
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_0706
+   :states: carmen.logic.Spot.grid_0816
 
 Woody tangle
 ~~~~~~~~~~~~
