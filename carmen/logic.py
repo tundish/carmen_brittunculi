@@ -295,9 +295,10 @@ def associations():
     rv.register(
         Via.bidir,
         Court(label="Mithraeum").set_state(Spot.grid_1614),
-        next(iter(rv.search(label="Gully"))),
         Woodland(label="Pool").set_state(Spot.grid_1609),
         Sanctum(label="First chamber").set_state(Spot.grid_2114),
+        next(iter(rv.search(label="Gully"))),
+        next(iter(rv.search(label="Glade"))),
     )
     rv.register(
         Via.bidir,
@@ -326,16 +327,6 @@ def associations():
         Via.bidir,
         Heath(label="Marsh").set_state(Spot.grid_2117),
         next(iter(rv.search(label="Glade"))),
-    )
-    rv.register(
-        Via.forwd,
-        next(iter(rv.search(label="Mithraeum"))),
-        next(iter(rv.search(label="Glade"))),
-    )
-    rv.register(
-        Via.forwd,
-        next(iter(rv.search(label="Glade"))),
-        next(iter(rv.search(label="Copse"))),
     )
     rv.register(
         None,

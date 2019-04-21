@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1411
+   :states: carmen.logic.Spot.grid_1610
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1411
+   :states: carmen.logic.Spot.grid_1610
 
 Gully
 ~~~~~

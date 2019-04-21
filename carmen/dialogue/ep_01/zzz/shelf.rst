@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_0911
+   :states: carmen.logic.Spot.grid_0910
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_0911
+   :states: carmen.logic.Spot.grid_0910
 
 Shelf
 ~~~~~
