@@ -220,6 +220,12 @@ def associations():
 
     rv.register(
         Via.bidir,
+        next(iter(rv.search(label="Oak shrine"))),
+        next(iter(rv.search(label="Prickly thicket"))),
+    )
+
+    rv.register(
+        Via.bidir,
         next(iter(rv.search(label="Brambly dell"))),
         next(iter(rv.search(label="Shady lane"))),
         next(iter(rv.search(label="Copse"))),
