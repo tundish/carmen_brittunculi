@@ -12,17 +12,22 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1113
+   :states: carmen.logic.Spot.grid_0913
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1113
+   :states: carmen.logic.Spot.grid_0913
 
 Rookery
 ~~~~~~~
 
 Looking around
 --------------
+
+.. fx:: carmen.static.audio  VOC_190402-0017-double_death.mp3
+   :offset: 0
+   :duration: 37355
+   :loop: 1
 
 [LOCATION]_
 

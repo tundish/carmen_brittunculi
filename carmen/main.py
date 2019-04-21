@@ -24,6 +24,7 @@ from collections import namedtuple
 from datetime import datetime
 import functools
 import logging
+import operator
 import signal
 import socket
 import sys
@@ -200,7 +201,7 @@ async def here(request):
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/main.tpl").decode("utf8"),
             here=locn,
-            moves=sorted(moves),
+            moves=sorted(moves, key=operator.itemgetter(0)),
             session=session,
             player=player,
             entities=entities,

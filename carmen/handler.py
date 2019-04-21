@@ -102,12 +102,12 @@ class Handler:
             yield element
 
     @staticmethod
-    def refresh(frame):
+    def refresh(frame, min_val=16):
         try:
-            span = max(
-                (i.offset + i.duration for i in frame if i.duration)
+            return max(
+                [min_val] +
+                [i.offset + i.duration for i in frame if i.duration]
             )
-            return max([span, 16])
         except ValueError:
             return None
 

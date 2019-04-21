@@ -202,7 +202,7 @@ def associations():
 
     rv.register(
         Via.bidir,
-        Woodland(label="Rookery").set_state(Spot.grid_1113),
+        Woodland(label="Rookery").set_state(Spot.grid_0913),
         Forest(label="Shady lane").set_state(Spot.grid_0909),
         Forest(label="Copse").set_state(Spot.grid_0813),
         Forest(label="Woody tangle").set_state(Spot.grid_0816),

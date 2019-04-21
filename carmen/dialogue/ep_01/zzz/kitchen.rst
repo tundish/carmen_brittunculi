@@ -31,6 +31,6 @@ Looking around
 
 [LOCATION]_
 
-    I know the Kitchen well, but it is rarely empty.
+    Not often the Kitchen is empty.
 
-    Whenever I tinker with the pots, there is soon someone come to tell me stop.
+    As soon as I tinker with the pots, there'll be someone come to tell me stop.

@@ -233,11 +233,11 @@ class HandlerTests(unittest.TestCase):
         self.assertEqual(1.3, rv[0][0].duration)
         self.assertEqual(1.3, rv[0][1].offset)
         self.assertEqual(1.6, rv[0][1].duration)
-        self.assertAlmostEqual(2.9, Handler.refresh(rv[0]))
+        self.assertAlmostEqual(2.9, Handler.refresh(rv[0], min_val=0))
 
         self.assertIsInstance(rv[1][0].dialogue, Model.Line)
         self.assertEqual(0, rv[1][0].offset)
         self.assertEqual(1.3, rv[1][0].duration)
         self.assertEqual(1.3, rv[1][1].offset)
         self.assertEqual(1.0, rv[1][1].duration)
-        self.assertAlmostEqual(2.3, Handler.refresh(rv[1]))
+        self.assertAlmostEqual(2.3, Handler.refresh(rv[1], min_val=0))

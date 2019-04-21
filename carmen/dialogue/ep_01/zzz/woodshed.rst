@@ -36,7 +36,11 @@ Looking around
 
 [LOCATION]_
 
-    In a familiar, high roofed place. There are stacks of bundled wood.
+    A familiar place. My own place.
+
+[LOCATION]_
+
+    It is alive with creaking.
 
 Time to leave
 -------------
@@ -50,7 +54,7 @@ Time to leave
 
 [LOCATION]_
 
-    In a familiar, high roofed place. There are stacks of bundled wood.
+    Inside are stacks of bundled wood.
 
     Outside there is the sound of activity.
 
@@ -66,7 +70,15 @@ What's the hurry?
 
 [LOCATION]_
 
-    In a familiar, high roofed place. It smells of damp wood.
+    There is wood in the air.
+
+[LOCATION]_
+
+    Two notes chime together.
+
+[LOCATION]_
+
+    One damp and of the earth. The other, dusty and dry.
 
 [NARRATOR]_
 

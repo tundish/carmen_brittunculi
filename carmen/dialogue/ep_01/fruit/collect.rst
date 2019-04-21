@@ -20,7 +20,7 @@
    :types: carmen.logic.Location
    :states: carmen.types.Visibility.detail
 
-.. entity:: DESTINATION
+.. entity:: TARGET
    :types: carmen.logic.Location
    :states: carmen.types.Visibility.indicated
 
@@ -42,14 +42,11 @@ Something to do
     Have a look around the |PLACE|.
     You might find a |OBJECT|.
 
-.. .. condition:: NPC.disposition carmen.types.Disposition.generous
-
 [NPC]_
 
-    Come back to the |HERE| when you've got one.
+    Come back to the Kitchen when you've got one.
 
 .. property:: OBJECTIVE.state carmen.types.Visibility.visible
 
 .. |OBJECT| property:: OBJECTIVE.__class__.__name__
-.. |PLACE| property:: DESTINATION.label
-.. |HERE| property:: LOCATION.label
+.. |PLACE| property:: TARGET.label
