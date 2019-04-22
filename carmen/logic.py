@@ -169,16 +169,20 @@ def associations():
         Settlement(label="Clearing", produce=(CubbyFruit, )).set_state(Spot.grid_1104),
         Woodland(label="Grove of Hades", produce=(Bowl, CubbyFruit)).set_state(Spot.grid_0804),
         Woodland(label="Stream", produce=(CubbyFruit, )).set_state(Spot.grid_0906),
-        Dwelling(label="Common house").set_state(Spot.grid_1306),
+        Dwelling(label="Woodshed").set_state(Spot.grid_1205),
         next(iter(rv.search(label="South gate"))),
     )
 
     rv.register(
         Via.bidir,
-        next(iter(rv.search(label="Common house"))),
+        Dwelling(label="Common house").set_state(Spot.grid_1208),
         Settlement(label="North gate", produce=(CubbyFruit, )).set_state(Spot.grid_1109),
-        Dwelling(label="Kitchen").set_state(Spot.grid_1308),
-        Dwelling(label="Woodshed").set_state(Spot.grid_1407),
+        Dwelling(label="Kitchen").set_state(Spot.grid_1206),
+    )
+    rv.register(
+        Via.bidir,
+        next(iter(rv.search(label="Kitchen"))),
+        next(iter(rv.search(label="Woodshed"))),
     )
     rv.register(
         Via.bidir,
@@ -446,5 +450,5 @@ episodes = [
 first, *rest = episodes
 
 rehearsal = list(associations().ensemble()) + [
-    Player(name="Player").set_state(Spot.grid_1407).set_state(Time.eve_predawn)
+    Player(name="Player").set_state(Spot.grid_1205).set_state(Time.eve_predawn)
 ]

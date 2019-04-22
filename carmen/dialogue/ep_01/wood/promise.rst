@@ -12,12 +12,12 @@
 
 .. entity:: LOCATION
    :types: carmen.types.Location
-   :states: carmen.types.Spot.grid_1308
-            carmen.types.Spot.grid_1308
+   :states: carmen.types.Spot.grid_1208
+            carmen.types.Spot.grid_1208
 
 .. entity:: PLAYER
    :types: carmen.types.Player
-   :states: carmen.types.Spot.grid_1308
+   :states: carmen.types.Spot.grid_1208
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator

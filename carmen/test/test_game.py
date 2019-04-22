@@ -36,7 +36,7 @@ class Episode01Tests(unittest.TestCase):
     def setUpClass(cls):
         cls.asscns = associations()
         cls.ensemble = list(cls.asscns.ensemble()) + [
-            Player(name="Player").set_state(Spot.grid_1407).set_state(Time.eve_predawn)
+            Player(name="Player").set_state(Spot.grid_1205).set_state(Time.eve_predawn)
         ]
         cls.dialogue = copy.deepcopy(episodes)
         cls.characters = {

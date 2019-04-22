@@ -12,7 +12,7 @@
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1308
+   :states: carmen.logic.Spot.grid_1208
             carmen.logic.Time.eve
 
 .. entity:: CADI

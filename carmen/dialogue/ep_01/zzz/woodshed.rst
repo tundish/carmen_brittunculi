@@ -12,14 +12,14 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1407
+   :states: carmen.logic.Spot.grid_1205
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1407
+   :states: carmen.logic.Spot.grid_1205
 
 Woodshed
 ~~~~~~~~

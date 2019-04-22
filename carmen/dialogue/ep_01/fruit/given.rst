@@ -12,14 +12,14 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
-   :states: carmen.types.Spot.grid_1308
+   :states: carmen.types.Spot.grid_1206
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
 
 .. entity:: CADI
    :types: carmen.types.Innkeeper
-   :states: carmen.types.Spot.grid_1308
+   :states: carmen.types.Spot.grid_1206
 
 .. entity:: OBJECTIVE
    :types: carmen.types.Collectable
@@ -43,7 +43,7 @@ Handing it over
 
     Yet I need more.
 
-.. property:: OBJECTIVE.state carmen.types.Spot.grid_1308
+.. property:: OBJECTIVE.state carmen.types.Spot.grid_1206
 .. property:: OBJECTIVE.state carmen.types.Visibility.hidden
 
 .. |OBJECT| property:: OBJECTIVE.__class__.__name__

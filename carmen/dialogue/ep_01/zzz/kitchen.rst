@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1308
+   :states: carmen.logic.Spot.grid_1206
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1308
+   :states: carmen.logic.Spot.grid_1206
 
 Kitchen
 ~~~~~~~

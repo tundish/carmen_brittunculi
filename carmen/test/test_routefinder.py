@@ -19,6 +19,7 @@
 import itertools
 import unittest
 
+from carmen.agents import Angel
 import carmen.logic
 from carmen.types import Location
 
@@ -26,11 +27,23 @@ class RoutefinderTests(unittest.TestCase):
 
     def setUp(self):
         self.associations = carmen.logic.associations()
+        self.locns = [i for i in self.associations.ensemble() if isinstance(i, Location)]
 
+    @unittest.skip("Need more work on map.")
     def test_navigation(self):
-        locns = [i for i in self.associations.ensemble() if isinstance(i, Location)]
-        for locn, dest in itertools.permutations(locns, r=2):
+        success = {}
+        fail = {}
+        for locn, dest in itertools.permutations(self.locns, r=2):
             if dest.label != "Green lane":
                 with self.subTest(locn=locn, dest=dest):
-                    route = self.associations.route(locn, dest, maxlen=3*len(locns))
+                    route = self.associations.route(locn, dest, maxlen=len(self.locns))
+                    self.assertTrue(route, fail.setdefault((locn, dest), route))
+                    success[(locn, dest)] = route
+
+    def test_routine_routes(self):
+        angels = [i for i in carmen.logic.routines(self.associations) if isinstance(i, Angel)]
+        for angel in angels:
+            for locn, dest in itertools.permutations(angel.options, r=2):
+                with self.subTest(angel=angel, locn=locn, dest=dest):
+                    route = self.associations.route(locn, dest, maxlen=len(self.locns))
                     self.assertTrue(route, route)

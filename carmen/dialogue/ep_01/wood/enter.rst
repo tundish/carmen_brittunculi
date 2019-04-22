@@ -12,11 +12,11 @@
 
 .. entity:: LOCATION
    :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1407
+   :states: carmen.logic.Spot.grid_1205
 
 .. entity:: PLAYER
    :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1407
+   :states: carmen.logic.Spot.grid_1205
             carmen.logic.Time.eve_predawn
 
 .. entity:: NARRATOR
