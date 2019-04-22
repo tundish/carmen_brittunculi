@@ -48,5 +48,13 @@ Something to do
 
 .. property:: OBJECTIVE.state carmen.types.Visibility.visible
 
+.. condition:: PLAYER.state carmen.types.Time.eve
+
+[NPC]_
+
+    Be careful in the dark, |PLAYER| !
+
+
 .. |OBJECT| property:: OBJECTIVE.__class__.__name__
 .. |PLACE| property:: TARGET.label
+.. |PLAYER| property:: PLAYER.name.firstname

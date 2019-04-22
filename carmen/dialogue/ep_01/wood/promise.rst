@@ -40,14 +40,14 @@ A question
 
 [CADI]_
 
-    It took well. There was no plume.
+    It took well. There was no smoke.
 
 A correction
 ------------
 
 [BRYN]_
 
-    Care not for smoke after dark. Save that dry wood for the day.
+    No need to worry about smoke after dark. Save that dry wood for the day.
 
 [CADI]_
 
@@ -55,7 +55,7 @@ A correction
 
 [BRYN]_
 
-    Why then?
+    Why not?
 
 [CADI]_
 
@@ -67,27 +67,27 @@ A correction
 
     His nose is flat across his face.
 
-    He cannot smell a fallen mule roasting in a quarry pit of Larch trees.
+    He couldn't smell a rotten mule roasting in a pig-pen of Larch trees.
 
 [CADI]_
 
     But one of them would smell it.
 
-    I only burn the wet Larch in the eve without breeze.
+    I only burn the wet Larch in the nights without a breeze.
 
 A nudge
 -------
 
 [BRYN]_
 
-    Good so. |PLAYER| knows well the Wood.
+    Good progress. |PLAYER| knows something of the Wood.
 
 [CADI]_
 
-    Then next I teach the Ale?
+    Then next I'll teach the Ale.
 
 [BRYN]_
 
-    Yes, |PLAYER| must learn the Ale. But Wood for now.
+    Yes, |PLAYER| must learn the Ale. But Wood for now. There's more yet.
 
 .. |PLAYER| property:: PLAYER.name.firstname

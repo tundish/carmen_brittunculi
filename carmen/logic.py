@@ -300,7 +300,7 @@ def associations():
         Woodland(label="Glade").set_state(Spot.grid_1717),
     )
     rv.register(
-        Via.forwd,
+        Via.bidir,
         next(iter(rv.search(label="Sheep track"))),
         next(iter(rv.search(label="Scramble"))),
     )

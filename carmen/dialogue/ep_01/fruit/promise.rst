@@ -28,12 +28,12 @@ Good news
 
 [CADI]_
 
-    I have told to Bryn how well you know the Wood.
+    I keep telling Bryn how well you know the Wood.
 
 [NARRATOR]_
 
-    She has split the apples. Around the grate are the stones, roasting.
-    The rest is in the bronze.
+    She splits the apples. Around the grate are the stones, roasting.
+    The bronze pot bubbles with the apple stew.
 
     She takes a board and stamps the mash.
 
@@ -43,11 +43,11 @@ Good news
 
 [NARRATOR]_
 
-    She grins. She is going to tell me her secret.
+    She grins at me. She is going to tell me her secret.
 
 [CADI]_
 
-    It is the skin which makes the Ale brew.
+    It is the skin that makes the Ale brew.
     I put the peelings in with the grain. And water from the stream.
 
 [NARRATOR]_
@@ -56,6 +56,6 @@ Good news
 
 [CADI]_
 
-    Soon we'll make Ale together!
+    Soon we'll be making Ale together, you and me!
 
 .. |PLAYER| property:: PLAYER.name.firstname

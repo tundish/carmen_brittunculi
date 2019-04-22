@@ -30,19 +30,19 @@ Waking
 
 [NARRATOR]_
 
-    The creaking does not wake me.
+    The creaking never wakes me.
 
-    When the door slaps shut, then I wake.
+    It's when the door slaps shut, I wake.
 
-    In my sleep I heard a creaking. And the
-    knocking of the blocks as they drop in a basket.
+    In my sleep I dream the creaking. And the
+    knocking of blocks as they drop in a basket.
 
 [NARRATOR]_
 
-    Which logs did she take today?
+    Which logs has she taken today?
 
     From the top of the pile along from the door.
 
-    That is my dry wood.
+    That is the dry wood.
 
 .. property:: NARRATOR.state 100

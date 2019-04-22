@@ -41,7 +41,15 @@ Handing it over
 
     Thank you, |PLAYER|.
 
-    Yet I need more.
+    We're always short of |OBJECTS| s.
+
+[NARRATOR]_
+
+    She gets back to her work, humming to herself.
+
+[CADI]_
+
+    Find some more for me if you can, please.
 
 .. property:: OBJECTIVE.state carmen.types.Spot.grid_1206
 .. property:: OBJECTIVE.state carmen.types.Visibility.hidden
