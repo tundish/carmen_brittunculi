@@ -61,6 +61,7 @@ class Routefinder(Associations):
             key=operator.itemgetter(0)
         )
 
+        print(*options, sep="\n")
         while options:
             deviation, hop = options.pop(0)
             visited.add(hop)

@@ -39,8 +39,6 @@ class TestRules(unittest.TestCase):
                 self.assertEqual(n, i.value)
                 self.assertEqual((n + 1) % len(Time), Time.advance(i).value)
 
-    def test_rules(self):
-        self.assertEqual(10, len(Rules.zone), "Map TBD")
 
 class TestDialogue(unittest.TestCase):
 

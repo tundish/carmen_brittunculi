@@ -32,5 +32,5 @@ class RoutefinderTests(unittest.TestCase):
         for locn, dest in itertools.permutations(locns, r=2):
             if dest.label != "Green lane":
                 with self.subTest(locn=locn, dest=dest):
-                    route = self.associations.route(locn, dest, len(locns))
+                    route = self.associations.route(locn, dest, maxlen=3*len(locns))
                     self.assertTrue(route, route)

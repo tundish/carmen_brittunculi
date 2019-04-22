@@ -63,13 +63,6 @@ ides_of_march = datetime.date(396, 3, 1)
 
 class Rules(Orders):
 
-    zone = [
-        i for i in Spot
-        if i.value and
-        8 <= i.value.real <= 15 and
-        0 <= i.value.imag <= 9
-    ]
-
     def __init__(self, **kwargs):
         super().__init__()
         self.kwargs = kwargs
@@ -176,11 +169,17 @@ def associations():
         Settlement(label="Clearing", produce=(CubbyFruit, )).set_state(Spot.grid_1104),
         Woodland(label="Grove of Hades", produce=(Bowl, CubbyFruit)).set_state(Spot.grid_0804),
         Woodland(label="Stream", produce=(CubbyFruit, )).set_state(Spot.grid_0906),
-        Settlement(label="North gate", produce=(CubbyFruit, )).set_state(Spot.grid_1109),
         Dwelling(label="Common house").set_state(Spot.grid_1306),
         next(iter(rv.search(label="South gate"))),
     )
 
+    rv.register(
+        Via.bidir,
+        next(iter(rv.search(label="Common house"))),
+        Settlement(label="North gate", produce=(CubbyFruit, )).set_state(Spot.grid_1109),
+        Dwelling(label="Kitchen").set_state(Spot.grid_1308),
+        Dwelling(label="Woodshed").set_state(Spot.grid_1407),
+    )
     rv.register(
         Via.bidir,
         Settlement(label="Footbridge", produce=(CubbyFruit, )).set_state(Spot.grid_0908),
@@ -190,32 +189,30 @@ def associations():
 
     rv.register(
         Via.bidir,
-        Dwelling(label="Kitchen").set_state(Spot.grid_1308),
-        next(iter(rv.search(label="Common house"))),
-        Dwelling(label="Woodshed").set_state(Spot.grid_1407),
-    )
-    rv.register(
-        Via.bidir,
         next(iter(rv.search(label="Grove of Hades"))),
         Heath(label="Quarry path", produce=(Bowl, )).set_state(Spot.grid_0610),
     )
 
     rv.register(
-        Via.bidir,
+        Via.bckwd,
         Woodland(label="Rookery").set_state(Spot.grid_0913),
-        Forest(label="Shady lane").set_state(Spot.grid_1111),
         Forest(label="Brambly dell").set_state(Spot.grid_0911),
-        Forest(label="Copse").set_state(Spot.grid_0713),
+        Forest(label="Copse").set_state(Spot.grid_0613),
         Forest(label="Woody tangle").set_state(Spot.grid_0816),
         Forest(label="Oak shrine").set_state(Spot.grid_1116),
         Forest(label="Prickly thicket").set_state(Spot.grid_1113),
     )
 
     rv.register(
+        Via.forwd,
+        next(iter(rv.search(label="Rookery"))),
+        Forest(label="Shady lane").set_state(Spot.grid_1111),
+    )
+
+    rv.register(
         Via.bidir,
         next(iter(rv.search(label="Woody tangle"))),
         next(iter(rv.search(label="Oak shrine"))),
-        next(iter(rv.search(label="Copse"))),
     )
 
     rv.register(
@@ -286,6 +283,11 @@ def associations():
         Via.bidir,
         Heath(label="Sheep track").set_state(Spot.grid_1017),
         Heath(label="Cairn").set_state(Spot.grid_1416),
+    )
+    rv.register(
+        Via.forwd,
+        next(iter(rv.search(label="Oak shrine"))),
+        next(iter(rv.search(label="Cairn"))),
     )
     rv.register(
         Via.bidir,
