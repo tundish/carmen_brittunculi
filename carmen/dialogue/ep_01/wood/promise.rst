@@ -63,17 +63,17 @@ A correction
 
 [BRYN]_
 
-    Hah! Brock cannot smell any Larchwood.
+    Hah! Harac cannot smell any Larchwood.
 
     His nose is flat across his face.
 
-    He couldn't smell a rotten mule roasting in a pig-pen of Larch trees.
+    He couldn't smell a rotten mule roasting in a pig-pen of Larch trees!
 
 [CADI]_
 
     But one of them would smell it.
 
-    I only burn the wet Larch in the nights without a breeze.
+    So I only burn the wet Larch in the nights without a breeze.
 
 A nudge
 -------

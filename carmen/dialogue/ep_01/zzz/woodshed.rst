@@ -38,10 +38,6 @@ Looking around
 
     A familiar place. My own place.
 
-[LOCATION]_
-
-    It is alive with creaking.
-
 Time to leave
 -------------
 
@@ -53,8 +49,6 @@ Time to leave
    :loop: 1
 
 [LOCATION]_
-
-    Inside are stacks of bundled wood.
 
     Outside there is the sound of activity.
 
@@ -82,4 +76,4 @@ What's the hurry?
 
 [NARRATOR]_
 
-    It is not yet light. I doze again.
+    It is not yet light. I am dozing again.

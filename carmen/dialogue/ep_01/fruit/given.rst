@@ -41,7 +41,7 @@ Handing it over
 
     Thank you, |PLAYER|.
 
-    We're always short of |OBJECTS| s.
+    We're always short of |OBJECT| s.
 
 [NARRATOR]_
 
