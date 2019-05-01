@@ -24,7 +24,7 @@ Common house
 Atmosphere
 ----------
 
-.. condition:: PLAYER.state carmen.types.Wants.needs_sleep
+.. condition:: PLAYER.state carmen.types.Time.day_dusk
 
 .. fx:: carmen.static.audio  VOC_190403-0017-bluegrass.mp3
    :offset: 0

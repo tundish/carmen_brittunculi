@@ -24,43 +24,40 @@
 Woodshed
 ~~~~~~~~
 
-Looking around
---------------
-
-.. condition:: PLAYER.state carmen.types.Wants.nothing
+Theme
+-----
 
 .. fx:: carmen.static.audio demo_theme-slide_lead.mp3
    :offset: 0
-   :duration: 26000
+   :duration: 26854
    :loop: 1
+
+[LOCATION]_
+
+    I'm standing in a shed.
+
+Morning
+-------
+
+.. condition:: PLAYER.state carmen.types.Time.day_morning
 
 [LOCATION]_
 
     A familiar place. My own place.
 
-Time to leave
--------------
+Dinner
+------
 
-.. condition:: PLAYER.state carmen.types.Wants.needs_food
-
-.. fx:: carmen.static.audio demo_theme-slide_lead.mp3
-   :offset: 0
-   :duration: 26000
-   :loop: 1
+.. condition:: PLAYER.state carmen.types.Time.day_dinner
 
 [LOCATION]_
 
     Outside there is the sound of activity.
 
-What's the hurry?
------------------
+Night
+-----
 
-.. condition:: PLAYER.state carmen.types.Wants.needs_sleep
-
-.. fx:: carmen.static.audio demo_theme-slide_lead.mp3
-   :offset: 0
-   :duration: 26000
-   :loop: 1
+.. condition:: PLAYER.state carmen.types.Time.eve_night
 
 [LOCATION]_
 

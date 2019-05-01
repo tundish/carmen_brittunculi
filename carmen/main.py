@@ -48,7 +48,6 @@ from carmen.types import Player
 from carmen.types import Spot
 from carmen.types import Time
 from carmen.types import Visibility
-from carmen.types import Wants
 
 
 class Game:
@@ -66,7 +65,7 @@ class Game:
         finder = carmen.logic.associations()
         start = next(iter(finder.search(label="Woodshed")))
         player = Player(name=name).set_state(start.get_state(Spot))
-        player.set_state(Time.eve_predawn).set_state(Wants.nothing)
+        player.set_state(Time.eve_predawn)
         finder.register(None, player)
         uid = uuid.uuid4()
         rv = Game.Session(

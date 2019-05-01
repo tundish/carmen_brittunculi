@@ -54,7 +54,6 @@ from carmen.types import Spot
 from carmen.types import Time
 from carmen.types import Via
 from carmen.types import Visibility
-from carmen.types import Wants
 from carmen.types import Woodland
 from carmen.types import Workings
 from carmen.types import Woodsman
@@ -94,14 +93,6 @@ class Rules(Orders):
         session, player, log, **kwargs
     ) -> dict:
         player.set_state(Time.advance(player.get_state(Time)))
-
-        if player.get_state(Time) == Time.day_dinner:
-            player.set_state(Wants.needs_food)
-        elif player.get_state(Time) == Time.eve_midnight:
-            player.set_state(Wants.needs_sleep)
-        elif player.get_state(Time) == Time.day_sunrise:
-            player.set_state(Wants.nothing)
-
         return folder.metadata
 
     @Orders.register()

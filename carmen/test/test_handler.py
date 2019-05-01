@@ -26,7 +26,7 @@ from turberfield.dialogue.performer import Performer
 from carmen.handler import Handler
 from carmen.types import Narrator
 from carmen.types import Player
-from carmen.types import Wants
+from carmen.types import Time
 
 class HandlerTests(unittest.TestCase):
 
@@ -181,18 +181,17 @@ class HandlerTests(unittest.TestCase):
 
         .. entity:: PLAYER
            :types: carmen.logic.Player
-           :states: carmen.types.Wants.needs
 
         .. entity:: NARRATOR
            :types: carmen.logic.Narrator
 
-        Wants
+        Feels
         ~~~~~
 
         Hungry
         ------
 
-        .. condition:: PLAYER.state carmen.types.Wants.needs_food
+        .. condition:: PLAYER.state carmen.types.Time.day_lunch
 
         [NARRATOR]_
 
@@ -205,7 +204,7 @@ class HandlerTests(unittest.TestCase):
         Tired
         -----
 
-        .. condition:: PLAYER.state carmen.types.Wants.needs_sleep
+        .. condition:: PLAYER.state carmen.types.Time.eve
 
         [NARRATOR]_
 
@@ -218,7 +217,7 @@ class HandlerTests(unittest.TestCase):
 
             """)
         script = SceneScript("inline", doc=SceneScript.read(content))
-        ensemble = [Player(name="test").set_state(Wants.needs_food), Narrator()]
+        ensemble = [Player(name="test").set_state(Time.day_lunch), Narrator()]
         script.cast(script.select(ensemble))
         scene = list(HandlerTests.dialogue(script.run()))
         conditions = [i for i in scene if isinstance(i, Model.Condition)]
@@ -241,3 +240,12 @@ class HandlerTests(unittest.TestCase):
         self.assertEqual(1.3, rv[1][1].offset)
         self.assertEqual(1.0, rv[1][1].duration)
         self.assertAlmostEqual(2.3, Handler.refresh(rv[1], min_val=0))
+
+        # A reminder that conditions require exact matches, unlike the
+        # prefix-based casting by state
+        ensemble[0].set_state(Time.eve_midnight)
+        scene = list(HandlerTests.dialogue(script.run()))
+        conditions = [i for i in scene if isinstance(i, Model.Condition)]
+        self.assertEqual(2, len(conditions))
+        self.assertFalse(Performer.allows(conditions[0]))
+        self.assertFalse(Performer.allows(conditions[1]))
