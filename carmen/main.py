@@ -230,6 +230,7 @@ async def move(request):
         session.cache["visits"][destn] += 1
         locn.set_state(Visibility.visible)
         destn.set_state(Visibility.detail)
+        session.frames.clear()
         log.info("Player {0} moved to {1}".format(
             session.cache["player"], destn))
     except Exception as e:

@@ -102,7 +102,7 @@ class Handler:
             yield element
 
     @staticmethod
-    def refresh(frame, min_val=16):
+    def refresh(frame, min_val=8):
         try:
             return max(
                 [min_val] +

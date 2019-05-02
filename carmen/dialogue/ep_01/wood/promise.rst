@@ -13,7 +13,6 @@
 .. entity:: LOCATION
    :types: carmen.types.Location
    :states: carmen.types.Spot.grid_1208
-            carmen.types.Spot.grid_1208
 
 .. entity:: PLAYER
    :types: carmen.types.Player
@@ -22,8 +21,8 @@
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
 
-.. entity:: BRYN
-   :types: carmen.types.Character
+.. entity:: ANT
+   :types: carmen.types.Merchant
 
 .. entity:: CADI
    :types: carmen.types.Character
@@ -34,7 +33,7 @@ Bryn and Cadi talk Wood
 A question
 ----------
 
-[BRYN]_
+[ANT]_
 
     How was the wood today?
 
@@ -45,7 +44,7 @@ A question
 A correction
 ------------
 
-[BRYN]_
+[ANT]_
 
     No need to worry about smoke after dark. Save that dry wood for the day.
 
@@ -53,7 +52,7 @@ A correction
 
     The wind is in the East. I dare not use the younger wood.
 
-[BRYN]_
+[ANT]_
 
     Why not?
 
@@ -61,7 +60,7 @@ A correction
 
     It is of Larch. The smell would carry to him.
 
-[BRYN]_
+[ANT]_
 
     Hah! Harac cannot smell any Larchwood.
 
@@ -78,7 +77,7 @@ A correction
 A nudge
 -------
 
-[BRYN]_
+[ANT]_
 
     Good progress. |PLAYER| knows something of the Wood.
 
@@ -86,7 +85,7 @@ A nudge
 
     Then next I'll teach the Ale.
 
-[BRYN]_
+[ANT]_
 
     Yes, |PLAYER| must learn the Ale. But Wood for now. There's more yet.
 
