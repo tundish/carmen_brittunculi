@@ -11,15 +11,15 @@
 :version: |VERSION|
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1206
-            carmen.logic.Time.eve
+   :types: carmen.types.Player
+   :states: carmen.types.Spot.grid_1206
+            carmen.types.Time.eve
 
 .. entity:: NARRATOR
-   :types: carmen.logic.Narrator
+   :types: carmen.types.Narrator
 
 .. entity:: CADI
-   :types: carmen.logic.Character
+   :types: carmen.types.Innkeeper
    :states: carmen.types.Spot.grid_1206
 
 In the kitchen

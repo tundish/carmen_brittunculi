@@ -11,15 +11,15 @@
 :version: |VERSION|
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1206
-            carmen.logic.Time.day
+   :types: carmen.types.Player
+   :states: carmen.types.Spot.grid_1206
+            carmen.types.Time.day
 
 .. entity:: NARRATOR
-   :types: carmen.logic.Narrator
+   :types: carmen.types.Narrator
 
 .. entity:: CADI
-   :types: carmen.logic.Innkeeper
+   :types: carmen.types.Innkeeper
    :states: carmen.types.Spot.grid_1206
 
 Cadi talks of Cubby Apples
