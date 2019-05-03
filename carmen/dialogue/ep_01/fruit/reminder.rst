@@ -10,20 +10,17 @@
 :project: carmen
 :version: |VERSION|
 
-.. entity:: LOCATION
-   :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1206
-
 .. entity:: PLAYER
    :types: carmen.logic.Player
    :states: carmen.logic.Spot.grid_1206
-            carmen.logic.Time.eve_dawn
+            carmen.logic.Time.eve
 
 .. entity:: NARRATOR
    :types: carmen.logic.Narrator
 
 .. entity:: CADI
    :types: carmen.logic.Character
+   :states: carmen.types.Spot.grid_1206
 
 In the kitchen
 ~~~~~~~~~~~~~~

@@ -15,9 +15,9 @@
    :states: carmen.logic.Time.day_noon
             carmen.types.Spot.grid_1208
 
-.. entity:: NARRATOR
-   :types: carmen.types.Narrator
-   :states: 100
+.. entity:: CADI
+   :types: carmen.types.Innkeeper
+   :states: carmen.types.Spot.grid_1208
 
 Lore
 ~~~~
@@ -25,18 +25,16 @@ Lore
 What we know
 ------------
 
-[NARRATOR]_
+[CADI]_
 
     You must not eat a Cubby Apple. If it's on the tree you let it fall.
 
-[NARRATOR]_
+[CADI]_
 
     And having fallen, you let it sit.
 
     The small animals will not touch it. They know the flesh is bitter.
 
-[NARRATOR]_
+[CADI]_
 
     Chance a pig will snuffle it and crush it, but they mostly leave them be.
-
-.. property:: NARRATOR.state 101
