@@ -33,4 +33,4 @@ Looking around
 
     Not often the Kitchen is empty.
 
-    As soon as I tinker with the pots, someone will come and to tell me to stop.
+    As soon as I tinker with the pots, someone will come in and tell me to stop.

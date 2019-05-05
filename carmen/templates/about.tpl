@@ -8,7 +8,7 @@
 It wasn't really playable until a year later after more work during the
 <a href="https://itch.io/jam/world-mytholojam">2019 jam</a>.
 </p>
-<p class="speech">It's only currently the first part of a multi-episode piece, so
+<p class="speech">Currently only the first part exists of what will be a multi-episode piece, so
 it remains a work-in-progress.</p>
 <h2 class="persona" style="padding-top: 1em;">Technology</h2>
 <p class="speech">Carmen is a Free Software technical demo of a what I call a <em>Web Native game</em>.</p>
@@ -20,7 +20,7 @@ it remains a work-in-progress.</p>
 <h2 class="persona" style="padding-top: 1em;">Workflow</h2>
 <p class="speech">All code and styling was done by hand using only a <a href="https://www.vim.org/"> simple text editor</a>.</p>
 <p class="speech">There's no actual art at the moment; the scenery has been procedurally generated.</p>
-<p class="speech">The music is however, real. All audio was performed and recorded entirely using real
+<p class="speech">The music on the other hand, is real. All audio was performed and recorded entirely using real
 instruments and effects devices. The only time I used any software was to trim the cues to length.
 <a href="https://www.audacityteam.org/">Audacity</a> did the job there.</p>
 <h2 class="persona" style="padding-top: 1em;">Legals</h2>

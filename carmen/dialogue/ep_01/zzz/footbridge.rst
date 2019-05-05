@@ -35,7 +35,7 @@ Sunrise
 
 [LOCATION]_
 
-    This is the way to the gate which the mules cannot use.
+    This is the way to the gate which the mules know well.
 
 Early
 -----
@@ -53,7 +53,7 @@ Breakfast
 
 [LOCATION]_
 
-    This is the way to the gate which the mules cannot use.
+    This is the way to the gate which the mules know well.
 
 Morning
 -------
@@ -71,7 +71,7 @@ Noon
 
 [LOCATION]_
 
-    This is the way to the gate which the mules cannot use.
+    This is the way to the gate which the mules know well.
 
 Lunch
 -----
@@ -89,7 +89,7 @@ Afternoon
 
 [LOCATION]_
 
-    This is the way to the gate which the mules cannot use.
+    This is the way to the gate which the mules know well.
 
 Dinner
 ------
@@ -107,7 +107,7 @@ Dusk
 
 [LOCATION]_
 
-    This is the way to the gate which the mules cannot use.
+    This is the way to the gate which the mules know well.
 
 Eve
 ---
