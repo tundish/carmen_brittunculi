@@ -2,12 +2,28 @@
 <section class="grid-front">
 <h1>About this project</h1>
 <p class="speech">Carmen Brittunculi is an interactive adventure story.</p>
-<p class="speech">It's a Web Native game. It uses only Python, SVG, HTML5 and CSS3.</p>
-<p class="speech">I began it in 2018 for the
+<h2 class="persona" style="padding-top: 1em;">History</h2>
+<p class="speech">I started it in 2018 for the
 <a href="https://itch.io/jam/roman-mytholojam">Roman Mytholojam</a>.
-It wasn't really playable until a year later when I put more work into it during
-<a href="https://itch.io/jam/world-mytholojam">a 2019 jam</a>.
+It wasn't really playable until a year later after more work during the
+<a href="https://itch.io/jam/world-mytholojam">2019 jam</a>.
 </p>
+<p class="speech">It's only currently the first part of a multi-episode piece, so
+it remains a work-in-progress.</p>
+<h2 class="persona" style="padding-top: 1em;">Technology</h2>
+<p class="speech">Carmen is a Free Software technical demo of a what I call a <em>Web Native game</em>.</p>
+<p class="speech">It uses only Python, SVG, HTML5 and CSS3.</p>
+<p class="speech">It is structured and packaged to production standards.</p>
+<p class="speech">It has been designed for deployment on modern container-based Cloud platforms.</p>
+<p class="speech">You should also be able to run it locally on any recent Operating System.</p>
+<p class="speech">It has very modest hardware requirements.</p>
+<h2 class="persona" style="padding-top: 1em;">Workflow</h2>
+<p class="speech">All code and styling was done by hand using only a <a href="https://www.vim.org/"> simple text editor</a>.</p>
+<p class="speech">There's no actual art at the moment; the scenery has been procedurally generated.</p>
+<p class="speech">The music is however, real. All audio was performed and recorded entirely using real
+instruments and effects devices. The only time I used any software was to trim the cues to length.
+<a href="https://www.audacityteam.org/">Audacity</a> did the job there.</p>
+<h2 class="persona" style="padding-top: 1em;">Legals</h2>
 <dl class="mod-stats" style="color: white; display: block; font-size: 1em;">
 <dt>Author</dt>
 <dd>tundish</dd>

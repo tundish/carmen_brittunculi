@@ -13,7 +13,7 @@ ul.mod-dialogue li:last-of-type {
 animation-name: fadein;
 }
 
-header.persona {
+.persona {
 color: #99c383;
 color: var(--picnic-green);
 font-family: var(--font-family-sans-serif);
