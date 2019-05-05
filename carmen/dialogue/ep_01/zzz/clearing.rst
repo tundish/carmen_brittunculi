@@ -3,7 +3,7 @@
     Scene ~~
     Shot --
 
-.. |VERSION| property:: carmen.logic.version
+.. |VERSION| property:: carmen.types.version
 
 :author: D Haynes
 :date: 2018-04-11
@@ -11,12 +11,12 @@
 :version: |VERSION|
 
 .. entity:: LOCATION
-   :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1104
+   :types: carmen.types.Location
+   :states: carmen.types.Spot.grid_1104
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1104
+   :types: carmen.types.Player
+   :states: carmen.types.Spot.grid_1104
 
 Clearing
 ~~~~~~~~

@@ -3,7 +3,7 @@
     Scene ~~
     Shot --
 
-.. |VERSION| property:: carmen.logic.version
+.. |VERSION| property:: carmen.types.version
 
 :author: D Haynes
 :date: 2018-07-02
@@ -11,17 +11,17 @@
 :version: |VERSION|
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
+   :types: carmen.types.Player
 
 .. entity:: NPC
-   :types: carmen.logic.Character
+   :types: carmen.types.Character
 
 .. entity:: LOCATION
-   :types: carmen.logic.Location
+   :types: carmen.types.Location
    :states: carmen.types.Visibility.detail
 
 .. entity:: DESTINATION
-   :types: carmen.logic.Location
+   :types: carmen.types.Location
    :states: carmen.types.Visibility.indicated
 
 .. entity:: OBJECTIVE

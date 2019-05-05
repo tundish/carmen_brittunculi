@@ -3,7 +3,7 @@
     Scene ~~
     Shot --
 
-.. |VERSION| property:: carmen.logic.version
+.. |VERSION| property:: carmen.types.version
 
 :author: D Haynes
 :date: 2019-02-13
@@ -12,7 +12,7 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
-   :states: carmen.logic.Time.day_noon
+   :states: carmen.types.Time.day_noon
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator

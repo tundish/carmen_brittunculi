@@ -16,7 +16,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Carmen Brittunculi.  If not, see <http://www.gnu.org/licenses/>.
 
-from collections import deque
 import datetime
 from decimal import Decimal
 from fractions import Fraction
@@ -29,20 +28,17 @@ import pkg_resources
 
 from turberfield.dialogue.model import SceneScript
 
-from carmen import __version__ as version # noqa
 from carmen.agents import Clock
 from carmen.agents import Angel
 from carmen.orders import Orders
 from carmen.routefinder import Routefinder
 from carmen.types import Bowl
-from carmen.types import Character
 from carmen.types import Court
 from carmen.types import CubbyFruit
 from carmen.types import Dwelling
 from carmen.types import Forest
 from carmen.types import Heath
 from carmen.types import Innkeeper
-from carmen.types import Location
 from carmen.types import Merchant
 from carmen.types import Narrator
 from carmen.types import Pit

@@ -27,13 +27,11 @@ import pkg_resources
 
 from turberfield.dialogue.model import Model
 
-from carmen.types import Court
 from carmen.types import Dwelling
 from carmen.types import Forest
 from carmen.types import Heath
 from carmen.types import Pit
 from carmen.types import Sanctum
-from carmen.types import Settlement
 from carmen.types import Woodland
 from carmen.types import Workings
 

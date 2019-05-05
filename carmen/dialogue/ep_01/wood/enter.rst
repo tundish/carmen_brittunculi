@@ -3,7 +3,7 @@
     Scene ~~
     Shot --
 
-.. |VERSION| property:: carmen.logic.version
+.. |VERSION| property:: carmen.types.version
 
 :author: D Haynes
 :date: 2018-10-22
@@ -11,16 +11,16 @@
 :version: |VERSION|
 
 .. entity:: LOCATION
-   :types: carmen.logic.Location
-   :states: carmen.logic.Spot.grid_1205
+   :types: carmen.types.Location
+   :states: carmen.types.Spot.grid_1205
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1205
-            carmen.logic.Time.eve_predawn
+   :types: carmen.types.Player
+   :states: carmen.types.Spot.grid_1205
+            carmen.types.Time.eve_predawn
 
 .. entity:: NARRATOR
-   :types: carmen.logic.Narrator
+   :types: carmen.types.Narrator
 
 In the Woodshed
 ~~~~~~~~~~~~~~~

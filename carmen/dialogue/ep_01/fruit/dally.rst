@@ -3,7 +3,7 @@
     Scene ~~
     Shot --
 
-.. |VERSION| property:: carmen.logic.version
+.. |VERSION| property:: carmen.types.version
 
 :author: D Haynes
 :date: 2019-02-19
@@ -11,17 +11,17 @@
 :version: |VERSION|
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1206
+   :types: carmen.types.Player
+   :states: carmen.types.Spot.grid_1206
 
 .. entity:: CADI
-   :types: carmen.logic.Innkeeper
+   :types: carmen.types.Innkeeper
 
 .. entity:: NARRATOR
-   :types: carmen.logic.Narrator
+   :types: carmen.types.Narrator
 
 .. entity:: DESTINATION
-   :types: carmen.logic.Location
+   :types: carmen.types.Location
    :states: carmen.types.Visibility.indicated
 
 Prevarication

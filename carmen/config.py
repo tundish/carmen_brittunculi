@@ -45,7 +45,9 @@ class Config:
     def find_file(name):
         if not name:
             return (
-                pathlib.Path(pkg_resources.resource_filename("carmen", "data/demo.cfg")).resolve(),
+                pathlib.Path(
+                    pkg_resources.resource_filename("carmen", "data/demo.cfg")
+                ).resolve(),
                 pkg_resources.resource_string("carmen", "data/demo.cfg").decode("utf8")
             )
         else:

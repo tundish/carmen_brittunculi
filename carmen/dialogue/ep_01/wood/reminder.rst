@@ -3,7 +3,7 @@
     Scene ~~
     Shot --
 
-.. |VERSION| property:: carmen.logic.version
+.. |VERSION| property:: carmen.types.version
 
 :author: D Haynes
 :date: 2019-02-14
@@ -11,12 +11,12 @@
 :version: |VERSION|
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
-   :states: carmen.logic.Spot.grid_1208
-            carmen.logic.Time.eve
+   :types: carmen.types.Player
+   :states: carmen.types.Spot.grid_1208
+            carmen.types.Time.eve
 
 .. entity:: CADI
-   :types: carmen.logic.Character
+   :types: carmen.types.Character
 
 Reminder
 ~~~~~~~~

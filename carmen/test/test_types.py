@@ -22,7 +22,6 @@ import unittest
 from carmen.types import Compass
 from carmen.types import Spot
 from carmen.types import Time
-from turberfield.dialogue.types import Stateful
 from turberfield.utils.assembly import Assembly
 
 class TimeTests(unittest.TestCase):

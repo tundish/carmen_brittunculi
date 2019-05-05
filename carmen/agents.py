@@ -20,12 +20,10 @@ import asyncio
 from collections import deque
 from collections import namedtuple
 import logging
-import random
 
 from carmen.types import Compass
 from carmen.types import Location
 from carmen.types import Spot
-from carmen.types import Visibility
 
 
 class Clock:
@@ -122,15 +120,21 @@ class Angel:
 
                 else:
                     player = session.cache.get("player", self.actor)
-                    log.debug("{0.actor.name.firstname} {0.actor.name.surname} tracks {1.name.firstname}".format(self, player))
+                    log.debug(
+                        "{0.actor.name.firstname} {0.actor.name.surname} tracks {1.name.firstname}".format(
+                            self, player
+                        )
+                    )
                     location = self.visit(
                         session.finder,
                         self.locate(session.finder, player),
                         self.options
                     )
-                    log.info("{0.actor.name.firstname} {0.actor.name.surname} chooses {1.label}".format(
-                        self, location
-                    ))
+                    log.info(
+                        "{0.actor.name.firstname} {0.actor.name.surname} chooses {1.label}".format(
+                            self, location
+                        )
+                    )
                     self.actions.extend(self.moves(session.finder, self.actor, location))
 
                 await Clock.next_event()

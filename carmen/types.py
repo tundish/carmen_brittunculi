@@ -22,7 +22,6 @@ from collections import deque
 from collections import OrderedDict
 from decimal import Decimal
 import enum
-import string
 
 from turberfield.dialogue.types import DataObject
 from turberfield.dialogue.types import EnumFactory
@@ -30,6 +29,8 @@ from turberfield.dialogue.types import Persona
 from turberfield.dialogue.types import Player # noqa
 from turberfield.dialogue.types import Stateful
 from turberfield.utils.assembly import Assembly
+
+from carmen import __version__ as version # noqa
 
 class Stepper(enum.Enum):
 
@@ -155,5 +156,6 @@ class Workings(Interior): pass
 class Forest(Interior): pass
 class Heath(Exterior): pass
 class Woodland(Exterior): pass
+
 
 Assembly.register(Spot)

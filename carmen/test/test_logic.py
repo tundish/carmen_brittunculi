@@ -24,7 +24,6 @@ from carmen.agents import Angel
 from carmen.logic import routines
 from carmen.logic import associations
 from carmen.logic import episodes
-from carmen.logic import Rules
 from carmen.main import Game
 from carmen.types import Location
 from carmen.types import Narrator
@@ -58,7 +57,10 @@ class TestNavigation(unittest.TestCase):
         loop = asyncio.new_event_loop()
         try:
             session = Game.session("Stig", loop=loop)
-            self.assertEqual(41, len([i for i in session.finder.lookup if isinstance(i, Location)]))
+            self.assertEqual(
+                41,
+                len([i for i in session.finder.lookup if isinstance(i, Location)])
+            )
         finally:
             loop.close()
 

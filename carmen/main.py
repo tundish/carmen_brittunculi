@@ -176,12 +176,10 @@ async def post_start(request):
         raise web.HTTPUnauthorized(reason="User input invalid name.")
 
     session = Game.session(name)
-    log.info(session.workers)
     log.info("Player {0} created session {1.uid!s}".format(name, session))
     raise web.HTTPFound("/{0.uid.hex}".format(session))
 
 async def here(request):
-    log = logging.getLogger("carmen.main.here")
     uid = uuid.UUID(hex=request.match_info["session"])
 
     session = Game.sessions[uid]
@@ -196,6 +194,8 @@ async def here(request):
 
     n_items = len([i for i in session.finder.ensemble() if i.get_state(Spot) == Spot.pockets])
 
+    log = logging.getLogger("{0!s}.here".format(session.uid))
+    log.debug("Player {0._name!s} at location {1.label}".format(player, locn))
     return web.Response(
         text=bottle.template(
             pkg_resources.resource_string("carmen", "templates/main.tpl").decode("utf8"),

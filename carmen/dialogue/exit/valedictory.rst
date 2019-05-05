@@ -3,7 +3,7 @@
     Scene ~~
     Shot --
 
-.. |VERSION| property:: carmen.logic.version
+.. |VERSION| property:: carmen.types.version
 
 :author: D Haynes
 :date: 2018-07-02
@@ -11,7 +11,7 @@
 :version: |VERSION|
 
 .. entity:: PLAYER
-   :types: carmen.logic.Player
+   :types: carmen.types.Player
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
