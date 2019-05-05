@@ -304,11 +304,17 @@ def main(args):
     # TODO: Migrate to aiohttp v3 and use
     # https://docs.aiohttp.org/en/stable/web_advanced.html#background-tasks
     loop = asyncio.get_event_loop()
-    loop.add_signal_handler(signal.SIGINT, functools.partial(loop.call_soon, loop.stop))
-    loop.add_signal_handler(signal.SIGTERM, functools.partial(loop.call_soon, loop.stop))
-    loop.add_signal_handler(
-        signal.SIGHUP, functools.partial(loop.call_soon, Config.load, args.config)
-    )
+
+    try:
+        loop.add_signal_handler(signal.SIGINT, functools.partial(loop.call_soon, loop.stop))
+        loop.add_signal_handler(signal.SIGTERM, functools.partial(loop.call_soon, loop.stop))
+        loop.add_signal_handler(
+            signal.SIGHUP, functools.partial(loop.call_soon, Config.load, args.config)
+        )
+    except NotImplementedError:
+        # No signals available on Windows
+        pass
+
     asyncio.set_event_loop(loop)
 
     handler = app.make_handler()
