@@ -27,7 +27,7 @@ except ImportError:
 setup(
     name="carmen",
     version=version,
-    description="A dramatic screenplay",
+    description="A web-native adventure",
     author="D Haynes",
     author_email="tundish@gigeconomy.org.uk",
     url="https://github.com/tundish/carmen_brittunculi",
