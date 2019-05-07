@@ -12,10 +12,11 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
-   :states: carmen.types.Time.day_noon
+   :states: carmen.types.Spot.grid_1208
+            carmen.types.Time.eve_evening
 
-.. entity:: NARRATOR
-   :types: carmen.types.Narrator
+.. entity:: BRYN
+   :types: carmen.types.Woodsman
 
 Problem
 ~~~~~~~
@@ -23,7 +24,7 @@ Problem
 Inner voice
 -----------
 
-[NARRATOR]_
+[BRYN]_
 
     You cannot give the miners wood.
 
@@ -31,7 +32,7 @@ Inner voice
 
     Then Harac will send his people over the river to take us.
 
-[NARRATOR]_
+[BRYN]_
 
     The miners know of Harac. Some are of his family.
 
