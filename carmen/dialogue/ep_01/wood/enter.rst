@@ -45,4 +45,3 @@ Waking
 
     That is the dry wood.
 
-.. property:: NARRATOR.state 100

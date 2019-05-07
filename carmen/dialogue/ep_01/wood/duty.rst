@@ -16,7 +16,6 @@
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
-   :states: 103
 
 Duty
 ~~~~
@@ -36,4 +35,3 @@ Inner voice
 
     And he carts logs up to Cadi.
 
-.. property:: NARRATOR.state 104

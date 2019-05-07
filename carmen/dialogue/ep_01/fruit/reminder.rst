@@ -36,7 +36,7 @@ Waking
 
 [CADI]_
 
-    The sun is not up, but here is my sunshine!
+    The sun is not up, therefore you are my sunshine!
 
 [NARRATOR]_
 

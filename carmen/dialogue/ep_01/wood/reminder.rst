@@ -13,10 +13,10 @@
 .. entity:: PLAYER
    :types: carmen.types.Player
    :states: carmen.types.Spot.grid_1208
-            carmen.types.Time.eve
+            carmen.types.Time.day_breakfast
 
 .. entity:: CADI
-   :types: carmen.types.Character
+   :types: carmen.types.Innkeeper
 
 Reminder
 ~~~~~~~~

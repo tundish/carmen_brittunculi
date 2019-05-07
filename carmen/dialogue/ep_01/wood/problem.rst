@@ -16,7 +16,6 @@
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
-   :states: 104
 
 Problem
 ~~~~~~~
@@ -38,4 +37,3 @@ Inner voice
 
     None of them want to see him again.
 
-.. property:: NARRATOR.state 105

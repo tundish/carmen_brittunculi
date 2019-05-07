@@ -16,7 +16,6 @@
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
-   :states: 102
 
 Background
 ~~~~~~~~~~
@@ -33,4 +32,3 @@ Inner voice
 
     She has fire, and food.
 
-.. property:: NARRATOR.state 103

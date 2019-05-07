@@ -12,11 +12,11 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
-   :states: carmen.types.Time.day_noon
+   :states: carmen.types.Time.day_lunch
+            carmen.types.Spot.grid_1208
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
-   :states: 101
 
 Summary
 ~~~~~~~
@@ -26,14 +26,12 @@ What we know
 
 [NARRATOR]_
 
-    For weeks she has me finding apples.
+    I have been gathering apples for weeks.
 
     You cannot take them from the tree. They must have a dusty bloom on the
     skin, and for that they have to lie a little.
 
 [NARRATOR]_
 
-    And so I have been hunting windfall Cubby Fruit for
-    Cadi Ingenbrettar.
+    I am the one who finds the fruit for Cadi Ingenbrettar.
 
-.. property:: NARRATOR.state 102
