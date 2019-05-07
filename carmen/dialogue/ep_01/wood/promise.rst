@@ -88,6 +88,10 @@ A nudge
 
 [ANT]_
 
-    Yes, |PLAYER| must learn the Ale. But Wood for now. There's more yet.
+    Yes, |PLAYER| must learn the Ale.
+
+[CADI]_
+
+    But Wood for now. There's more yet.
 
 .. |PLAYER| property:: PLAYER.name.firstname
