@@ -21,8 +21,8 @@
 Problem
 ~~~~~~~
 
-Inner voice
------------
+Speech
+------
 
 [BRYN]_
 

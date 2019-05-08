@@ -12,7 +12,8 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
-   :states: carmen.types.Time.day_noon
+   :states: carmen.types.Spot.grid_0610
+            carmen.types.Time.eve
 
 .. entity:: NARRATOR
    :types: carmen.types.Narrator
