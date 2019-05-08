@@ -12,7 +12,7 @@
 
 .. entity:: PLAYER
    :types: carmen.types.Player
-   :states: carmen.types.Spot.grid_0610
+   :states: carmen.types.Spot.grid_0313
             carmen.types.Time.eve
 
 .. entity:: NARRATOR
